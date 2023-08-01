@@ -14,16 +14,23 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
-object CheckYourVATResult extends BasePage {
+class RegistrationStepDef extends BaseStepDef {
 
-  val resultOutcome        = "resultOutcome"
-  val useSetVATFlatRate    = "You can use the 16.5% VAT flat rate"
-  val useUniqueVATFlatRate = "You can use the VAT flat rate for your business type"
+  Given("the user accesses the IOSS Registration service") { () =>
+    CommonPage.goToRegistrationJourney()
+  }
 
-  def result: String =
-    driver.findElement(By.id(resultOutcome)).getText
+  Given("^the user signs in as an Organisation Admin with VAT enrolment (.*) and strong credentials$") {
+    (vrn: String) =>
+      AuthPage.loginUsingAuthorityWizard(vrn)
+  }
+
+  Given("the user is at the beginning of the signed in IOSS Registration journey") { () =>
+    CommonPage.checkJourneyUrl()
+  }
+
 }
