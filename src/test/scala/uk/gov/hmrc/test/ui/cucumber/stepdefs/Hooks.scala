@@ -28,4 +28,9 @@ class Hooks extends ScalaDsl with EN with BrowserDriver {
       scenario.attach(screenshot, "image/png", screenshotName)
     }
   }
+
+  Before {
+    driver.manage().deleteAllCookies()
+  }
+
 }

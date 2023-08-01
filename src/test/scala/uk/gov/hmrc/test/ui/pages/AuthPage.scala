@@ -17,25 +17,25 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
-object CheckYourVATHomePage extends BasePage {
-  val url: String = TestConfiguration.url("example-frontend") + "/vat-return-period"
+object AuthPage extends BasePage {
+  def loginUsingAuthorityWizard(vrn: String): Unit = {
 
-  val annuallyRadioButton  = "vatReturnPeriod"
-  val quarterlyRadioButton = "vatReturnPeriod-2"
+    val url: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
+    driver.getCurrentUrl should startWith(url)
 
-  def loadPage: this.type = {
-    driver.navigate().to(url)
-    this
+    val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
+    selectAffinityGroup.selectByValue("Organisation")
+    driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
+    driver
+      .findElement(By.id("input-0-0-name"))
+      .sendKeys("VRN")
+    driver
+      .findElement(By.id("input-0-0-value"))
+      .sendKeys(vrn)
+    driver.findElement(By.cssSelector("Input[value='Submit']")).click()
   }
 
-  def provideVATPeriod(period: String): Turnover.type = {
-    period match {
-      case "Annually" => driver.findElement(By.id(annuallyRadioButton)).click()
-      case _          => driver.findElement(By.id(quarterlyRadioButton)).click()
-    }
-    submitPage()
-    Turnover
-  }
 }
