@@ -33,4 +33,18 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.checkJourneyUrl()
   }
 
+  When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.selectAnswer(data)
+  }
+
+  When("^the user continues through the (.*) page$") { (url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.clickContinue()
+  }
+
+  Then("""^the user is on the (.*) page$""") { (url: String) =>
+    CommonPage.checkUrl(url)
+  }
+
 }

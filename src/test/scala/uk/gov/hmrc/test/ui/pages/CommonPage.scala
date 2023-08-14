@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object CommonPage extends BasePage {
@@ -25,6 +26,21 @@ object CommonPage extends BasePage {
     driver.navigate().to(registrationUrl)
 
   def checkJourneyUrl(): Unit =
-    driver.getCurrentUrl shouldBe registrationUrl
+    driver.getCurrentUrl shouldBe registrationUrl + "/ioss-registered"
+
+  def checkUrl(url: String): Unit =
+    driver.getCurrentUrl should endWith(url)
+
+  def selectAnswer(data: String): Unit = {
+    data match {
+      case "yes" => driver.findElement(By.id("value")).click()
+      case "no"  => driver.findElement(By.id("value-no")).click()
+      case _     => throw new Exception("Option doesn't exist")
+    }
+    CommonPage.clickContinue()
+  }
+
+  def clickContinue(): Unit =
+    driver.findElement(By.id("continue")).click()
 
 }
