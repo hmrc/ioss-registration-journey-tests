@@ -24,9 +24,19 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.goToRegistrationJourney()
   }
 
-  Given("^the user signs in as an Organisation Admin with VAT enrolment (.*) and strong credentials$") {
-    (vrn: String) =>
-      AuthPage.loginUsingAuthorityWizard(vrn)
+  Given("^the user signs into authority wizard as an (Organisation|Agent) Admin with VAT enrolment (.*)$") {
+    (role: String, vrn: String) =>
+      AuthPage.loginUsingAuthorityWizard(role, vrn)
+  }
+
+  Given("^the user signs in as an Organisation Admin (with|without) VAT enrolment (.*)$") {
+    (vatEnrolment: String, vrn: String) =>
+      AuthPage.loginUsingScpStub("Organisation", vatEnrolment, vrn)
+      AuthPage.selectMfaSuccess()
+  }
+
+  Given("""the user accesses the authority wizard""") { () =>
+    AuthPage.goToAuthStub()
   }
 
   Given("the user is at the beginning of the signed in IOSS Registration journey") { () =>

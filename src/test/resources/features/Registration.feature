@@ -11,7 +11,9 @@ Feature: Registration journeys
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
+    #    Temporary
+    And the user is on the registration-service-error page
 #    And the user is at the beginning of the signed in IOSS Registration journey
 
   Scenario: IOSS Registration journey for Norwegian Trader
@@ -23,6 +25,9 @@ Feature: Registration journeys
     And the user answers no on the ni-based page
     And the user answers yes on the norway-based page
     And the user continues through the register-to-use-service page
-#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
+      #    Temporary
+    And the user is on the registration-service-error page
+#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
 #    And the user is at the beginning of the signed in IOSS Registration journey
 
