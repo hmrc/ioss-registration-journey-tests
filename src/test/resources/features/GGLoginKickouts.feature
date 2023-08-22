@@ -21,6 +21,10 @@ Feature: Government Gateway Login Kickout journeys
     And the user signs into authority wizard as an Agent Admin with VAT enrolment 100000001
     And the user is on the cannot-use-agent page
 
+  Scenario: GG kickout when the user is not an admin user
+    Then the user signs in as an Organisation Non-Admin without VAT enrolment 100000001
+    And the user is on the role-unsupported page
+
 
 
 

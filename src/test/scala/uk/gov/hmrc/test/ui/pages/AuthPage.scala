@@ -52,13 +52,15 @@ object AuthPage extends BasePage {
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
   }
 
-  def loginUsingScpStub(affinityGroup: String, vatEnrolment: String, vrn: String): Unit = {
+  def loginUsingScpStub(affinityGroup: String, admin: String, vatEnrolment: String, vrn: String): Unit = {
 
     driver.findElement(By.partialLinkText("Register SCP User")).click()
     val select = new Select(driver.findElement(By.id("accountType")))
     select.selectByValue(affinityGroup)
 
-    driver.findElement(By.id("isAdmin")).click()
+    if (admin == "Admin") {
+      driver.findElement(By.id("isAdmin")).click()
+    }
     driver.findElement(By.id("groupProfile")).sendKeys("123")
 
     if (vatEnrolment == "with") {

@@ -29,9 +29,9 @@ class RegistrationStepDef extends BaseStepDef {
       AuthPage.loginUsingAuthorityWizard(role, vrn)
   }
 
-  Given("^the user signs in as an Organisation Admin (with|without) VAT enrolment (.*)$") {
-    (vatEnrolment: String, vrn: String) =>
-      AuthPage.loginUsingScpStub("Organisation", vatEnrolment, vrn)
+  Given("^the user signs in as an Organisation (Admin|Non-Admin) (with|without) VAT enrolment (.*)$") {
+    (admin: String, vatEnrolment: String, vrn: String) =>
+      AuthPage.loginUsingScpStub("Organisation", admin, vatEnrolment, vrn)
       AuthPage.selectMfaSuccess()
   }
 
