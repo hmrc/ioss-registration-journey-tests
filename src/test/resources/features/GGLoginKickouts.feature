@@ -14,7 +14,6 @@ Feature: Government Gateway Login Kickout journeys
   Scenario: GG kickout when the user is not registered for VAT
     Then the user signs in as an Organisation Admin without VAT enrolment 100000001
     And the user is on the credential-unsupported page
-#    Content should be https://import-one-stop-shop-prototype.herokuapp.com/1-0/registration/kickout-no-vat
 
   Scenario: GG kickout when the user is an agent
     Then the user accesses the authority wizard
