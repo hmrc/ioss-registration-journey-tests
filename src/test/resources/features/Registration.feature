@@ -12,9 +12,8 @@ Feature: Registration journeys
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
     Then the user signs in as an Organisation Admin with VAT enrolment 100000001
-    #    Temporary
-    And the user is on the registration-service-error page
-#    And the user is at the beginning of the signed in IOSS Registration journey
+    And the user is on the confirm-vat-details page
+
 
   Scenario: IOSS Registration journey for Norwegian Trader
     Given the user accesses the IOSS Registration service
@@ -26,8 +25,6 @@ Feature: Registration journeys
     And the user answers yes on the norway-based page
     And the user continues through the register-to-use-service page
     Then the user signs in as an Organisation Admin with VAT enrolment 100000001
-      #    Temporary
-    And the user is on the registration-service-error page
-#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
-#    And the user is at the beginning of the signed in IOSS Registration journey
+    And the user is on the confirm-vat-details page
+
 

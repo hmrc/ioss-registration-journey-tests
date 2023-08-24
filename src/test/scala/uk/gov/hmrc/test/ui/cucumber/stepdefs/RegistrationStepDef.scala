@@ -57,4 +57,11 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.checkUrl(url)
   }
 
+  When("""^the user chooses (Yes|Yes, details incorrect|No, different business) on the (.*) page$""") {
+    (data: String, url: String) =>
+      CommonPage.checkUrl(url)
+      CommonPage.selectChoice(data)
+      CommonPage.clickContinue()
+  }
+
 }
