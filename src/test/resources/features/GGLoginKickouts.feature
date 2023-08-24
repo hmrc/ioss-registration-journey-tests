@@ -27,5 +27,3 @@ Feature: Government Gateway Login Kickout journeys
 
 
 
-
-

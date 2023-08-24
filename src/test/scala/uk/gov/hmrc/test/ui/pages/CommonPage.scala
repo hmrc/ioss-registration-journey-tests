@@ -43,4 +43,11 @@ object CommonPage extends BasePage {
   def clickContinue(): Unit =
     driver.findElement(By.id("continue")).click()
 
+  def selectChoice(data: String): Unit =
+    data match {
+      case "Yes"                    => driver.findElement(By.id("value_0")).click()
+      case "Yes, details incorrect" => driver.findElement(By.id("value_1")).click()
+      case "No, different business" => driver.findElement(By.id("value_2")).click()
+    }
+
 }
