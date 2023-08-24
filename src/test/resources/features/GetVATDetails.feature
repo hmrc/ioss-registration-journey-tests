@@ -35,6 +35,10 @@ Feature: Get VAT Details kickout and alternative journeys
     Then the user signs in as an Organisation Admin with VAT enrolment 700000001
     And the user is on the registration-service-error page
 
+  Scenario: VAT details kickout when the VAT number for this account is no longer valid
+    Then the user signs in as an Organisation Admin with VAT enrolment 600000001
+    And the user is on the expired-vrn-date page
+
   Scenario: IOSS Registration journey for NI Trader who is not part of a VAT group
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
