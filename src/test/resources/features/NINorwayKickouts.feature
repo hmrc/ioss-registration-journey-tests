@@ -1,9 +1,8 @@
-@Registration
+@Registration @Accessibility
 
-Feature: Registration journeys
+Feature: Northern Ireland and Norway Kickout journeys
 
-  @ZAP @Accessibility
-  Scenario: IOSS Registration journey for NI Trader
+  Scenario: Kickout when the user answered yes to ni-based but does not have Single Market Indicator
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
@@ -11,10 +10,10 @@ Feature: Registration journeys
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
-    And the user is on the confirm-vat-details page
+    Then the user signs in as an Organisation Admin with VAT enrolment 500000001
+    And the user is on the cannot-register-no-ni-protocol page
 
-  Scenario: IOSS Registration journey for Norwegian Trader
+  Scenario: Kickout when the user answered yes to norway-based but does not have an address in Norway
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
@@ -23,7 +22,7 @@ Feature: Registration journeys
     And the user answers no on the ni-based page
     And the user answers yes on the norway-based page
     And the user continues through the register-to-use-service page
-    Then the user signs in as an Organisation Admin with VAT enrolment 444555555
-    And the user is on the confirm-vat-details page
+    Then the user signs in as an Organisation Admin with VAT enrolment 500000001
+    And the user is on the cannot-register-not-norwegian-based-business page
 
 
