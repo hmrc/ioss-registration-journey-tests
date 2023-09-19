@@ -64,4 +64,24 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.clickContinue()
   }
 
+  When("""^the user adds (.*) on the (first|second|third) (.*) page$""") { (data: String, index: String, url: String) =>
+    index match {
+      case "first"  => CommonPage.checkUrl(url + "/1")
+      case "second" => CommonPage.checkUrl(url + "/2")
+      case "third"  => CommonPage.checkUrl(url + "/3")
+      case _        => throw new Exception("Index doesn't exist")
+    }
+    CommonPage.enterData(data)
+  }
+
+  Then("""^the user selects the (change|remove) link for (.*)$""") { (linkType: String, link: String) =>
+    CommonPage.selectLink(link)
+  }
+
+  When("""^the user amends data to (.*) on the (.*) page$""") { (data: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.clearData()
+    CommonPage.enterData(data)
+  }
+
 }

@@ -50,4 +50,13 @@ object CommonPage extends BasePage {
       case "No, different business" => driver.findElement(By.id("value_2")).click()
     }
 
+  def enterData(data: String, inputId: String = "value"): Unit = {
+    driver.findElement(By.id(inputId)).sendKeys(data)
+    CommonPage.clickContinue()
+  }
+  def selectLink(link: String): Unit   =
+    driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
+
+  def clearData(): Unit =
+    driver.findElement(By.id("value")).clear()
 }
