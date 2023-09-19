@@ -74,4 +74,14 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.enterData(data)
   }
 
+  Then("""^the user selects the (change|remove) link for (.*)$""") { (linkType: String, link: String) =>
+    CommonPage.selectLink(link)
+  }
+
+  When("""^the user amends data to (.*) on the (.*) page$""") { (data: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.clearData()
+    CommonPage.enterData(data)
+  }
+
 }

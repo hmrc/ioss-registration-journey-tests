@@ -54,5 +54,9 @@ object CommonPage extends BasePage {
     driver.findElement(By.id(inputId)).sendKeys(data)
     CommonPage.clickContinue()
   }
+  def selectLink(link: String): Unit   =
+    driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
 
+  def clearData(): Unit =
+    driver.findElement(By.id("value")).clear()
 }
