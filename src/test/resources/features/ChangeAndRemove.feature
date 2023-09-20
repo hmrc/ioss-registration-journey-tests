@@ -16,9 +16,9 @@ Feature: Change and remove answers for registrations in progress
     And the user adds Alternative trading on the first uk-trading-name page
     And the user answers yes on the add-uk-trading-name page
     And the user adds 789 & trading on the second uk-trading-name page
-    Then the user selects the remove link for remove-uk-trading-name\/2
+    Then the user clicks remove via list for second uk-trading-name
     And the user answers yes on the remove-uk-trading-name/2 page
-    Then the user selects the remove link for remove-uk-trading-name\/1
+    Then the user clicks remove via list for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     Then the user answers no on the have-uk-trading-name page
 
@@ -36,9 +36,9 @@ Feature: Change and remove answers for registrations in progress
     And the user adds A trading name on the first uk-trading-name page
     And the user answers yes on the add-uk-trading-name page
     And the user adds 2nd name! on the second uk-trading-name page
-    Then the user selects the change link for uk-trading-name\/2\?waypoints\=change-add-uk-trading-name
+    Then the user selects the list change link for second uk-trading-name from change-add-uk-trading-name
     And the user amends data to Different trading name on the uk-trading-name/2?waypoints=change-add-uk-trading-name page
-    Then the user selects the remove link for remove-uk-trading-name\/1
+    Then the user clicks remove via list for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     Then the user answers no on the add-uk-trading-name page
 
@@ -57,9 +57,9 @@ Feature: Change and remove answers for registrations in progress
     And the user adds A Norwegian trading name on the first uk-trading-name page
     And the user answers yes on the add-uk-trading-name page
     And the user adds 2nd Norwegian name! on the second uk-trading-name page
-    Then the user selects the change link for uk-trading-name\/1\?waypoints\=change-add-uk-trading-name
+    Then the user selects the list change link for first uk-trading-name from change-add-uk-trading-name
     And the user amends data to Different Norwegian trading name on the uk-trading-name/1?waypoints=change-add-uk-trading-name page
-    Then the user selects the remove link for remove-uk-trading-name\/2
+    Then the user clicks remove via list for second uk-trading-name
     And the user answers yes on the remove-uk-trading-name/2 page
     Then the user answers yes on the add-uk-trading-name page
     And the user adds New 2nd Norwegian trading name on the second uk-trading-name page

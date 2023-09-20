@@ -75,8 +75,38 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.enterData(data)
   }
 
-  Then("""^the user selects the (change|remove) link for (.*)$""") { (linkType: String, link: String) =>
-    CommonPage.selectLink(link)
+  Then(
+    """^the user selects the (list|CYA|list within CYA) change link for (first|second|third|page) (.*) from (.*)$"""
+  ) { (route: String, index: String, toPage: String, fromPage: String) =>
+    val changeIndex = index match {
+      case "first"  => "1"
+      case "second" => "2"
+      case "third"  => "3"
+      case _        => "no index required"
+    }
+    if (route == "list") {
+      CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage")
+    } else if (route == "list within CYA") {
+      CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Ccheck-your-answers")
+    } else if (route == "CYA") {
+      CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
+    }
+  }
+
+  Then(
+    """^the user clicks remove via (list|CYA route) for (first|second|third) (.*)$"""
+  ) { (route: String, index: String, page: String) =>
+    val removeIndex = index match {
+      case "first"  => "1"
+      case "second" => "2"
+      case "third"  => "3"
+      case _        => throw new Exception("Index doesn't exist")
+    }
+    if (route == "CYA route") {
+      CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=check-your-answers")
+    } else {
+      CommonPage.selectLink(s"remove-$page\\/$removeIndex")
+    }
   }
 
   When("""^the user amends data to (.*) on the (.*) page$""") { (data: String, url: String) =>
