@@ -4,14 +4,16 @@ Feature: Registration journeys
 
   @ZAP
   Scenario: Full IOSS Registration journey for NI Trader
-    Given the user accesses the IOSS Registration service
+#    Given the user accesses the IOSS Registration service
+    Then the user accesses the authority wizard
+    And the user signs into authority wizard as an Organisation Admin with VAT enrolment 100000001
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
     And the user answers yes on the goods-value page
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
+#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
     And the user chooses Yes on the confirm-vat-details page
     And the user answers yes on the have-uk-trading-name page
     And the user adds A trading name on the first uk-trading-name page
@@ -27,10 +29,18 @@ Feature: Registration journeys
       | Trader Name        | fullName        |
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
-
+    #    Awaiting email verification
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | Trader Name            | accountName |
+      | ABCDEF2A               | bic         |
+      | GB33BUKB20201555555555 | iban        |
+    Then the user is on the check-your-answers page
 
   Scenario: IOSS Registration journey for Norwegian Trader
-    Given the user accesses the IOSS Registration service
+#    Given the user accesses the IOSS Registration service
+    Then the user accesses the authority wizard
+    And the user signs into authority wizard as an Organisation Admin with VAT enrolment 444555555
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
     And the user answers yes on the goods-value page
@@ -38,7 +48,7 @@ Feature: Registration journeys
     And the user answers no on the ni-based page
     And the user answers yes on the norway-based page
     And the user continues through the register-to-use-service page
-    Then the user signs in as an Organisation Admin with VAT enrolment 444555555
+#    Then the user signs in as an Organisation Admin with VAT enrolment 444555555
     And the user chooses Yes on the confirm-vat-details page
     And the user answers yes on the have-uk-trading-name page
     And the user adds Norwegian trading name on the first uk-trading-name page
@@ -50,16 +60,25 @@ Feature: Registration journeys
       | Norway Trader        | fullName        |
       | 01111111111          | telephoneNumber |
       | test@norwayemail.com | emailAddress    |
+    #    Awaiting email verification
+    And the user completes details on the bank-details page
+      | data               | fieldId     |
+      | Trader Name Norway | accountName |
+      | NORWNOK1XXX        | bic         |
+      | NO9386011117947    | iban        |
+    Then the user is on the check-your-answers page
 
   Scenario: Minimal IOSS Registration journey for NI Trader
-    Given the user accesses the IOSS Registration service
+#    Given the user accesses the IOSS Registration service
+    Then the user accesses the authority wizard
+    And the user signs into authority wizard as an Organisation Admin with VAT enrolment 100000001
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
     And the user answers yes on the goods-value page
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
+#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
     #   Awaiting further implementation
@@ -69,7 +88,11 @@ Feature: Registration journeys
       | Another Trader        | fullName        |
       | +17771117771          | telephoneNumber |
       | minimaltest@email.com | emailAddress    |
-
-
+    #    Awaiting email verification
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | Another Trader Name    | accountName |
+      | GB29NWBK60161331926819 | iban        |
+    Then the user is on the check-your-answers page
 
 

@@ -3,14 +3,16 @@
 Feature: Change answers for registrations via Check Your Answers
 
   Scenario: Change answers via Check Your Answers for NI Trader registration
-    Given the user accesses the IOSS Registration service
+#    Given the user accesses the IOSS Registration service
+    Then the user accesses the authority wizard
+    And the user signs into authority wizard as an Organisation Admin with VAT enrolment 100000001
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
     And the user answers yes on the goods-value page
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
+#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
     And the user chooses Yes on the confirm-vat-details page
     And the user answers yes on the have-uk-trading-name page
     And the user adds A trading name on the first uk-trading-name page
@@ -26,7 +28,13 @@ Feature: Change answers for registrations via Check Your Answers
       | Trader Name        | fullName        |
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
-    #   Awaiting further implementation
+    #    Awaiting email verification
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | Trader Name            | accountName |
+      | ABCDEF2A               | bic         |
+      | GB33BUKB20201555555555 | iban        |
+    Then the user is on the check-your-answers page
     And the user manually navigates to the check-your-answers page
     Then the user selects the CYA change link for page add-uk-trading-name from check-your-answers
     Then the user selects the list within CYA change link for second uk-trading-name from change-add-uk-trading-name
@@ -39,18 +47,26 @@ Feature: Change answers for registrations via Check Your Answers
     And the user amends details on the business-contact-details?waypoints=check-your-answers page
       | data          | fieldId         |
       | 5555555555555 | telephoneNumber |
-    #    Awaiting further implementation to redirect
-#    And the user is on the check-your-answers page
+    And the user is on the check-your-answers page
+    Then the user selects the CYA change link for page bank-details from check-your-answers
+    And the user amends details on the bank-details?waypoints=check-your-answers page
+      | data                   | fieldId     |
+      | Trader Name NI         | accountName |
+      | ABCDEF2A               | bic         |
+      | GB29NWBK60161331926819 | iban        |
+    And the user is on the check-your-answers page
 
   Scenario: Change from yes to no via Check Your Answers for NI Trader registration
-    Given the user accesses the IOSS Registration service
+#    Given the user accesses the IOSS Registration service
+    Then the user accesses the authority wizard
+    And the user signs into authority wizard as an Organisation Admin with VAT enrolment 100000001
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
     And the user answers yes on the goods-value page
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
+#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
     And the user chooses Yes on the confirm-vat-details page
     And the user answers yes on the have-uk-trading-name page
     And the user adds A trading name on the first uk-trading-name page
@@ -64,14 +80,21 @@ Feature: Change answers for registrations via Check Your Answers
       | Trader Name        | fullName        |
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
-    #   Awaiting further implementation
-    And the user manually navigates to the check-your-answers page
+    #    Awaiting email verification
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | Trader Name            | accountName |
+      | ABCDEF2A               | bic         |
+      | GB33BUKB20201555555555 | iban        |
+    And the user is on the check-your-answers page
     Then the user selects the CYA change link for page have-uk-trading-name from check-your-answers
     And the user answers no on the have-uk-trading-name?waypoints=check-your-answers page
     Then the user is on the check-your-answers page
 
   Scenario: Change answers via Check Your Answers for Norwegian Trader registration
-    Given the user accesses the IOSS Registration service
+#    Given the user accesses the IOSS Registration service
+    Then the user accesses the authority wizard
+    And the user signs into authority wizard as an Organisation Admin with VAT enrolment 444555555
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
     And the user answers yes on the goods-value page
@@ -79,7 +102,7 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the ni-based page
     And the user answers yes on the norway-based page
     And the user continues through the register-to-use-service page
-    Then the user signs in as an Organisation Admin with VAT enrolment 444555555
+#    Then the user signs in as an Organisation Admin with VAT enrolment 444555555
     And the user chooses Yes on the confirm-vat-details page
     And the user answers yes on the have-uk-trading-name page
     And the user adds A trading name on the first uk-trading-name page
@@ -91,8 +114,13 @@ Feature: Change answers for registrations via Check Your Answers
       | Trader Name        | fullName        |
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
-    #   Awaiting further implementation
-    And the user manually navigates to the check-your-answers page
+        #    Awaiting email verification
+    And the user completes details on the bank-details page
+      | data               | fieldId     |
+      | Trader Name Norway | accountName |
+      | NORWNOK1XXX        | bic         |
+      | NO9386011117947    | iban        |
+    And the user is on the check-your-answers page
     Then the user selects the CYA change link for page add-uk-trading-name from check-your-answers
     Then the user selects the list within CYA change link for first uk-trading-name from change-add-uk-trading-name
     And the user amends data to CYA Norwegian trading name on the uk-trading-name/1?waypoints=change-add-uk-trading-name%2Ccheck-your-answers page
@@ -102,8 +130,12 @@ Feature: Change answers for registrations via Check Your Answers
     And the user amends details on the business-contact-details?waypoints=check-your-answers page
       | data                 | fieldId  |
       | Norway Trader Update | fullName |
-    #    Awaiting further implementation to redirect
-#    And the user is on the check-your-answers page
+    And the user is on the check-your-answers page
+    Then the user selects the CYA change link for page bank-details from check-your-answers
+    And the user amends details on the bank-details?waypoints=check-your-answers page
+      | data                  | fieldId     |
+      | Different Name Norway | accountName |
+    And the user is on the check-your-answers page
 
 
 
