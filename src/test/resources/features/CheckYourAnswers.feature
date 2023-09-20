@@ -35,13 +35,11 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers yes on the remove-uk-trading-name/3?waypoints=check-your-answers page
     Then the user answers no on the add-uk-trading-name?waypoints=check-your-answers page
     And the user is on the check-your-answers page
-    #    Needs waypoint added to url
-    Then the user selects the change link for business-contact-details
-    #    Needs waypoint added to url
-    And the user amends details on the business-contact-details page
+    Then the user selects the change link for business-contact-details\?waypoints\=check-your-answers
+    And the user amends details on the business-contact-details?waypoints=check-your-answers page
       | data          | fieldId         |
       | 5555555555555 | telephoneNumber |
-    #    Awaiting fix to redirect
+    #    Awaiting further implementation to redirect
 #    And the user is on the check-your-answers page
 
   Scenario: Change from yes to no via Check Your Answers for NI Trader registration
@@ -71,6 +69,41 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user selects the change link for have-uk-trading-name\?waypoints\=check-your-answers
     And the user answers no on the have-uk-trading-name?waypoints=check-your-answers page
     Then the user is on the check-your-answers page
+
+  Scenario: Change answers via Check Your Answers for Norwegian Trader registration
+    Given the user accesses the IOSS Registration service
+    Then the user answers no on the ioss-registered page
+    And the user answers yes on the selling-goods-outside-single-market page
+    And the user answers yes on the goods-value page
+    And the user answers yes on the registered-for-vat-in-uk page
+    And the user answers no on the ni-based page
+    And the user answers yes on the norway-based page
+    And the user continues through the register-to-use-service page
+    Then the user signs in as an Organisation Admin with VAT enrolment 444555555
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds A trading name on the first uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    #   Awaiting further implementation
+    And the user manually navigates to the business-contact-details page
+    And the user completes details on the business-contact-details page
+      | data               | fieldId         |
+      | Trader Name        | fullName        |
+      | 07771117771        | telephoneNumber |
+      | test@testemail.com | emailAddress    |
+    #   Awaiting further implementation
+    And the user manually navigates to the check-your-answers page
+    Then the user selects the change link for add-uk-trading-name\?waypoints\=check-your-answers
+    Then the user selects the change link for uk-trading-name\/1\?waypoints\=change-add-uk-trading-name\%2Ccheck-your-answers
+    And the user amends data to CYA Norwegian trading name on the uk-trading-name/1?waypoints=change-add-uk-trading-name%2Ccheck-your-answers page
+    Then the user answers no on the add-uk-trading-name?waypoints=check-your-answers page
+    And the user is on the check-your-answers page
+    Then the user selects the change link for business-contact-details\?waypoints\=check-your-answers
+    And the user amends details on the business-contact-details?waypoints=check-your-answers page
+      | data                 | fieldId  |
+      | Norway Trader Update | fullName |
+    #    Awaiting further implementation to redirect
+#    And the user is on the check-your-answers page
 
 
 
