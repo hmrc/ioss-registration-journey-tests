@@ -125,4 +125,21 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.completeForm(dataTable)
   }
 
+  When("""^the user selects (.*) on the (first|second|third) (.*) page$""") {
+    (country: String, index: String, url: String) =>
+      val pageIndex = index match {
+        case "first"  => "1"
+        case "second" => "2"
+        case "third"  => "3"
+        case _        => throw new Exception("Index doesn't exist")
+      }
+      CommonPage.checkUrl(s"$url/$pageIndex")
+      CommonPage.selectValueAutocomplete(country)
+  }
+
+  When("""^the user picks (oss|ioss) on the (.*) page$""") { (scheme: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.selectScheme(scheme)
+  }
+
 }

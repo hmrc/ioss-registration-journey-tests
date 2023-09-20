@@ -18,7 +18,9 @@ package uk.gov.hmrc.test.ui.pages
 
 import io.cucumber.datatable.DataTable
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
+
 import scala.jdk.CollectionConverters._
 
 object CommonPage extends BasePage {
@@ -71,5 +73,23 @@ object CommonPage extends BasePage {
       driver.findElement(By.id(row.get("fieldId"))).sendKeys(row.get("data"))
     }
     clickContinue()
+  }
+
+  def waitForElement(by: By) =
+    new FluentWait(driver).until(ExpectedConditions.presenceOfElementLocated(by))
+  def selectValueAutocomplete(country: String): Unit = {
+    val inputId = "value"
+    driver.findElement(By.id(inputId)).sendKeys(country)
+    waitForElement(By.id(inputId))
+    driver.findElement(By.cssSelector("li#value__option--0")).click()
+    CommonPage.clickContinue()
+  }
+  def selectScheme(scheme: String): Unit = {
+    scheme match {
+      case "oss"  => driver.findElement(By.id("value_0")).click()
+      case "ioss" => driver.findElement(By.id("value_1")).click()
+      case _      => throw new Exception("Option doesn't exist")
+    }
+    CommonPage.clickContinue()
   }
 }
