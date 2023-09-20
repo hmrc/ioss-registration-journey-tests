@@ -16,8 +16,10 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import io.cucumber.datatable.DataTable
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import scala.jdk.CollectionConverters._
 
 object CommonPage extends BasePage {
   val registrationUrl: String = TestConfiguration.url("ioss-registration-frontend")
@@ -59,4 +61,15 @@ object CommonPage extends BasePage {
 
   def clearData(): Unit =
     driver.findElement(By.id("value")).clear()
+
+  def goToPage(url: String): Unit =
+    driver.navigate().to(s"$registrationUrl/$url")
+
+  def completeForm(dataTable: DataTable): Unit = {
+    dataTable.asMaps[String, String](classOf[String], classOf[String]).asScala.foreach { row =>
+      driver.findElement(By.id(row.get("fieldId"))).clear()
+      driver.findElement(By.id(row.get("fieldId"))).sendKeys(row.get("data"))
+    }
+    clickContinue()
+  }
 }

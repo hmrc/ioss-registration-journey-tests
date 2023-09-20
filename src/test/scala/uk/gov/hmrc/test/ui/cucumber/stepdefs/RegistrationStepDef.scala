@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
+import io.cucumber.datatable.DataTable
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 class RegistrationStepDef extends BaseStepDef {
@@ -82,6 +83,16 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.checkUrl(url)
     CommonPage.clearData()
     CommonPage.enterData(data)
+  }
+
+  When("""^the user manually navigates to the (.*) page$""") { (page: String) =>
+    CommonPage.goToPage(page)
+  }
+
+  When("""^the user (completes|amends) details on the (.*) page$""") {
+    (mode: String, url: String, dataTable: DataTable) =>
+      CommonPage.checkUrl(url)
+      CommonPage.completeForm(dataTable)
   }
 
 }
