@@ -19,10 +19,9 @@ package uk.gov.hmrc.test.ui.pages
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.driver
 
 object AuthPage extends BasePage {
-  def loginUsingAuthorityWizard(role: String, vrn: String): Unit = {
+  def loginUsingAuthorityWizard(role: String, vatEnrolment: String, vrn: String): Unit = {
 
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
     driver.getCurrentUrl should startWith(stubUrl)
@@ -31,7 +30,7 @@ object AuthPage extends BasePage {
       "ioss-registration-frontend"
     )
 
-    driver.findElement(By.id("redirectionUrl")).sendKeys(redirectUrl + "/on-sign-in")
+    driver.findElement(By.id("redirectionUrl")).sendKeys(redirectUrl)
 
     val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
     if (role == "Agent") {
@@ -42,13 +41,15 @@ object AuthPage extends BasePage {
     } else {
       selectAffinityGroup.selectByValue("Organisation")
     }
-    driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
-    driver
-      .findElement(By.id("input-0-0-name"))
-      .sendKeys("VRN")
-    driver
-      .findElement(By.id("input-0-0-value"))
-      .sendKeys(vrn)
+    if (vatEnrolment == "with") {
+      driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
+      driver
+        .findElement(By.id("input-0-0-name"))
+        .sendKeys("VRN")
+      driver
+        .findElement(By.id("input-0-0-value"))
+        .sendKeys(vrn)
+    }
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
   }
 
