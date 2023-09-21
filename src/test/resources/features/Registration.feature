@@ -2,7 +2,7 @@
 
 Feature: Registration journeys
 
-  @ZAP @wip
+  @ZAP
   Scenario: Full IOSS Registration journey for NI Trader
 #    Given the user accesses the IOSS Registration service
     Then the user accesses the authority wizard
@@ -23,6 +23,7 @@ Feature: Registration journeys
     And the user adds Number 3 on the third uk-trading-name page
     And the user answers no on the add-uk-trading-name page
     #   Awaiting navigation fix
+    #   Awaiting fix to allow 3 schemes to be added
     And the user manually navigates to the previous-oss page
     Then the user answers yes on the previous-oss page
     And the user selects Hungary on the first previous-country page
@@ -79,8 +80,25 @@ Feature: Registration journeys
     And the user answers yes on the have-uk-trading-name page
     And the user adds Norwegian trading name on the first uk-trading-name page
     And the user answers no on the add-uk-trading-name page
+    #   Awaiting navigation fix
+    #   Awaiting fix to allow 3 schemes to be added
+    And the user manually navigates to the previous-oss page
     Then the user answers yes on the previous-oss page
-
+    And the user selects Republic of Cyprus on the first previous-country page
+    And the user picks ioss on the previous-scheme/1/1 page
+    And the user answers no on the previous-ioss-scheme/1/1 page
+    And the user completes details on the previous-ioss-scheme/1/3 page
+      | data         | fieldId              |
+      | IM1962223333 | previousSchemeNumber |
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers yes on the previous-schemes-overview page
+    And the user selects Finland on the first previous-country page
+    And the user picks oss on the previous-scheme/2/1 page
+    And the user adds EU222456788 on the first previous-oss-scheme-number/2 page
+    #    Bug where user is on previous-scheme-answers/1 instead
+    Then the user answers no on the previous-scheme-answers/2 page
+    And the user answers no on the previous-schemes-overview page
     #   Awaiting further implementation
     And the user manually navigates to the business-contact-details page
     And the user completes details on the business-contact-details page
