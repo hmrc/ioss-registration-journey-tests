@@ -44,7 +44,7 @@ Feature: Registration journeys
     Then the user is on the previous-scheme-answers/1 page
     And the user continues through the previous-scheme-answers/1 page
     And the user answers yes on the previous-schemes-overview page
-    And the user selects Austria on the first previous-country page
+    And the user selects Austria on the second previous-country page
     And the user picks oss on the previous-scheme/2/1 page
     And the user adds EU123456788 on the first previous-oss-scheme-number/2 page
     Then the user answers no on the previous-scheme-answers/2 page
