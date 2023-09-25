@@ -201,7 +201,6 @@ Feature: Change answers for registrations via Check Your Answers
       | data                  | fieldId     |
       | Different Name Norway | accountName |
     And the user is on the check-your-answers page
-#    Add previous registrations into this scenario
 
 
 
