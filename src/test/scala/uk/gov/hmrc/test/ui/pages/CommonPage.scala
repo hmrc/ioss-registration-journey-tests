@@ -33,7 +33,7 @@ object CommonPage extends BasePage {
     driver.getCurrentUrl shouldBe registrationUrl + "/ioss-registered"
 
   def checkUrl(url: String): Unit =
-    driver.getCurrentUrl should endWith(url)
+    driver.getCurrentUrl should startWith(s"${TestConfiguration.url("ioss-registration-frontend")}/$url")
 
   def selectAnswer(data: String): Unit = {
     data match {

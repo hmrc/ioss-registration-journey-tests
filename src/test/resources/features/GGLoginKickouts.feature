@@ -28,7 +28,7 @@ Feature: Government Gateway Login Kickout journeys
 
   Scenario: GG kickout when the user is not an admin user
     Then the user signs in as an Organisation Non-Admin without VAT enrolment 100000001
-    And the user is on the role-unsupported page
+    And the user is on the account/role-unsupported page
 
 
 
