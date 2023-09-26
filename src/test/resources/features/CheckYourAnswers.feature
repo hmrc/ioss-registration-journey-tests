@@ -3,16 +3,14 @@
 Feature: Change answers for registrations via Check Your Answers
 
   Scenario: Change answers via Check Your Answers for NI Trader registration
-#    Given the user accesses the IOSS Registration service
-    Then the user accesses the authority wizard
-    And the user signs into authority wizard as an Organisation Admin with VAT enrolment 100000001
+    Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
     And the user answers yes on the goods-value page
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
+    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
     And the user chooses Yes on the confirm-vat-details page
     And the user answers yes on the have-uk-trading-name page
     And the user adds A trading name on the first uk-trading-name page
@@ -89,16 +87,14 @@ Feature: Change answers for registrations via Check Your Answers
     And the user is on the check-your-answers page
 
   Scenario: Change from yes to no via Check Your Answers for NI Trader registration
-#    Given the user accesses the IOSS Registration service
-    Then the user accesses the authority wizard
-    And the user signs into authority wizard as an Organisation Admin with VAT enrolment 100000001
+    Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
     And the user answers yes on the goods-value page
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
+    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
     And the user chooses Yes on the confirm-vat-details page
     And the user answers yes on the have-uk-trading-name page
     And the user adds A trading name on the first uk-trading-name page
@@ -145,9 +141,7 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user is on the check-your-answers page
 
   Scenario: Change answers via Check Your Answers for Norwegian Trader registration
-#    Given the user accesses the IOSS Registration service
-    Then the user accesses the authority wizard
-    And the user signs into authority wizard as an Organisation Admin with VAT enrolment 444555555
+    Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
     And the user answers yes on the goods-value page
@@ -155,7 +149,7 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the ni-based page
     And the user answers yes on the norway-based page
     And the user continues through the register-to-use-service page
-#    Then the user signs in as an Organisation Admin with VAT enrolment 444555555
+    Then the user signs in as an Organisation Admin with VAT enrolment 444555555
     And the user chooses Yes on the confirm-vat-details page
     And the user answers yes on the have-uk-trading-name page
     And the user adds A trading name on the first uk-trading-name page
