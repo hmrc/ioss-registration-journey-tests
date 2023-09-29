@@ -49,6 +49,35 @@ Feature: Change and remove answers for registrations in progress
     Then the user clicks remove via overviewExtraLoop for first previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/1 page
     Then the user answers no on the previous-oss page
+    Then the user answers yes on the tax-in-eu page
+    And the user selects Bulgaria on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds BG123455555 on the first eu-vat-number page
+    And the user adds Bulgarian Trading on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | A Town        | townOrCity |
+    And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Greece on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks tax id number on the registration-type/2 page
+    And the user adds Greece123456 on the second eu-tax-number page
+    And the user adds Grecian Trading on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | Suburb        | line2      |
+      | A Town        | townOrCity |
+      | G23566        | postCode   |
+    And the user continues through the check-tax-details/2 page
+    Then the user clicks remove via list for second tax-details
+    And the user answers yes on the remove-tax-details/2 page
+    Then the user clicks remove via list for first tax-details
+    And the user answers yes on the remove-tax-details/1 page
+    Then the user answers no on the tax-in-eu page
 
   Scenario: Change answers via list pages during registration for NI Trader
     Given the user accesses the IOSS Registration service
@@ -98,11 +127,44 @@ Feature: Change and remove answers for registrations in progress
     And the user picks ioss on the previous-scheme/2/2 page
     And the user answers no on the previous-ioss-scheme/2/2 page
     And the user completes details on the previous-ioss-number/2/2 page
-      | data         | fieldId                    |
-      | IM2339876543 | previousSchemeNumber       |
+      | data         | fieldId              |
+      | IM2339876543 | previousSchemeNumber |
     Then the user is on the previous-scheme-answers/2 page
     And the user answers no on the previous-scheme-answers/2 page
     And the user answers no on the previous-schemes-overview page
+    Then the user answers yes on the tax-in-eu page
+    And the user selects Italy on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds IT01234567899 on the first eu-vat-number page
+    And the user adds Italian Trading on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | A Town        | townOrCity |
+    Then the user selects the list change link for first eu-vat-number from check-tax-details-1
+    And the user amends data to IT01234567888 on the eu-vat-number/1 page
+    Then the user selects the list change link for first eu-fixed-establishment-address from check-tax-details-1
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data   | fieldId |
+      | Suburb | line2   |
+    And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Denmark on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks tax id number on the registration-type/2 page
+    And the user adds DK123456 on the second eu-tax-number page
+    And the user adds DK Trading on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | Suburb        | line2      |
+      | A Town        | townOrCity |
+      | DK3566        | postCode   |
+    Then the user selects the list change link for second registration-type from check-tax-details-2
+    And the user picks vat number on the registration-type/2 page
+    And the user adds DK12345678 on the second eu-vat-number page
+    And the user continues through the check-tax-details/2 page
 
   Scenario: Change and remove answers via list pages during registration for Norwegian Trader
     Given the user accesses the IOSS Registration service
@@ -144,5 +206,37 @@ Feature: Change and remove answers for registrations in progress
       | IN2507412365 | previousIntermediaryNumber |
     Then the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
+    Then the user answers yes on the tax-in-eu page
+    And the user selects Romania on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds RO1234567890 on the first eu-vat-number page
+    And the user adds Romanian Trading on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | A Town        | townOrCity |
+    And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Estonia on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks tax id number on the registration-type/2 page
+    And the user adds EST123987369 on the second eu-tax-number page
+    And the user adds Estonian Goods on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | Suburb        | line2      |
+      | A Town        | townOrCity |
+      | ES23566       | postCode   |
+    And the user continues through the check-tax-details/2 page
+    Then the user selects the list change link for first check-tax-details from change-add-tax-details
+    Then the user selects the list change link for first registration-type from check-tax-details-1
+    And the user picks tax id number on the registration-type/1 page
+    And the user adds ROM12345R on the first eu-tax-number page
+    And the user continues through the check-tax-details/1 page
+    Then the user clicks remove via list for second tax-details
+    And the user answers yes on the remove-tax-details/2 page
+    And the user answers no on the add-tax-details page
 
 
