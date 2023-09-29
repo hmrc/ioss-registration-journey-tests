@@ -207,7 +207,7 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user is on the check-your-answers page
     Then the user selects the CYA change link for page previous-oss from check-your-answers
     And the user answers no on the previous-oss page
-    Then the user answers yes on the check-remove-all-previous-registrations page
+    Then the user answers yes on the remove-all-previous-registrations page
     Then the user is on the check-your-answers page
     Then the user selects the CYA change link for page tax-in-eu from check-your-answers
     And the user answers no on the tax-in-eu page
