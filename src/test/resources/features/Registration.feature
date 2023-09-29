@@ -45,7 +45,32 @@ Feature: Registration journeys
     And the user adds EU123456788 on the first previous-oss-scheme-number/2 page
     Then the user answers no on the previous-scheme-answers/2 page
     And the user answers no on the previous-schemes-overview page
-    #   Awaiting further implementation
+    Then the user answers yes on the tax-in-eu page
+    And the user selects Romania on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds RO1234567890 on the first eu-vat-number page
+    And the user adds Romanian Trading on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | A Town        | townOrCity |
+    And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Estonia on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks tax id number on the registration-type/2 page
+    And the user adds EST123987369 on the second eu-tax-number page
+    And the user adds Estonian Goods on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | Suburb        | line2      |
+      | A Town        | townOrCity |
+      | ES23566       | postCode   |
+    And the user continues through the check-tax-details/2 page
+    And the user answers no on the add-tax-details page
+#   Awaiting further implementation
     And the user manually navigates to the business-contact-details page
     And the user completes details on the business-contact-details page
       | data               | fieldId         |
@@ -89,6 +114,32 @@ Feature: Registration journeys
     And the user adds EU222456788 on the first previous-oss-scheme-number/2 page
     Then the user answers no on the previous-scheme-answers/2 page
     And the user answers no on the previous-schemes-overview page
+    Then the user answers yes on the tax-in-eu page
+    And the user selects Spain on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks tax id number on the registration-type/1 page
+    And the user adds 1236ES34x on the first eu-tax-number page
+    And the user adds Spanish-Trading Name on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data               | fieldId       |
+      | 5201 Spanish Plaza | line1         |
+      | Spanish Area       | line2         |
+      | Barcelona          | townOrCity    |
+      | Catalonia          | stateOrRegion |
+      | ES 56201           | postCode      |
+    And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Germany on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks vat number on the registration-type/2 page
+    And the user adds DE999555111 on the second eu-vat-number page
+    And the user adds German Food Wholesalers Ltd on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data             | fieldId    |
+      | 63 German Street | line1      |
+      | Munich           | townOrCity |
+    And the user continues through the check-tax-details/2 page
+    And the user answers no on the add-tax-details page
     #   Awaiting further implementation
     And the user manually navigates to the business-contact-details page
     And the user completes details on the business-contact-details page
@@ -116,6 +167,7 @@ Feature: Registration journeys
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
     Then the user answers no on the previous-oss page
+    Then the user answers no on the tax-in-eu page
     #   Awaiting further implementation
     And the user manually navigates to the business-contact-details page
     And the user completes details on the business-contact-details page
