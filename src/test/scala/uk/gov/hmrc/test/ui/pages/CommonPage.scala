@@ -84,11 +84,11 @@ object CommonPage extends BasePage {
     driver.findElement(By.cssSelector("li#value__option--0")).click()
     CommonPage.clickContinue()
   }
-  def selectScheme(scheme: String): Unit = {
+  def selectRadioButton(scheme: String): Unit = {
     scheme match {
-      case "oss"  => driver.findElement(By.id("value_0")).click()
-      case "ioss" => driver.findElement(By.id("value_1")).click()
-      case _      => throw new Exception("Option doesn't exist")
+      case "1" => driver.findElement(By.id("value_0")).click()
+      case "2" => driver.findElement(By.id("value_1")).click()
+      case _   => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
   }

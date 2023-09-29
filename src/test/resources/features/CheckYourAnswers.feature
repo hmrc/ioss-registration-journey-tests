@@ -35,6 +35,31 @@ Feature: Change answers for registrations via Check Your Answers
       | IN0407654321 | previousIntermediaryNumber |
     Then the user answers no on the previous-scheme-answers/2 page
     And the user answers no on the previous-schemes-overview page
+    Then the user answers yes on the tax-in-eu page
+    And the user selects Austria on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds ATU11119876 on the first eu-vat-number page
+    And the user adds Austrian-Trading on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | A Town        | townOrCity |
+    And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Sweden on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks tax id number on the registration-type/2 page
+    And the user adds SW654321PLC on the second eu-tax-number page
+    And the user adds Swedish Goods on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | Suburb        | line2      |
+      | A Town        | townOrCity |
+      | S120 AB655    | postCode   |
+    And the user continues through the check-tax-details/2 page
+    And the user answers no on the add-tax-details page
     #   Awaiting further implementation
     And the user manually navigates to the business-contact-details page
     And the user completes details on the business-contact-details page
@@ -73,6 +98,26 @@ Feature: Change answers for registrations via Check Your Answers
 #    Will need further navigation added
 #    Then the user is on the check-your-answers page
     Then the user manually navigates to the check-your-answers page
+    Then the user selects the CYA change link for page add-tax-details from check-your-answers
+    Then the user clicks remove via taxDetailsExtraLoop for second tax-details
+    And the user answers yes on the remove-tax-details/2 page
+    Then the user selects the list within CYA change link for first check-tax-details from change-add-tax-details
+    Then the user selects the additional tax details list within CYA change link for first eu-trading-name from check-tax-details-1
+    And the user amends data to CYA trading name on the eu-trading-name/1 page
+    And the user continues through the check-tax-details page
+    And the user answers yes on the add-tax-details page
+    And the user selects Luxembourg on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks vat number on the registration-type/2 page
+    And the user adds LU88776655 on the second eu-vat-number page
+    And the user adds Lux Trading on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | A Town        | townOrCity |
+    And the user continues through the check-tax-details/2 page
+    Then the user answers no on the add-tax-details page
+    And the user is on the check-your-answers page
     Then the user selects the CYA change link for page business-contact-details from check-your-answers
     And the user amends details on the business-contact-details page
       | data          | fieldId         |
@@ -117,6 +162,31 @@ Feature: Change answers for registrations via Check Your Answers
       | IN0407654321 | previousIntermediaryNumber |
     Then the user answers no on the previous-scheme-answers/2 page
     And the user answers no on the previous-schemes-overview page
+    Then the user answers yes on the tax-in-eu page
+    And the user selects Slovakia on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds SK1234567890 on the first eu-vat-number page
+    And the user adds Slovakia Trading on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | A Town        | townOrCity |
+    And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Malta on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks tax id number on the registration-type/2 page
+    And the user adds 12385411556 on the second eu-tax-number page
+    And the user adds Maltese Goods on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | Suburb        | line2      |
+      | A Town        | townOrCity |
+      | MT23566       | postCode   |
+    And the user continues through the check-tax-details/2 page
+    And the user answers no on the add-tax-details page
     #   Awaiting further implementation
     And the user manually navigates to the business-contact-details page
     And the user completes details on the business-contact-details page
@@ -139,6 +209,10 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the previous-oss page
     Then the user answers yes on the check-remove-all-previous-registrations page
     Then the user is on the check-your-answers page
+    Then the user selects the CYA change link for page tax-in-eu from check-your-answers
+    And the user answers no on the tax-in-eu page
+    Then the user answers yes on the remove-all-tax-details page
+    Then the user is on the check-your-answers page
 
   Scenario: Change answers via Check Your Answers for Norwegian Trader registration
     Given the user accesses the IOSS Registration service
@@ -155,6 +229,7 @@ Feature: Change answers for registrations via Check Your Answers
     And the user adds A trading name on the first uk-trading-name page
     And the user answers no on the add-uk-trading-name page
     Then the user answers no on the previous-oss page
+    Then the user answers no on the tax-in-eu page
     #   Awaiting further implementation
     And the user manually navigates to the business-contact-details page
     And the user completes details on the business-contact-details page
@@ -183,6 +258,32 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
 #    Requires further navigation changes
+    And the user manually navigates to the check-your-answers page
+    Then the user selects the CYA change link for page tax-in-eu from check-your-answers
+    And the user answers yes on the tax-in-eu page
+    And the user selects Czech Republic on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks tax id number on the registration-type/1 page
+    And the user adds 65410CZabc on the first eu-tax-number page
+    And the user adds Czech Goods on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data           | fieldId    |
+      | 123 The Street | line1      |
+      | Prague         | townOrCity |
+    And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Denmark on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks vat number on the registration-type/2 page
+    And the user adds DK12344321 on the second eu-vat-number page
+    And the user adds Danish Trading on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data              | fieldId    |
+      | 635 Danish Street | line1      |
+      | Copenhagen        | townOrCity |
+    And the user continues through the check-tax-details/2 page
+    And the user answers no on the add-tax-details page
+    And the user is on the check-your-answers page
 #    And the user is on the check-your-answers page
     And the user manually navigates to the check-your-answers page
     Then the user selects the CYA change link for page business-contact-details from check-your-answers

@@ -78,7 +78,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user selects the (list|CYA|list within CYA) change link for (first|second|third|page) (.*) from (.*)$"""
+    """^the user selects the (list|CYA|list within CYA|additional tax details list within CYA) change link for (first|second|third|page) (.*) from (.*)$"""
   ) { (route: String, index: String, toPage: String, fromPage: String) =>
     val changeIndex = index match {
       case "first"  => "1"
@@ -92,11 +92,15 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Ccheck-your-answers")
     } else if (route == "CYA") {
       CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
+    } else if (route == "additional tax details list within CYA") {
+      CommonPage.selectLink(
+        s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Cchange-add-tax-details\\%2Ccheck-your-answers"
+      )
     }
   }
 
   Then(
-    """^the user clicks remove via (list|CYA route|overviewLoop|overviewExtraLoop) for (first|second|third) (.*)$"""
+    """^the user clicks remove via (list|CYA route|overviewLoop|overviewExtraLoop|taxDetailsExtraLoop) for (first|second|third) (.*)$"""
   ) { (route: String, index: String, page: String) =>
     val removeIndex = index match {
       case "first"  => "1"
@@ -111,6 +115,10 @@ class RegistrationStepDef extends BaseStepDef {
     } else if (route == "overviewExtraLoop") {
       CommonPage.selectLink(
         s"remove-$page\\/$removeIndex\\?waypoints\\=previous-schemes-overview\\%2Cchange-previous-schemes-overview"
+      )
+    } else if (route == "taxDetailsExtraLoop") {
+      CommonPage.selectLink(
+        s"remove-$page\\/$removeIndex\\?waypoints\\=change-add-tax-details\\%2Ccheck-your-answers"
       )
     } else {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex")
@@ -152,9 +160,17 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.selectValueAutocomplete(country)
   }
 
-  When("""^the user picks (oss|ioss) on the (.*) page$""") { (scheme: String, url: String) =>
+  When(
+    """^the user picks (oss|ioss|fixed establishment|dispatch warehouse|vat number|tax id number) on the (.*) page$"""
+  ) { (answer: String, url: String) =>
+    val radioButtonToSelect = answer match {
+      case "oss" | "fixed establishment" | "vat number"    => "1"
+      case "ioss" | "dispatch warehouse" | "tax id number" => "2"
+      case _                                               =>
+        throw new Exception("Selection doesn't exist")
+    }
     CommonPage.checkUrl(url)
-    CommonPage.selectScheme(scheme)
+    CommonPage.selectRadioButton(radioButtonToSelect)
   }
 
 }
