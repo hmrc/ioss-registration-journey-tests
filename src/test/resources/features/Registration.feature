@@ -20,7 +20,6 @@ Feature: Registration journeys
     And the user answers yes on the add-uk-trading-name page
     And the user adds Number 3 on the third uk-trading-name page
     And the user answers no on the add-uk-trading-name page
-    #   Awaiting fix to allow 3 schemes to be added
     Then the user answers yes on the previous-oss page
     And the user selects Hungary on the first previous-country page
     And the user picks oss on the previous-scheme/1/1 page
@@ -70,8 +69,12 @@ Feature: Registration journeys
       | ES23566       | postCode   |
     And the user continues through the check-tax-details/2 page
     And the user answers no on the add-tax-details page
-#   Awaiting further implementation
-    And the user manually navigates to the business-contact-details page
+    And the user adds www.first-website.com on the first website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds http://www.241goods.eu on the second website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds mywebsite.co.uk on the third website-address page
+    And the user answers no on the add-website-address page
     And the user completes details on the business-contact-details page
       | data               | fieldId         |
       | Trader Name        | fullName        |
@@ -140,8 +143,10 @@ Feature: Registration journeys
       | Munich           | townOrCity |
     And the user continues through the check-tax-details/2 page
     And the user answers no on the add-tax-details page
-    #   Awaiting further implementation
-    And the user manually navigates to the business-contact-details page
+    And the user adds a-norwegian-website.no on the first website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds www.3rd-norwegian-website.no on the second website-address page
+    And the user answers no on the add-website-address page
     And the user completes details on the business-contact-details page
       | data                 | fieldId         |
       | Norway Trader        | fullName        |
@@ -168,8 +173,8 @@ Feature: Registration journeys
     And the user answers no on the have-uk-trading-name page
     Then the user answers no on the previous-oss page
     Then the user answers no on the tax-in-eu page
-    #   Awaiting further implementation
-    And the user manually navigates to the business-contact-details page
+    And the user adds https://www.onlywebsite.com on the first website-address page
+    And the user answers no on the add-website-address page
     And the user completes details on the business-contact-details page
       | data                  | fieldId         |
       | Another Trader        | fullName        |

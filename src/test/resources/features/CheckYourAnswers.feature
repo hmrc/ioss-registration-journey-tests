@@ -60,8 +60,12 @@ Feature: Change answers for registrations via Check Your Answers
       | S120 AB655    | postCode   |
     And the user continues through the check-tax-details/2 page
     And the user answers no on the add-tax-details page
-    #   Awaiting further implementation
-    And the user manually navigates to the business-contact-details page
+    And the user adds www.websiteone.com on the first website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds www.websitetwo.com on the second website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds www.websitethree.com on the third website-address page
+    And the user answers no on the add-website-address page
     And the user completes details on the business-contact-details page
       | data               | fieldId         |
       | Trader Name        | fullName        |
@@ -74,7 +78,6 @@ Feature: Change answers for registrations via Check Your Answers
       | ABCDEF2A               | bic         |
       | GB33BUKB20201555555555 | iban        |
     Then the user is on the check-your-answers page
-    And the user manually navigates to the check-your-answers page
     Then the user selects the CYA change link for page add-uk-trading-name from check-your-answers
     Then the user selects the list within CYA change link for second uk-trading-name from change-add-uk-trading-name
     And the user amends data to CYA trading name on the uk-trading-name/2 page
@@ -117,6 +120,16 @@ Feature: Change answers for registrations via Check Your Answers
       | A Town        | townOrCity |
     And the user continues through the check-tax-details/2 page
     Then the user answers no on the add-tax-details page
+    And the user is on the check-your-answers page
+    Then the user selects the CYA change link for page add-website-address from check-your-answers
+    Then the user clicks remove via CYA route for second website-address
+    And the user answers yes on the remove-website-address/2 page
+    Then the user answers yes on the add-website-address page
+    And the user adds www.newwebsitethree.com on the third website-address page
+#  needs waypoint added
+    Then the user selects the list within CYA change link for second website-address from add-website-address
+    And the user amends data to www.websitetwo.com on the website-address/2 page
+    Then the user answers no on the add-website-address page
     And the user is on the check-your-answers page
     Then the user selects the CYA change link for page business-contact-details from check-your-answers
     And the user amends details on the business-contact-details page
@@ -187,8 +200,8 @@ Feature: Change answers for registrations via Check Your Answers
       | MT23566       | postCode   |
     And the user continues through the check-tax-details/2 page
     And the user answers no on the add-tax-details page
-    #   Awaiting further implementation
-    And the user manually navigates to the business-contact-details page
+    And the user adds www.1website.com on the first website-address page
+    And the user answers no on the add-website-address page
     And the user completes details on the business-contact-details page
       | data               | fieldId         |
       | Trader Name        | fullName        |
@@ -214,6 +227,7 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user answers yes on the remove-all-tax-details page
     Then the user is on the check-your-answers page
 
+
   Scenario: Change answers via Check Your Answers for Norwegian Trader registration
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -230,8 +244,10 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the add-uk-trading-name page
     Then the user answers no on the previous-oss page
     Then the user answers no on the tax-in-eu page
-    #   Awaiting further implementation
-    And the user manually navigates to the business-contact-details page
+    And the user adds www.1st-norwegian-website.no on the first website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds https://otherwebsite.eu on the second website-address page
+    And the user answers no on the add-website-address page
     And the user completes details on the business-contact-details page
       | data               | fieldId         |
       | Trader Name        | fullName        |
@@ -284,8 +300,12 @@ Feature: Change answers for registrations via Check Your Answers
     And the user continues through the check-tax-details/2 page
     And the user answers no on the add-tax-details page
     And the user is on the check-your-answers page
-#    And the user is on the check-your-answers page
-    And the user manually navigates to the check-your-answers page
+    Then the user selects the CYA change link for page add-website-address from check-your-answers
+#  needs waypoint added
+    Then the user selects the list within CYA change link for first website-address from add-website-address
+    And the user amends data to www.1stNorwegianCYAwebsite.no on the website-address/1 page
+    Then the user answers no on the add-website-address page
+    And the user is on the check-your-answers page
     Then the user selects the CYA change link for page business-contact-details from check-your-answers
     And the user amends details on the business-contact-details page
       | data                 | fieldId  |

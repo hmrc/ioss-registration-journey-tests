@@ -2,6 +2,7 @@
 
 Feature: Change and remove answers for registrations in progress
 
+
   Scenario: Remove answers via list pages during registration for NI Trader
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -78,6 +79,28 @@ Feature: Change and remove answers for registrations in progress
     Then the user clicks remove via list for first tax-details
     And the user answers yes on the remove-tax-details/1 page
     Then the user answers no on the tax-in-eu page
+#    Needs a nav update
+    And the user adds www.1st-website.com on the first website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds https://website2.eu on the second website-address page
+    Then the user clicks remove via list for second website-address
+    And the user answers yes on the remove-website-address/2 page
+    Then the user clicks remove via list for first website-address
+    And the user answers yes on the remove-website-address/1 page
+    Then the user adds www.new1st-website.com on the first website-address page
+    And the user answers no on the add-website-address page
+    And the user completes details on the business-contact-details page
+      | data                       | fieldId         |
+      | Trader Full-Name           | fullName        |
+      | 012012365214               | telephoneNumber |
+      | another-test@testemail.com | emailAddress    |
+      #    Awaiting email verification
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | Trader Full-Name       | accountName |
+      | ABCDEF2A               | bic         |
+      | GB33BUKB20201555555555 | iban        |
+    Then the user is on the check-your-answers page
 
   Scenario: Change answers via list pages during registration for NI Trader
     Given the user accesses the IOSS Registration service
@@ -165,6 +188,31 @@ Feature: Change and remove answers for registrations in progress
     And the user picks vat number on the registration-type/2 page
     And the user adds DK12345678 on the second eu-vat-number page
     And the user continues through the check-tax-details/2 page
+    Then the user answers no on the add-tax-details page
+    And the user adds www.1st-website.com on the first website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds https://website2.eu on the second website-address page
+#    requires waypoints
+    Then the user selects the list change link for first website-address from add-website-address
+    And the user amends data to http://www.1st-website.com on the website-address/1 page
+    Then the user selects the list change link for second website-address from add-website-address
+    And the user amends data to 2ndwebsite-amend.eu on the website-address/2 page
+    Then the user answers yes on the add-website-address page
+    And the user adds www.finalwebsite.com on the third website-address page
+    And the user answers no on the add-website-address page
+    And the user completes details on the business-contact-details page
+      | data                     | fieldId         |
+      | First Second Last        | fullName        |
+      | 12541256321              | telephoneNumber |
+      | email@company-website.eu | emailAddress    |
+      #    Awaiting email verification
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | First Second Last      | accountName |
+      | ABCDEF2A               | bic         |
+      | GB33BUKB20201555555555 | iban        |
+    Then the user is on the check-your-answers page
+
 
   Scenario: Change and remove answers via list pages during registration for Norwegian Trader
     Given the user accesses the IOSS Registration service
@@ -238,5 +286,26 @@ Feature: Change and remove answers for registrations in progress
     Then the user clicks remove via list for second tax-details
     And the user answers yes on the remove-tax-details/2 page
     And the user answers no on the add-tax-details page
+    And the user adds www.1st-norwegian-website.no on the first website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds https://otherwebsite.eu on the second website-address page
+    Then the user clicks remove via list for first website-address
+    And the user answers yes on the remove-website-address/1 page
+    #    requires waypoints
+    Then the user selects the list change link for first website-address from add-website-address
+    And the user amends data to only-norwegian-website.no on the website-address/1 page
+    Then the user answers no on the add-website-address page
+    And the user completes details on the business-contact-details page
+      | data                        | fieldId         |
+      | First Second Last-Norwegian | fullName        |
+      | 12541256321                 | telephoneNumber |
+      | no@company-website.no       | emailAddress    |
+      #    Awaiting email verification
+    And the user completes details on the bank-details page
+      | data                        | fieldId     |
+      | First Second Last-Norwegian | accountName |
+      | ABCDEF2A                    | bic         |
+      | GB33BUKB20201555555555      | iban        |
+    Then the user is on the check-your-answers page
 
 
