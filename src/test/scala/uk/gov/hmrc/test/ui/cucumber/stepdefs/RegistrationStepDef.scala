@@ -100,7 +100,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user clicks remove via (list|CYA route|overviewLoop|overviewExtraLoop|taxDetailsExtraLoop) for (first|second|third) (.*)$"""
+    """^the user clicks remove via (list|CYA route|overviewLoop|overviewExtraLoop) for (first|second|third) (.*)$"""
   ) { (route: String, index: String, page: String) =>
     val removeIndex = index match {
       case "first"  => "1"
@@ -115,10 +115,6 @@ class RegistrationStepDef extends BaseStepDef {
     } else if (route == "overviewExtraLoop") {
       CommonPage.selectLink(
         s"remove-$page\\/$removeIndex\\?waypoints\\=previous-schemes-overview\\%2Cchange-previous-schemes-overview"
-      )
-    } else if (route == "taxDetailsExtraLoop") {
-      CommonPage.selectLink(
-        s"remove-$page\\/$removeIndex\\?waypoints\\=change-add-tax-details\\%2Ccheck-your-answers"
       )
     } else {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex")
