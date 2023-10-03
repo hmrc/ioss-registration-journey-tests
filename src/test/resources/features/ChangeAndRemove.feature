@@ -79,7 +79,6 @@ Feature: Change and remove answers for registrations in progress
     Then the user clicks remove via list for first tax-details
     And the user answers yes on the remove-tax-details/1 page
     Then the user answers no on the tax-in-eu page
-#    Needs a nav update
     And the user adds www.1st-website.com on the first website-address page
     And the user answers yes on the add-website-address page
     And the user adds https://website2.eu on the second website-address page
@@ -189,13 +188,14 @@ Feature: Change and remove answers for registrations in progress
     And the user adds DK12345678 on the second eu-vat-number page
     And the user continues through the check-tax-details/2 page
     Then the user answers no on the add-tax-details page
+    #  There is an issue where URL has %2Cchange-previous-schemes-overview at the end
+#  This is caused by another bug which needs to be fixed
     And the user adds www.1st-website.com on the first website-address page
     And the user answers yes on the add-website-address page
     And the user adds https://website2.eu on the second website-address page
-#    requires waypoints
-    Then the user selects the list change link for first website-address from add-website-address
+    Then the user selects the list change link for first website-address from change-add-website-address
     And the user amends data to http://www.1st-website.com on the website-address/1 page
-    Then the user selects the list change link for second website-address from add-website-address
+    Then the user selects the list change link for second website-address from change-add-website-address
     And the user amends data to 2ndwebsite-amend.eu on the website-address/2 page
     Then the user answers yes on the add-website-address page
     And the user adds www.finalwebsite.com on the third website-address page
@@ -286,13 +286,13 @@ Feature: Change and remove answers for registrations in progress
     Then the user clicks remove via list for second tax-details
     And the user answers yes on the remove-tax-details/2 page
     And the user answers no on the add-tax-details page
+    #    The bug around having previous schemes on the end of the URL needs fixing for this
     And the user adds www.1st-norwegian-website.no on the first website-address page
     And the user answers yes on the add-website-address page
     And the user adds https://otherwebsite.eu on the second website-address page
     Then the user clicks remove via list for first website-address
     And the user answers yes on the remove-website-address/1 page
-    #    requires waypoints
-    Then the user selects the list change link for first website-address from add-website-address
+    Then the user selects the list change link for first website-address from change-add-website-address
     And the user amends data to only-norwegian-website.no on the website-address/1 page
     Then the user answers no on the add-website-address page
     And the user completes details on the business-contact-details page

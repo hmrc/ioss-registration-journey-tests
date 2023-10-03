@@ -45,6 +45,9 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
+    if (url == "add-website-address") {
+      println("The URL is ...." + driver.getCurrentUrl)
+    }
     CommonPage.checkUrl(url)
     CommonPage.selectAnswer(data)
   }

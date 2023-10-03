@@ -102,7 +102,7 @@ Feature: Change answers for registrations via Check Your Answers
 #    Then the user is on the check-your-answers page
     Then the user manually navigates to the check-your-answers page
     Then the user selects the CYA change link for page add-tax-details from check-your-answers
-    Then the user clicks remove via taxDetailsExtraLoop for second tax-details
+    Then the user clicks remove via CYA route for second tax-details
     And the user answers yes on the remove-tax-details/2 page
     Then the user selects the list within CYA change link for first check-tax-details from change-add-tax-details
     Then the user selects the additional tax details list within CYA change link for first eu-trading-name from check-tax-details-1
@@ -126,8 +126,7 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers yes on the remove-website-address/2 page
     Then the user answers yes on the add-website-address page
     And the user adds www.newwebsitethree.com on the third website-address page
-#  needs waypoint added
-    Then the user selects the list within CYA change link for second website-address from add-website-address
+    Then the user selects the list within CYA change link for second website-address from change-add-website-address
     And the user amends data to www.websitetwo.com on the website-address/2 page
     Then the user answers no on the add-website-address page
     And the user is on the check-your-answers page
@@ -301,8 +300,7 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the add-tax-details page
     And the user is on the check-your-answers page
     Then the user selects the CYA change link for page add-website-address from check-your-answers
-#  needs waypoint added
-    Then the user selects the list within CYA change link for first website-address from add-website-address
+    Then the user selects the list within CYA change link for first website-address from change-add-website-address
     And the user amends data to www.1stNorwegianCYAwebsite.no on the website-address/1 page
     Then the user answers no on the add-website-address page
     And the user is on the check-your-answers page
