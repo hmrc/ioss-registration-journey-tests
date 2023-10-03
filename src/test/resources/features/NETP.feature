@@ -22,11 +22,11 @@ Feature: NETP scenarios
     Then the user signs in as an Organisation Admin with VAT enrolment 444666662
     And the user is on the cannot-register-non-established-taxable-person page
 
-  Scenario: Trader with Single Market Indicator set to false and NETP set to false cannot progress through registration
+  Scenario: Trader with Single Market Indicator set to false and NETP set to false cannot progress through registration but hits NI Protocol rejection before NETP
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
     Then the user signs in as an Organisation Admin with VAT enrolment 444666663
-    And the user is on the cannot-register-non-established-taxable-person page
+    And the user is on the cannot-register-no-ni-protocol page
 
   Scenario: Trader with Single Market Indicator set to false and NETP set to false and has a Norway address can progress through registration
     And the user answers no on the ni-based page
