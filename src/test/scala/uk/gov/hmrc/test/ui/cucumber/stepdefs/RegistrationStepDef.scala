@@ -173,9 +173,15 @@ class RegistrationStepDef extends BaseStepDef {
   And("""^the user completes the (registration|change answers) email verification process""") { (mode: String) =>
     val journeyId = driver.getCurrentUrl.split("/")(5)
     CommonPage.goToEmailVerificationPasscodeGeneratorUrl()
-    val passcode  = driver.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
 
-    CommonPage.goToEmailVerificationUrl(journeyId)
+    val passcode = mode match {
+      case "registration"   => driver.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
+      case "change answers" =>
+        driver.findElement(By.tagName("body")).getText.split("test@newtestemail.com,")(1).dropRight(42)
+      case _                =>
+        throw new Exception("mode doesn't exist")
+    }
+    CommonPage.goToEmailVerificationUrl(journeyId, mode)
     CommonPage.enterPasscode(passcode)
 
     if (mode == "change answers") {

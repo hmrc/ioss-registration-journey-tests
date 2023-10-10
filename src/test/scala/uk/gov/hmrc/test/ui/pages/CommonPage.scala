@@ -98,15 +98,22 @@ object CommonPage extends BasePage {
         "http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/test-only/get-passcodes"
       )
 
-  def goToEmailVerificationUrl(journeyId: String): Unit =
+  def goToEmailVerificationUrl(journeyId: String, mode: String): Unit = {
+    val url = mode match {
+      case "registration"   => "bank-details"
+      case "change answers" => "check-your-answers"
+      case _                =>
+        throw new Exception("URL doesn't exist")
+    }
     driver
       .navigate()
       .to(
-        s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/bank-details&origin=IOSS&service=ioss-registration-frontend"
+        s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/$url&origin=IOSS&service=ioss-registration-frontend"
       )
+  }
 
-  def enterPasscode(passcode: String): Unit =
+  def enterPasscode(passcode: String): Unit = {
     driver.findElement(By.id("passcode")).sendKeys(passcode)
-  driver.findElement(By.className("govuk-button")).click()
-
+    driver.findElement(By.className("govuk-button")).click()
+  }
 }

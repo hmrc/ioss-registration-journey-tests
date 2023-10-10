@@ -2,7 +2,7 @@
 
 Feature: Registration journeys
 
-  @ZAP @wip
+  @ZAP
   Scenario: Full IOSS Registration journey for NI Trader
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
