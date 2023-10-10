@@ -93,7 +93,7 @@ Feature: Change and remove answers for registrations in progress
       | Trader Full-Name           | fullName        |
       | 012012365214               | telephoneNumber |
       | another-test@testemail.com | emailAddress    |
-      #    Awaiting email verification
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Trader Full-Name       | accountName |
@@ -211,7 +211,7 @@ Feature: Change and remove answers for registrations in progress
       | First Second Last        | fullName        |
       | 12541256321              | telephoneNumber |
       | email@company-website.eu | emailAddress    |
-      #    Awaiting email verification
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | First Second Last      | accountName |
@@ -310,7 +310,7 @@ Feature: Change and remove answers for registrations in progress
       | First Second Last-Norwegian | fullName        |
       | 12541256321                 | telephoneNumber |
       | no@company-website.no       | emailAddress    |
-      #    Awaiting email verification
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                        | fieldId     |
       | First Second Last-Norwegian | accountName |

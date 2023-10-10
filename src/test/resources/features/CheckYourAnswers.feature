@@ -71,7 +71,7 @@ Feature: Change answers for registrations via Check Your Answers
       | Trader Name        | fullName        |
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
-    #    Awaiting email verification
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Trader Name            | accountName |
@@ -206,7 +206,7 @@ Feature: Change answers for registrations via Check Your Answers
       | Trader Name        | fullName        |
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
-    #    Awaiting email verification
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Trader Name            | accountName |
@@ -252,7 +252,7 @@ Feature: Change answers for registrations via Check Your Answers
       | Trader Name        | fullName        |
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
-        #    Awaiting email verification
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data               | fieldId     |
       | Trader Name Norway | accountName |
@@ -306,8 +306,10 @@ Feature: Change answers for registrations via Check Your Answers
     And the user is on the check-your-answers page
     Then the user selects the CYA change link for page business-contact-details from check-your-answers
     And the user amends details on the business-contact-details page
-      | data                 | fieldId  |
-      | Norway Trader Update | fullName |
+      | data                  | fieldId      |
+      | Norway Trader Update  | fullName     |
+      | test@newtestemail.com | emailAddress |
+    And the user completes the change answers email verification process
     And the user is on the check-your-answers page
     Then the user selects the CYA change link for page bank-details from check-your-answers
     And the user amends details on the bank-details page
