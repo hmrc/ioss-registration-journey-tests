@@ -80,7 +80,7 @@ Feature: Registration journeys
       | Trader Name        | fullName        |
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
-    #    Awaiting email verification
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Trader Name            | accountName |
@@ -152,7 +152,7 @@ Feature: Registration journeys
       | Norway Trader        | fullName        |
       | 01111111111          | telephoneNumber |
       | test@norwayemail.com | emailAddress    |
-    #    Awaiting email verification
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data               | fieldId     |
       | Trader Name Norway | accountName |
@@ -180,7 +180,7 @@ Feature: Registration journeys
       | Another Trader        | fullName        |
       | +17771117771          | telephoneNumber |
       | minimaltest@email.com | emailAddress    |
-    #    Awaiting email verification
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Another Trader Name    | accountName |

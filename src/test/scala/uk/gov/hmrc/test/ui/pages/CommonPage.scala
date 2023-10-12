@@ -75,7 +75,7 @@ object CommonPage extends BasePage {
     clickContinue()
   }
 
-  def waitForElement(by: By) =
+  def waitForElement(by: By)                            =
     new FluentWait(driver).until(ExpectedConditions.presenceOfElementLocated(by))
   def selectValueAutocomplete(country: String): Unit = {
     val inputId = "value"
@@ -91,5 +91,29 @@ object CommonPage extends BasePage {
       case _   => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
+  }
+  def goToEmailVerificationPasscodeGeneratorUrl(): Unit =
+    driver.navigate
+      .to(
+        "http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/test-only/get-passcodes"
+      )
+
+  def goToEmailVerificationUrl(journeyId: String, mode: String): Unit = {
+    val url = mode match {
+      case "registration"   => "bank-details"
+      case "change answers" => "check-your-answers"
+      case _                =>
+        throw new Exception("URL doesn't exist")
+    }
+    driver
+      .navigate()
+      .to(
+        s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/$url&origin=IOSS&service=ioss-registration-frontend"
+      )
+  }
+
+  def enterPasscode(passcode: String): Unit = {
+    driver.findElement(By.id("passcode")).sendKeys(passcode)
+    driver.findElement(By.className("govuk-button")).click()
   }
 }
