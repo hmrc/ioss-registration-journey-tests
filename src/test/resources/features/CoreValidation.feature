@@ -1,4 +1,4 @@
-@Registration
+@Registration @Accessibility
 
 Feature: Core Validation Scenarios
 
@@ -41,7 +41,7 @@ Feature: Core Validation Scenarios
     And the user adds SI11223344 on the first previous-oss-scheme-number/1 page
     Then the user is on the previous-scheme-answers/1 page
 
-  Scenario: Trader with active IOSS scheme - previous registration - can register
+  Scenario: Trader with active IOSS scheme - previous registration - not able to register
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
