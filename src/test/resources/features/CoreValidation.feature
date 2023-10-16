@@ -60,7 +60,7 @@ Feature: Core Validation Scenarios
       | data         | fieldId                    |
       | IM7051122334 | previousSchemeNumber       |
       | IN7051122334 | previousIntermediaryNumber |
-    Then the user is on the scheme-still-active/1/1?countryCode=SI page
+    Then the user is on the scheme-still-active?countryCode=SI page
 
   Scenario: Trader with quarantined OSS scheme - previous registration - not able to register
     Given the user accesses the IOSS Registration service
@@ -77,7 +77,7 @@ Feature: Core Validation Scenarios
     And the user selects Latvia on the first previous-country page
     And the user picks oss on the previous-scheme/1/1 page
     And the user adds LV11111222222 on the first previous-oss-scheme-number/1 page
-    Then the user is on the scheme-quarantined/1/1 page
+    Then the user is on the scheme-quarantined page
 
   Scenario: Trader with quarantined IOSS scheme - previous registration - not able to register
     Given the user accesses the IOSS Registration service
@@ -98,7 +98,7 @@ Feature: Core Validation Scenarios
       | data         | fieldId                    |
       | IM4281122334 | previousSchemeNumber       |
       | IN4281122334 | previousIntermediaryNumber |
-    Then the user is on the scheme-quarantined/1/1 page
+    Then the user is on the scheme-quarantined page
 
   Scenario: Trader with active scheme - EU details - VRN - not able to register
     Given the user accesses the IOSS Registration service
