@@ -197,4 +197,8 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.checkUrl("successful")
   }
 
+  Then("""^the user selects the register button$""") { () =>
+    CommonPage.clickContinue()
+  }
+
 }
