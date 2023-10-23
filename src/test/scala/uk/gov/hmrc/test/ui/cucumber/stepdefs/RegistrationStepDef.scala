@@ -26,9 +26,10 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.goToRegistrationJourney()
   }
 
-  Given("^the user signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT) enrolment (.*)$") {
-    (role: String, withStatus: String, enrolment: String, vrn: String) =>
-      AuthPage.loginUsingAuthorityWizard(role, withStatus, enrolment, vrn)
+  Given(
+    "^the user signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT) enrolment (.*)$"
+  ) { (role: String, withStatus: String, enrolment: String, vrn: String) =>
+    AuthPage.loginUsingAuthorityWizard(role, withStatus, enrolment, vrn)
   }
 
   Given("^the user signs in as an Organisation (Admin|Non-Admin) (with|without) VAT enrolment (.*)$") {
