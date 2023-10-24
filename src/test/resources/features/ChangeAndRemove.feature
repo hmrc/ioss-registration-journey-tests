@@ -102,125 +102,124 @@ Feature: Change and remove answers for registrations in progress
     Then the user is on the check-your-answers page
     Then the user submits their registration
 
-#BUG-271 is now blocking this scenario
-#  Scenario: Change answers via list pages during registration for NI Trader
-#    Given the user accesses the IOSS Registration service
-#    Then the user answers no on the ioss-registered page
-#    And the user answers yes on the selling-goods-outside-single-market page
-#    And the user answers yes on the goods-value page
-#    And the user answers yes on the registered-for-vat-in-uk page
-#    And the user answers yes on the ni-based page
-#    And the user continues through the register-to-use-service page
-#    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
-#    And the user chooses Yes on the confirm-vat-details page
-#    And the user answers yes on the have-uk-trading-name page
-#    And the user adds A trading name on the first uk-trading-name page
-#    And the user answers yes on the add-uk-trading-name page
-#    And the user adds 2nd name! on the second uk-trading-name page
-#    Then the user selects the list change link for second uk-trading-name from change-add-uk-trading-name
-#    And the user amends data to Different trading name on the uk-trading-name/2 page
-#    Then the user clicks remove via list for first uk-trading-name
-#    And the user answers yes on the remove-uk-trading-name/1 page
-#    Then the user answers no on the add-uk-trading-name page
-#    Then the user answers yes on the previous-oss page
-#    And the user selects Belgium on the first previous-country page
-#    And the user picks oss on the previous-scheme/1/1 page
-#    And the user adds BE0123456777 on the first previous-oss-scheme-number/1 page
-#    Then the user is on the previous-scheme-answers/1 page
-#    And the user answers yes on the previous-scheme-answers/1 page
-#    And the user picks ioss on the previous-scheme/1/2 page
-#    And the user answers yes on the previous-ioss-scheme/1/2 page
-#    And the user completes details on the previous-ioss-number/1/2 page
-#      | data         | fieldId                    |
-#      | IM0563332221 | previousSchemeNumber       |
-#      | IN0563332221 | previousIntermediaryNumber |
-#    Then the user is on the previous-scheme-answers/1 page
-#    And the user answers no on the previous-scheme-answers/1 page
-#    And the user answers yes on the previous-schemes-overview page
-#    And the user selects Estonia on the second previous-country page
-#    And the user picks oss on the previous-scheme/2/1 page
-#    And the user adds EE111111111 on the first previous-oss-scheme-number/2 page
-#    Then the user answers no on the previous-scheme-answers/2 page
-#    Then the user selects the list change link for first previous-scheme-answers from change-previous-schemes-overview
-#    And the user answers yes on the previous-scheme-answers/1 page
-#    And the user picks oss on the previous-scheme/1/3 page
-#    And the user adds EU111555999 on the new previous-oss-scheme-number/1/3 page
-##   BUG
-##   Commenting out until further work is done to waypoints
-##   Then the user continues through the previous-scheme-answers/1 page
-#    Then the user selects the list change link for second previous-scheme-answers from change-previous-schemes-overview
-#    And the user answers yes on the previous-scheme-answers/2 page
-#    And the user picks ioss on the previous-scheme/2/2 page
-#    And the user answers no on the previous-ioss-scheme/2/2 page
-#    And the user completes details on the previous-ioss-number/2/2 page
-#      | data         | fieldId              |
-#      | IM2339876543 | previousSchemeNumber |
-#    Then the user is on the previous-scheme-answers/2 page
-#    And the user answers no on the previous-scheme-answers/2 page
-#    And the user answers no on the previous-schemes-overview page
-#    Then the user answers yes on the tax-in-eu page
-#    And the user selects Italy on the first eu-tax page
-#    And the user picks fixed establishment on the how-do-you-operate/1 page
-#    And the user picks vat number on the registration-type/1 page
-#    And the user adds IT01234567899 on the first eu-vat-number page
-#    And the user adds Italian Trading on the first eu-trading-name page
-#    And the user completes details on the eu-fixed-establishment-address/1 page
-#      | data          | fieldId    |
-#      | 1 Street Name | line1      |
-#      | A Town        | townOrCity |
-#    Then the user selects the list change link for first eu-vat-number from check-tax-details-1
-#    And the user amends data to IT01234567888 on the eu-vat-number/1 page
-#    Then the user selects the list change link for first eu-fixed-establishment-address from check-tax-details-1
-#    And the user completes details on the eu-fixed-establishment-address/1 page
-#      | data   | fieldId |
-#      | Suburb | line2   |
-#    And the user continues through the check-tax-details/1 page
-#    Then the user answers yes on the add-tax-details page
-#    And the user selects Denmark on the second eu-tax page
-#    And the user picks fixed establishment on the how-do-you-operate/2 page
-#    And the user picks tax id number on the registration-type/2 page
-#    And the user adds DK123456 on the second eu-tax-number page
-#    And the user adds DK Trading on the second eu-trading-name page
-#    And the user completes details on the eu-fixed-establishment-address/2 page
-#      | data          | fieldId    |
-#      | 1 Street Name | line1      |
-#      | Suburb        | line2      |
-#      | A Town        | townOrCity |
-#      | DK3566        | postCode   |
-#    Then the user selects the list change link for second registration-type from check-tax-details-2
-#    And the user picks vat number on the registration-type/2 page
-#    And the user adds DK12345678 on the second eu-vat-number page
-#    And the user continues through the check-tax-details/2 page
-#    Then the user answers no on the add-tax-details page
-#    #  There is an issue where URL has %2Cchange-previous-schemes-overview at the end
-##  This is caused by another bug which needs to be fixed
-#    And the user adds www.1st-website.com on the first website-address page
-#    And the user answers yes on the add-website-address page
-#    And the user adds https://website2.eu on the second website-address page
-#    Then the user selects the list change link for first website-address from change-add-website-address
-#    And the user amends data to http://www.1st-website.com on the website-address/1 page
-#    Then the user selects the list change link for second website-address from change-add-website-address
-#    And the user amends data to 2ndwebsite-amend.eu on the website-address/2 page
-#    Then the user answers yes on the add-website-address page
-#    And the user adds www.finalwebsite.com on the third website-address page
-#    And the user answers no on the add-website-address page
-##    BUG around waypoints for previous schemes takes user to check-your-answers
-##    instead of business-contact details
-##    Added temporary manual navigation until this is fixed
-#    Then the user manually navigates to the business-contact-details page
-#    And the user completes details on the business-contact-details page
-#      | data                     | fieldId         |
-#      | First Second Last        | fullName        |
-#      | 12541256321              | telephoneNumber |
-#      | email@company-website.eu | emailAddress    |
-#    And the user completes the registration email verification process
-#    And the user completes details on the bank-details page
-#      | data                   | fieldId     |
-#      | First Second Last      | accountName |
-#      | ABCDEF2A               | bic         |
-#      | GB33BUKB20201555555555 | iban        |
-#    Then the user is on the check-your-answers page
-#    Then the user submits their registration
+  Scenario: Change answers via list pages during registration for NI Trader
+    Given the user accesses the IOSS Registration service
+    Then the user answers no on the ioss-registered page
+    And the user answers yes on the selling-goods-outside-single-market page
+    And the user answers yes on the goods-value page
+    And the user answers yes on the registered-for-vat-in-uk page
+    And the user answers yes on the ni-based page
+    And the user continues through the register-to-use-service page
+    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds A trading name on the first uk-trading-name page
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds 2nd name! on the second uk-trading-name page
+    Then the user selects the list change link for second uk-trading-name from change-add-uk-trading-name
+    And the user amends data to Different trading name on the uk-trading-name/2 page
+    Then the user clicks remove via list for first uk-trading-name
+    And the user answers yes on the remove-uk-trading-name/1 page
+    Then the user answers no on the add-uk-trading-name page
+    Then the user answers yes on the previous-oss page
+    And the user selects Belgium on the first previous-country page
+    And the user picks oss on the previous-scheme/1/1 page
+    And the user adds BE0123456777 on the first previous-oss-scheme-number/1 page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers yes on the previous-scheme-answers/1 page
+    And the user picks ioss on the previous-scheme/1/2 page
+    And the user answers yes on the previous-ioss-scheme/1/2 page
+    And the user completes details on the previous-ioss-number/1/2 page
+      | data         | fieldId                    |
+      | IM0563332221 | previousSchemeNumber       |
+      | IN0563332221 | previousIntermediaryNumber |
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers yes on the previous-schemes-overview page
+    And the user selects Estonia on the second previous-country page
+    And the user picks oss on the previous-scheme/2/1 page
+    And the user adds EE111111111 on the first previous-oss-scheme-number/2 page
+    Then the user answers no on the previous-scheme-answers/2 page
+    Then the user selects the list change link for first previous-scheme-answers from change-previous-schemes-overview
+    And the user answers yes on the previous-scheme-answers/1 page
+    And the user picks oss on the previous-scheme/1/3 page
+    And the user adds EU111555999 on the new previous-oss-scheme-number/1/3 page
+#   BUG
+#   Commenting out until further work is done to waypoints
+#   Then the user continues through the previous-scheme-answers/1 page
+    Then the user selects the list change link for second previous-scheme-answers from change-previous-schemes-overview
+    And the user answers yes on the previous-scheme-answers/2 page
+    And the user picks ioss on the previous-scheme/2/2 page
+    And the user answers no on the previous-ioss-scheme/2/2 page
+    And the user completes details on the previous-ioss-number/2/2 page
+      | data         | fieldId              |
+      | IM2339876543 | previousSchemeNumber |
+    Then the user is on the previous-scheme-answers/2 page
+    And the user answers no on the previous-scheme-answers/2 page
+    And the user answers no on the previous-schemes-overview page
+    Then the user answers yes on the tax-in-eu page
+    And the user selects Italy on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds IT01234567899 on the first eu-vat-number page
+    And the user adds Italian Trading on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | A Town        | townOrCity |
+    Then the user selects the list change link for first eu-vat-number from check-tax-details-1
+    And the user amends data to IT01234567888 on the eu-vat-number/1 page
+    Then the user selects the list change link for first eu-fixed-establishment-address from check-tax-details-1
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data   | fieldId |
+      | Suburb | line2   |
+    And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Denmark on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks tax id number on the registration-type/2 page
+    And the user adds DK123456 on the second eu-tax-number page
+    And the user adds DK Trading on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | Suburb        | line2      |
+      | A Town        | townOrCity |
+      | DK3566        | postCode   |
+    Then the user selects the list change link for second registration-type from check-tax-details-2
+    And the user picks vat number on the registration-type/2 page
+    And the user adds DK12345678 on the second eu-vat-number page
+    And the user continues through the check-tax-details/2 page
+    Then the user answers no on the add-tax-details page
+    #  There is an issue where URL has %2Cchange-previous-schemes-overview at the end
+#  This is caused by another bug which needs to be fixed
+    And the user adds www.1st-website.com on the first website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds https://website2.eu on the second website-address page
+    Then the user selects the list change link for first website-address from change-add-website-address
+    And the user amends data to http://www.1st-website.com on the website-address/1 page
+    Then the user selects the list change link for second website-address from change-add-website-address
+    And the user amends data to 2ndwebsite-amend.eu on the website-address/2 page
+    Then the user answers yes on the add-website-address page
+    And the user adds www.finalwebsite.com on the third website-address page
+    And the user answers no on the add-website-address page
+#    BUG around waypoints for previous schemes takes user to check-your-answers
+#    instead of business-contact details
+#    Added temporary manual navigation until this is fixed
+    Then the user manually navigates to the business-contact-details page
+    And the user completes details on the business-contact-details page
+      | data                     | fieldId         |
+      | First Second Last        | fullName        |
+      | 12541256321              | telephoneNumber |
+      | email@company-website.eu | emailAddress    |
+    And the user completes the registration email verification process
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | First Second Last      | accountName |
+      | ABCDEF2A               | bic         |
+      | GB33BUKB20201555555555 | iban        |
+    Then the user is on the check-your-answers page
+    Then the user submits their registration
 
 
   Scenario: Change and remove answers via list pages during registration for Norwegian Trader
