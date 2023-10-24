@@ -26,9 +26,10 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.goToRegistrationJourney()
   }
 
-  Given("^the user signs into authority wizard as an (Organisation|Agent) Admin (with|without) VAT enrolment (.*)$") {
-    (role: String, vatEnrolment: String, vrn: String) =>
-      AuthPage.loginUsingAuthorityWizard(role, vatEnrolment, vrn)
+  Given(
+    "^the user signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT) enrolment (.*)$"
+  ) { (role: String, withStatus: String, enrolment: String, vrn: String) =>
+    AuthPage.loginUsingAuthorityWizard(role, withStatus, enrolment, vrn)
   }
 
   Given("^the user signs in as an Organisation (Admin|Non-Admin) (with|without) VAT enrolment (.*)$") {
@@ -197,6 +198,15 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user is directed to the BTA service$""") { () =>
     CommonPage.checkBTA()
+
+  Then("""^the user submits their registration$""") { () =>
+    CommonPage.clickContinue()
+    CommonPage.checkUrl("successful")
+  }
+
+  Then("""^the user selects the register button$""") { () =>
+    CommonPage.clickContinue()
+
   }
 
 }

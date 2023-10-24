@@ -100,6 +100,7 @@ Feature: Change and remove answers for registrations in progress
       | ABCDEF2A               | bic         |
       | GB33BUKB20201555555555 | iban        |
     Then the user is on the check-your-answers page
+    Then the user submits their registration
 
   Scenario: Change answers via list pages during registration for NI Trader
     Given the user accesses the IOSS Registration service
@@ -218,6 +219,7 @@ Feature: Change and remove answers for registrations in progress
       | ABCDEF2A               | bic         |
       | GB33BUKB20201555555555 | iban        |
     Then the user is on the check-your-answers page
+    Then the user submits their registration
 
 
   Scenario: Change and remove answers via list pages during registration for Norwegian Trader
@@ -317,5 +319,6 @@ Feature: Change and remove answers for registrations in progress
       | ABCDEF2A                    | bic         |
       | GB33BUKB20201555555555      | iban        |
     Then the user is on the check-your-answers page
+    Then the user submits their registration
 
 
