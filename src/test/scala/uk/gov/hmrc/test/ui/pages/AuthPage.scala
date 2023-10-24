@@ -21,7 +21,7 @@ import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object AuthPage extends BasePage {
-  def loginUsingAuthorityWizard(role: String, vatEnrolment: String, vrn: String): Unit = {
+  def loginUsingAuthorityWizard(role: String, withStatus: String, enrolment: String, vrn: String): Unit = {
 
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
     driver.getCurrentUrl should startWith(stubUrl)
@@ -41,7 +41,7 @@ object AuthPage extends BasePage {
     } else {
       selectAffinityGroup.selectByValue("Organisation")
     }
-    if (vatEnrolment == "with") {
+    if (withStatus == "with") {
       driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
       driver
         .findElement(By.id("input-0-0-name"))
@@ -49,6 +49,15 @@ object AuthPage extends BasePage {
       driver
         .findElement(By.id("input-0-0-value"))
         .sendKeys(vrn)
+      if (enrolment == "IOSS and VAT") {
+        driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-IOSS-ORG")
+        driver
+          .findElement(By.id("input-1-0-name"))
+          .sendKeys("VRN")
+        driver
+          .findElement(By.id("input-1-0-value"))
+          .sendKeys(vrn)
+      }
     }
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
   }

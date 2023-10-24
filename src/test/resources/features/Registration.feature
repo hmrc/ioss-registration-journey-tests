@@ -87,6 +87,8 @@ Feature: Registration journeys
       | ABCDEF2A               | bic         |
       | GB33BUKB20201555555555 | iban        |
     Then the user is on the check-your-answers page
+    Then the user submits their registration
+
 
   Scenario: IOSS Registration journey for Norwegian Trader
     Given the user accesses the IOSS Registration service
@@ -159,6 +161,7 @@ Feature: Registration journeys
       | NORWNOK1XXX        | bic         |
       | NO9386011117947    | iban        |
     Then the user is on the check-your-answers page
+    Then the user submits their registration
 
   Scenario: Minimal IOSS Registration journey for NI Trader
     Given the user accesses the IOSS Registration service
@@ -186,5 +189,6 @@ Feature: Registration journeys
       | Another Trader Name    | accountName |
       | GB29NWBK60161331926819 | iban        |
     Then the user is on the check-your-answers page
+    Then the user submits their registration
 
 

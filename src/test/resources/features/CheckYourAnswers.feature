@@ -142,6 +142,7 @@ Feature: Change answers for registrations via Check Your Answers
       | ABCDEF2A               | bic         |
       | GB29NWBK60161331926819 | iban        |
     And the user is on the check-your-answers page
+    Then the user submits their registration
 
   Scenario: Change from yes to no via Check Your Answers for NI Trader registration
     Given the user accesses the IOSS Registration service
@@ -225,6 +226,7 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the tax-in-eu page
     Then the user answers yes on the remove-all-tax-details page
     Then the user is on the check-your-answers page
+    Then the user submits their registration
 
 
   Scenario: Change answers via Check Your Answers for Norwegian Trader registration
@@ -316,6 +318,6 @@ Feature: Change answers for registrations via Check Your Answers
       | data                  | fieldId     |
       | Different Name Norway | accountName |
     And the user is on the check-your-answers page
-
+    Then the user submits their registration
 
 
