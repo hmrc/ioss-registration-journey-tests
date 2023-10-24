@@ -116,4 +116,8 @@ object CommonPage extends BasePage {
     driver.findElement(By.id("passcode")).sendKeys(passcode)
     driver.findElement(By.className("govuk-button")).click()
   }
+
+  def checkBTA(): Unit =
+    driver.getCurrentUrl should endWith("business-account")
+
 }

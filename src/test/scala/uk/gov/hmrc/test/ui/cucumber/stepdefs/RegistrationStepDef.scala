@@ -190,4 +190,13 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.goToPage("bank-details")
     }
   }
+
+  Then("""^the user clicks on the BTA link$""") { () =>
+    driver.findElement(By.id("back-to-your-account")).click()
+  }
+
+  Then("""^the user is directed to the BTA service$""") { () =>
+    CommonPage.checkBTA()
+  }
+
 }
