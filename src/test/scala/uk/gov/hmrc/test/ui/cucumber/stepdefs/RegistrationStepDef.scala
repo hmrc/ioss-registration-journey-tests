@@ -198,6 +198,7 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user is directed to the BTA service$""") { () =>
     CommonPage.checkBTA()
+  }
 
   Then("""^the user submits their registration$""") { () =>
     CommonPage.clickContinue()
@@ -206,7 +207,5 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user selects the register button$""") { () =>
     CommonPage.clickContinue()
-
   }
-
 }
