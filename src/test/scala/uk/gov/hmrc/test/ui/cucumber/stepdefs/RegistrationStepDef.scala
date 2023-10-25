@@ -192,6 +192,14 @@ class RegistrationStepDef extends BaseStepDef {
     }
   }
 
+  Then("""^the user clicks on the BTA link$""") { () =>
+    driver.findElement(By.id("back-to-your-account")).click()
+  }
+
+  Then("""^the user is directed to the BTA service$""") { () =>
+    CommonPage.checkBTA()
+  }
+
   Then("""^the user submits their registration$""") { () =>
     CommonPage.clickContinue()
     CommonPage.checkUrl("successful")
@@ -200,5 +208,4 @@ class RegistrationStepDef extends BaseStepDef {
   Then("""^the user selects the register button$""") { () =>
     CommonPage.clickContinue()
   }
-
 }
