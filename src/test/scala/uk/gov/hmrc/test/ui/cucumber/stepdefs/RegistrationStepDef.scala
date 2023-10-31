@@ -201,8 +201,15 @@ class RegistrationStepDef extends BaseStepDef {
       }
   }
 
-  Then("""^the user clicks on the BTA link$""") { () =>
-    driver.findElement(By.id("back-to-your-account")).click()
+  Then("""^the user clicks on the (.*) link$""") { (link: String) =>
+    link match {
+      case "BTA"                                    =>
+        driver.findElement(By.id("back-to-your-account")).click()
+      case "continue to complete your registration" =>
+        driver.findElement(By.cssSelector("a#continueToYourReturn")).click()
+      case _                                        =>
+        throw new Exception("Link doesn't exist")
+    }
   }
 
   Then("""^the user is directed to the BTA service$""") { () =>
@@ -239,6 +246,10 @@ class RegistrationStepDef extends BaseStepDef {
   When("""^the user amends answer to (.*)$""") { (answer: String) =>
     driver.findElement(By.id("value")).clear()
     CommonPage.enterData(answer)
+  }
+
+  Then("""the user clicks on the save and come back later button""") { () =>
+    driver.findElement(By.id("saveProgress")).click()
   }
 
   When("""^a user with VRN (.*) and no IOSS enrolment accesses the amend registration journey""") { (vrn: String) =>
