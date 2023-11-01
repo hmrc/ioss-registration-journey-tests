@@ -29,18 +29,16 @@ Feature: Save For Later Feature
     And the user adds HU11122233 on the first previous-oss-scheme-number/1 page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers yes on the previous-scheme-answers/1 page
-  #  no save button
-#    And the user clicks on the save and come back later button
-#    Then the user clicks on the continue to complete your registration link
+    And the user clicks on the save and come back later button
+    Then the user clicks on the continue to complete your registration link
     And the user picks oss on the previous-scheme/1/2 page
     And the user adds EU111222333 on the second previous-oss-scheme-number/1 page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers yes on the previous-scheme-answers/1 page
     And the user picks ioss on the previous-scheme/1/3 page
     And the user answers yes on the previous-ioss-scheme/1/3 page
-#  no save button
-#    And the user clicks on the save and come back later button
-#    Then the user clicks on the continue to complete your registration link
+    And the user clicks on the save and come back later button
+    Then the user clicks on the continue to complete your registration link
     And the user completes details on the previous-ioss-number/1/3 page
       | data         | fieldId                    |
       | IM3487777777 | previousSchemeNumber       |
@@ -49,9 +47,8 @@ Feature: Save For Later Feature
     And the user continues through the previous-scheme-answers/1 page
     And the user answers yes on the previous-schemes-overview page
     And the user selects Austria on the second previous-country page
-#  no save button
-#    And the user clicks on the save and come back later button
-#    Then the user clicks on the continue to complete your registration link
+    And the user clicks on the save and come back later button
+    Then the user clicks on the continue to complete your registration link
     And the user picks oss on the previous-scheme/2/1 page
     And the user adds EU123456788 on the first previous-oss-scheme-number/2 page
     And the user clicks on the save and come back later button
@@ -120,9 +117,8 @@ Feature: Save For Later Feature
       | Trader Name            | accountName |
       | ABCDEF2A               | bic         |
       | GB33BUKB20201555555555 | iban        |
-#  save button redirecting to same page
-#    And the user clicks on the save and come back later button
-#    Then the user clicks on the continue to complete your registration link
+    And the user clicks on the save and come back later button
+    Then the user clicks on the continue to complete your registration link
     Then the user is on the check-your-answers page
     Then the user submits their registration
 
