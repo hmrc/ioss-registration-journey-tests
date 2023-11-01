@@ -124,4 +124,18 @@ object CommonPage extends BasePage {
   def checkReturnsDashboard(): Unit =
     driver.getCurrentUrl should startWith(TestConfiguration.url("ioss-returns-frontend") + "/your-account")
 
+  def goToContinueOnSignInPage(): Unit =
+    driver
+      .navigate()
+      .to("http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/continue-registration")
+
+  def selectContinueRegistration(data: String): Unit = {
+    data match {
+      case "Yes"                                  => driver.findElement(By.id("continueProgress")).click()
+      case "No,delete my answers and start again" => driver.findElement(By.id("deleteProgress")).click()
+      case _                                      => throw new Exception("Option doesn't exist")
+    }
+    CommonPage.clickContinue()
+  }
+
 }

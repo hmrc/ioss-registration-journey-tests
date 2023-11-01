@@ -207,6 +207,8 @@ class RegistrationStepDef extends BaseStepDef {
         driver.findElement(By.id("back-to-your-account")).click()
       case "continue to complete your registration" =>
         driver.findElement(By.cssSelector("a#continueToYourReturn")).click()
+      case "sign out and come back later"           =>
+        driver.findElement(By.id("signOut")).click()
       case _                                        =>
         throw new Exception("Link doesn't exist")
     }
@@ -250,6 +252,16 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""the user clicks on the save and come back later button""") { () =>
     driver.findElement(By.id("saveProgress")).click()
+  }
+
+  Then("^the user accesses the continue on sign in url$") { () =>
+    CommonPage.goToContinueOnSignInPage()
+  }
+
+  When("""^the user picks (Yes|No,delete my answers and start again) on the continue-registration page$""") {
+    (data: String) =>
+      CommonPage.checkUrl("continue-registration")
+      CommonPage.selectContinueRegistration(data)
   }
 
   When("""^a user with VRN (.*) and no IOSS enrolment accesses the amend registration journey""") { (vrn: String) =>
