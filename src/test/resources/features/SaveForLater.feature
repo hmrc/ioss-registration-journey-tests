@@ -237,6 +237,12 @@ Feature: Save For Later Feature
     And the user accesses the continue on sign in url
     Then the user signs in as an Organisation Admin with VAT enrolment 100000001
 #    Currently directing back to filter questions at ioss-registered instead of going to continue-registration
+    Then the user answers no on the ioss-registered page
+    And the user answers yes on the selling-goods-outside-single-market page
+    And the user answers yes on the goods-value page
+    And the user answers yes on the registered-for-vat-in-uk page
+    And the user answers yes on the ni-based page
+    And the user continues through the register-to-use-service page
     And the user picks No,delete my answers and start again on the continue-registration page
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
