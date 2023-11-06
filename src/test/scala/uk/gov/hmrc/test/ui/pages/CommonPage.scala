@@ -100,9 +100,10 @@ object CommonPage extends BasePage {
 
   def goToEmailVerificationUrl(journeyId: String, mode: String): Unit = {
     val url = mode match {
-      case "registration"   => "bank-details"
-      case "change answers" => "check-your-answers"
-      case _                =>
+      case "registration"       => "bank-details"
+      case "change answers"     => "check-your-answers"
+      case "amend registration" => "change-your-registration"
+      case _                    =>
         throw new Exception("URL doesn't exist")
     }
     driver
