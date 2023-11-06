@@ -120,4 +120,7 @@ object CommonPage extends BasePage {
   def checkBTA(): Unit =
     driver.getCurrentUrl should endWith("business-account")
 
+  def checkReturnsDashboard(): Unit =
+    driver.getCurrentUrl should startWith(TestConfiguration.url("ioss-returns-frontend") + "/your-account")
+
 }
