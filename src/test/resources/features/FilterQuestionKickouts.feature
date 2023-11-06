@@ -7,8 +7,6 @@ Feature: Filter Question Kickout journeys
     Then the user answers yes on the ioss-registered page
     Then the user is on the cannot-register-already-registered page
 
-#    TODO: Need a BTA version of this to test link when developed
-
   Scenario: Trader does not sell goods from countries outside the EU to consumers in the EU/NI
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
