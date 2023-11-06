@@ -49,6 +49,7 @@ class RegistrationStepDef extends BaseStepDef {
   When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectAnswer(data)
+    println("The current url is... " + driver.getCurrentUrl)
   }
 
   When("^the user continues through the (.*) page$") { (url: String) =>
@@ -102,7 +103,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user clicks remove via (list|CYA route|overviewLoop|overviewExtraLoop) for (first|second|third) (.*)$"""
+    """^the user clicks remove via (list|CYA route|overviewLoop) for (first|second|third) (.*)$"""
   ) { (route: String, index: String, page: String) =>
     val removeIndex = index match {
       case "first"  => "1"
@@ -114,10 +115,6 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=check-your-answers")
     } else if (route == "overviewLoop") {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=change-previous-schemes-overview")
-    } else if (route == "overviewExtraLoop") {
-      CommonPage.selectLink(
-        s"remove-$page\\/$removeIndex\\?waypoints\\=previous-schemes-overview\\%2Cchange-previous-schemes-overview"
-      )
     } else {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex")
     }
