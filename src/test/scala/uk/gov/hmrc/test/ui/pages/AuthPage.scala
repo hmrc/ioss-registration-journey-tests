@@ -21,16 +21,25 @@ import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object AuthPage extends BasePage {
-  def loginUsingAuthorityWizard(role: String, withStatus: String, enrolment: String, vrn: String): Unit = {
+  def loginUsingAuthorityWizard(
+    journey: String,
+    role: String,
+    withStatus: String,
+    enrolment: String,
+    vrn: String,
+    iossNumber: String
+  ): Unit = {
 
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
     driver.getCurrentUrl should startWith(stubUrl)
 
-    val redirectUrl: String = TestConfiguration.url(
-      "ioss-registration-frontend"
-    )
-
-    driver.findElement(By.id("redirectionUrl")).sendKeys(redirectUrl)
+    if (journey == "amend") {
+      driver
+        .findElement(By.id("redirectionUrl"))
+        .sendKeys(TestConfiguration.url("ioss-registration-frontend") + "/start-amend-journey")
+    } else {
+      driver.findElement(By.id("redirectionUrl")).sendKeys(TestConfiguration.url("ioss-registration-frontend"))
+    }
 
     val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
     if (role == "Agent") {
@@ -53,10 +62,16 @@ object AuthPage extends BasePage {
         driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-IOSS-ORG")
         driver
           .findElement(By.id("input-1-0-name"))
-          .sendKeys("VRN")
-        driver
-          .findElement(By.id("input-1-0-value"))
-          .sendKeys(vrn)
+          .sendKeys("IOSSNumber")
+        if (iossNumber == "default") {
+          driver
+            .findElement(By.id("input-1-0-value"))
+            .sendKeys("IM9001234567")
+        } else {
+          driver
+            .findElement(By.id("input-1-0-value"))
+            .sendKeys(iossNumber)
+        }
       }
     }
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()

@@ -17,6 +17,7 @@
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import io.cucumber.datatable.DataTable
+import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
@@ -29,7 +30,7 @@ class RegistrationStepDef extends BaseStepDef {
   Given(
     "^the user signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT) enrolment (.*)$"
   ) { (role: String, withStatus: String, enrolment: String, vrn: String) =>
-    AuthPage.loginUsingAuthorityWizard(role, withStatus, enrolment, vrn)
+    AuthPage.loginUsingAuthorityWizard("registration", role, withStatus, enrolment, vrn, "default")
   }
 
   Given("^the user signs in as an Organisation (Admin|Non-Admin) (with|without) VAT enrolment (.*)$") {
@@ -207,5 +208,23 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user selects the register button$""") { () =>
     CommonPage.clickContinue()
+  }
+
+  Then("""^the user clicks on the cancel link$""") { () =>
+    driver.findElement(By.id("cancel")).click()
+  }
+
+  Then("""^the user is redirected to the returns dashboard$""") { () =>
+    CommonPage.checkReturnsDashboard()
+  }
+
+  Then("""^the user is presented with the technical difficulties page$""") { () =>
+    val htmlHeader = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(htmlHeader.equals("Sorry, we’re experiencing technical difficulties"))
+  }
+
+  When("""^a user with VRN (.*) and IOSS Number (.*) accesses the amend registration journey""") {
+    (vrn: String, iossNumber: String) =>
+      AuthPage.loginUsingAuthorityWizard("amend", "organisation", "with", "IOSS and VAT", vrn, iossNumber)
   }
 }
