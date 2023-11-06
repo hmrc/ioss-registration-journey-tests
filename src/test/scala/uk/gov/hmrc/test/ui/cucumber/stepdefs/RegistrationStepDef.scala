@@ -81,7 +81,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user selects the (list|CYA|list within CYA|additional tax details list within CYA) change link for (first|second|third|page) (.*) from (.*)$"""
+    """^the user selects the (list|CYA|list within CYA|list within amend|additional tax details list within CYA|amend|additional tax details list within amend) change link for (first|second|third|page) (.*) from (.*)$"""
   ) { (route: String, index: String, toPage: String, fromPage: String) =>
     val changeIndex = index match {
       case "first"  => "1"
@@ -93,17 +93,25 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage")
     } else if (route == "list within CYA") {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Ccheck-your-answers")
+    } else if (route == "list within amend") {
+      CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Camend-your-answers")
     } else if (route == "CYA") {
+      CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
+    } else if (route == "amend") {
       CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
     } else if (route == "additional tax details list within CYA") {
       CommonPage.selectLink(
         s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Cchange-add-tax-details\\%2Ccheck-your-answers"
       )
+    } else if (route == "additional tax details list within amend") {
+      CommonPage.selectLink(
+        s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Cchange-add-tax-details\\%2Camend-your-answers"
+      )
     }
   }
 
   Then(
-    """^the user clicks remove via (list|CYA route|overviewLoop) for (first|second|third) (.*)$"""
+    """^the user clicks remove via (list|CYA route|overviewLoop|amend route) for (first|second|third) (.*)$"""
   ) { (route: String, index: String, page: String) =>
     val removeIndex = index match {
       case "first"  => "1"
@@ -113,6 +121,8 @@ class RegistrationStepDef extends BaseStepDef {
     }
     if (route == "CYA route") {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=check-your-answers")
+    } else if (route == "amend route") {
+      CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=amend-your-answers")
     } else if (route == "overviewLoop") {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=change-previous-schemes-overview")
     } else {
@@ -220,5 +230,10 @@ class RegistrationStepDef extends BaseStepDef {
   When("""^a user with VRN (.*) and IOSS Number (.*) accesses the amend registration journey""") {
     (vrn: String, iossNumber: String) =>
       AuthPage.loginUsingAuthorityWizard("amend", "organisation", "with", "IOSS and VAT", vrn, iossNumber)
+  }
+
+  When("""^the user amends answer to (.*)$""") { (answer: String) =>
+    driver.findElement(By.id("value")).clear()
+    CommonPage.enterData(answer)
   }
 }
