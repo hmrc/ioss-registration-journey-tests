@@ -2,7 +2,6 @@
 
 Feature: Change and remove answers for registrations in progress
 
-
   Scenario: Remove answers via list pages during registration for NI Trader
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -47,7 +46,7 @@ Feature: Change and remove answers for registrations in progress
     Then the user selects the list change link for first previous-scheme-answers from change-previous-schemes-overview
     Then the user clicks remove via overviewLoop for second previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/2 page
-    Then the user clicks remove via overviewExtraLoop for first previous-scheme\/1
+    Then the user clicks remove via overviewLoop for first previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/1 page
     Then the user answers no on the previous-oss page
     Then the user answers yes on the tax-in-eu page
@@ -144,9 +143,7 @@ Feature: Change and remove answers for registrations in progress
     And the user answers yes on the previous-scheme-answers/1 page
     And the user picks oss on the previous-scheme/1/3 page
     And the user adds EU111555999 on the new previous-oss-scheme-number/1/3 page
-#   BUG
-#   Commenting out until further work is done to waypoints
-#   Then the user continues through the previous-scheme-answers/1 page
+    Then the user continues through the previous-scheme-answers/1 page
     Then the user selects the list change link for second previous-scheme-answers from change-previous-schemes-overview
     And the user answers yes on the previous-scheme-answers/2 page
     And the user picks ioss on the previous-scheme/2/2 page
@@ -191,8 +188,6 @@ Feature: Change and remove answers for registrations in progress
     And the user adds DK12345678 on the second eu-vat-number page
     And the user continues through the check-tax-details/2 page
     Then the user answers no on the add-tax-details page
-    #  There is an issue where URL has %2Cchange-previous-schemes-overview at the end
-#  This is caused by another bug which needs to be fixed
     And the user adds www.1st-website.com on the first website-address page
     And the user answers yes on the add-website-address page
     And the user adds https://website2.eu on the second website-address page
@@ -203,10 +198,6 @@ Feature: Change and remove answers for registrations in progress
     Then the user answers yes on the add-website-address page
     And the user adds www.finalwebsite.com on the third website-address page
     And the user answers no on the add-website-address page
-#    BUG around waypoints for previous schemes takes user to check-your-answers
-#    instead of business-contact details
-#    Added temporary manual navigation until this is fixed
-    Then the user manually navigates to the business-contact-details page
     And the user completes details on the business-contact-details page
       | data                     | fieldId         |
       | First Second Last        | fullName        |
@@ -220,7 +211,6 @@ Feature: Change and remove answers for registrations in progress
       | GB33BUKB20201555555555 | iban        |
     Then the user is on the check-your-answers page
     Then the user submits their registration
-
 
   Scenario: Change and remove answers via list pages during registration for Norwegian Trader
     Given the user accesses the IOSS Registration service
@@ -253,7 +243,7 @@ Feature: Change and remove answers for registrations in progress
     Then the user clicks remove via list for first previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/1 page
     Then the user answers yes on the previous-oss page
-    And the user selects France on the new-first-previous-scheme previous-country page
+    And the user selects France on the first previous-country page
     And the user picks ioss on the previous-scheme/1/1 page
     And the user answers yes on the previous-ioss-scheme/1/1 page
     And the user completes details on the previous-ioss-number/1/1 page
@@ -294,7 +284,6 @@ Feature: Change and remove answers for registrations in progress
     Then the user clicks remove via list for second tax-details
     And the user answers yes on the remove-tax-details/2 page
     And the user answers no on the add-tax-details page
-    #    The bug around having previous schemes on the end of the URL needs fixing for this
     And the user adds www.1st-norwegian-website.no on the first website-address page
     And the user answers yes on the add-website-address page
     And the user adds https://otherwebsite.eu on the second website-address page
@@ -303,10 +292,6 @@ Feature: Change and remove answers for registrations in progress
     Then the user selects the list change link for first website-address from change-add-website-address
     And the user amends data to only-norwegian-website.no on the website-address/1 page
     Then the user answers no on the add-website-address page
-#   BUG around waypoints for previous schemes takes user to check-your-answers
-#   instead of business-contact details
-#   Added temporary manual navigation until this is fixed
-  Then the user manually navigates to the business-contact-details page
     And the user completes details on the business-contact-details page
       | data                        | fieldId         |
       | First Second Last-Norwegian | fullName        |

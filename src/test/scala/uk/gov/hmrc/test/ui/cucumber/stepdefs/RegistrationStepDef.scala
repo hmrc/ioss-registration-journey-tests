@@ -103,7 +103,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user clicks remove via (list|CYA route|overviewLoop|overviewExtraLoop) for (first|second|third) (.*)$"""
+    """^the user clicks remove via (list|CYA route|overviewLoop) for (first|second|third) (.*)$"""
   ) { (route: String, index: String, page: String) =>
     val removeIndex = index match {
       case "first"  => "1"
@@ -115,10 +115,6 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=check-your-answers")
     } else if (route == "overviewLoop") {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=change-previous-schemes-overview")
-    } else if (route == "overviewExtraLoop") {
-      CommonPage.selectLink(
-        s"remove-$page\\/$removeIndex\\?waypoints\\=previous-schemes-overview\\%2Cchange-previous-schemes-overview"
-      )
     } else {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex")
     }
@@ -141,17 +137,15 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user selects (.*) on the (first|second|third|new-first-previous-scheme|cya-new-first-previous-scheme) (.*) page$"""
+    """^the user selects (.*) on the (first|second|third|cya-new-first-previous-scheme) (.*) page$"""
   ) { (country: String, index: String, url: String) =>
     val pageIndex = index match {
-      case "first" | "new-first-previous-scheme" | "cya-new-first-previous-scheme" => "1"
-      case "second"                                                                => "2"
-      case "third"                                                                 => "3"
-      case _                                                                       => throw new Exception("Index doesn't exist")
+      case "first" | "cya-new-first-previous-scheme" => "1"
+      case "second"                                  => "2"
+      case "third"                                   => "3"
+      case _                                         => throw new Exception("Index doesn't exist")
     }
-    if (index == "new-first-previous-scheme") {
-      CommonPage.checkUrl(s"$url/$pageIndex?waypoints=change-previous-schemes-overview")
-    } else if (index == "cya-new-first-previous-scheme") {
+    if (index == "cya-new-first-previous-scheme") {
       CommonPage.checkUrl(s"$url/$pageIndex?waypoints=check-your-answers")
     } else {
       CommonPage.checkUrl(s"$url/$pageIndex")

@@ -98,9 +98,7 @@ Feature: Change answers for registrations via Check Your Answers
       | IN3487777777 | previousIntermediaryNumber |
     Then the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
-#    Will need further navigation added
-#    Then the user is on the check-your-answers page
-    Then the user manually navigates to the check-your-answers page
+    Then the user is on the check-your-answers page
     Then the user selects the CYA change link for page add-tax-details from check-your-answers
     Then the user clicks remove via CYA route for second tax-details
     And the user answers yes on the remove-tax-details/2 page
@@ -228,7 +226,6 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user is on the check-your-answers page
     Then the user submits their registration
 
-
   Scenario: Change answers via Check Your Answers for Norwegian Trader registration
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -274,8 +271,7 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
-#    Requires further navigation changes
-    And the user manually navigates to the check-your-answers page
+    Then the user is on the check-your-answers page
     Then the user selects the CYA change link for page tax-in-eu from check-your-answers
     And the user answers yes on the tax-in-eu page
     And the user selects Czech Republic on the first eu-tax page
