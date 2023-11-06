@@ -49,7 +49,6 @@ class RegistrationStepDef extends BaseStepDef {
   When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectAnswer(data)
-    println("The current url is... " + driver.getCurrentUrl)
   }
 
   When("^the user continues through the (.*) page$") { (url: String) =>
@@ -137,17 +136,15 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user selects (.*) on the (first|second|third|new-first-previous-scheme|cya-new-first-previous-scheme) (.*) page$"""
+    """^the user selects (.*) on the (first|second|third|cya-new-first-previous-scheme) (.*) page$"""
   ) { (country: String, index: String, url: String) =>
     val pageIndex = index match {
-      case "first" | "new-first-previous-scheme" | "cya-new-first-previous-scheme" => "1"
-      case "second"                                                                => "2"
-      case "third"                                                                 => "3"
-      case _                                                                       => throw new Exception("Index doesn't exist")
+      case "first" | "cya-new-first-previous-scheme" => "1"
+      case "second"                                  => "2"
+      case "third"                                   => "3"
+      case _                                         => throw new Exception("Index doesn't exist")
     }
-    if (index == "new-first-previous-scheme") {
-      CommonPage.checkUrl(s"$url/$pageIndex?waypoints=change-previous-schemes-overview")
-    } else if (index == "cya-new-first-previous-scheme") {
+    if (index == "cya-new-first-previous-scheme") {
       CommonPage.checkUrl(s"$url/$pageIndex?waypoints=check-your-answers")
     } else {
       CommonPage.checkUrl(s"$url/$pageIndex")

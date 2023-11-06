@@ -188,8 +188,6 @@ Feature: Change and remove answers for registrations in progress
     And the user adds DK12345678 on the second eu-vat-number page
     And the user continues through the check-tax-details/2 page
     Then the user answers no on the add-tax-details page
-    #  There is an issue where URL has %2Cchange-previous-schemes-overview at the end
-#  This is caused by another bug which needs to be fixed
     And the user adds www.1st-website.com on the first website-address page
     And the user answers yes on the add-website-address page
     And the user adds https://website2.eu on the second website-address page
@@ -200,10 +198,6 @@ Feature: Change and remove answers for registrations in progress
     Then the user answers yes on the add-website-address page
     And the user adds www.finalwebsite.com on the third website-address page
     And the user answers no on the add-website-address page
-#    BUG around waypoints for previous schemes takes user to check-your-answers
-#    instead of business-contact details
-#    Added temporary manual navigation until this is fixed
-#    Then the user manually navigates to the business-contact-details page
     And the user completes details on the business-contact-details page
       | data                     | fieldId         |
       | First Second Last        | fullName        |
@@ -249,8 +243,6 @@ Feature: Change and remove answers for registrations in progress
     Then the user clicks remove via list for first previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/1 page
     Then the user answers yes on the previous-oss page
-#  No change waypoint anymore?
-#    And the user selects France on the new-first-previous-scheme previous-country page
     And the user selects France on the first previous-country page
     And the user picks ioss on the previous-scheme/1/1 page
     And the user answers yes on the previous-ioss-scheme/1/1 page
