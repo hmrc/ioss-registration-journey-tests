@@ -176,25 +176,29 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.selectRadioButton(radioButtonToSelect)
   }
 
-  And("""^the user completes the (registration|change answers) email verification process""") { (mode: String) =>
-    val journeyId = driver.getCurrentUrl.split("/")(5)
-    CommonPage.goToEmailVerificationPasscodeGeneratorUrl()
+  And("""^the user completes the (registration|change answers|amend registration) email verification process""") {
+    (mode: String) =>
+      val journeyId = driver.getCurrentUrl.split("/")(5)
+      CommonPage.goToEmailVerificationPasscodeGeneratorUrl()
 
-    val passcode = mode match {
-      case "registration"   => driver.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
-      case "change answers" =>
-        driver.findElement(By.tagName("body")).getText.split("test@newtestemail.com,")(1).dropRight(42)
-      case _                =>
-        throw new Exception("mode doesn't exist")
-    }
-    CommonPage.goToEmailVerificationUrl(journeyId, mode)
-    CommonPage.enterPasscode(passcode)
+      val passcode = mode match {
+        case "registration" | "amend registration" =>
+          driver.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
+        case "change answers"                      =>
+          driver.findElement(By.tagName("body")).getText.split("test@newtestemail.com,")(1).dropRight(42)
+        case _                                     =>
+          throw new Exception("mode doesn't exist")
+      }
+      CommonPage.goToEmailVerificationUrl(journeyId, mode)
+      CommonPage.enterPasscode(passcode)
 
-    if (mode == "change answers") {
-      CommonPage.goToPage("check-your-answers")
-    } else {
-      CommonPage.goToPage("bank-details")
-    }
+      if (mode == "change answers") {
+        CommonPage.goToPage("check-your-answers")
+      } else if (mode == "amend registration") {
+        CommonPage.goToPage("change-your-registration")
+      } else {
+        CommonPage.goToPage("bank-details")
+      }
   }
 
   Then("""^the user clicks on the BTA link$""") { () =>

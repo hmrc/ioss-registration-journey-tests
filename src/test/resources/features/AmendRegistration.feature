@@ -96,15 +96,65 @@ Feature: Amend Registration journeys
     And the user continues through the change-your-registration page
 #    Needs VEIOSS-230
 #    Then the user is on the successful-amend page
-@wip
-  Scenario: An IOSS registered user removes some non-mandatory registration answers and amends mandatory answers
+
+  Scenario: An IOSS registered user removes some registration answers and amends mandatory answers
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
     And the user is on the change-your-registration page
+    Then the user selects the amend change link for page add-tax-details from amend-your-answers
+    Then the user clicks remove via amend route for first tax-details
+    And the user answers yes on the remove-tax-details/1 page
+    Then the user continues through the tax-in-eu page
+    And the user selects Estonia on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds EE123456789 on the first eu-vat-number page
+    And the user adds Estonian Wholesalers Ltd on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data                | fieldId    |
+      | 111 Estonian Street | line1      |
+      | Tallinn             | townOrCity |
+    And the user continues through the check-tax-details/1 page
+    And the user answers no on the add-tax-details page
+    And the user is on the change-your-registration page
+    Then the user selects the amend change link for page add-website-address from amend-your-answers
+    Then the user clicks remove via amend route for second website-address
+    And the user answers yes on the remove-website-address/2 page
+    And the user selects the list within amend change link for first website-address from change-add-website-address
+    And the user amends data to www.amended-website-name.com on the website-address/1 page
+    Then the user answers no on the add-website-address page
+    And the user is on the change-your-registration page
+#    Then the user selects the amend change link for page business-contact-details from amend-your-answers
+#    And the user completes details on the business-contact-details page
+#      | data                  | fieldId         |
+#      | Another Trader        | fullName        |
+#      | +17771117771          | telephoneNumber |
+#    Currently email verification is being triggered even if email address didn't change
+#  Then when going through that to finish journey - i'm getting cannot-register-already-registered
+#    And the user is on the change-your-registration page
+#    Then the user selects the amend change link for page bank-details from amend-your-answers
+#    And the user completes details on the bank-details page
+#      | data                   | fieldId     |
+#      | Another Trader Name    | accountName |
+#      | GB29NWBK60161331926819 | iban        |
+#    After submitting this page, also got the cannot-register-already-registered page
+#  And the user is on the change-your-registration page
+    And the user continues through the change-your-registration page
+#    Needs VEIOSS-230
+#    Then the user is on the successful-amend page
 
-
-#  Email verification
-
+  Scenario: An IOSS registered user amends their email address
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
+    And the user is on the change-your-registration page
+    Then the user selects the amend change link for page business-contact-details from amend-your-answers
+    And the user completes details on the business-contact-details page
+      | data                 | fieldId      |
+      | amend-test@email.com | emailAddress |
+    And the user completes the amend registration email verification process
+    And the user continues through the change-your-registration page
+#    Needs VEIOSS-230
+#    Then the user is on the successful-amend page
 
   Scenario: A user can cancel the amendments to their registration
     Given the user accesses the authority wizard
