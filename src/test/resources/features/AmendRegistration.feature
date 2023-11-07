@@ -171,7 +171,7 @@ Feature: Amend Registration journeys
     And the user continues through the change-your-registration page
     Then the user is on the error-submitting-amendment page
 
-  Scenario: An IOSS registered user can add quarantined/excluded registrations in amend EU tax details - VAT Number
+  Scenario: An IOSS registered user can add quarantined registrations in amend EU tax details - VAT Number
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the amend registration journey
     And the user is on the change-your-registration page
@@ -191,7 +191,7 @@ Feature: Amend Registration journeys
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
 
-  Scenario: An IOSS registered user can add quarantined/excluded registrations in amend EU tax details - Tax ID
+  Scenario: An IOSS registered user can add quarantined registrations in amend EU tax details - Tax ID
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the amend registration journey
     And the user is on the change-your-registration page
