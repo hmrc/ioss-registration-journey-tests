@@ -17,11 +17,10 @@ Feature: Amend Registration journeys
 #    And the user answers no on the previous-oss page
 #    Then the user answers yes on the remove-all-previous-registrations page
 #    Then the user is on the change-your-registration page
-#    Needs VEIOSS-220
-#    Then the user selects the amend change link for page tax-in-eu from change-your-registration
-#    And the user answers no on the tax-in-eu page
-#    Then the user answers yes on the remove-all-tax-details page
-#    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page tax-in-eu from change-your-registration
+    And the user answers no on the tax-in-eu page
+    Then the user answers yes on the remove-all-tax-details page
+    Then the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
 
