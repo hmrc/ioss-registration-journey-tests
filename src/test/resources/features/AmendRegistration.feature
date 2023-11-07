@@ -7,11 +7,10 @@ Feature: Amend Registration journeys
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
     Then the user is on the change-your-registration page
-#    Needs VEIOSS-219
-#    Then the user selects the amend change link for page have-uk-trading-name from change-your-registration
-#    And the user answers no on the have-uk-trading-name page
-#    And the user answers yes on the remove-all-trading-names page
-#    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page have-uk-trading-name from change-your-registration
+    And the user answers no on the have-uk-trading-name page
+    And the user answers yes on the remove-all-trading-names page
+    Then the user is on the change-your-registration page
 #    Needs VEIOSS-225
 #    Then the user selects the amend change link for page previous-oss from change-your-registration
 #    And the user answers no on the previous-oss page
