@@ -165,7 +165,7 @@ Feature: Amend Registration journeys
     And a user with VRN 100000001 and IOSS Number IM9009999999 accesses the amend registration journey
     Then the user is presented with the technical difficulties page
 
-  Scenario: An IOSS registered user removes some registration answers and amends mandatory answers
+  Scenario: An IOSS registered user receives an ETMP failure on submission of an amendment
     Given the user accesses the authority wizard
     And a user with VRN 600000022 and IOSS Number IM9001234567 accesses the amend registration journey
     And the user is on the change-your-registration page
