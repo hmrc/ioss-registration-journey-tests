@@ -94,7 +94,7 @@ class RegistrationStepDef extends BaseStepDef {
     } else if (route == "list within CYA") {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Ccheck-your-answers")
     } else if (route == "list within amend") {
-      CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Camend-your-answers")
+      CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Cchange-your-registration")
     } else if (route == "CYA") {
       CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
     } else if (route == "amend") {
@@ -105,7 +105,7 @@ class RegistrationStepDef extends BaseStepDef {
       )
     } else if (route == "additional tax details list within amend") {
       CommonPage.selectLink(
-        s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Cchange-add-tax-details\\%2Camend-your-answers"
+        s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Cchange-add-tax-details\\%2Cchange-your-registration"
       )
     }
   }
@@ -122,7 +122,7 @@ class RegistrationStepDef extends BaseStepDef {
     if (route == "CYA route") {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=check-your-answers")
     } else if (route == "amend route") {
-      CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=amend-your-answers")
+      CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=change-your-registration")
     } else if (route == "overviewLoop") {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=change-previous-schemes-overview")
     } else {
