@@ -44,14 +44,13 @@ Feature: Amend Registration journeys
     Then the user answers yes on the previous-scheme-answers/2 page
     And the user picks oss on the previous-scheme/2/2 page
     And the user adds CY12345678X on the second previous-oss-scheme-number/2 page
-#    This page got skipped during navigation so needs adding
-#    Then the user answers no on the previous-scheme-answers/2 page
+    Then the user answers no on the previous-scheme-answers/2 page
     And the user answers yes on the previous-schemes-overview page
     And the user selects Finland on the third previous-country page
     And the user picks oss on the previous-scheme/3/1 page
     And the user adds EU222456788 on the first previous-oss-scheme-number/3 page
-#    Both of these pages got skipped during navigation
-#    Then the user answers no on the previous-scheme-answers/2 page
+    Then the user answers no on the previous-scheme-answers/3 page
+  #    Page got skipped during navigation
 #    And the user answers no on the previous-schemes-overview page
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page add-tax-details from amend-your-answers
