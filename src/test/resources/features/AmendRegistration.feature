@@ -134,7 +134,7 @@ Feature: Amend Registration journeys
 #  And the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
-@wip
+
   Scenario: An IOSS registered user amends their email address
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
