@@ -155,8 +155,7 @@ Feature: Amend Registration journeys
     And the user is on the change-your-registration page
     Then the user clicks on the cancel link
     And the user answers yes on the cancel-amend-registration page
-#    Will need the returns backend changes merged for this to work
-#    Then the user is redirected to the returns dashboard
+    Then the user is redirected to the returns dashboard
 
   Scenario: A user who gets not found from ETMP for an IOSS registration receives the technical difficulties page
     Given the user accesses the authority wizard
