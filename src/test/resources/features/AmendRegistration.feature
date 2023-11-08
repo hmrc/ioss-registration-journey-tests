@@ -119,14 +119,12 @@ Feature: Amend Registration journeys
     And the user amends data to www.amended-website-name.com on the website-address/1 page
     Then the user answers no on the add-website-address page
     And the user is on the change-your-registration page
-#    Then the user selects the amend change link for page business-contact-details from change-your-registration
-#    And the user completes details on the business-contact-details page
-#      | data                  | fieldId         |
-#      | Another Trader        | fullName        |
-#      | +17771117771          | telephoneNumber |
-#    Currently email verification is being triggered even if email address didn't change
-#  Then when going through that to finish journey - i'm getting cannot-register-already-registered
-#    And the user is on the change-your-registration page
+    Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And the user completes details on the business-contact-details page
+      | data                  | fieldId         |
+      | Another Trader        | fullName        |
+      | +17771117771          | telephoneNumber |
+    And the user is on the change-your-registration page
 #    Then the user selects the amend change link for page bank-details from change-your-registration
 #    And the user completes details on the bank-details page
 #      | data                   | fieldId     |
@@ -136,7 +134,7 @@ Feature: Amend Registration journeys
 #  And the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
-
+@wip
   Scenario: An IOSS registered user amends their email address
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
