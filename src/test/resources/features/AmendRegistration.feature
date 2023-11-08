@@ -127,13 +127,12 @@ Feature: Amend Registration journeys
 #    Currently email verification is being triggered even if email address didn't change
 #  Then when going through that to finish journey - i'm getting cannot-register-already-registered
 #    And the user is on the change-your-registration page
-#    Then the user selects the amend change link for page bank-details from change-your-registration
-#    And the user completes details on the bank-details page
-#      | data                   | fieldId     |
-#      | Another Trader Name    | accountName |
-#      | GB29NWBK60161331926819 | iban        |
-#    After submitting this page, also got the cannot-register-already-registered page
-#  And the user is on the change-your-registration page
+    Then the user selects the amend change link for page bank-details from change-your-registration
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | Another Trader Name    | accountName |
+      | GB29NWBK60161331926819 | iban        |
+    And the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
 
