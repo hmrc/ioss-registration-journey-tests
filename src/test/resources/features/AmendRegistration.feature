@@ -56,7 +56,7 @@ Feature: Amend Registration journeys
     Then the user selects the list within amend change link for first check-tax-details from change-add-tax-details
     Then the user selects the additional tax details list within amend change link for first registration-type from check-tax-details-1
     And the user picks tax id number on the registration-type/1 page
-#    Needs navigation to go to tax id number
+    And the user adds TAXID12345A on the first eu-tax-number page
     Then the user selects the additional tax details list within amend change link for first eu-fixed-establishment-address from check-tax-details-1
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data   | fieldId |
