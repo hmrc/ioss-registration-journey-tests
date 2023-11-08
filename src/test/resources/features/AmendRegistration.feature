@@ -117,6 +117,8 @@ Feature: Amend Registration journeys
     And the user answers yes on the remove-website-address/2 page
     And the user selects the list within amend change link for first website-address from change-add-website-address
     And the user amends data to www.amended-website-name.com on the website-address/1 page
+    Then the user answers yes on the add-website-address page
+    And the user adds https://www.2nd-website.eu on the second website-address page
     Then the user answers no on the add-website-address page
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page business-contact-details from change-your-registration
