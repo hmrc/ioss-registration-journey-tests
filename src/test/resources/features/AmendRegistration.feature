@@ -169,7 +169,7 @@ Feature: Amend Registration journeys
     And the user continues through the change-your-registration page
     Then the user is on the error-submitting-amendment page
 
-  Scenario: An IOSS registered user can add quarantined registrations in amend EU tax details - VAT Number
+  Scenario: An IOSS registered user can add quarantined and already active in another country registrations in amend EU tax details - VAT Number
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the amend registration journey
     And the user is on the change-your-registration page
@@ -185,11 +185,22 @@ Feature: Amend Registration journeys
       | 168 Town Square | line1      |
       | Vilnius         | townOrCity |
     And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Portugal on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks vat number on the registration-type/2 page
+    And the user adds PT111222333 on the second eu-vat-number page
+    And the user adds Portugal Goods on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data         | fieldId    |
+      | 1 The Street | line1      |
+      | Lisbon       | townOrCity |
+    And the user continues through the check-tax-details/2 page
     Then the user answers no on the add-tax-details page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
 
-  Scenario: An IOSS registered user can add quarantined registrations in amend EU tax details - Tax ID
+  Scenario: An IOSS registered user can add quarantined and already active in another country registrations in amend EU tax details - Tax ID
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the amend registration journey
     And the user is on the change-your-registration page
@@ -204,7 +215,18 @@ Feature: Amend Registration journeys
       | data            | fieldId    |
       | 168 Town Square | line1      |
       | Vilnius         | townOrCity |
-      And the user continues through the check-tax-details/1 page
-      Then the user answers no on the add-tax-details page
+    And the user continues through the check-tax-details/1 page
+    Then the user answers yes on the add-tax-details page
+    And the user selects Portugal on the second eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user picks tax id number on the registration-type/2 page
+    And the user adds 123LIS123 on the second eu-tax-number page
+    And the user adds Portugal Goods on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data         | fieldId    |
+      | 1 The Street | line1      |
+      | Lisbon       | townOrCity |
+    And the user continues through the check-tax-details/2 page
+    Then the user answers no on the add-tax-details page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
