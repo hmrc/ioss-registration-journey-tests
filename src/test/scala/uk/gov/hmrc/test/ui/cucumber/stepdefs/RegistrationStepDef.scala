@@ -209,6 +209,8 @@ class RegistrationStepDef extends BaseStepDef {
         driver.findElement(By.cssSelector("a#continueToYourReturn")).click()
       case "sign out and come back later"           =>
         driver.findElement(By.id("signOut")).click()
+      case "cancel"                                 =>
+        driver.findElement(By.id("cancel")).click()
       case _                                        =>
         throw new Exception("Link doesn't exist")
     }
@@ -225,10 +227,6 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user selects the register button$""") { () =>
     CommonPage.clickContinue()
-  }
-
-  Then("""^the user clicks on the cancel link$""") { () =>
-    driver.findElement(By.id("cancel")).click()
   }
 
   Then("""^the user is redirected to the returns dashboard$""") { () =>

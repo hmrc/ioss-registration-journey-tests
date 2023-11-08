@@ -313,7 +313,7 @@ Feature: Save For Later Feature
     Then the user selects the list change link for first previous-scheme-answers from change-previous-schemes-overview
     Then the user clicks remove via overviewLoop for second previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/2 page
-    Then the user clicks remove via overviewExtraLoop for first previous-scheme\/1
+    Then the user clicks remove via overviewLoop for first previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/1 page
     Then the user answers no on the previous-oss page
     Then the user answers no on the tax-in-eu page
