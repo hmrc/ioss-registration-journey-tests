@@ -207,3 +207,9 @@ Feature: Amend Registration journeys
       Then the user answers no on the add-tax-details page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
+
+  Scenario: A user without an IOSS enrolment cannot access the amend registration journey
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and no IOSS enrolment accesses the amend registration journey
+    Then the user is on the cannot-use-not-registered page
+
