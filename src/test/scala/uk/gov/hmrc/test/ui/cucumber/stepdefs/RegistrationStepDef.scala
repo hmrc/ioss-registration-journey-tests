@@ -240,4 +240,8 @@ class RegistrationStepDef extends BaseStepDef {
     driver.findElement(By.id("value")).clear()
     CommonPage.enterData(answer)
   }
+
+  When("""^a user with VRN (.*) and no IOSS enrolment accesses the amend registration journey""") { (vrn: String) =>
+    AuthPage.loginUsingAuthorityWizard("amend", "organisation", "with", "VAT", vrn, "None")
+  }
 }
