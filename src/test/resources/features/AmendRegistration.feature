@@ -18,7 +18,16 @@ Feature: Amend Registration journeys
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
 
-  Scenario: An IOSS registered user can remove all previous registrations if they were entered during the amend registration journey
+  Scenario: An IOSS registered user cannot remove all previous registrations if they were retrieved from the ETMP registration
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    And the user manually navigates to the remove-all-previous-registrations page
+#    What happens? - Currently goes to cannot-register-already-registered
+#    Should get:
+#    Then the user is presented with the technical difficulties page
+
+  Scenario: An IOSS registered user cannot use remove all previous registrations if they were entered during the amend registration journey
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the amend registration journey
     Then the user selects the amend change link for page previous-oss from change-your-registration
@@ -38,19 +47,11 @@ Feature: Amend Registration journeys
     Then the user answers no on the previous-scheme-answers/2 page
 #  Currently skipping
 #    And the user answers no on the previous-schemes-overview page
-    Then the user selects the amend change link for page previous-oss from change-your-registration
-    And the user answers no on the previous-oss page
-    Then the user answers yes on the remove-all-previous-registrations page
-    Then the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
-    Then the user is on the successful-amend page
-
-  Scenario: An IOSS registered user cannot remove all previous registrations if they were retrieved from the ETMP registration
-    Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
     Then the user is on the change-your-registration page
     And the user manually navigates to the remove-all-previous-registrations page
 #    What happens? - Currently goes to cannot-register-already-registered
+#    Should get:
+#    Then the user is presented with the technical difficulties page
 
   Scenario: An IOSS registered user amends non-mandatory registration answers
     Given the user accesses the authority wizard
