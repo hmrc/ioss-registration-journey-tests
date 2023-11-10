@@ -213,3 +213,16 @@ Feature: Amend Registration journeys
     And a user with VRN 100000001 and no IOSS enrolment accesses the amend registration journey
     Then the user is on the cannot-use-not-registered page
 
+  Scenario: An IOSS registered user with existing EU registration is able to access the amend journey
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number 333333333 accesses the amend registration journey
+    And the user is on the change-your-registration page
+    And the user continues through the change-your-registration page
+    Then the user is on the successful-amend page
+
+  Scenario: An IOSS registered user with existing EU quarantine is able to access the amend journey
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number 333333334 accesses the amend registration journey
+    And the user is on the change-your-registration page
+    And the user continues through the change-your-registration page
+    Then the user is on the successful-amend page
