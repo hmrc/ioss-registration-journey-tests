@@ -72,7 +72,6 @@ Feature: Amend Registration journeys
     And the user picks oss on the previous-scheme/3/1 page
     And the user adds EU222456788 on the first previous-oss-scheme-number/3 page
     Then the user answers no on the previous-scheme-answers/3 page
-  #    Page got skipped during navigation
     And the user answers no on the previous-schemes-overview page
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page add-tax-details from change-your-registration
