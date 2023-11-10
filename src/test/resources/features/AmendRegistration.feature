@@ -23,9 +23,7 @@ Feature: Amend Registration journeys
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
     Then the user is on the change-your-registration page
     And the user manually navigates to the remove-all-previous-registrations page
-#    What happens? - Currently goes to cannot-register-already-registered
-#    Should get:
-#    Then the user is presented with the technical difficulties page
+    Then the user is presented with the technical difficulties page
 
   Scenario: An IOSS registered user cannot use remove all previous registrations if they were entered during the amend registration journey
     Given the user accesses the authority wizard
@@ -45,13 +43,10 @@ Feature: Amend Registration journeys
     And the user picks oss on the previous-scheme/2/1 page
     And the user adds EU222456788 on the first previous-oss-scheme-number/2 page
     Then the user answers no on the previous-scheme-answers/2 page
-#  Currently skipping
-#    And the user answers no on the previous-schemes-overview page
+    And the user answers no on the previous-schemes-overview page
     Then the user is on the change-your-registration page
     And the user manually navigates to the remove-all-previous-registrations page
-#    What happens? - Currently goes to cannot-register-already-registered
-#    Should get:
-#    Then the user is presented with the technical difficulties page
+    Then the user is presented with the technical difficulties page
 
   Scenario: An IOSS registered user amends non-mandatory registration answers
     Given the user accesses the authority wizard
@@ -78,7 +73,7 @@ Feature: Amend Registration journeys
     And the user adds EU222456788 on the first previous-oss-scheme-number/3 page
     Then the user answers no on the previous-scheme-answers/3 page
   #    Page got skipped during navigation
-#    And the user answers no on the previous-schemes-overview page
+    And the user answers no on the previous-schemes-overview page
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page add-tax-details from change-your-registration
     Then the user selects the list within amend change link for first check-tax-details from change-add-tax-details
