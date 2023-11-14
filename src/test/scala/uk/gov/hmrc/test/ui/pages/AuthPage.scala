@@ -49,7 +49,7 @@ object AuthPage extends BasePage {
     } else if (journey == "saved") {
       driver
         .findElement(By.id("redirectionUrl"))
-        .sendKeys(TestConfiguration.url("ioss-registration-frontend") + "/continue-registration")
+        .sendKeys(TestConfiguration.url("ioss-registration-frontend") + "/continue-on-sign-in")
     } else {
       driver.findElement(By.id("redirectionUrl")).sendKeys(TestConfiguration.url("ioss-registration-frontend"))
     }

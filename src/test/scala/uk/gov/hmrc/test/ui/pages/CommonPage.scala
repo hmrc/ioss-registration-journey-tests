@@ -129,7 +129,7 @@ object CommonPage extends BasePage {
   def goToContinueOnSignInPage(): Unit =
     driver
       .navigate()
-      .to("http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/continue-registration")
+      .to("http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/continue-on-sign-in")
 
   def selectContinueRegistration(data: String): Unit = {
     data match {

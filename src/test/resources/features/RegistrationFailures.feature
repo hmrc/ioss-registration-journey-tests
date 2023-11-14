@@ -11,6 +11,9 @@ Feature: Failures and kickouts relating to user's registration
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
+#    Still going to cannot-register-already-registered
+    Then the user is on the already-registered page
+
     Then the user is on the cannot-register-already-registered page
   @Accessibility
   Scenario: Error creating enrolment on submission of registration
