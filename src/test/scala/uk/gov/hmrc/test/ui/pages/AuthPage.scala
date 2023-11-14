@@ -22,6 +22,7 @@ import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object AuthPage extends BasePage {
   def loginUsingAuthorityWizard(
+    credId: Boolean,
     journey: String,
     role: String,
     withStatus: String,
@@ -33,10 +34,22 @@ object AuthPage extends BasePage {
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
     driver.getCurrentUrl should startWith(stubUrl)
 
+    if (credId) {
+      if (journey == "registration") {
+        CommonPage.generateCredId()
+      }
+      driver.findElement(By.id("authorityId")).clear()
+      driver.findElement(By.id("authorityId")).sendKeys(CommonPage.retrieveCredId())
+    }
+
     if (journey == "amend") {
       driver
         .findElement(By.id("redirectionUrl"))
         .sendKeys(TestConfiguration.url("ioss-registration-frontend") + "/start-amend-journey")
+    } else if (journey == "saved") {
+      driver
+        .findElement(By.id("redirectionUrl"))
+        .sendKeys(TestConfiguration.url("ioss-registration-frontend") + "/continue-registration")
     } else {
       driver.findElement(By.id("redirectionUrl")).sendKeys(TestConfiguration.url("ioss-registration-frontend"))
     }
@@ -77,9 +90,15 @@ object AuthPage extends BasePage {
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
   }
 
-  def loginUsingScpStub(affinityGroup: String, admin: String, vatEnrolment: String, vrn: String): Unit = {
+  def loginUsingScpStub(
+    affinityGroup: String,
+    admin: String,
+    vatEnrolment: String,
+    vrn: String
+  ): Unit = {
 
     driver.findElement(By.partialLinkText("Register SCP User")).click()
+
     val select = new Select(driver.findElement(By.id("accountType")))
     select.selectByValue(affinityGroup)
 

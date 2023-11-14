@@ -22,9 +22,11 @@ import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 import scala.jdk.CollectionConverters._
+import scala.util.Random
 
 object CommonPage extends BasePage {
   val registrationUrl: String = TestConfiguration.url("ioss-registration-frontend")
+  var credId: String          = "1234123412341234"
 
   def goToRegistrationJourney(): Unit =
     driver.navigate().to(registrationUrl)
@@ -137,5 +139,10 @@ object CommonPage extends BasePage {
     }
     CommonPage.clickContinue()
   }
+
+  def retrieveCredId(): String =
+    credId
+  def generateCredId(): Unit   =
+    credId = Random.between(1000000000000000L, 9000000000000000L).toString
 
 }
