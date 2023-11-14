@@ -30,13 +30,14 @@ class RegistrationStepDef extends BaseStepDef {
   Given(
     "^the user signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT) enrolment (.*)$"
   ) { (role: String, withStatus: String, enrolment: String, vrn: String) =>
-    AuthPage.loginUsingAuthorityWizard("registration", role, withStatus, enrolment, vrn, "default")
+    AuthPage.loginUsingAuthorityWizard(false, "registration", role, withStatus, enrolment, vrn, "default")
   }
 
-  Given("^the user signs in as an Organisation (Admin|Non-Admin) (with|without) VAT enrolment (.*)$") {
-    (admin: String, vatEnrolment: String, vrn: String) =>
-      AuthPage.loginUsingScpStub("Organisation", admin, vatEnrolment, vrn)
-      AuthPage.selectMfaSuccess()
+  Given(
+    "^the user signs in as an Organisation (Admin|Non-Admin) (with|without) VAT enrolment (.*)$"
+  ) { (admin: String, vatEnrolment: String, vrn: String) =>
+    AuthPage.loginUsingScpStub("Organisation", admin, vatEnrolment, vrn)
+    AuthPage.selectMfaSuccess()
   }
 
   Given("""the user accesses the authority wizard""") { () =>
@@ -240,7 +241,7 @@ class RegistrationStepDef extends BaseStepDef {
 
   When("""^a user with VRN (.*) and IOSS Number (.*) accesses the amend registration journey""") {
     (vrn: String, iossNumber: String) =>
-      AuthPage.loginUsingAuthorityWizard("amend", "organisation", "with", "IOSS and VAT", vrn, iossNumber)
+      AuthPage.loginUsingAuthorityWizard(false, "amend", "organisation", "with", "IOSS and VAT", vrn, iossNumber)
   }
 
   When("""^the user amends answer to (.*)$""") { (answer: String) =>
@@ -253,6 +254,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then("^the user accesses the continue on sign in url$") { () =>
+    driver.manage().deleteAllCookies()
     CommonPage.goToContinueOnSignInPage()
   }
 
@@ -263,6 +265,18 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   When("""^a user with VRN (.*) and no IOSS enrolment accesses the amend registration journey""") { (vrn: String) =>
-    AuthPage.loginUsingAuthorityWizard("amend", "organisation", "with", "VAT", vrn, "None")
+    AuthPage.loginUsingAuthorityWizard(false, "amend", "organisation", "with", "VAT", vrn, "None")
   }
+
+  Given(
+    "^the user signs into authority wizard with a Cred ID and VRN (.*) to (start registration|retrieve saved registration)$"
+  ) { (vrn: String, journey: String) =>
+    val whichJourney = journey match {
+      case "start registration"          => "registration"
+      case "retrieve saved registration" => "saved"
+      case _                             => throw new Exception("Journey doesn't exist")
+    }
+    AuthPage.loginUsingAuthorityWizard(true, whichJourney, "Organisation", "with", "VAT", vrn, "default")
+  }
+
 }
