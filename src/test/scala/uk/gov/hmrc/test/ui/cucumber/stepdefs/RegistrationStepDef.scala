@@ -201,8 +201,19 @@ class RegistrationStepDef extends BaseStepDef {
       }
   }
 
-  Then("""^the user clicks on the BTA link$""") { () =>
-    driver.findElement(By.id("back-to-your-account")).click()
+  Then("""^the user clicks on the (.*) link$""") { (link: String) =>
+    link match {
+      case "BTA"                                    =>
+        driver.findElement(By.id("back-to-your-account")).click()
+      case "continue to complete your registration" =>
+        driver.findElement(By.cssSelector("a#continueToYourReturn")).click()
+      case "sign out and come back later"           =>
+        driver.findElement(By.id("signOut")).click()
+      case "cancel"                                 =>
+        driver.findElement(By.id("cancel")).click()
+      case _                                        =>
+        throw new Exception("Link doesn't exist")
+    }
   }
 
   Then("""^the user is directed to the BTA service$""") { () =>
@@ -216,10 +227,6 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user selects the register button$""") { () =>
     CommonPage.clickContinue()
-  }
-
-  Then("""^the user clicks on the cancel link$""") { () =>
-    driver.findElement(By.id("cancel")).click()
   }
 
   Then("""^the user is redirected to the returns dashboard$""") { () =>
@@ -239,6 +246,20 @@ class RegistrationStepDef extends BaseStepDef {
   When("""^the user amends answer to (.*)$""") { (answer: String) =>
     driver.findElement(By.id("value")).clear()
     CommonPage.enterData(answer)
+  }
+
+  Then("""the user clicks on the save and come back later button""") { () =>
+    driver.findElement(By.id("saveProgress")).click()
+  }
+
+  Then("^the user accesses the continue on sign in url$") { () =>
+    CommonPage.goToContinueOnSignInPage()
+  }
+
+  When("""^the user picks (Yes|No,delete my answers and start again) on the continue-registration page$""") {
+    (data: String) =>
+      CommonPage.checkUrl("continue-registration")
+      CommonPage.selectContinueRegistration(data)
   }
 
   When("""^a user with VRN (.*) and no IOSS enrolment accesses the amend registration journey""") { (vrn: String) =>

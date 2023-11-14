@@ -70,5 +70,6 @@ Feature: Failures and kickouts relating to user's registration
     And the user is on the check-your-answers page
     And the user selects the register button
     Then the user is on the error-submitting-registration page
+#  Add in a check to make sure it's saved for later
 
 
