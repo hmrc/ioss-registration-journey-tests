@@ -17,7 +17,6 @@
 package uk.gov.hmrc.test.ui.cucumber.utils
 
 import org.mongodb.scala.MongoClient
-import org.mongodb.scala.bson.collection.immutable.Document
 import org.mongodb.scala.model.Filters
 
 import scala.concurrent.Await

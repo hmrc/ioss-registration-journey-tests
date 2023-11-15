@@ -339,4 +339,9 @@ Feature: Save For Later Feature
     And the user is on the check-your-answers page
     Then the user submits their registration
 
+  Scenario: A user with no saved registration accessing the saved registration journey
+    Given the user accesses the continue on sign in url
+    When the user signs in as an Organisation Admin with VAT enrolment 100000001
+    Then the user is on the no-registration-in-progress page
+
 
