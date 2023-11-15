@@ -11,14 +11,123 @@ Feature: Amend Registration journeys
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the remove-all-trading-names page
     Then the user is on the change-your-registration page
-#    Needs VEIOSS-225
-#    Then the user selects the amend change link for page previous-oss from change-your-registration
-#    And the user answers no on the previous-oss page
-#    Then the user answers yes on the remove-all-previous-registrations page
-#    Then the user is on the change-your-registration page
     Then the user selects the amend change link for page tax-in-eu from change-your-registration
     And the user answers no on the tax-in-eu page
     Then the user answers yes on the remove-all-tax-details page
+    Then the user is on the change-your-registration page
+    And the user continues through the change-your-registration page
+    Then the user is on the successful-amend page
+
+  Scenario: An IOSS registered user cannot remove all previous registrations if they were retrieved from the ETMP registration
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    And the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page
+    Then the user is presented with the technical difficulties page
+
+  Scenario: An IOSS registered user cannot use remove all previous registrations if they were entered during the amend registration journey
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page previous-oss from change-your-registration
+    Then the user answers yes on the previous-oss page
+    And the user selects Republic of Cyprus on the first previous-country page
+    And the user picks ioss on the previous-scheme/1/1 page
+    And the user answers no on the previous-ioss-scheme/1/1 page
+    And the user completes details on the previous-ioss-number/1/1 page
+      | data         | fieldId              |
+      | IM1962223333 | previousSchemeNumber |
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers yes on the previous-schemes-overview page
+    And the user selects Finland on the second previous-country page
+    And the user picks oss on the previous-scheme/2/1 page
+    And the user adds EU222456788 on the first previous-oss-scheme-number/2 page
+    Then the user answers no on the previous-scheme-answers/2 page
+    And the user answers no on the previous-schemes-overview page
+    Then the user is on the change-your-registration page
+    And the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page
+    Then the user is presented with the technical difficulties page
+
+  Scenario: An IOSS registered user can add details for sections that were previously answered no
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page have-uk-trading-name from change-your-registration
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds A new trading name in amend journey on the first uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page previous-oss from change-your-registration
+    Then the user answers yes on the previous-oss page
+    And the user selects Republic of Cyprus on the first previous-country page
+    And the user picks ioss on the previous-scheme/1/1 page
+    And the user answers no on the previous-ioss-scheme/1/1 page
+    And the user completes details on the previous-ioss-number/1/1 page
+      | data         | fieldId              |
+      | IM1962223333 | previousSchemeNumber |
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page tax-in-eu from change-your-registration
+    And the user answers yes on the tax-in-eu page
+    And the user selects Romania on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds RO1234567890 on the first eu-vat-number page
+    And the user adds Romanian Trading on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | A Town        | townOrCity |
+    And the user continues through the check-tax-details/1 page
+    Then the user answers no on the add-tax-details page
+    Then the user is on the change-your-registration page
+    And the user continues through the change-your-registration page
+    Then the user is on the successful-amend page
+
+  Scenario: An IOSS registered user can add details for sections that were previously answered no and remove them straight away again
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page have-uk-trading-name from change-your-registration
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds A new trading name in amend journey on the first uk-trading-name page
+    Then the user clicks remove via amend route for first uk-trading-name
+    And the user answers yes on the remove-uk-trading-name/1 page
+    And the user answers no on the have-uk-trading-name page
+    Then the user is on the change-your-registration page
+#  Awaiting fix in last step of this section
+#    Then the user selects the amend change link for page previous-oss from change-your-registration
+#    Then the user answers yes on the previous-oss page
+#    And the user selects Republic of Cyprus on the first previous-country page
+#    And the user picks ioss on the previous-scheme/1/1 page
+#    And the user answers no on the previous-ioss-scheme/1/1 page
+#    And the user completes details on the previous-ioss-number/1/1 page
+#      | data         | fieldId              |
+#      | IM1962223333 | previousSchemeNumber |
+#    Then the user is on the previous-scheme-answers/1 page
+#    Then the user clicks remove via amend route for first previous-scheme\/1
+#    And the user answers yes on the remove-previous-scheme/1/1 page
+#  Landing on previous-oss?waypoints=change-your-registration with tech difficulties
+#    And the user answers no on the previous-oss page
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page tax-in-eu from change-your-registration
+    And the user answers yes on the tax-in-eu page
+    And the user selects Romania on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds RO1234567890 on the first eu-vat-number page
+    And the user adds Romanian Trading on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data          | fieldId    |
+      | 1 Street Name | line1      |
+      | A Town        | townOrCity |
+    And the user continues through the check-tax-details/1 page
+    Then the user clicks remove via amend route for first tax-details
+    And the user answers yes on the remove-tax-details/1 page
+    Then the user answers no on the tax-in-eu page
     Then the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
@@ -47,8 +156,7 @@ Feature: Amend Registration journeys
     And the user picks oss on the previous-scheme/3/1 page
     And the user adds EU222456788 on the first previous-oss-scheme-number/3 page
     Then the user answers no on the previous-scheme-answers/3 page
-  #    Page got skipped during navigation
-#    And the user answers no on the previous-schemes-overview page
+    And the user answers no on the previous-schemes-overview page
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page add-tax-details from change-your-registration
     Then the user selects the list within amend change link for first check-tax-details from change-add-tax-details
