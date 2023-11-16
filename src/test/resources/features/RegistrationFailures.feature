@@ -15,7 +15,6 @@ Feature: Failures and kickouts relating to user's registration
     When the user clicks on the Back to your account button
     Then the user is redirected to the returns dashboard
 
-    Then the user is on the cannot-register-already-registered page
   @Accessibility
   Scenario: Error creating enrolment on submission of registration
     Given the user accesses the IOSS Registration service
