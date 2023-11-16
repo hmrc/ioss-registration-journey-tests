@@ -1,7 +1,7 @@
-@Registration @Accessibility
+@Registration
 
 Feature: Failures and kickouts relating to user's registration
-
+  @Accessibility
   Scenario: User is already registered for the IOSS service
     Given the user accesses the authority wizard
     And the user signs into authority wizard as an Organisation Admin with IOSS and VAT enrolment 100000001
@@ -12,7 +12,7 @@ Feature: Failures and kickouts relating to user's registration
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
     Then the user is on the cannot-register-already-registered page
-
+  @Accessibility
   Scenario: Error creating enrolment on submission of registration
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
