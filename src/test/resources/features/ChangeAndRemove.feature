@@ -1,7 +1,7 @@
-@Registration @Accessibility
+@Registration
 
 Feature: Change and remove answers for registrations in progress
-
+  @Accessibility
   Scenario: Remove answers via list pages during registration for NI Trader
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
