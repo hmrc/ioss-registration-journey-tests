@@ -202,7 +202,7 @@ class RegistrationStepDef extends BaseStepDef {
       }
   }
 
-  Then("""^the user clicks on the (.*) link$""") { (link: String) =>
+  Then("""^the user clicks on the (.*) (link|button)$""") { (link: String, element: String) =>
     link match {
       case "BTA"                                    =>
         driver.findElement(By.id("back-to-your-account")).click()
@@ -212,6 +212,10 @@ class RegistrationStepDef extends BaseStepDef {
         driver.findElement(By.id("signOut")).click()
       case "cancel"                                 =>
         driver.findElement(By.id("cancel")).click()
+      case "Back to your account"                   =>
+        driver.findElement(By.id("backToYourAccount")).click()
+      case "save and come back later"               =>
+        driver.findElement(By.id("saveProgress")).click()
       case _                                        =>
         throw new Exception("Link doesn't exist")
     }
@@ -247,10 +251,6 @@ class RegistrationStepDef extends BaseStepDef {
   When("""^the user amends answer to (.*)$""") { (answer: String) =>
     driver.findElement(By.id("value")).clear()
     CommonPage.enterData(answer)
-  }
-
-  Then("""the user clicks on the save and come back later button""") { () =>
-    driver.findElement(By.id("saveProgress")).click()
   }
 
   Then("^the user accesses the continue on sign in url$") { () =>
