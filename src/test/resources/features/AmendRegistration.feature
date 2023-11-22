@@ -49,12 +49,19 @@ Feature: Amend Registration journeys
     And the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page
     Then the user is presented with the technical difficulties page
 
-  Scenario: An IOSS registered user cannot remove an individual previous registration if they were retrieved from the ETMP registration
+  Scenario: An IOSS registered user cannot remove an individual previous scheme if they were retrieved from the ETMP registration
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
     When the user is on the change-your-registration page
     And the user manually navigates to the remove-previous-scheme/1/1?waypoints=change-previous-schemes-overview%2Cchange-your-registration page
-#    User prevented from action
+    Then the user is on the cannot-delete-previous-registrations page
+
+  Scenario: An IOSS registered user cannot remove previous schemes for a country if it was retrieved from the ETMP registration
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
+    When the user is on the change-your-registration page
+    And the user manually navigates to the remove-deregistration/1?waypoints=change-your-registration page
+    Then the user is on the cannot-delete-previous-registrations page
 
   Scenario: An IOSS registered user can add details for sections that were previously answered no
     Given the user accesses the authority wizard
