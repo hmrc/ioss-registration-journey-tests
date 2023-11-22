@@ -48,7 +48,7 @@ Feature: Amend Registration journeys
     Then the user is on the change-your-registration page
     And the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page
     Then the user is presented with the technical difficulties page
-@wip
+
   Scenario: An IOSS registered user cannot remove an individual previous registration if they were retrieved from the ETMP registration
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
@@ -75,6 +75,11 @@ Feature: Amend Registration journeys
       | IM1962223333 | previousSchemeNumber |
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
+    And the user answers yes on the previous-schemes-overview page
+    And the user selects Finland on the second previous-country page
+    And the user picks oss on the previous-scheme/2/1 page
+    And the user adds EU222456788 on the first previous-oss-scheme-number/2 page
+    Then the user answers no on the previous-scheme-answers/2 page
     And the user answers no on the previous-schemes-overview page
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page tax-in-eu from change-your-registration
