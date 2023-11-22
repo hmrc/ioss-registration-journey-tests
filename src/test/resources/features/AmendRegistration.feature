@@ -310,7 +310,10 @@ Feature: Amend Registration journeys
 #      | data         | fieldId                    |
 #      | IM4281122334 | previousSchemeNumber       |
 #      | IN4281122334 | previousIntermediaryNumber |
-    #    Then the user answers no on the previous-scheme-answers/2 page
+    #    Then the user answers yes on the previous-scheme-answers/2 page
+#    And the user picks oss on the previous-scheme/2/2 page
+#    And the user adds LV11111222222 on the second previous-oss-scheme-number/2 page
+#    Then the user answers no on the previous-scheme-answers/2 page
 #    And the user answers no on the previous-schemes-overview page
 #    And the user continues through the change-your-registration page
 #    Then the user is on the successful-amend page
