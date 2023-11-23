@@ -307,23 +307,22 @@ Feature: Amend Registration journeys
       | data         | fieldId                    |
       | IM7051122334 | previousSchemeNumber       |
       | IN7051122334 | previousIntermediaryNumber |
-#  Currently getting scheme-still-active?waypoints=previous-scheme-answers-1%2Cchange-your-registration&countryCode=SI
-#    Then the user answers no on the previous-scheme-answers/1 page
-#    And the user answers yes on the previous-schemes-overview page
-#    Then the user selects Latvia on the second previous-country page
-#    And the user picks ioss on the previous-scheme/2/1 page
-#    And the user answers yes on the previous-ioss-scheme/2/1 page
-#    And the user completes details on the previous-ioss-number/2/1 page
-#      | data         | fieldId                    |
-#      | IM4281122334 | previousSchemeNumber       |
-#      | IN4281122334 | previousIntermediaryNumber |
-    #    Then the user answers yes on the previous-scheme-answers/2 page
-#    And the user picks oss on the previous-scheme/2/2 page
-#    And the user adds LV11111222222 on the second previous-oss-scheme-number/2 page
-#    Then the user answers no on the previous-scheme-answers/2 page
-#    And the user answers no on the previous-schemes-overview page
-#    And the user continues through the change-your-registration page
-#    Then the user is on the successful-amend page
+    Then the user answers no on the previous-scheme-answers/1 page
+    And the user answers yes on the previous-schemes-overview page
+    Then the user selects Latvia on the second previous-country page
+    And the user picks ioss on the previous-scheme/2/1 page
+    And the user answers yes on the previous-ioss-scheme/2/1 page
+    And the user completes details on the previous-ioss-number/2/1 page
+      | data         | fieldId                    |
+      | IM4281122334 | previousSchemeNumber       |
+      | IN4281122334 | previousIntermediaryNumber |
+        Then the user answers yes on the previous-scheme-answers/2 page
+    And the user picks oss on the previous-scheme/2/2 page
+    And the user adds LV11111222222 on the second previous-oss-scheme-number/2 page
+    Then the user answers no on the previous-scheme-answers/2 page
+    And the user answers no on the previous-schemes-overview page
+    And the user continues through the change-your-registration page
+    Then the user is on the successful-amend page
 
   Scenario: An IOSS registered user can add quarantined/IOSS already active in another EU country registrations in amend EU tax details - VAT Number
     Given the user accesses the authority wizard
