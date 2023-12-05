@@ -82,8 +82,8 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user selects the (list|CYA|list within CYA|list within amend|additional tax details list within CYA|amend|additional tax details list within amend) change link for (first|second|third|page) (.*) from (.*)$"""
-  ) { (route: String, index: String, toPage: String, fromPage: String) =>
+    """^the user selects the (list|CYA|list within CYA|list within amend|additional tax details list within CYA|amend|additional tax details list within amend) (change|add) link for (first|second|third|page) (.*) from (.*)$"""
+  ) { (route: String, link: String, index: String, toPage: String, fromPage: String) =>
     val changeIndex = index match {
       case "first"  => "1"
       case "second" => "2"
