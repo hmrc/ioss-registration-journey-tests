@@ -146,7 +146,7 @@ object CommonPage extends BasePage {
     credId = Random.between(1000000000000000L, 9000000000000000L).toString
 
   def checkInterceptPage(): Unit =
-    driver.getCurrentUrl should startWith(TestConfiguration.url("ioss-returns-frontend") + "/interceptUnusablEmail")
+    driver.getCurrentUrl should startWith(TestConfiguration.url("ioss-returns-frontend") + "/intercept-unusable-email")
 
   def checkBusinessContactDetails(): Unit =
     driver.getCurrentUrl should startWith(
