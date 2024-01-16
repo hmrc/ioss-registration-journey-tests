@@ -279,4 +279,30 @@ class RegistrationStepDef extends BaseStepDef {
     AuthPage.loginUsingAuthorityWizard(true, whichJourney, "Organisation", "with", "VAT", vrn, "default")
   }
 
+  Given(
+    "^the user logs into the returns service$"
+  ) { () =>
+    AuthPage.loginUsingAuthorityWizard(
+      false,
+      "unusableStatus",
+      "Organisation",
+      "with",
+      "IOSS and VAT",
+      "100000001",
+      "IM9009999990"
+    )
+  }
+
+  Then("""^the user is redirected to the email intercept page$""") { () =>
+    CommonPage.checkInterceptPage()
+  }
+
+  Then("""^the user clicks the Confirm email address button$""") { () =>
+    CommonPage.clickContinue()
+  }
+
+  Then("""^the user is redirected to the Business contact details page within Change your registration$""") { () =>
+    CommonPage.checkBusinessContactDetails()
+  }
+
 }

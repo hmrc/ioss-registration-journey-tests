@@ -42,7 +42,11 @@ object AuthPage extends BasePage {
       driver.findElement(By.id("authorityId")).sendKeys(CommonPage.retrieveCredId())
     }
 
-    if (journey == "amend") {
+    if (journey == "unusableStatus") {
+      driver
+        .findElement(By.id("redirectionUrl"))
+        .sendKeys(TestConfiguration.url("ioss-returns-frontend"))
+    } else if (journey == "amend") {
       driver
         .findElement(By.id("redirectionUrl"))
         .sendKeys(TestConfiguration.url("ioss-registration-frontend") + "/start-amend-journey")
