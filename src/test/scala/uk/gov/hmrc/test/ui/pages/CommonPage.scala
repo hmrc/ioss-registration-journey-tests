@@ -145,4 +145,14 @@ object CommonPage extends BasePage {
   def generateCredId(): Unit   =
     credId = Random.between(1000000000000000L, 9000000000000000L).toString
 
+  def checkInterceptPage(): Unit =
+    driver.getCurrentUrl should startWith(TestConfiguration.url("ioss-returns-frontend") + "/intercept-unusable-email")
+
+  def checkBusinessContactDetails(): Unit =
+    driver.getCurrentUrl should startWith(
+      TestConfiguration.url(
+        "ioss-registration-frontend"
+      ) + "/business-contact-details?waypoints=change-your-registration"
+    )
+
 }
