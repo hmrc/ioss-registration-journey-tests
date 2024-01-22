@@ -288,7 +288,7 @@ Feature: Amend Registration journeys
 
   Scenario: An IOSS registered user receives an ETMP failure on submission of an amendment
     Given the user accesses the authority wizard
-    And a user with VRN 600000022 and IOSS Number IM9001234567 accesses the amend registration journey
+    And a user with VRN 600000022 and IOSS Number IM9002222222 accesses the amend registration journey
     And the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the error-submitting-amendment page
