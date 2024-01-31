@@ -60,6 +60,10 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
     CommonPage.checkUrl(url)
+    if (url == "successful-rejoin") {
+      val htmlBody = driver.findElement(By.tagName("body")).getText
+      Assert.assertTrue(htmlBody.contains("Your new IOSS number is"))
+    }
   }
 
   When("""^the user chooses (Yes|Yes, details incorrect|No, different business) on the (.*) page$""") {
