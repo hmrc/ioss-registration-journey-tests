@@ -243,9 +243,9 @@ class RegistrationStepDef extends BaseStepDef {
     Assert.assertTrue(htmlHeader.equals("Sorry, we’re experiencing technical difficulties"))
   }
 
-  When("""^a user with VRN (.*) and IOSS Number (.*) accesses the amend registration journey""") {
-    (vrn: String, iossNumber: String) =>
-      AuthPage.loginUsingAuthorityWizard(false, "amend", "organisation", "with", "IOSS and VAT", vrn, iossNumber)
+  When("""^a user with VRN (.*) and IOSS Number (.*) accesses the (amend|rejoin) registration journey""") {
+    (vrn: String, iossNumber: String, journey: String) =>
+      AuthPage.loginUsingAuthorityWizard(false, journey, "organisation", "with", "IOSS and VAT", vrn, iossNumber)
   }
 
   When("""^the user amends answer to (.*)$""") { (answer: String) =>
