@@ -63,6 +63,7 @@ class RegistrationStepDef extends BaseStepDef {
     if (url == "successful-rejoin") {
       val htmlBody = driver.findElement(By.tagName("body")).getText
       Assert.assertTrue(htmlBody.contains("Your new IOSS number is"))
+      Assert.assertTrue(htmlBody.contains("-NEW"))
     }
   }
 
@@ -86,7 +87,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user selects the (list|CYA|list within CYA|list within amend|additional tax details list within CYA|amend|additional tax details list within amend) (change|add) link for (first|second|third|page) (.*) from (.*)$"""
+    """^the user selects the (list|CYA|list within CYA|list within amend|additional tax details list within CYA|amend|additional tax details list within amend|rejoin) (change|add) link for (first|second|third|page) (.*) from (.*)$"""
   ) { (route: String, link: String, index: String, toPage: String, fromPage: String) =>
     val changeIndex = index match {
       case "first"  => "1"
@@ -102,7 +103,7 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Cchange-your-registration")
     } else if (route == "CYA") {
       CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
-    } else if (route == "amend") {
+    } else if (route == "amend" || route == "rejoin") {
       CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
     } else if (route == "additional tax details list within CYA") {
       CommonPage.selectLink(
