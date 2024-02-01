@@ -3,7 +3,7 @@
 Feature: Rejoin registration journeys
 
 #Reminders
-#  rejoin with excluded trader - full reg - do we want scenarios for all the core validations
+#  rejoin - all the core validations - awaiting VEIOSS-508
 
   @Accessibility
   Scenario: A trader with a future exclusion effective date is not able to access the rejoin registration journey
