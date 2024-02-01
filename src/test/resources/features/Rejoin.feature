@@ -3,10 +3,7 @@
 Feature: Rejoin registration journeys
 
 #Reminders
-#  @ZAP and @Accessibility on full rejoin journeys
-#  6 years after exclusion effective date? view and amend
 #  rejoin with excluded trader - full reg - do we want scenarios for all the core validations
-#  rejoin with trader in same period that exclusion took effect and input dofs prior to exclusion effective date - should be offered reversal of original exclusion
 
   @Accessibility
   Scenario: A trader with a future exclusion effective date is not able to access the rejoin registration journey
@@ -39,6 +36,13 @@ Feature: Rejoin registration journeys
   Scenario: A trader with an expired quarantine period can submit a rejoin registration without amending any details
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9002999993 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
+    When the user continues through the rejoin-registration page
+    Then the user is on the successful-rejoin page
+
+  Scenario: An excluded trader with an effective date 6 years ago can access and submit a rejoin registration
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9019999994 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
     When the user continues through the rejoin-registration page
     Then the user is on the successful-rejoin page
@@ -140,7 +144,7 @@ Feature: Rejoin registration journeys
     Then the user answers no on the tax-in-eu page
     When the user continues through the rejoin-registration page
     Then the user is on the successful-rejoin page
-
+  @ZAP
   Scenario: A trader can amend non-mandatory answers during rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999997 accesses the rejoin registration journey
