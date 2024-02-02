@@ -60,6 +60,11 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
     CommonPage.checkUrl(url)
+    if (url == "successful-rejoin") {
+      val htmlBody = driver.findElement(By.tagName("body")).getText
+      Assert.assertTrue(htmlBody.contains("Your new IOSS number is"))
+      Assert.assertTrue(htmlBody.contains("-NEW"))
+    }
   }
 
   When("""^the user chooses (Yes|Yes, details incorrect|No, different business) on the (.*) page$""") {
@@ -82,7 +87,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user selects the (list|CYA|list within CYA|list within amend|additional tax details list within CYA|amend|additional tax details list within amend) (change|add) link for (first|second|third|page) (.*) from (.*)$"""
+    """^the user selects the (list|CYA|list within CYA|list within amend|list within rejoin|additional tax details list within CYA|amend|additional tax details list within amend|additional tax details list within rejoin|rejoin) (change|add) link for (first|second|third|page) (.*) from (.*)$"""
   ) { (route: String, link: String, index: String, toPage: String, fromPage: String) =>
     val changeIndex = index match {
       case "first"  => "1"
@@ -96,9 +101,11 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Ccheck-your-answers")
     } else if (route == "list within amend") {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Cchange-your-registration")
+    } else if (route == "list within rejoin") {
+      CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Crejoin-registration")
     } else if (route == "CYA") {
       CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
-    } else if (route == "amend") {
+    } else if (route == "amend" || route == "rejoin") {
       CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
     } else if (route == "additional tax details list within CYA") {
       CommonPage.selectLink(
@@ -108,11 +115,15 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.selectLink(
         s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Cchange-add-tax-details\\%2Cchange-your-registration"
       )
+    } else if (route == "additional tax details list within rejoin") {
+      CommonPage.selectLink(
+        s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage\\%2Cchange-add-tax-details\\%2Crejoin-registration"
+      )
     }
   }
 
   Then(
-    """^the user clicks remove via (list|CYA route|overviewLoop|amend route) for (first|second|third) (.*)$"""
+    """^the user clicks remove via (list|CYA route|overviewLoop|amend route|rejoin route) for (first|second|third) (.*)$"""
   ) { (route: String, index: String, page: String) =>
     val removeIndex = index match {
       case "first"  => "1"
@@ -124,6 +135,8 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=check-your-answers")
     } else if (route == "amend route") {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=change-your-registration")
+    } else if (route == "rejoin route") {
+      CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=rejoin-registration")
     } else if (route == "overviewLoop") {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=change-previous-schemes-overview")
     } else {
@@ -177,29 +190,32 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.selectRadioButton(radioButtonToSelect)
   }
 
-  And("""^the user completes the (registration|change answers|amend registration) email verification process""") {
-    (mode: String) =>
-      val journeyId = driver.getCurrentUrl.split("/")(5)
-      CommonPage.goToEmailVerificationPasscodeGeneratorUrl()
+  And(
+    """^the user completes the (registration|change answers|amend registration|rejoin registration) email verification process"""
+  ) { (mode: String) =>
+    val journeyId = driver.getCurrentUrl.split("/")(5)
+    CommonPage.goToEmailVerificationPasscodeGeneratorUrl()
 
-      val passcode = mode match {
-        case "registration" | "amend registration" =>
-          driver.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
-        case "change answers"                      =>
-          driver.findElement(By.tagName("body")).getText.split("test@newtestemail.com,")(1).dropRight(42)
-        case _                                     =>
-          throw new Exception("mode doesn't exist")
-      }
-      CommonPage.goToEmailVerificationUrl(journeyId, mode)
-      CommonPage.enterPasscode(passcode)
+    val passcode = mode match {
+      case "registration" | "amend registration" | "rejoin registration" =>
+        driver.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
+      case "change answers"                                              =>
+        driver.findElement(By.tagName("body")).getText.split("test@newtestemail.com,")(1).dropRight(42)
+      case _                                                             =>
+        throw new Exception("mode doesn't exist")
+    }
+    CommonPage.goToEmailVerificationUrl(journeyId, mode)
+    CommonPage.enterPasscode(passcode)
 
-      if (mode == "change answers") {
-        CommonPage.goToPage("check-your-answers")
-      } else if (mode == "amend registration") {
-        CommonPage.goToPage("change-your-registration")
-      } else {
-        CommonPage.goToPage("bank-details")
-      }
+    if (mode == "change answers") {
+      CommonPage.goToPage("check-your-answers")
+    } else if (mode == "amend registration") {
+      CommonPage.goToPage("change-your-registration")
+    } else if (mode == "rejoin registration") {
+      CommonPage.goToPage("rejoin-registration")
+    } else {
+      CommonPage.goToPage("bank-details")
+    }
   }
 
   Then("""^the user clicks on the (.*) (link|button)$""") { (link: String, element: String) =>
@@ -243,9 +259,9 @@ class RegistrationStepDef extends BaseStepDef {
     Assert.assertTrue(htmlHeader.equals("Sorry, we’re experiencing technical difficulties"))
   }
 
-  When("""^a user with VRN (.*) and IOSS Number (.*) accesses the amend registration journey""") {
-    (vrn: String, iossNumber: String) =>
-      AuthPage.loginUsingAuthorityWizard(false, "amend", "organisation", "with", "IOSS and VAT", vrn, iossNumber)
+  When("""^a user with VRN (.*) and IOSS Number (.*) accesses the (amend|rejoin) registration journey""") {
+    (vrn: String, iossNumber: String, journey: String) =>
+      AuthPage.loginUsingAuthorityWizard(false, journey, "organisation", "with", "IOSS and VAT", vrn, iossNumber)
   }
 
   When("""^the user amends answer to (.*)$""") { (answer: String) =>
