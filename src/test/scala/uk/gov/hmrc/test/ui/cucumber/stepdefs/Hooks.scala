@@ -23,8 +23,7 @@ import uk.gov.hmrc.test.ui.cucumber.utils.MongoConnection
 object Hooks extends ScalaDsl with EN with Browser {
   Before {
     startBrowser()
-//    Driver.instance.manage().deleteAllCookies()
-//    MongoConnection.dropSavedAnswers()
+    MongoConnection.dropSavedAnswers()
   }
 
   After {
