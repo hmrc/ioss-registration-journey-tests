@@ -404,3 +404,14 @@ Feature: Amend Registration journeys
     And the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
+
+  Scenario: An excluded trader with an effective date 6 years ago can still view and amend their registration
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9019999994 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page have-uk-trading-name from change-your-registration
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds A new trading name after 6 years in amend journey on the first uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    When the user continues through the change-your-registration page
+    Then the user is on the successful-amend page
