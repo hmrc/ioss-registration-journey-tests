@@ -21,19 +21,24 @@ Feature: Rejoin registration journeys
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the rejoin registration journey
     Then the user is on the cannot-rejoin page
 
-  Scenario: A trader with a previous quarantined registration  based on its tax identifier number is blocked from re-registering
+  Scenario: A trader with a quarantined euRegistrationDetails based on its tax identifier number is blocked from re-registering
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999991 accesses the rejoin registration journey
     Then the user is on the scheme-quarantined page
 
-  Scenario: A trader with a previous active registration based on its tax identifier number is blocked from re-registering
+  Scenario: A trader with an active euRegistrationDetails based on its tax identifier number is blocked from re-registering
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999992 accesses the rejoin registration journey
     Then the user is on the scheme-still-active page
 
-  Scenario: A trader with a previous active registration based on its vat number is blocked from re-registering
+  Scenario: A trader with a quarantined euRegistrationDetails based on its vat number is blocked from re-registering
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999993 accesses the rejoin registration journey
+    Then the user is on the scheme-quarantined page
+
+  Scenario: A trader with an active euRegistrationDetails based on its vat number is blocked from re-registering
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9004999994 accesses the rejoin registration journey
     Then the user is on the scheme-still-active page
 
   Scenario: A user who gets not found from ETMP for an IOSS registration receives the technical difficulties page
