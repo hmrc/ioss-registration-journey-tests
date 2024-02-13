@@ -21,10 +21,26 @@ Feature: Rejoin registration journeys
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the rejoin registration journey
     Then the user is on the cannot-rejoin page
 
+  Scenario: A trader with a previous quarantined registration  based on its tax identifier number is blocked from re-registering
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9004999991 accesses the rejoin registration journey
+    Then the user is on the scheme-quarantined page
+
+  Scenario: A trader with a previous active registration based on its tax identifier number is blocked from re-registering
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9004999992 accesses the rejoin registration journey
+    Then the user is on the scheme-still-active page
+
+  Scenario: A trader with a previous active registration based on its vat number is blocked from re-registering
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9004999993 accesses the rejoin registration journey
+    Then the user is on the scheme-still-active page
+
   Scenario: A user who gets not found from ETMP for an IOSS registration receives the technical difficulties page
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999999 accesses the rejoin registration journey
     Then the user is presented with the technical difficulties page
+
   @Accessibility
   Scenario: An IOSS registered user receives an ETMP failure on submission of a rejoin
     Given the user accesses the authority wizard
@@ -296,7 +312,7 @@ Feature: Rejoin registration journeys
     And a user with VRN 100000001 and IOSS Number IM9009999999 accesses the rejoin registration journey
     Then the user is presented with the technical difficulties page
   @Accessibility
-  Scenario: An IOSS registered user receives an ETMP failure on submission of a rejoin
+  Scenario: An IOSS registered user receives an ETMP failure on submission of a rejoin2
     Given the user accesses the authority wizard
     And a user with VRN 600000022 and IOSS Number IM9029999997 accesses the rejoin registration journey
     And the user is on the rejoin-registration page
@@ -323,4 +339,5 @@ Feature: Rejoin registration journeys
     Then the user is on the rejoin-registration page
     And the user manually navigates to the remove-deregistration/1?waypoints=rejoin-registration page
     Then the user is on the cannot-delete-previous-registrations page
+
 
