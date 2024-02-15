@@ -2,9 +2,6 @@
 
 Feature: Rejoin registration journeys
 
-#Reminders
-#  rejoin - all the core validations - awaiting VEIOSS-508
-
   @Accessibility
   Scenario: A trader with a future exclusion effective date is not able to access the rejoin registration journey
     Given the user accesses the authority wizard
@@ -19,6 +16,12 @@ Feature: Rejoin registration journeys
   Scenario: A currently registered IOSS trader who is not excluded cannot access the rejoin registration journey
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the rejoin registration journey
+    Then the user is on the cannot-rejoin page
+
+  Scenario: A currently registered IOSS trader who is not excluded cannot access the rejoin registration journey
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
+    When the user manually navigates to the rejoin-registration page
     Then the user is on the cannot-rejoin page
 
   Scenario: A user who gets not found during a rejoin from ETMP for an IOSS registration receives the technical difficulties page
