@@ -121,6 +121,7 @@ object AuthPage extends BasePage {
       driver.findElement(By.id("enrolment[0].value")).sendKeys(vrn)
     }
 
+    //Thread.sleep(10000000)
     driver.findElement(By.className("submit")).click()
   }
 

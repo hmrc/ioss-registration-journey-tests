@@ -53,12 +53,12 @@ Feature: Rejoin registration journeys
 
   Scenario: A trader with a quarantined etmpPreviousEuRegistrationDetails but it is OSSNU does not get blocked
     Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9005999993 accesses the rejoin registration journey
+    And a user with VRN 100000001 and IOSS Number IM9005999995 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
 
   Scenario: A trader with an active etmpPreviousEuRegistrationDetails but it is OSSNU does not get blocked
     Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9005999994 accesses the rejoin registration journey
+    And a user with VRN 100000001 and IOSS Number IM9005999996 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
 
   Scenario: A user who gets not found from ETMP for an IOSS registration receives the technical difficulties page
