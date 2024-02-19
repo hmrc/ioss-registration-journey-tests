@@ -24,7 +24,14 @@ Feature: Rejoin - Core Validation Scenarios
 
   Scenario: Trader with active OSS scheme retrieved from ETMP registration - previous registration - can rejoin
     Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9005999994 accesses the rejoin registration journey
+    And a user with VRN 100000001 and IOSS Number IM9005999992 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
+    When the user continues through the rejoin-registration page
+    Then the user is on the successful-rejoin page
+
+  Scenario: Trader with active OSS non-union scheme retrieved from ETMP registration - previous registration - can rejoin
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9005999996 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
     When the user continues through the rejoin-registration page
     Then the user is on the successful-rejoin page
@@ -46,7 +53,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with active IOSS scheme retrieved from ETMP - previous registration - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9005999994 accesses the rejoin registration journey
-#    Then the user is on the scheme-still-active?countryCode=SI page
+    Then the user is on the scheme-still-active?countryCode=EE page
 
   Scenario: Trader with quarantined OSS scheme - previous registration - not able to rejoin
     Given the user accesses the authority wizard
@@ -61,7 +68,14 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with quarantined OSS scheme retrieved from ETMP registration - previous registration - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9005999991 accesses the rejoin registration journey
-#    Then the user is on the scheme-quarantined page
+    Then the user is on the scheme-quarantined page
+
+  Scenario: Trader with quarantined OSS non-union scheme retrieved from ETMP registration - previous registration - can rejoin
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9005999996 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
+    When the user continues through the rejoin-registration page
+    Then the user is on the successful-rejoin page
 
   Scenario: Trader with quarantined IOSS scheme - previous registration - not able to rejoin
     Given the user accesses the authority wizard
@@ -96,7 +110,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with active scheme retrieved from ETMP registration - EU details - VRN - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999994 accesses the rejoin registration journey
-#    Then the user is on the fixed-establishment-vrn-already-registered/1 page
+    Then the user is on the fixed-establishment-vrn-already-registered/1 page
 
   Scenario: Trader with active scheme - EU details - Tax ID - not able to rejoin
     Given the user accesses the authority wizard
@@ -112,9 +126,9 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with active scheme retrieved from ETMP registration - EU details - Tax ID - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999992 accesses the rejoin registration journey
-#    Then the user is on the fixed-establishment-vrn-already-registered/1 page
+    Then the user is on the fixed-establishment-vrn-already-registered/1 page
 
-  Scenario: Trader with quarantined scheme - EU details - VRN - not able to register
+  Scenario: Trader with quarantined scheme - EU details - VRN - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
     Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
@@ -125,12 +139,12 @@ Feature: Rejoin - Core Validation Scenarios
     And the user adds LT999888777 on the first eu-vat-number page
     Then the user is on the excluded-vrn page
 
-  Scenario: Trader with quarantined scheme - EU details - VRN - not able to register
+  Scenario: Trader with quarantined scheme - EU details - VRN - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999993 accesses the rejoin registration journey
-#    Then the user is on the excluded-vrn page
+    Then the user is on the excluded-vrn page
 
-  Scenario: Trader with quarantined scheme - EU details - Tax ID - not able to register
+  Scenario: Trader with quarantined scheme - EU details - Tax ID - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
     Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
@@ -141,9 +155,9 @@ Feature: Rejoin - Core Validation Scenarios
     And the user adds ABC123123 on the first eu-tax-number page
     Then the user is on the excluded-vrn page
 
-  Scenario: Trader with quarantined scheme retrieved from ETMP registration - EU details - Tax ID - not able to register
+  Scenario: Trader with quarantined scheme retrieved from ETMP registration - EU details - Tax ID - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999991 accesses the rejoin registration journey
-#    Then the user is on the excluded-vrn page
+    Then the user is on the excluded-vrn page
 
 
