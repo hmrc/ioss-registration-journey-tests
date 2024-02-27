@@ -105,12 +105,12 @@ Feature: Rejoin - Core Validation Scenarios
     And the user picks fixed establishment on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user adds PT111222333 on the first eu-vat-number page
-    Then the user is on the fixed-establishment-vrn-already-registered/1 page
+    Then the user is on the fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=PT page
 
   Scenario: Trader with active scheme retrieved from ETMP registration - EU details - VRN - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999994 accesses the rejoin registration journey
-    Then the user is on the fixed-establishment-vrn-already-registered/1 page
+    Then the user is on the fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=IE page
 
   Scenario: Trader with active scheme - EU details - Tax ID - not able to rejoin
     Given the user accesses the authority wizard
@@ -121,12 +121,12 @@ Feature: Rejoin - Core Validation Scenarios
     And the user picks fixed establishment on the how-do-you-operate/1 page
     And the user picks tax id number on the registration-type/1 page
     And the user adds 123LIS123 on the first eu-tax-number page
-    Then the user is on the fixed-establishment-vrn-already-registered/1 page
+    Then the user is on the fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=PT page
 
   Scenario: Trader with active scheme retrieved from ETMP registration - EU details - Tax ID - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999992 accesses the rejoin registration journey
-    Then the user is on the fixed-establishment-vrn-already-registered/1 page
+    Then the user is on the fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=IE page
 
   Scenario: Trader with quarantined scheme - EU details - VRN - not able to rejoin
     Given the user accesses the authority wizard

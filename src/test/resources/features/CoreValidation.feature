@@ -117,7 +117,7 @@ Feature: Core Validation Scenarios
     And the user answers yes on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user adds PT111222333 on the first eu-vat-number page
-    Then the user is on the fixed-establishment-vrn-already-registered/1 page
+    Then the user is on the fixed-establishment-vrn-already-registered?countryCode=PT page
 
   Scenario: Trader with active scheme - EU details - Tax ID - not able to register
     Given the user accesses the IOSS Registration service
@@ -136,7 +136,7 @@ Feature: Core Validation Scenarios
     And the user answers yes on the how-do-you-operate/1 page
     And the user picks tax id number on the registration-type/1 page
     And the user adds 123LIS123 on the first eu-tax-number page
-    Then the user is on the fixed-establishment-vrn-already-registered/1 page
+    Then the user is on the fixed-establishment-vrn-already-registered?countryCode=PT page
   @Accessibility
   Scenario: Trader with quarantined scheme - EU details - VRN - not able to register
     Given the user accesses the IOSS Registration service
