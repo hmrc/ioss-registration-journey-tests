@@ -21,7 +21,7 @@ Feature: Other Journey Kickout pages
     When the user continues through the cannot-register-need-to-operate-as-fe/1 page
     Then the user is on the tax-in-eu page
 
-  Scenario: Kickout when the user sells does not have a Fixed Establishment in one country after already entering a Fixed Establishment for another country
+  Scenario: Can resume registration journey for an already entered country with a Fixed Establishment following the Fixed Establishment kickout page
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
@@ -50,6 +50,22 @@ Feature: Other Journey Kickout pages
     Then the user is on the cannot-register-need-to-operate-as-fe/2 page
     When the user continues through the cannot-register-need-to-operate-as-fe/2 page
     Then the user is on the add-tax-details page
+    And the user answers no on the add-tax-details page
+    And the user adds www.first-website.com on the first website-address page
+    And the user answers no on the add-website-address page
+    And the user completes details on the business-contact-details page
+      | data               | fieldId         |
+      | Trader Name        | fullName        |
+      | 07771117771        | telephoneNumber |
+      | test@testemail.com | emailAddress    |
+    And the user completes the registration email verification process
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | Trader Name            | accountName |
+      | ABCDEF2A               | bic         |
+      | GB33BUKB20201555555555 | iban        |
+    Then the user is on the check-your-answers page
+    Then the user submits their registration
 
 
 
