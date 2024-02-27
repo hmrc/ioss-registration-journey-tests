@@ -199,7 +199,7 @@ Feature: Amend Registration journeys
     And the user continues through the check-tax-details/2 page
     And the user answers yes on the add-tax-details page
     And the user selects Portugal on the third eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/3 page
+    And the user answers yes on the how-do-you-operate/3 page
     And the user picks tax id number on the registration-type/3 page
     And the user adds PT12345A on the third eu-tax-number page
     And the user adds Portuguese Trading on the third eu-trading-name page
