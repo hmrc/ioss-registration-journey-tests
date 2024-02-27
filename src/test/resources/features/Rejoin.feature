@@ -76,7 +76,7 @@ Feature: Rejoin registration journeys
     Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
     And the user answers yes on the tax-in-eu page
     And the user selects France on the first eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user answers yes on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user adds FRXX123456789 on the first eu-vat-number page
     And the user adds French Trading on the first eu-trading-name page
@@ -130,7 +130,7 @@ Feature: Rejoin registration journeys
     Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
     And the user answers yes on the tax-in-eu page
     And the user selects Romania on the first eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user answers yes on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user adds RO1234567890 on the first eu-vat-number page
     And the user adds Romanian Trading on the first eu-trading-name page
@@ -183,7 +183,7 @@ Feature: Rejoin registration journeys
     Then the user continues through the check-tax-details/1 page
     And the user answers yes on the add-tax-details page
     And the user selects Estonia on the second eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user answers yes on the how-do-you-operate/2 page
     And the user picks vat number on the registration-type/2 page
     And the user adds EE123456789 on the second eu-vat-number page
     And the user adds Estonian Wholesalers Ltd on the second eu-trading-name page
@@ -234,7 +234,7 @@ Feature: Rejoin registration journeys
     And the user answers yes on the remove-tax-details/1 page
     Then the user continues through the tax-in-eu page
     And the user selects Estonia on the first eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user answers yes on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user adds EE123456789 on the first eu-vat-number page
     And the user adds Estonian Wholesalers Ltd on the first eu-trading-name page

@@ -59,7 +59,7 @@ Feature: Save For Later Feature
     And the user clicks on the save and come back later button
     Then the user clicks on the continue to complete your registration link
     And the user selects Romania on the first eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user answers yes on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user adds RO1234567890 on the first eu-vat-number page
     And the user adds Romanian Trading on the first eu-trading-name page
@@ -74,7 +74,7 @@ Feature: Save For Later Feature
     Then the user clicks on the continue to complete your registration link
     Then the user answers yes on the add-tax-details page
     And the user selects Estonia on the second eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user answers yes on the how-do-you-operate/2 page
     And the user picks tax id number on the registration-type/2 page
     And the user clicks on the save and come back later button
     Then the user clicks on the continue to complete your registration link
@@ -142,7 +142,7 @@ Feature: Save For Later Feature
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
     And the user selects Romania on the first eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user answers yes on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user clicks on the save and come back later button
     And the user clicks on the sign out and come back later link
@@ -158,7 +158,7 @@ Feature: Save For Later Feature
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Estonia on the second eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user answers yes on the how-do-you-operate/2 page
     And the user picks tax id number on the registration-type/2 page
     And the user adds EST123987369 on the second eu-tax-number page
     And the user adds Estonian Goods on the second eu-trading-name page
@@ -323,7 +323,7 @@ Feature: Save For Later Feature
     Then the user selects the CYA change link for page tax-in-eu from check-your-answers
     And the user answers yes on the tax-in-eu page
     And the user selects Czech Republic on the first eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user answers yes on the how-do-you-operate/1 page
     And the user clicks on the save and come back later button
     Then the user clicks on the continue to complete your registration link
     And the user picks tax id number on the registration-type/1 page

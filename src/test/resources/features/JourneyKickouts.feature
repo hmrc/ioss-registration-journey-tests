@@ -2,7 +2,7 @@
 
 Feature: Other Journey Kickout pages
 
-  Scenario: Kickout when the user sells goods via a Dispatch Warehouse
+  Scenario: Kickout when the user does not have a Fixed Establishment
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
@@ -16,10 +16,12 @@ Feature: Other Journey Kickout pages
     And the user answers no on the previous-oss page
     Then the user answers yes on the tax-in-eu page
     And the user selects France on the first eu-tax page
-    And the user picks dispatch warehouse on the how-do-you-operate/1 page
-    Then the user is on the cannot-register-need-to-operate-as-fe page
+    And the user answers no on the how-do-you-operate/1 page
+    Then the user is on the cannot-register-need-to-operate-as-fe/1 page
+    When the user continues through the cannot-register-need-to-operate-as-fe/1 page
+    Then the user is on the tax-in-eu page
 
-  Scenario: Kickout when the user sells goods via a Dispatch Warehouse after already entering a Fixed Establishment
+  Scenario: Kickout when the user sells does not have a Fixed Establishment in one country after already entering a Fixed Establishment for another country
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
@@ -33,7 +35,7 @@ Feature: Other Journey Kickout pages
     And the user answers no on the previous-oss page
     Then the user answers yes on the tax-in-eu page
     And the user selects Ireland on the first eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user answers yes on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user adds IE1234777WI on the first eu-vat-number page
     And the user adds Irish Goods on the first eu-trading-name page
@@ -44,8 +46,10 @@ Feature: Other Journey Kickout pages
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Belgium on the second eu-tax page
-    And the user picks dispatch warehouse on the how-do-you-operate/2 page
-    Then the user is on the cannot-register-need-to-operate-as-fe page
+    And the user answers no on the how-do-you-operate/2 page
+    Then the user is on the cannot-register-need-to-operate-as-fe/2 page
+    When the user continues through the cannot-register-need-to-operate-as-fe/2 page
+    Then the user is on the add-tax-details page
 
 
 
