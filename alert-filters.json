@@ -4,28 +4,28 @@
       "reason":"No content, this is a redirect only",
       "contextId":1,
       "url":"http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/remove-all-previous-registrations?waypoints=change-your-registration",
-      "ruleId":10039,
+      "ruleId":10038,
       "newLevel":-1
     },
     {
       "reason":"No content, this is a redirect only",
       "contextId":1,
       "url":"http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/remove-all-previous-registrations?waypoints=rejoin-registration",
-      "ruleId":10039,
+      "ruleId":10038,
       "newLevel":-1
     },
     {
       "reason":"No content, this is a redirect only",
       "contextId":1,
       "url":"http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/start-amend-journey",
-      "ruleId":10039,
+      "ruleId":10038,
       "newLevel":-1
     },
     {
       "reason":"No content, this is a redirect only",
       "contextId":1,
       "url":"http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/start-rejoin-journey",
-      "ruleId":10039,
+      "ruleId":10038,
       "newLevel":-1
     }
   ]
