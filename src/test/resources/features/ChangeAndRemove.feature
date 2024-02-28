@@ -51,7 +51,7 @@ Feature: Change and remove answers for registrations in progress
     Then the user answers no on the previous-oss page
     Then the user answers yes on the tax-in-eu page
     And the user selects Bulgaria on the first eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user answers yes on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user adds BG123455555 on the first eu-vat-number page
     And the user adds Bulgarian Trading on the first eu-trading-name page
@@ -62,7 +62,7 @@ Feature: Change and remove answers for registrations in progress
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Greece on the second eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user answers yes on the how-do-you-operate/2 page
     And the user picks tax id number on the registration-type/2 page
     And the user adds Greece123456 on the second eu-tax-number page
     And the user adds Grecian Trading on the second eu-trading-name page
@@ -156,7 +156,7 @@ Feature: Change and remove answers for registrations in progress
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
     And the user selects Italy on the first eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user answers yes on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user adds IT01234567899 on the first eu-vat-number page
     And the user adds Italian Trading on the first eu-trading-name page
@@ -173,7 +173,7 @@ Feature: Change and remove answers for registrations in progress
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Denmark on the second eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user answers yes on the how-do-you-operate/2 page
     And the user picks tax id number on the registration-type/2 page
     And the user adds DK123456 on the second eu-tax-number page
     And the user adds DK Trading on the second eu-trading-name page
@@ -254,7 +254,7 @@ Feature: Change and remove answers for registrations in progress
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
     And the user selects Romania on the first eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user answers yes on the how-do-you-operate/1 page
     And the user picks vat number on the registration-type/1 page
     And the user adds RO1234567890 on the first eu-vat-number page
     And the user adds Romanian Trading on the first eu-trading-name page
@@ -265,7 +265,7 @@ Feature: Change and remove answers for registrations in progress
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Estonia on the second eu-tax page
-    And the user picks fixed establishment on the how-do-you-operate/2 page
+    And the user answers yes on the how-do-you-operate/2 page
     And the user picks tax id number on the registration-type/2 page
     And the user adds EST123987369 on the second eu-tax-number page
     And the user adds Estonian Goods on the second eu-trading-name page
