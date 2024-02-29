@@ -83,6 +83,7 @@ class RegistrationStepDef extends BaseStepDef {
         case "new"    => CommonPage.checkUrl(url)
         case _        => throw new Exception("Index doesn't exist")
       }
+
       CommonPage.enterData(data)
   }
 

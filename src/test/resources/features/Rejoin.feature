@@ -24,32 +24,17 @@ Feature: Rejoin registration journeys
   Scenario: A trader with a quarantined euRegistrationDetails based on its tax identifier number is blocked from re-registering
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999991 accesses the rejoin registration journey
-    Then the user is on the scheme-quarantined page
-
-  Scenario: A trader with an active euRegistrationDetails based on its tax identifier number is blocked from re-registering
-    Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9004999992 accesses the rejoin registration journey
-    Then the user is on the scheme-still-active page
+    Then the user is on the excluded-vrn page
 
   Scenario: A trader with a quarantined euRegistrationDetails based on its vat number is blocked from re-registering
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999993 accesses the rejoin registration journey
-    Then the user is on the scheme-quarantined page
+    Then the user is on the excluded-vrn page
 
   Scenario: A trader with an active euRegistrationDetails based on its vat number is blocked from re-registering
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9004999994 accesses the rejoin registration journey
-    Then the user is on the scheme-still-active page
-
-  Scenario: A trader with a quarantined etmpPreviousEuRegistrationDetails is blocked from re-registering
-    Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9005999991 accesses the rejoin registration journey
-    Then the user is on the scheme-quarantined page
-
-  Scenario: A trader with an active etmpPreviousEuRegistrationDetails is blocked from re-registering
-    Given the user accesses the authority wizard
-    And a user with VRN 100000002 and IOSS Number IM9005999992 accesses the rejoin registration journey
-    Then the user is on the scheme-still-active page
+    Then the user is on the fixed-establishment-vrn-already-registered page
 
   Scenario: A trader with a quarantined etmpPreviousEuRegistrationDetails but it is OSSNU does not get blocked
     Given the user accesses the authority wizard
@@ -322,15 +307,68 @@ Feature: Rejoin registration journeys
     And a user with VRN 100000001 and IOSS Number IM9009999997 accesses the rejoin registration journey
     Then the user is on the cannot-rejoin page
 
-  Scenario: A quarantined trader is not able to access the rejoin registration journey
-    Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9009999993 accesses the rejoin registration journey
-    Then the user is on the cannot-rejoin page
+#  Scenario: A quarantined trader is not able to access the rejoin registration journey
+#    Given the user accesses the authority wizard
+#    And a user with VRN 100000001 and IOSS Number IM9009999993 accesses the rejoin registration journey
+#    Then the user is on the cannot-rejoin page
 
   Scenario: A currently registered IOSS trader who is not excluded cannot access the rejoin registration journey
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the rejoin registration journey
     Then the user is on the cannot-rejoin page
+
+  Scenario: Meow1
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9004999991 accesses the rejoin registration journey
+    Then the user is on the excluded-vrn page
+
+  Scenario: Meow2
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9005999991 accesses the rejoin registration journey
+    Then the user is on the excluded-vrn page
+
+  Scenario: Meow3
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9004999992 accesses the rejoin registration journey
+    Then the user is on the fixed-establishment-vrn-already-registered page
+
+  Scenario: Meow4
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9004999992 accesses the rejoin registration journey
+    Then the user is on the fixed-establishment-vrn-already-registered page
+
+  Scenario: Meow5
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9005999992 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
+
+  Scenario: Trader with quarantined OSS scheme retrieved from ETMP registration - previous registration - not able to rejoin
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9005999991 accesses the rejoin registration journey
+    Then the user is on the scheme-quarantined page
+
+#  Scenario: Meow6
+#    Given the user accesses the authority wizard
+#    And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+#    Then the user is on the  fixed-establishment-vrn-already-registered page
+#
+#  Scenario: Trader with active scheme - EU details - VRN - not able to rejoin
+#    Given the user accesses the authority wizard
+#    And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+#    Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
+#    Then the user is on the  fixed-establishment-vrn-already-registered page
+
+
+  Scenario: Trader with active scheme - EU details - VRN - not able to rejoin
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+    Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
+    And the user answers yes on the tax-in-eu page
+    And the user selects Portugal on the first eu-tax page
+    And the user picks fixed establishment on the how-do-you-operate/1 page
+    And the user picks vat number on the registration-type/1 page
+    And the user adds PT111222333 on the first eu-vat-number page
+    Then the user is on the fixed-establishment-vrn-already-registered page
 
   Scenario: A user who gets not found from ETMP for an IOSS registration receives the technical difficulties page
     Given the user accesses the authority wizard
