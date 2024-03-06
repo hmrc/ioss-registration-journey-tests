@@ -31,6 +31,70 @@ The `run_tests.sh` script defaults to using `chrome` in the `local` environment.
 
 ## Selenium Grid
 
+There are 2 ways to run this
+
+### Local
+This will run similarly to the previous experience. Probably will be preferred for those who like fast feedback as it easily works 
+from running cucumber tests in intellij and doing the following loop. Run all tests, pin results which allows us to not lose sight of our
+failures, then work on any failures one by one easily.
+
+Put a Thread.sleep() to pause at a point and then just CTRL-R (Mac)/Shift-f10 to rerun it without
+having to go back to the feature file. You can also pause prior to the point of failure in a step definition, 
+so you can debug what is happening manually without having to go through convoluted (potentially errant from clumsiness) clicking
+journeys to get to that point.
+
+https://github.com/hmrc/local-selenium-grid
+
+#### Chrome version
+This is set in 
+
+```
+browser-versions.toml
+```
+
+under 
+
+```toml
+[[node.driver-configuration]]
+display-name = "Chrome"
+stereotype = '{"browserName": "chrome", "browserVersion": "120"}'
+```
+
+This will need to change to the version you are running and have the relevant version of the chromedriver installed.
+
+https://googlechromelabs.github.io/chrome-for-testing/
+
+#### Chromedriver on OSX 
+On the previous webdriver we only had to click allow once, but it now complains about being unsigned on each browser opening.
+This can be solved by 
+
+(maybe need sudo)
+```
+xattr -d com.apple.quarantine  /path/to/chromedriver
+```
+
+##### Starting
+Simply run
+```
+./start.sh
+```
+
+#### Running Cucumber in Intellij
+We need to pass the following VM options across
+
+```
+-Dbrowser=chrome -Denvironment=local
+```
+
+Goto 
+```
+Run->Edit Configuration Templates (bottom left)->Cucumber Java->VM Options
+```
+
+The values here get copied across to all NEW run configurations. 
+
+
+### Non-Local
 You will need to run Selenium Grid via the instructions here - https://github.com/hmrc/docker-selenium-grid
 
 ## ZAP and Accessibility tests
