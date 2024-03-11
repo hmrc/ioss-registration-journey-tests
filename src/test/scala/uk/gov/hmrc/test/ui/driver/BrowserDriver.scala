@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.test.ui.driver
 
-
 import org.openqa.selenium.remote.RemoteWebDriver
 import uk.gov.hmrc.selenium.webdriver.Driver
 
