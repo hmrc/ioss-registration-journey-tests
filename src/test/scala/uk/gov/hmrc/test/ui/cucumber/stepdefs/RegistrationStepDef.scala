@@ -77,11 +77,11 @@ class RegistrationStepDef extends BaseStepDef {
   When("""^the user adds (.*) on the (first|second|third|new) (.*) page$""") {
     (data: String, index: String, url: String) =>
       index match {
-        case "first"  => CommonPage.checkUrl(url + "/1")
+        case "first" => CommonPage.checkUrl(url + "/1")
         case "second" => CommonPage.checkUrl(url + "/2")
-        case "third"  => CommonPage.checkUrl(url + "/3")
-        case "new"    => CommonPage.checkUrl(url)
-        case _        => throw new Exception("Index doesn't exist")
+        case "third" => CommonPage.checkUrl(url + "/3")
+        case "new" => CommonPage.checkUrl(url)
+        case _ => throw new Exception("Index doesn't exist")
       }
       CommonPage.enterData(data)
   }
@@ -90,10 +90,10 @@ class RegistrationStepDef extends BaseStepDef {
     """^the user selects the (list|CYA|list within CYA|list within amend|list within rejoin|additional tax details list within CYA|amend|additional tax details list within amend|additional tax details list within rejoin|rejoin) (change|add) link for (first|second|third|page) (.*) from (.*)$"""
   ) { (route: String, link: String, index: String, toPage: String, fromPage: String) =>
     val changeIndex = index match {
-      case "first"  => "1"
+      case "first" => "1"
       case "second" => "2"
-      case "third"  => "3"
-      case _        => "no index required"
+      case "third" => "3"
+      case _ => "no index required"
     }
     if (route == "list") {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=$fromPage")
@@ -126,10 +126,10 @@ class RegistrationStepDef extends BaseStepDef {
     """^the user clicks remove via (list|CYA route|overviewLoop|amend route|rejoin route) for (first|second|third) (.*)$"""
   ) { (route: String, index: String, page: String) =>
     val removeIndex = index match {
-      case "first"  => "1"
+      case "first" => "1"
       case "second" => "2"
-      case "third"  => "3"
-      case _        => throw new Exception("Index doesn't exist")
+      case "third" => "3"
+      case _ => throw new Exception("Index doesn't exist")
     }
     if (route == "CYA route") {
       CommonPage.selectLink(s"remove-$page\\/$removeIndex\\?waypoints\\=check-your-answers")
@@ -165,9 +165,9 @@ class RegistrationStepDef extends BaseStepDef {
   ) { (country: String, index: String, url: String) =>
     val pageIndex = index match {
       case "first" | "cya-new-first-previous-scheme" => "1"
-      case "second"                                  => "2"
-      case "third"                                   => "3"
-      case _                                         => throw new Exception("Index doesn't exist")
+      case "second" => "2"
+      case "third" => "3"
+      case _ => throw new Exception("Index doesn't exist")
     }
     if (index == "cya-new-first-previous-scheme") {
       CommonPage.checkUrl(s"$url/$pageIndex?waypoints=check-your-answers")
@@ -178,12 +178,12 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user picks (oss|ioss|vat number|tax id number) on the (.*) page$"""
+    """^the user picks (oss|ioss|vat number|tax id number|IM9007230001|IM9007230002) on the (.*) page$"""
   ) { (answer: String, url: String) =>
     val radioButtonToSelect = answer match {
-      case "oss" | "vat number"    => "1"
-      case "ioss" | "tax id number" => "2"
-      case _                                               =>
+      case "oss" | "vat number" | "IM9007230001" => "1"
+      case "ioss" | "tax id number" | "IM9007230002" => "2"
+      case _ =>
         throw new Exception("Selection doesn't exist")
     }
     CommonPage.checkUrl(url)
@@ -199,9 +199,9 @@ class RegistrationStepDef extends BaseStepDef {
     val passcode = mode match {
       case "registration" | "amend registration" | "rejoin registration" =>
         driver.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
-      case "change answers"                                              =>
+      case "change answers" =>
         driver.findElement(By.tagName("body")).getText.split("test@newtestemail.com,")(1).dropRight(42)
-      case _                                                             =>
+      case _ =>
         throw new Exception("mode doesn't exist")
     }
     CommonPage.goToEmailVerificationUrl(journeyId, mode)
@@ -220,19 +220,21 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user clicks on the (.*) (link|button)$""") { (link: String, element: String) =>
     link match {
-      case "BTA"                                    =>
+      case "BTA" =>
         driver.findElement(By.id("back-to-your-account")).click()
       case "continue to complete your registration" =>
         driver.findElement(By.cssSelector("a#continueToYourReturn")).click()
-      case "sign out and come back later"           =>
+      case "sign out and come back later" =>
         driver.findElement(By.id("signOut")).click()
-      case "cancel"                                 =>
+      case "cancel" =>
         driver.findElement(By.id("cancel")).click()
-      case "Back to your account"                   =>
+      case "Back to your account" =>
         driver.findElement(By.id("backToYourAccount")).click()
-      case "save and come back later"               =>
+      case "save and come back later" =>
         driver.findElement(By.id("saveProgress")).click()
-      case _                                        =>
+      case "View or change your previous registration" =>
+        driver.findElement(By.id("change-previous-registrations")).click()
+      case _ =>
         throw new Exception("Link doesn't exist")
     }
   }
@@ -288,9 +290,9 @@ class RegistrationStepDef extends BaseStepDef {
     "^the user signs into authority wizard with a Cred ID and VRN (.*) to (start registration|retrieve saved registration)$"
   ) { (vrn: String, journey: String) =>
     val whichJourney = journey match {
-      case "start registration"          => "registration"
+      case "start registration" => "registration"
       case "retrieve saved registration" => "saved"
-      case _                             => throw new Exception("Journey doesn't exist")
+      case _ => throw new Exception("Journey doesn't exist")
     }
     AuthPage.loginUsingAuthorityWizard(true, whichJourney, "Organisation", "with", "VAT", vrn, "default")
   }
@@ -319,6 +321,16 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user is redirected to the Business contact details page within Change your registration$""") { () =>
     CommonPage.checkBusinessContactDetails()
+  }
+
+  When("""^a user with current IOSS Number (.*) and at least one previous IOSS number accesses the returns journey""") {
+    (iossNumber: String) =>
+      AuthPage.loginUsingAuthorityWizard(false, "amend", "Organisation", "with", "IOSS and VAT", "100000001", iossNumber)
+  }
+
+  Then("""^the correct IOSS number (.*) is displayed on the page$""") { (iossNumber: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("IOSS number: " + iossNumber))
   }
 
 }
