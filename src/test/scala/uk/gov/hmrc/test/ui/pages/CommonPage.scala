@@ -162,4 +162,9 @@ object CommonPage extends BasePage {
       ) + "/business-contact-details?waypoints=change-your-registration"
     )
 
+  def clickBackButton(): Unit =
+    driver
+      .navigate()
+      .back()
+
 }

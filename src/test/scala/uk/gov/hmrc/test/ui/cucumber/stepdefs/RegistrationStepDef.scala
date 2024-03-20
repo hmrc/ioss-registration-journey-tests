@@ -19,6 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.pages.CommonPage.clickBackButton
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 class RegistrationStepDef extends BaseStepDef {
@@ -341,6 +342,10 @@ class RegistrationStepDef extends BaseStepDef {
   Then("""^the correct IOSS number (.*) is displayed on the page$""") { (iossNumber: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("IOSS number: " + iossNumber))
+  }
+
+  Then("""^the user clicks back on the browser$""") { () =>
+    clickBackButton()
   }
 
 }

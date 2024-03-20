@@ -15,14 +15,6 @@ Feature: Multiple IOSS Number Registration journeys
     And the user answers yes on the change-your-previous-registration?waypoints=change-your-registration page
     Then the user is on the change-a-previous-registration page
     Then the correct IOSS number IM9006230000 is displayed on the page
-#  Also could do manual checks on urls to make sure I can't amend them:
-#have-uk-trading-name?waypoints=change-your-registration
-#add-uk-trading-name?waypoints=change-your-registration
-#tax-in-eu?waypoints=change-your-registration
-#previous-schemes-overview?waypoints=change-your-registration
-#add-tax-details?waypoints=change-your-registration
-#add-website-address?waypoints=change-your-registration
-#    plus the delete-all versions of pages
     Then the user selects the amend change link for page business-contact-details from change-a-previous-registration
     And the user completes details on the business-contact-details page
       | data                                 | fieldId         |
@@ -67,7 +59,6 @@ Feature: Multiple IOSS Number Registration journeys
     And the user picks IM9007230001 on the change-your-previous-registrations?waypoints=change-your-registration page
     Then the user is on the change-a-previous-registration page
     Then the correct IOSS number IM9007230001 is displayed on the page
-#    Do checks on amend options that shouldn't be there - see section in first test
     Then the user selects the amend change link for page business-contact-details from change-a-previous-registration
     And the user completes details on the business-contact-details page
       | data                                          | fieldId         |
@@ -129,5 +120,66 @@ Feature: Multiple IOSS Number Registration journeys
     And the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
+
+  Scenario: An IOSS registered user cannot amend sections of a previous registration that are not editable
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9007230000 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    When the user clicks on the View or change your previous registration link
+    Then the user answers yes on the change-your-previous-registration?waypoints=change-your-registration page
+    And the user is on the change-a-previous-registration page
+    And the correct IOSS number IM9006230000 is displayed on the page
+    When the user manually navigates to the have-uk-trading-name?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the add-uk-trading-name?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the uk-trading-name/1?waypoints=change-add-uk-trading-name%2Cchange-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the remove-uk-trading-name/1?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the previous-schemes-overview?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the previous-scheme-answers/1?waypoints=change-previous-schemes-overview%2Cchange-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the tax-in-eu?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the add-tax-details?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the check-tax-details/1?waypoints=change-add-tax-details%2Cchange-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the remove-tax-details/1?waypoints=change-add-tax-details%2Cchange-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the registration-type/1?waypoints=check-tax-details-1%2Cchange-add-tax-details%2Cchange-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the add-website-address?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the website-address/1?waypoints=change-add-website-address%2Cchange-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the remove-website-address/1?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the remove-all-trading-names?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the remove-all-tax-details?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+    When the user manually navigates to the remove-all-previous-registrations?waypoints=change-a-previous-registration page
+    Then the user is redirected to the returns dashboard
+    And the user clicks back on the browser
+
 
 
