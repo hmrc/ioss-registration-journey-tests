@@ -285,8 +285,8 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.selectContinueRegistration(data)
   }
 
-  When("""^a user with VRN (.*) and no IOSS enrolment accesses the amend registration journey""") { (vrn: String) =>
-    AuthPage.loginUsingAuthorityWizard(false, "amend", "organisation", "with", "VAT", vrn, "None")
+  When("""^a user with VRN (.*) and no IOSS enrolment accesses the (amend|saved) registration journey""") { (vrn: String, journey: String) =>
+    AuthPage.loginUsingAuthorityWizard(false, journey, "organisation", "with", "VAT", vrn, "None")
   }
 
   Given(

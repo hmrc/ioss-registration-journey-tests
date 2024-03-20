@@ -228,8 +228,8 @@ Feature: Save For Later Feature
     Then the user answers no on the previous-scheme-answers/2 page
     And the user clicks on the save and come back later button
     And the user clicks on the sign out and come back later link
-    And the user accesses the continue on sign in url
-    Then the user signs in as an Organisation Admin with VAT enrolment 100000001
+    When the user accesses the authority wizard
+    Then a user with VRN 100000001 and no IOSS enrolment accesses the saved registration journey
     And the user picks No,delete my answers and start again on the continue-registration page
 #  Currently getting cannot-register-not-norwegian-based-business page
 #  Raised bug VEIOSS-345
