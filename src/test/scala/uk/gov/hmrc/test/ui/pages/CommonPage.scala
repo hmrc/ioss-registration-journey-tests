@@ -60,7 +60,8 @@ object CommonPage extends BasePage {
     driver.findElement(By.id(inputId)).sendKeys(data)
     CommonPage.clickContinue()
   }
-  def selectLink(link: String): Unit   =
+
+  def selectLink(link: String): Unit =
     driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
 
   def clearData(): Unit =
@@ -77,8 +78,9 @@ object CommonPage extends BasePage {
     clickContinue()
   }
 
-  def waitForElement(by: By)                            =
+  def waitForElement(by: By) =
     new FluentWait(driver).until(ExpectedConditions.presenceOfElementLocated(by))
+
   def selectValueAutocomplete(country: String): Unit = {
     val inputId = "value"
     driver.findElement(By.id(inputId)).sendKeys(country)
@@ -86,6 +88,7 @@ object CommonPage extends BasePage {
     driver.findElement(By.cssSelector("li#value__option--0")).click()
     CommonPage.clickContinue()
   }
+
   def selectRadioButton(scheme: String): Unit = {
     scheme match {
       case "1" => driver.findElement(By.id("value_0")).click()
@@ -94,6 +97,7 @@ object CommonPage extends BasePage {
     }
     CommonPage.clickContinue()
   }
+
   def goToEmailVerificationPasscodeGeneratorUrl(): Unit =
     driver.navigate
       .to(
@@ -102,11 +106,12 @@ object CommonPage extends BasePage {
 
   def goToEmailVerificationUrl(journeyId: String, mode: String): Unit = {
     val url = mode match {
-      case "registration"        => "bank-details"
-      case "change answers"      => "check-your-answers"
-      case "amend registration"  => "change-your-registration"
-      case "rejoin registration" => "rejoin-registration"
-      case _                     =>
+      case "registration"                => "bank-details"
+      case "change answers"              => "check-your-answers"
+      case "amend registration"          => "change-your-registration"
+      case "amend previous registration" => "change-a-previous-registration"
+      case "rejoin registration"         => "rejoin-registration"
+      case _                             =>
         throw new Exception("URL doesn't exist")
     }
     driver
@@ -143,7 +148,8 @@ object CommonPage extends BasePage {
 
   def retrieveCredId(): String =
     credId
-  def generateCredId(): Unit   =
+
+  def generateCredId(): Unit =
     credId = Random.between(1000000000000000L, 9000000000000000L).toString
 
   def checkInterceptPage(): Unit =

@@ -13,6 +13,7 @@ Feature: Multiple IOSS Number Registration journeys
     Then the correct IOSS number IM9007230000 is displayed on the page
     When the user clicks on the View or change your previous registration link
     And the user answers yes on the change-your-previous-registration?waypoints=change-your-registration page
+    Then the user is on the change-a-previous-registration page
     Then the correct IOSS number IM9006230000 is displayed on the page
 #  Also could do manual checks on urls to make sure I can't amend them:
 #have-uk-trading-name?waypoints=change-your-registration
@@ -22,21 +23,21 @@ Feature: Multiple IOSS Number Registration journeys
 #add-tax-details?waypoints=change-your-registration
 #add-website-address?waypoints=change-your-registration
 #    plus the delete-all versions of pages
-    Then the user selects the amend change link for page business-contact-details from change-your-registration
+    Then the user selects the amend change link for page business-contact-details from change-a-previous-registration
     And the user completes details on the business-contact-details page
       | data                                 | fieldId         |
       | Previous Registration Trader         | fullName        |
       | +17771117771                         | telephoneNumber |
       | previous-registration-test@email.com | emailAddress    |
-    And the user completes the amend registration email verification process
-    And the user is on the change-your-registration page
-    Then the user selects the amend change link for page bank-details from change-your-registration
+    And the user completes the amend previous registration email verification process
+    And the user is on the change-a-previous-registration page
+    Then the user selects the amend change link for page bank-details from change-a-previous-registration
     And the user completes details on the bank-details page
       | data                              | fieldId     |
       | Previous Registration Trader Name | accountName |
       | GB29NWBK60161331926819            | iban        |
-    And the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user is on the change-a-previous-registration page
+    And the user continues through the change-a-previous-registration page
     Then the user is on the successful-amend page
     When the user manually navigates to the start-amend-journey page
     Then the user is on the change-your-registration page
@@ -64,46 +65,47 @@ Feature: Multiple IOSS Number Registration journeys
     Then the correct IOSS number IM9007230003 is displayed on the page
     When the user clicks on the View or change your previous registration link
     And the user picks IM9007230001 on the change-your-previous-registrations?waypoints=change-your-registration page
+    Then the user is on the change-a-previous-registration page
     Then the correct IOSS number IM9007230001 is displayed on the page
 #    Do checks on amend options that shouldn't be there - see section in first test
-    Then the user selects the amend change link for page business-contact-details from change-your-registration
+    Then the user selects the amend change link for page business-contact-details from change-a-previous-registration
     And the user completes details on the business-contact-details page
       | data                                          | fieldId         |
       | Previous Multiple Registration Trader         | fullName        |
       | +17771117771                                  | telephoneNumber |
       | previous-registration-test-multiple@email.com | emailAddress    |
-    And the user completes the amend registration email verification process
-    And the user is on the change-your-registration page
-    Then the user selects the amend change link for page bank-details from change-your-registration
+    And the user completes the amend previous registration email verification process
+    And the user is on the change-a-previous-registration page
+    Then the user selects the amend change link for page bank-details from change-a-previous-registration
     And the user completes details on the bank-details page
       | data                                       | fieldId     |
       | Previous Multiple Registration Trader Name | accountName |
       | GB29NWBK60161331926819                     | iban        |
-    And the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user is on the change-a-previous-registration page
+    And the user continues through the change-a-previous-registration page
     Then the user is on the successful-amend page
     When the user manually navigates to the start-amend-journey page
     Then the user is on the change-your-registration page
     And the correct IOSS number IM9007230003 is displayed on the page
     When the user clicks on the View or change your previous registration link
     And the user picks IM9007230002 on the change-your-previous-registrations?waypoints=change-your-registration page
+    Then the user is on the change-a-previous-registration page
     Then the correct IOSS number IM9007230002 is displayed on the page
-    Then the user selects the amend change link for page business-contact-details from change-your-registration
+    Then the user selects the amend change link for page business-contact-details from change-a-previous-registration
     And the user completes details on the business-contact-details page
       | data                                    | fieldId  |
       | Previous Multiple Registration Trader 2 | fullName |
-    And the user is on the change-your-registration page
-    Then the user selects the amend change link for page bank-details from change-your-registration
+    And the user is on the change-a-previous-registration page
+    Then the user selects the amend change link for page bank-details from change-a-previous-registration
     And the user completes details on the bank-details page
       | data                                         | fieldId     |
       | Previous Multiple Registration Trader Name 2 | accountName |
-    And the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user is on the change-a-previous-registration page
+    And the user continues through the change-a-previous-registration page
     Then the user is on the successful-amend page
     When the user manually navigates to the start-amend-journey page
     Then the user is on the change-your-registration page
     And the correct IOSS number IM9007230003 is displayed on the page
-#    add other amends that weren't done in first current reg - see section in first test
     Then the user selects the amend change link for page add-website-address from change-your-registration
     Then the user clicks remove via amend route for second website-address
     And the user answers yes on the remove-website-address/2 page
