@@ -1,7 +1,7 @@
 # ioss-registration-journey-tests
 UI test suite for the `ioss-registration-frontend` using WebDriver and `<scalatest/cucumber>`.  
 
-## Running the tests
+## Running the tests - subset of full tests
 
 Prior to executing the tests ensure you have:
  - Docker - to run mongo and browser (Chrome, Firefox or Edge) inside a container - see guide here - https://docs.tax.service.gov.uk/mdtp-handbook/documentation/developer-set-up/install-docker.html
@@ -28,6 +28,12 @@ Then execute the `run_tests.sh` script:
 
 The `run_tests.sh` script defaults to using `chrome` in the `local` environment.  For a complete list of supported param values, see:
  - `src/test/resources/application.conf` for **environment**
+
+## Running the tests - all tests
+
+"run_tests.sh" is a subset of the full tests and is the version that runs in Jenkins pipelines.
+
+To run the full set of tests, follow the same steps as above but use "run_all_tests.sh".
 
 ## Selenium Grid
 

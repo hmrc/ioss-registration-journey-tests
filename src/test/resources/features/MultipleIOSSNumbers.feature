@@ -1,4 +1,4 @@
-@Registration @Accessibility
+@Registration @Accessibility @All
 
 Feature: Multiple IOSS Number Registration journeys
 

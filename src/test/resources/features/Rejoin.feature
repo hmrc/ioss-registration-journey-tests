@@ -1,4 +1,4 @@
-@Registration
+@Registration @All
 
 Feature: Rejoin registration journeys
 

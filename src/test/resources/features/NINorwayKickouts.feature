@@ -1,4 +1,4 @@
-@Registration @Accessibility
+@Registration @Accessibility @All
 
 Feature: Northern Ireland and Norway Kickout journeys
 
