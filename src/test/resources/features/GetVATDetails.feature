@@ -1,4 +1,4 @@
-@Registration @All
+@Registration
 
 Feature: Get VAT Details kickout and alternative journeys
 

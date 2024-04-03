@@ -1,7 +1,7 @@
 # ioss-registration-journey-tests
 UI test suite for the `ioss-registration-frontend` using WebDriver and `<scalatest/cucumber>`.  
 
-## Running the tests - subset of full tests
+## Running the tests
 
 Prior to executing the tests ensure you have:
  - Docker - to run mongo and browser (Chrome, Firefox or Edge) inside a container - see guide here - https://docs.tax.service.gov.uk/mdtp-handbook/documentation/developer-set-up/install-docker.html
@@ -22,18 +22,16 @@ Run the following commands to start mongo and services locally:
     Start services via service manager:
     sm2 --start IMPORT_ONE_STOP_SHOP_ALL 
 
-Then execute the `run_tests.sh` script:
+Then execute the relevant run tests script - these have been split up as the functionality has grown across the service:
 
-    ./run_tests.sh <browser-driver> <environment> 
+    ./run_registration_tests.sh <browser-driver> <environment> 
+    ./run_amend_rejoin_tests.sh <browser-driver> <environment> 
+    ./run_change_save_tests.sh <browser-driver> <environment> 
 
-The `run_tests.sh` script defaults to using `chrome` in the `local` environment.  For a complete list of supported param values, see:
+Can also use "./run_wip.sh <browser-driver> <environment>" to run individual scenarios tagged with @wip
+
+The run test scripts default to using `chrome` in the `local` environment.  For a complete list of supported param values, see:
  - `src/test/resources/application.conf` for **environment**
-
-## Running the tests - all tests
-
-"run_tests.sh" is a subset of the full tests and is the version that runs in Jenkins pipelines.
-
-To run the full set of tests, follow the same steps as above but use "run_all_tests.sh".
 
 ## Selenium Grid
 

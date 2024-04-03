@@ -1,4 +1,4 @@
-@Registration @All
+@Registration
 
 Feature: Failures and kickouts relating to user's registration
   @Accessibility

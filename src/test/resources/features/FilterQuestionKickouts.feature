@@ -1,4 +1,4 @@
-@Registration @Accessibility @All
+@Registration @Accessibility
 
 Feature: Filter Question Kickout journeys
 

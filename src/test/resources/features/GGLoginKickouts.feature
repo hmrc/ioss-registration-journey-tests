@@ -1,4 +1,4 @@
-@Registration @Accessibility @All
+@Registration @Accessibility
 
 Feature: Government Gateway Login Kickout journeys
 

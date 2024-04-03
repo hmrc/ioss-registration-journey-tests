@@ -1,4 +1,4 @@
-@All
+@CYA
 
 Feature: Change answers for registrations via Check Your Answers
 

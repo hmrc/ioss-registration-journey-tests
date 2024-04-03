@@ -1,4 +1,4 @@
-@All
+@ChangeAndRemove
 
 Feature: Change and remove answers for registrations in progress
   @Accessibility
@@ -101,7 +101,6 @@ Feature: Change and remove answers for registrations in progress
     Then the user is on the check-your-answers page
     Then the user submits their registration
 
-  @Registration
   Scenario: Change answers via list pages during registration for NI Trader
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page

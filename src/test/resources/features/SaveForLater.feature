@@ -1,4 +1,4 @@
-@Accessibility @All
+@Accessibility @SaveForLater
 
 Feature: Save For Later Feature
 

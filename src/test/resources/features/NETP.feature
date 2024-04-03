@@ -1,4 +1,4 @@
-@Registration @All
+@Registration
 
 Feature: NETP scenarios
 

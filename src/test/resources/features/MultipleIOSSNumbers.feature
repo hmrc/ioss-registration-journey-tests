@@ -1,4 +1,4 @@
-@Accessibility @All
+@Accessibility @MultipleIOSS
 
 Feature: Multiple IOSS Number Registration journeys
 
@@ -50,7 +50,6 @@ Feature: Multiple IOSS Number Registration journeys
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
 
-  @Registration
   Scenario: An IOSS registered user with multiple previous registrations can amend the correct sections of each registration
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9007230003 accesses the amend registration journey

@@ -1,4 +1,4 @@
-@All
+@CoreValidation
 
 Feature: Core Validation Scenarios
   @Accessibility
