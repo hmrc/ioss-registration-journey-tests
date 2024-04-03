@@ -1,7 +1,8 @@
-@Registration @All
+@All
 
 Feature: Change answers for registrations via Check Your Answers
 
+  @Registration
   Scenario: Change answers via Check Your Answers for NI Trader registration
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page

@@ -1,7 +1,8 @@
-@Registration @Accessibility @All
+@Accessibility @All
 
 Feature: Save For Later Feature
 
+  @Registration
   Scenario: A user can save their progress and return to the last page they were on
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page

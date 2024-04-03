@@ -1,4 +1,4 @@
-@Registration @Accessibility @All
+@Accessibility @All
 
 Feature: Amend Registration journeys
 
@@ -63,6 +63,7 @@ Feature: Amend Registration journeys
     And the user manually navigates to the remove-deregistration/1?waypoints=change-your-registration page
     Then the user is on the cannot-delete-previous-registrations page
 
+  @Registration
   Scenario: An IOSS registered user can add details for sections that were previously answered no
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the amend registration journey
@@ -149,6 +150,7 @@ Feature: Amend Registration journeys
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
 
+  @Registration
   Scenario: An IOSS registered user amends non-mandatory registration answers
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
@@ -217,6 +219,7 @@ Feature: Amend Registration journeys
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
 
+  @Registration
   Scenario: An IOSS registered user removes some registration answers and amends mandatory answers
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey

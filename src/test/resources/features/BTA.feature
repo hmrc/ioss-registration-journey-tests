@@ -1,4 +1,4 @@
-@Registration @All
+@All
 
 Feature: Entering the Registration service via BTA
 
