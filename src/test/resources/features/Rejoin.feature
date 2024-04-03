@@ -1,4 +1,4 @@
-@Registration
+@Rejoin
 
 Feature: Rejoin registration journeys
 

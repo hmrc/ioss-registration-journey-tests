@@ -1,4 +1,4 @@
-@Registration
+@CoreValidation
 
 Feature: Rejoin - Core Validation Scenarios
 

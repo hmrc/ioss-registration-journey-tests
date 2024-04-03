@@ -1,4 +1,4 @@
-@Registration
+@ChangeAndRemove
 
 Feature: Change and remove answers for registrations in progress
   @Accessibility

@@ -1,4 +1,4 @@
-@Registration
+@CoreValidation
 
 Feature: Core Validation Scenarios
   @Accessibility
