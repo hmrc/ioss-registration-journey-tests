@@ -50,7 +50,6 @@ Feature: Rejoin registration journeys
     When the user continues through the rejoin-registration page
     Then the user is on the successful-rejoin page
 
-  @Registration
   Scenario: A trader with minimal details in their original registration can amend and rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
