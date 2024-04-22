@@ -232,26 +232,30 @@ Feature: Save For Later Feature
     And the user accesses the continue on sign in url
     Then the user signs in as an Organisation Admin with VAT enrolment 100000001
     And the user picks No,delete my answers and start again on the continue-registration page
-#  Currently getting cannot-register-not-norwegian-based-business page
-#  Raised bug VEIOSS-345
-#    And the user chooses Yes on the confirm-vat-details page
-#    And the user answers no on the have-uk-trading-name page
-#    Then the user answers no on the previous-oss page
-#    Then the user answers no on the tax-in-eu page
-#    And the user adds https://www.onlywebsite.com on the first website-address page
-#    And the user answers no on the add-website-address page
-#    And the user completes details on the business-contact-details page
-#      | data                  | fieldId         |
-#      | Another Trader        | fullName        |
-#      | +17771117771          | telephoneNumber |
-#      | minimaltest@email.com | emailAddress    |
-#    And the user completes the registration email verification process
-#    And the user completes details on the bank-details page
-#      | data                   | fieldId     |
-#      | Another Trader Name    | accountName |
-#      | GB29NWBK60161331926819 | iban        |
-#    Then the user is on the check-your-answers page
-#    Then the user submits their registration
+    Then the user answers no on the ioss-registered page
+    And the user answers yes on the selling-goods-outside-single-market page
+    And the user answers yes on the goods-value page
+    And the user answers yes on the registered-for-vat-in-uk page
+    And the user answers yes on the ni-based page
+    And the user continues through the register-to-use-service page
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the have-uk-trading-name page
+    Then the user answers no on the previous-oss page
+    Then the user answers no on the tax-in-eu page
+    And the user adds https://www.onlywebsite.com on the first website-address page
+    And the user answers no on the add-website-address page
+    And the user completes details on the business-contact-details page
+      | data                  | fieldId         |
+      | Another Trader        | fullName        |
+      | +17771117771          | telephoneNumber |
+      | minimaltest@email.com | emailAddress    |
+    And the user completes the registration email verification process
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | Another Trader Name    | accountName |
+      | GB29NWBK60161331926819 | iban        |
+    Then the user is on the check-your-answers page
+    Then the user submits their registration
 
   Scenario: A user can save their progress after changing answers and return to the last page they were on
     Given the user accesses the IOSS Registration service
