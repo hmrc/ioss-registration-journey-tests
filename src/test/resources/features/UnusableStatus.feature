@@ -16,4 +16,15 @@ Feature: Unusable Status Email Journey
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
 
+  Scenario: The user does not amend the email address following the intercept page for unusable status
+    Given the user accesses the authority wizard
+    When the user logs into the returns service
+    Then the user is redirected to the email intercept page
+    And the user clicks the Confirm email address button
+    Then the user is redirected to the Business contact details page within Change your registration
+    When the user continues through the business-contact-details page
+    And the user completes the amend registration email verification process
+    And the user continues through the change-your-registration page
+    Then the user is on the successful-amend page
+
 
