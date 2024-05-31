@@ -253,6 +253,7 @@ Feature: Amend Registration journeys
       | data           | fieldId         |
       | Another Trader | fullName        |
       | +17771117771   | telephoneNumber |
+    And the user completes the amend registration email verification process
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page bank-details from change-your-registration
     And the user completes details on the bank-details page
