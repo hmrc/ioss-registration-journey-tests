@@ -86,6 +86,7 @@ Feature: Multiple IOSS Number Registration journeys
     And the user completes details on the business-contact-details page
       | data                                    | fieldId  |
       | Previous Multiple Registration Trader 2 | fullName |
+    And the user completes the amend previous registration email verification process
     And the user is on the change-a-previous-registration page
     Then the user selects the amend change link for page bank-details from change-a-previous-registration
     And the user completes details on the bank-details page

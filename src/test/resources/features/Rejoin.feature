@@ -262,6 +262,7 @@ Feature: Rejoin registration journeys
       | data           | fieldId         |
       | Another Trader | fullName        |
       | +17771117771   | telephoneNumber |
+    And the user completes the rejoin registration email verification process
     And the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page bank-details from rejoin-registration
     And the user completes details on the bank-details page
