@@ -4,9 +4,8 @@ UI test suite for the `ioss-registration-frontend` using WebDriver and `<scalate
 ## Running the tests
 
 Prior to executing the tests ensure you have:
- - Docker - to run mongo and browser (Chrome, Firefox or Edge) inside a container - see guide here - https://docs.tax.service.gov.uk/mdtp-handbook/documentation/developer-set-up/install-docker.html
- - Installed/configured [service manager](https://github.com/hmrc/service-manager).  
- - Selenium Grid - see section further down
+ - Docker - to run mongo inside a container - see guide here - https://docs.tax.service.gov.uk/mdtp-handbook/documentation/developer-set-up/install-docker.html
+ - Installed/configured [service manager](https://github.com/hmrc/service-manager).
 
 Run the following commands to start mongo and services locally:
 

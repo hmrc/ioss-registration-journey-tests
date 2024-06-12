@@ -21,9 +21,9 @@ import uk.gov.hmrc.test.ui.pages._
 class AuthStepDef extends BaseStepDef {
 
   Given(
-    "^the user signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT) enrolment (.*)$"
-  ) { (role: String, withStatus: String, enrolment: String, vrn: String) =>
-    AuthPage.loginUsingAuthorityWizard(false, "registration", role, withStatus, enrolment, vrn, "default")
+    "^the (user|assistant) signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT) enrolment (.*)$"
+  ) { (user: String, role: String, withStatus: String, enrolment: String, vrn: String) =>
+    AuthPage.loginUsingAuthorityWizard(user, false, "registration", role, withStatus, enrolment, vrn, "default")
   }
 
   Given(
@@ -38,12 +38,21 @@ class AuthStepDef extends BaseStepDef {
   }
 
   When("""^a user with VRN (.*) and no IOSS enrolment accesses the amend registration journey""") { (vrn: String) =>
-    AuthPage.loginUsingAuthorityWizard(false, "amend", "organisation", "with", "VAT", vrn, "None")
+    AuthPage.loginUsingAuthorityWizard("user", false, "amend", "organisation", "with", "VAT", vrn, "None")
   }
 
   When("""^a user with VRN (.*) and IOSS Number (.*) accesses the (amend|rejoin) registration journey""") {
     (vrn: String, iossNumber: String, journey: String) =>
-      AuthPage.loginUsingAuthorityWizard(false, journey, "organisation", "with", "IOSS and VAT", vrn, iossNumber)
+      AuthPage.loginUsingAuthorityWizard(
+        "user",
+        false,
+        journey,
+        "organisation",
+        "with",
+        "IOSS and VAT",
+        vrn,
+        iossNumber
+      )
   }
 
   Given(
@@ -54,13 +63,14 @@ class AuthStepDef extends BaseStepDef {
       case "retrieve saved registration" => "saved"
       case _                             => throw new Exception("Journey doesn't exist")
     }
-    AuthPage.loginUsingAuthorityWizard(true, whichJourney, "Organisation", "with", "VAT", vrn, "default")
+    AuthPage.loginUsingAuthorityWizard("user", true, whichJourney, "Organisation", "with", "VAT", vrn, "default")
   }
 
   Given(
     "^the user logs into the returns service$"
   ) { () =>
     AuthPage.loginUsingAuthorityWizard(
+      "user",
       false,
       "unusableStatus",
       "Organisation",
@@ -74,6 +84,7 @@ class AuthStepDef extends BaseStepDef {
   When("""^a user with current IOSS Number (.*) and at least one previous IOSS number accesses the returns journey""") {
     (iossNumber: String) =>
       AuthPage.loginUsingAuthorityWizard(
+        "user",
         false,
         "amend",
         "Organisation",

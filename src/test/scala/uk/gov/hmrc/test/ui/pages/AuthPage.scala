@@ -22,6 +22,7 @@ import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object AuthPage extends BasePage {
   def loginUsingAuthorityWizard(
+    user: String,
     credId: Boolean,
     journey: String,
     role: String,
@@ -71,6 +72,12 @@ object AuthPage extends BasePage {
     } else {
       selectAffinityGroup.selectByValue("Organisation")
     }
+
+    if (user == "assistant") {
+      val selectCredentialRole = new Select(driver.findElement(By.id("credential-role-select")))
+      selectCredentialRole.selectByValue("Assistant")
+    }
+
     if (withStatus == "with") {
       driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
       driver
