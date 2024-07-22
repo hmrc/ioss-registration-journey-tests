@@ -47,9 +47,6 @@ Run->Edit Configuration Templates (bottom left)->Cucumber Java->VM Options
 The values here get copied across to all NEW run configurations. 
 
 
-### Non-Local
-You will need to run Selenium Grid via the instructions here - https://github.com/hmrc/docker-selenium-grid
-
 ## ZAP and Accessibility tests
 
 ZAP and Accessibility tests are bundled together with the journey tests on Jenkins. 
