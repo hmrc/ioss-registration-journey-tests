@@ -97,4 +97,66 @@ class RegistrationStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("IOSS number: " + iossNumber))
   }
 
+  Then("""^the confirmation of no answers changed is displayed$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You haven't changed any details"))
+  }
+
+  Then("""^all of the yes to no amendments are displayed as changed on the confirmation page$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("Have a different UK trading name No"))
+    Assert.assertTrue(htmlBody.contains("Trading names removed tradingName1"))
+    Assert.assertTrue(htmlBody.contains("tradingName2"))
+    Assert.assertTrue(htmlBody.contains("Registered for tax in EU countries No"))
+    Assert.assertTrue(htmlBody.contains("EU tax details removed Germany"))
+  }
+
+  Then("""^all of the no to yes amendments are displayed as changed on the confirmation page$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("Have a different UK trading name Yes"))
+    Assert.assertTrue(htmlBody.contains("Trading names added A new trading name in amend journey"))
+    Assert.assertTrue(htmlBody.contains("Other One Stop Shop registrations Yes"))
+    Assert.assertTrue(htmlBody.contains("Countries registered in Republic of Cyprus"))
+    Assert.assertTrue(htmlBody.contains("Finland"))
+    Assert.assertTrue(htmlBody.contains("Registered for tax in EU countries Yes"))
+    Assert.assertTrue(htmlBody.contains("EU tax details added Romania"))
+  }
+
+  Then("""^all of the amended non-mandatory answers are displayed as changed on the confirmation page$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("Trading names added an amended trading name"))
+    Assert.assertTrue(htmlBody.contains("new 2nd name"))
+    Assert.assertTrue(htmlBody.contains("Trading names removed tradingName1"))
+    Assert.assertTrue(htmlBody.contains("tradingName2"))
+    Assert.assertTrue(htmlBody.contains("Countries registered in Finland"))
+    Assert.assertTrue(htmlBody.contains("Countries registered in changed Republic of Cyprus"))
+    Assert.assertTrue(htmlBody.contains("EU tax details added Estonia"))
+    Assert.assertTrue(htmlBody.contains("Portugal"))
+    Assert.assertTrue(htmlBody.contains("EU tax details changed Germany"))
+  }
+
+  Then("""^all of the removed answers and amended mandatory answers are displayed as changed on the confirmation page$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("EU tax details added Estonia"))
+    Assert.assertTrue(htmlBody.contains("EU tax details removed Germany"))
+    Assert.assertTrue(htmlBody.contains("Trading websites added https://www.amended-website-name.com"))
+    Assert.assertTrue(htmlBody.contains("https://www.2nd-website.eu"))
+    Assert.assertTrue(htmlBody.contains("Trading websites removed www.website1.com"))
+    Assert.assertTrue(htmlBody.contains("www.website2.com"))
+    Assert.assertTrue(htmlBody.contains("Contact name Another Trader"))
+    Assert.assertTrue(htmlBody.contains("Telephone number +17771117771"))
+    Assert.assertTrue(htmlBody.contains("Name on the account Another Trader Name"))
+    Assert.assertTrue(htmlBody.contains("IBAN GB29NWBK60161331926819"))
+  }
+
+  Then("""^the amended email address is displayed as changed on the confirmation page$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("Email address amend-test@email.com"))
+  }
+
 }

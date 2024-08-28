@@ -17,6 +17,7 @@ Feature: Amend Registration journeys
     Then the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
+    And all of the yes to no amendments are displayed as changed on the confirmation page
 
   Scenario: An IOSS registered user cannot remove all previous registrations if they were retrieved from the ETMP registration
     Given the user accesses the authority wizard
@@ -105,6 +106,7 @@ Feature: Amend Registration journeys
     Then the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
+    And all of the no to yes amendments are displayed as changed on the confirmation page
 
   Scenario: An IOSS registered user can add details for sections that were previously answered no and remove them straight away again
     Given the user accesses the authority wizard
@@ -148,6 +150,7 @@ Feature: Amend Registration journeys
     Then the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
+    And the confirmation of no answers changed is displayed
 
   @Registration
   Scenario: An IOSS registered user amends non-mandatory registration answers
@@ -217,6 +220,7 @@ Feature: Amend Registration journeys
     And the user answers no on the add-tax-details page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
+    And all of the amended non-mandatory answers are displayed as changed on the confirmation page
 
   @Registration
   Scenario: An IOSS registered user removes some registration answers and amends mandatory answers
@@ -263,6 +267,7 @@ Feature: Amend Registration journeys
     And the user is on the change-your-registration page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
+    And all of the removed answers and amended mandatory answers are displayed as changed on the confirmation page
 
   Scenario: An IOSS registered user amends their email address
     Given the user accesses the authority wizard
@@ -275,6 +280,7 @@ Feature: Amend Registration journeys
     And the user completes the amend registration email verification process
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
+    And the amended email address is displayed as changed on the confirmation page
 
   Scenario: A user can cancel the amendments to their registration
     Given the user accesses the authority wizard
@@ -418,3 +424,11 @@ Feature: Amend Registration journeys
     And the user answers no on the add-uk-trading-name page
     When the user continues through the change-your-registration page
     Then the user is on the successful-amend page
+
+  Scenario: A user can submit an amended registration without changing any details
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
+    When the user continues through the change-your-registration page
+    Then the user is on the successful-amend page
+    And the confirmation of no answers changed is displayed
+
