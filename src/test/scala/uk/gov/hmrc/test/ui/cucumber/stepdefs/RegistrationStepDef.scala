@@ -132,6 +132,7 @@ class RegistrationStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("Trading names removed tradingName1"))
     Assert.assertTrue(htmlBody.contains("tradingName2"))
     Assert.assertTrue(htmlBody.contains("Countries registered in Finland"))
+    Assert.assertTrue(htmlBody.contains("Countries registered in changed Republic of Cyprus"))
     Assert.assertTrue(htmlBody.contains("EU tax details added Estonia"))
     Assert.assertTrue(htmlBody.contains("Portugal"))
     Assert.assertTrue(htmlBody.contains("EU tax details changed Germany"))

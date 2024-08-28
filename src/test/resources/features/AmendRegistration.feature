@@ -220,7 +220,6 @@ Feature: Amend Registration journeys
     And the user answers no on the add-tax-details page
     And the user continues through the change-your-registration page
     Then the user is on the successful-amend page
-#    will need to add Republic of Cyprus as Countries registered in changed
     And all of the amended non-mandatory answers are displayed as changed on the confirmation page
 
   @Registration
