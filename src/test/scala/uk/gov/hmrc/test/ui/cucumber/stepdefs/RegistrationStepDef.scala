@@ -138,7 +138,9 @@ class RegistrationStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("EU tax details changed Germany"))
   }
 
-  Then("""^all of the removed answers and amended mandatory answers are displayed as changed on the confirmation page$""") { () =>
+  Then(
+    """^all of the removed answers and amended mandatory answers are displayed as changed on the confirmation page$"""
+  ) { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("EU tax details added Estonia"))
