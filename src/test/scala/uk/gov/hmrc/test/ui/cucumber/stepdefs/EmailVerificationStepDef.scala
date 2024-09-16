@@ -38,18 +38,6 @@ class EmailVerificationStepDef extends BaseStepDef {
     }
     goToEmailVerificationUrl(journeyId, mode)
     enterPasscode(passcode)
-
-    if (mode == "change answers") {
-      CommonPage.goToPage("check-your-answers")
-    } else if (mode == "amend registration") {
-      CommonPage.goToPage("change-your-registration")
-    } else if (mode == "amend previous registration") {
-      CommonPage.goToPage("change-a-previous-registration")
-    } else if (mode == "rejoin registration") {
-      CommonPage.goToPage("rejoin-registration")
-    } else {
-      CommonPage.goToPage("bank-details")
-    }
   }
 
   Then("""^the user is redirected to the email intercept page$""") { () =>
