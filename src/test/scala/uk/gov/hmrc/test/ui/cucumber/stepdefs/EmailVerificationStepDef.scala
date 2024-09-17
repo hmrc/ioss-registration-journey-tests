@@ -23,7 +23,7 @@ import uk.gov.hmrc.test.ui.pages._
 class EmailVerificationStepDef extends BaseStepDef {
 
   And(
-    """^the user completes the (registration|change answers|amend registration|amend previous registration|rejoin registration) email verification process"""
+    """^the user completes the (registration|change answers|amend registration|amend previous registration|second amend previous registration|rejoin registration) email verification process"""
   ) { (mode: String) =>
     val journeyId = driver.getCurrentUrl.split("/")(5)
     goToEmailVerificationPasscodeGeneratorUrl()
@@ -33,6 +33,8 @@ class EmailVerificationStepDef extends BaseStepDef {
         driver.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
       case "change answers"                                                                              =>
         driver.findElement(By.tagName("body")).getText.split("test@newtestemail.com,")(1).dropRight(42)
+      case "second amend previous registration"                                                          =>
+        driver.findElement(By.tagName("body")).getText.split("email@test.com,")(1).dropRight(42)
       case _                                                                                             =>
         throw new Exception("mode doesn't exist")
     }
