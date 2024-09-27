@@ -93,8 +93,8 @@ Feature: Amend Registration journeys
     Then the user selects the amend change link for page tax-in-eu from change-your-registration
     And the user answers yes on the tax-in-eu page
     And the user selects Romania on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds RO1234567890 on the first eu-vat-number page
     And the user adds Romanian Trading on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -135,8 +135,8 @@ Feature: Amend Registration journeys
     Then the user selects the amend change link for page tax-in-eu from change-your-registration
     And the user answers yes on the tax-in-eu page
     And the user selects Romania on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds RO1234567890 on the first eu-vat-number page
     And the user adds Romanian Trading on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -181,9 +181,9 @@ Feature: Amend Registration journeys
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page add-tax-details from change-your-registration
     Then the user selects the list within amend change link for first check-tax-details from change-add-tax-details
-    Then the user selects the additional tax details list within amend change link for first registration-type from check-tax-details-1
-    And the user picks tax id number on the registration-type/1 page
-    And the user adds TAXID12345A on the first eu-tax-number page
+    Then the user selects the additional tax details list within amend change link for first registration-tax-type from check-tax-details-1
+    And the user picks tax id number on the registration-tax-type/1 page
+    And the user adds TAXID12345A on the first eu-tax-identification-number page
     Then the user selects the additional tax details list within amend change link for first eu-fixed-establishment-address from check-tax-details-1
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data   | fieldId |
@@ -191,8 +191,8 @@ Feature: Amend Registration journeys
     Then the user continues through the check-tax-details/1 page
     And the user answers yes on the add-tax-details page
     And the user selects Estonia on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks vat number on the registration-type/2 page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks vat number on the registration-tax-type/2 page
     And the user adds EE123456789 on the second eu-vat-number page
     And the user adds Estonian Wholesalers Ltd on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
@@ -203,9 +203,9 @@ Feature: Amend Registration journeys
     And the user continues through the check-tax-details/2 page
     And the user answers yes on the add-tax-details page
     And the user selects Portugal on the third eu-tax page
-    And the user answers yes on the how-do-you-operate/3 page
-    And the user picks tax id number on the registration-type/3 page
-    And the user adds PT12345A on the third eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/3 page
+    And the user picks tax id number on the registration-tax-type/3 page
+    And the user adds PT12345A on the third eu-tax-identification-number page
     And the user adds Portuguese Trading on the third eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/3 page
       | data             | fieldId    |
@@ -213,8 +213,8 @@ Feature: Amend Registration journeys
       | Porto            | townOrCity |
     And the user continues through the check-tax-details/3 page
     Then the user selects the list within amend change link for third check-tax-details from change-add-tax-details
-    Then the user selects the additional tax details list within amend change link for third registration-type from check-tax-details-3
-    And the user picks vat number on the registration-type/3 page
+    Then the user selects the additional tax details list within amend change link for third registration-tax-type from check-tax-details-3
+    And the user picks vat number on the registration-tax-type/3 page
     And the user adds PT123456789 on the third eu-vat-number page
     And the user continues through the check-tax-details/3 page
     And the user answers no on the add-tax-details page
@@ -232,8 +232,8 @@ Feature: Amend Registration journeys
     And the user answers yes on the remove-tax-details/1 page
     Then the user continues through the tax-in-eu page
     And the user selects Estonia on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds EE123456789 on the first eu-vat-number page
     And the user adds Estonian Wholesalers Ltd on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -259,8 +259,8 @@ Feature: Amend Registration journeys
       | +17771117771   | telephoneNumber |
     And the user completes the amend registration email verification process
     And the user is on the change-your-registration page
-    Then the user selects the amend change link for page bank-details from change-your-registration
-    And the user completes details on the bank-details page
+    Then the user selects the amend change link for page bank-account-details from change-your-registration
+    And the user completes details on the bank-account-details page
       | data                   | fieldId     |
       | Another Trader Name    | accountName |
       | GB29NWBK60161331926819 | iban        |
@@ -340,8 +340,8 @@ Feature: Amend Registration journeys
     Then the user selects the amend change link for page tax-in-eu from change-your-registration
     And the user answers yes on the tax-in-eu page
     And the user selects Lithuania on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds LT999888777 on the first eu-vat-number page
     And the user adds Lithuanian Goods on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -351,8 +351,8 @@ Feature: Amend Registration journeys
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Portugal on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks vat number on the registration-type/2 page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks vat number on the registration-tax-type/2 page
     And the user adds PT111222333 on the second eu-vat-number page
     And the user adds Portugal Goods on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
@@ -371,9 +371,9 @@ Feature: Amend Registration journeys
     Then the user selects the amend change link for page tax-in-eu from change-your-registration
     And the user answers yes on the tax-in-eu page
     And the user selects Lithuania on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks tax id number on the registration-type/1 page
-    And the user adds ABC123123 on the first eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks tax id number on the registration-tax-type/1 page
+    And the user adds ABC123123 on the first eu-tax-identification-number page
     And the user adds Lithuanian Goods on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data            | fieldId    |
@@ -382,9 +382,9 @@ Feature: Amend Registration journeys
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Portugal on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks tax id number on the registration-type/2 page
-    And the user adds 123LIS123 on the second eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks tax id number on the registration-tax-type/2 page
+    And the user adds 123LIS123 on the second eu-tax-identification-number page
     And the user adds Portugal Goods on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data           | fieldId    |

@@ -38,8 +38,8 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
     And the user selects Austria on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds ATU11119876 on the first eu-vat-number page
     And the user adds Austrian-Trading on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -49,9 +49,9 @@ Feature: Change answers for registrations via Check Your Answers
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Sweden on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks tax id number on the registration-type/2 page
-    And the user adds SW654321PLC on the second eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks tax id number on the registration-tax-type/2 page
+    And the user adds SW654321PLC on the second eu-tax-identification-number page
     And the user adds Swedish Goods on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data          | fieldId    |
@@ -73,7 +73,7 @@ Feature: Change answers for registrations via Check Your Answers
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data                   | fieldId     |
       | Trader Name            | accountName |
       | ABCDEF2A               | bic         |
@@ -114,8 +114,8 @@ Feature: Change answers for registrations via Check Your Answers
     And the user continues through the check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Luxembourg on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks vat number on the registration-type/2 page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks vat number on the registration-tax-type/2 page
     And the user adds LU88776655 on the second eu-vat-number page
     And the user adds Lux Trading on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
@@ -139,8 +139,8 @@ Feature: Change answers for registrations via Check Your Answers
       | data          | fieldId         |
       | 5555555555555 | telephoneNumber |
     And the user is on the check-your-answers page
-    Then the user selects the CYA change link for page bank-details from check-your-answers
-    And the user amends details on the bank-details page
+    Then the user selects the CYA change link for page bank-account-details from check-your-answers
+    And the user amends details on the bank-account-details page
       | data                   | fieldId     |
       | Trader Name NI         | accountName |
       | ABCDEF2A               | bic         |
@@ -182,8 +182,8 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
     And the user selects Slovakia on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds SK1234567890 on the first eu-vat-number page
     And the user adds Slovakia Trading on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -193,9 +193,9 @@ Feature: Change answers for registrations via Check Your Answers
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Malta on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks tax id number on the registration-type/2 page
-    And the user adds 12385411556 on the second eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks tax id number on the registration-tax-type/2 page
+    And the user adds 12385411556 on the second eu-tax-identification-number page
     And the user adds Maltese Goods on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data          | fieldId    |
@@ -213,7 +213,7 @@ Feature: Change answers for registrations via Check Your Answers
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data                   | fieldId     |
       | Trader Name            | accountName |
       | ABCDEF2A               | bic         |
@@ -259,7 +259,7 @@ Feature: Change answers for registrations via Check Your Answers
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data               | fieldId     |
       | Trader Name Norway | accountName |
       | NORWNOK1XXX        | bic         |
@@ -282,9 +282,9 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user selects the CYA change link for page tax-in-eu from check-your-answers
     And the user answers yes on the tax-in-eu page
     And the user selects Czech Republic on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks tax id number on the registration-type/1 page
-    And the user adds 65410CZabc on the first eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks tax id number on the registration-tax-type/1 page
+    And the user adds 65410CZabc on the first eu-tax-identification-number page
     And the user adds Czech Goods on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data           | fieldId    |
@@ -293,8 +293,8 @@ Feature: Change answers for registrations via Check Your Answers
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Denmark on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks vat number on the registration-type/2 page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks vat number on the registration-tax-type/2 page
     And the user adds DK12344321 on the second eu-vat-number page
     And the user adds Danish Trading on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
@@ -316,8 +316,8 @@ Feature: Change answers for registrations via Check Your Answers
       | test@newtestemail.com | emailAddress |
     And the user completes the change answers email verification process
     And the user is on the check-your-answers page
-    Then the user selects the CYA change link for page bank-details from check-your-answers
-    And the user amends details on the bank-details page
+    Then the user selects the CYA change link for page bank-account-details from check-your-answers
+    And the user amends details on the bank-account-details page
       | data                  | fieldId     |
       | Different Name Norway | accountName |
     And the user is on the check-your-answers page

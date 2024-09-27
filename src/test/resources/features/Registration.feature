@@ -46,8 +46,8 @@ Feature: Registration journeys
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
     And the user selects Romania on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds RO1234567890 on the first eu-vat-number page
     And the user adds Romanian Trading on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -57,9 +57,9 @@ Feature: Registration journeys
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Estonia on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks tax id number on the registration-type/2 page
-    And the user adds EST123987369 on the second eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks tax id number on the registration-tax-type/2 page
+    And the user adds EST123987369 on the second eu-tax-identification-number page
     And the user adds Estonian Goods on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data          | fieldId    |
@@ -81,7 +81,7 @@ Feature: Registration journeys
       | 07771117771        | telephoneNumber |
       | test@testemail.com | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data                   | fieldId     |
       | Trader Name            | accountName |
       | ABCDEF2A               | bic         |
@@ -121,9 +121,9 @@ Feature: Registration journeys
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
     And the user selects Spain on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks tax id number on the registration-type/1 page
-    And the user adds 1236ES34x on the first eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks tax id number on the registration-tax-type/1 page
+    And the user adds 1236ES34x on the first eu-tax-identification-number page
     And the user adds Spanish-Trading Name on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data               | fieldId       |
@@ -135,8 +135,8 @@ Feature: Registration journeys
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Germany on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks vat number on the registration-type/2 page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks vat number on the registration-tax-type/2 page
     And the user adds DE999555111 on the second eu-vat-number page
     And the user adds German Food Wholesalers Ltd on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
@@ -155,7 +155,7 @@ Feature: Registration journeys
       | 01111111111          | telephoneNumber |
       | test@norwayemail.com | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data               | fieldId     |
       | Trader Name Norway | accountName |
       | NORWNOK1XXX        | bic         |
@@ -184,7 +184,7 @@ Feature: Registration journeys
       | +17771117771          | telephoneNumber |
       | minimaltest@email.com | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data                   | fieldId     |
       | Another Trader Name    | accountName |
       | GB29NWBK60161331926819 | iban        |
