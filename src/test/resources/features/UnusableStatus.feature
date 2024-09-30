@@ -13,7 +13,7 @@ Feature: Unusable Status Email Journey
       | different-email@test.com | emailAddress |
     And the user completes the amend registration email verification process
     Then the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
 
   Scenario: The user does not amend the email address following the intercept page for unusable status
@@ -24,7 +24,7 @@ Feature: Unusable Status Email Journey
     Then the user is redirected to the Business contact details page within Change your registration
     When the user continues through the business-contact-details page
     And the user completes the amend registration email verification process
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
 
 

@@ -110,4 +110,8 @@ class CommonStepDef extends BaseStepDef {
     clickBackButton()
   }
 
+  When("^the user submits their (amended|rejoin) registration$") { (submissionType: String) =>
+    CommonPage.clickSubmit()
+  }
+
 }

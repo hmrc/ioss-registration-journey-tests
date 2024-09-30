@@ -29,7 +29,7 @@ Feature: Multiple IOSS Number Registration journeys
       | Previous Registration Trader Name | accountName |
       | GB29NWBK60161331926819            | iban        |
     And the user is on the change-a-previous-registration page
-    And the user continues through the change-a-previous-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
     When the user manually navigates to the start-amend-journey page
     Then the user is on the change-your-registration page
@@ -47,7 +47,7 @@ Feature: Multiple IOSS Number Registration journeys
     And the user answers no on the tax-in-eu page
     Then the user answers yes on the remove-all-tax-details page
     Then the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
 
   Scenario: An IOSS registered user with multiple previous registrations can amend the correct sections of each registration
@@ -73,7 +73,7 @@ Feature: Multiple IOSS Number Registration journeys
       | Previous Multiple Registration Trader Name | accountName |
       | GB29NWBK60161331926819                     | iban        |
     And the user is on the change-a-previous-registration page
-    And the user continues through the change-a-previous-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
     When the user manually navigates to the start-amend-journey page
     Then the user is on the change-your-registration page
@@ -93,7 +93,7 @@ Feature: Multiple IOSS Number Registration journeys
       | data                                         | fieldId     |
       | Previous Multiple Registration Trader Name 2 | accountName |
     And the user is on the change-a-previous-registration page
-    And the user continues through the change-a-previous-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
     When the user manually navigates to the start-amend-journey page
     Then the user is on the change-your-registration page
@@ -119,7 +119,7 @@ Feature: Multiple IOSS Number Registration journeys
     Then the user answers no on the previous-scheme-answers/3 page
     And the user answers no on the previous-schemes-overview page
     And the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
 
   Scenario: An IOSS registered user cannot amend sections of a previous registration that are not editable

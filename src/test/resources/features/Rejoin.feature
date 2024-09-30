@@ -33,21 +33,21 @@ Feature: Rejoin registration journeys
     Given the user accesses the authority wizard
     And a user with VRN 600000022 and IOSS Number IM9029999997 accesses the rejoin registration journey
     And the user is on the rejoin-registration page
-    And the user continues through the rejoin-registration page
+    And the user submits their rejoin registration
     Then the user is on the error-submitting-rejoin page
 
   Scenario: A trader with an expired quarantine period can submit a rejoin registration without amending any details
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9002999993 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
-    When the user continues through the rejoin-registration page
+    When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
   Scenario: An excluded trader with an effective date 6 years ago can access and submit a rejoin registration
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999994 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
-    When the user continues through the rejoin-registration page
+    When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
   Scenario: A trader with minimal details in their original registration can amend and rejoin
@@ -89,7 +89,7 @@ Feature: Rejoin registration journeys
       | A Town        | townOrCity |
     And the user continues through the check-tax-details/1 page
     Then the user answers no on the add-tax-details page
-    When the user continues through the rejoin-registration page
+    When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
   Scenario: A trader with optional answers in original registration set to yes can change to no and rejoin
@@ -103,7 +103,7 @@ Feature: Rejoin registration journeys
     Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
     And the user answers no on the tax-in-eu page
     Then the user answers yes on the remove-all-tax-details page
-    When the user continues through the rejoin-registration page
+    When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
   Scenario: A trader can add details for sections during rejoin that were previously answered no and then remove them
@@ -145,7 +145,7 @@ Feature: Rejoin registration journeys
     Then the user clicks remove via rejoin route for first tax-details
     And the user answers yes on the remove-tax-details/1 page
     Then the user answers no on the tax-in-eu page
-    When the user continues through the rejoin-registration page
+    When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
   @ZAP
   Scenario: A trader can amend non-mandatory answers during rejoin
@@ -213,7 +213,7 @@ Feature: Rejoin registration journeys
     And the user adds PT123456789 on the third eu-vat-number page
     And the user continues through the check-tax-details/3 page
     And the user answers no on the add-tax-details page
-    When the user continues through the rejoin-registration page
+    When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
   Scenario: A trader amends their email address during rejoin
@@ -225,7 +225,7 @@ Feature: Rejoin registration journeys
       | data                 | fieldId      |
       | rejoin-test@email.com | emailAddress |
     And the user completes the rejoin registration email verification process
-  When the user continues through the rejoin-registration page
+  When the user submits their rejoin registration
   Then the user is on the successful-rejoin page
 
   Scenario: A trader removes some registration answers and amends mandatory answers during rejoin
@@ -269,7 +269,7 @@ Feature: Rejoin registration journeys
       | data                   | fieldId     |
       | Another Trader Name    | accountName |
       | GB29NWBK60161331926819 | iban        |
-  When the user continues through the rejoin-registration page
+  When the user submits their rejoin registration
   Then the user is on the successful-rejoin page
 
   @Accessibility

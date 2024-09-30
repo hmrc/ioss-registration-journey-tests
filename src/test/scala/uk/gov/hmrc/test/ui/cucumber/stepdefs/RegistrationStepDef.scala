@@ -73,12 +73,12 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then("""^the user submits their registration$""") { () =>
-    clickContinue()
+    clickSubmit()
     checkUrl("successful")
   }
 
   Then("""^the user selects the register button$""") { () =>
-    clickContinue()
+    clickSubmit()
   }
 
   Then("^the user accesses the continue on sign in url$") { () =>

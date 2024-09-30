@@ -15,7 +15,7 @@ Feature: Amend Registration journeys
     And the user answers no on the tax-in-eu page
     Then the user answers yes on the remove-all-tax-details page
     Then the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
     And all of the yes to no amendments are displayed as changed on the confirmation page
 
@@ -104,7 +104,7 @@ Feature: Amend Registration journeys
     And the user continues through the check-tax-details/1 page
     Then the user answers no on the add-tax-details page
     Then the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
     And all of the no to yes amendments are displayed as changed on the confirmation page
 
@@ -148,7 +148,7 @@ Feature: Amend Registration journeys
     And the user answers yes on the remove-tax-details/1 page
     Then the user answers no on the tax-in-eu page
     Then the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
     And the confirmation of no answers changed is displayed
 
@@ -218,7 +218,7 @@ Feature: Amend Registration journeys
     And the user adds PT123456789 on the third eu-vat-number page
     And the user continues through the check-tax-details/3 page
     And the user answers no on the add-tax-details page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
     And all of the amended non-mandatory answers are displayed as changed on the confirmation page
 
@@ -265,7 +265,7 @@ Feature: Amend Registration journeys
       | Another Trader Name    | accountName |
       | GB29NWBK60161331926819 | iban        |
     And the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
     And all of the removed answers and amended mandatory answers are displayed as changed on the confirmation page
 
@@ -278,7 +278,7 @@ Feature: Amend Registration journeys
       | data                 | fieldId      |
       | amend-test@email.com | emailAddress |
     And the user completes the amend registration email verification process
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
     And the amended email address is displayed as changed on the confirmation page
 
@@ -299,7 +299,7 @@ Feature: Amend Registration journeys
     Given the user accesses the authority wizard
     And a user with VRN 600000022 and IOSS Number IM9002222222 accesses the amend registration journey
     And the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the error-submitting-amendment page
 
   Scenario: An IOSS registered user can add quarantined/already active in another EU country registrations in amend previous registrations
@@ -330,7 +330,7 @@ Feature: Amend Registration journeys
     And the user adds LV11111222222 on the second previous-oss-scheme-number/2 page
     Then the user answers no on the previous-scheme-answers/2 page
     And the user answers no on the previous-schemes-overview page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
 
   Scenario: An IOSS registered user can add quarantined/IOSS already active in another EU country registrations in amend EU tax details - VAT Number
@@ -361,7 +361,7 @@ Feature: Amend Registration journeys
       | Lisbon         | townOrCity |
     And the user continues through the check-tax-details/2 page
     Then the user answers no on the add-tax-details page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
 
   Scenario: An IOSS registered user can add quarantined/already active in another EU country registrations in amend EU tax details - Tax ID
@@ -392,7 +392,7 @@ Feature: Amend Registration journeys
       | Lisbon         | townOrCity |
     And the user continues through the check-tax-details/2 page
     Then the user answers no on the add-tax-details page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
 
   Scenario: A user without an IOSS enrolment cannot access the amend registration journey
@@ -404,14 +404,14 @@ Feature: Amend Registration journeys
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number 333333333 accesses the amend registration journey
     And the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
 
   Scenario: An IOSS registered user with existing EU quarantine is able to access the amend journey
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number 333333334 accesses the amend registration journey
     And the user is on the change-your-registration page
-    And the user continues through the change-your-registration page
+    And the user submits their amended registration
     Then the user is on the successful-amend page
 
   Scenario: An excluded trader with an effective date 6 years ago can still view and amend their registration
@@ -422,13 +422,13 @@ Feature: Amend Registration journeys
     And the user answers yes on the have-uk-trading-name page
     And the user adds A new trading name after 6 years in amend journey on the first uk-trading-name page
     And the user answers no on the add-uk-trading-name page
-    When the user continues through the change-your-registration page
+    When the user submits their amended registration
     Then the user is on the successful-amend page
 
   Scenario: A user can submit an amended registration without changing any details
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
-    When the user continues through the change-your-registration page
+    When the user submits their amended registration
     Then the user is on the successful-amend page
     And the confirmation of no answers changed is displayed
 

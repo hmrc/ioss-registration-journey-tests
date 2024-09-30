@@ -26,14 +26,14 @@ Feature: Rejoin - Core Validation Scenarios
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9005999992 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
-    When the user continues through the rejoin-registration page
+    When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
   Scenario: Trader with active OSS non-union scheme retrieved from ETMP registration - previous registration - can rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9005999996 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
-    When the user continues through the rejoin-registration page
+    When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
   Scenario: Trader with active IOSS scheme - previous registration - not able to rejoin
@@ -74,7 +74,7 @@ Feature: Rejoin - Core Validation Scenarios
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9005999996 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
-    When the user continues through the rejoin-registration page
+    When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
   Scenario: Trader with quarantined IOSS scheme - previous registration - not able to rejoin
