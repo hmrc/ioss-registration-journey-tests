@@ -43,6 +43,9 @@ object CommonPage extends BasePage {
   def clickContinue(): Unit =
     driver.findElement(By.id("continue")).click()
 
+  def clickSubmit(): Unit =
+    driver.findElement(By.id("submit")).click()
+
   def enterData(data: String, inputId: String = "value"): Unit = {
     driver.findElement(By.id(inputId)).sendKeys(data)
     CommonPage.clickContinue()
