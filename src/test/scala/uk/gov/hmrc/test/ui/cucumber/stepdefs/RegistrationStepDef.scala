@@ -99,7 +99,7 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the confirmation of no answers changed is displayed$""") { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains("You haven't changed any details"))
+    Assert.assertTrue(htmlBody.contains("You have not changed any of your registration details."))
   }
 
   Then("""^all of the yes to no amendments are displayed as changed on the confirmation page$""") { () =>
