@@ -114,8 +114,8 @@ Feature: Core Validation Scenarios
     Then the user answers no on the previous-oss page
     Then the user answers yes on the tax-in-eu page
     And the user selects Portugal on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds PT111222333 on the first eu-vat-number page
     Then the user is on the fixed-establishment-vrn-already-registered?countryCode=PT page
 
@@ -133,9 +133,9 @@ Feature: Core Validation Scenarios
     Then the user answers no on the previous-oss page
     Then the user answers yes on the tax-in-eu page
     And the user selects Portugal on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks tax id number on the registration-type/1 page
-    And the user adds 123LIS123 on the first eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks tax id number on the registration-tax-type/1 page
+    And the user adds 123LIS123 on the first eu-tax-identification-number page
     Then the user is on the fixed-establishment-vrn-already-registered?countryCode=PT page
   @Accessibility
   Scenario: Trader with quarantined scheme - EU details - VRN - not able to register
@@ -152,8 +152,8 @@ Feature: Core Validation Scenarios
     Then the user answers no on the previous-oss page
     Then the user answers yes on the tax-in-eu page
     And the user selects Lithuania on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds LT999888777 on the first eu-vat-number page
     Then the user is on the excluded-vrn page
 
@@ -171,9 +171,9 @@ Feature: Core Validation Scenarios
     Then the user answers no on the previous-oss page
     Then the user answers yes on the tax-in-eu page
     And the user selects Lithuania on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks tax id number on the registration-type/1 page
-    And the user adds ABC123123 on the first eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks tax id number on the registration-tax-type/1 page
+    And the user adds ABC123123 on the first eu-tax-identification-number page
     Then the user is on the excluded-vrn page
 
 

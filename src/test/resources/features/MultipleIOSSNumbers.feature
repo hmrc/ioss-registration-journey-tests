@@ -23,8 +23,8 @@ Feature: Multiple IOSS Number Registration journeys
       | previous-registration-test@email.com | emailAddress    |
     And the user completes the amend previous registration email verification process
     And the user is on the change-a-previous-registration page
-    Then the user selects the amend change link for page bank-details from change-a-previous-registration
-    And the user completes details on the bank-details page
+    Then the user selects the amend change link for page bank-account-details from change-a-previous-registration
+    And the user completes details on the bank-account-details page
       | data                              | fieldId     |
       | Previous Registration Trader Name | accountName |
       | GB29NWBK60161331926819            | iban        |
@@ -67,8 +67,8 @@ Feature: Multiple IOSS Number Registration journeys
       | previous-registration-test-multiple@email.com | emailAddress    |
     And the user completes the amend previous registration email verification process
     And the user is on the change-a-previous-registration page
-    Then the user selects the amend change link for page bank-details from change-a-previous-registration
-    And the user completes details on the bank-details page
+    Then the user selects the amend change link for page bank-account-details from change-a-previous-registration
+    And the user completes details on the bank-account-details page
       | data                                       | fieldId     |
       | Previous Multiple Registration Trader Name | accountName |
       | GB29NWBK60161331926819                     | iban        |
@@ -88,8 +88,8 @@ Feature: Multiple IOSS Number Registration journeys
       | Previous Multiple Registration Trader 2 | fullName |
     And the user completes the second amend previous registration email verification process
     And the user is on the change-a-previous-registration page
-    Then the user selects the amend change link for page bank-details from change-a-previous-registration
-    And the user completes details on the bank-details page
+    Then the user selects the amend change link for page bank-account-details from change-a-previous-registration
+    And the user completes details on the bank-account-details page
       | data                                         | fieldId     |
       | Previous Multiple Registration Trader Name 2 | accountName |
     And the user is on the change-a-previous-registration page
@@ -160,7 +160,7 @@ Feature: Multiple IOSS Number Registration journeys
     When the user manually navigates to the remove-tax-details/1?waypoints=change-add-tax-details%2Cchange-a-previous-registration page
     Then the user is redirected to the returns dashboard
     And the user clicks back on the browser
-    When the user manually navigates to the registration-type/1?waypoints=check-tax-details-1%2Cchange-add-tax-details%2Cchange-a-previous-registration page
+    When the user manually navigates to the registration-tax-type/1?waypoints=check-tax-details-1%2Cchange-add-tax-details%2Cchange-a-previous-registration page
     Then the user is redirected to the returns dashboard
     And the user clicks back on the browser
     When the user manually navigates to the add-website-address?waypoints=change-a-previous-registration page

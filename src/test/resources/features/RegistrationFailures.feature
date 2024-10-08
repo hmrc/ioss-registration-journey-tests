@@ -37,7 +37,7 @@ Feature: Failures and kickouts relating to user's registration
       | +17771117771          | telephoneNumber |
       | minimaltest@email.com | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data                   | fieldId     |
       | Another Trader Name    | accountName |
       | GB29NWBK60161331926819 | iban        |
@@ -66,7 +66,7 @@ Feature: Failures and kickouts relating to user's registration
       | +17771117771          | telephoneNumber |
       | minimaltest@email.com | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data                   | fieldId     |
       | Another Trader Name    | accountName |
       | GB29NWBK60161331926819 | iban        |

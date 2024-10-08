@@ -29,7 +29,7 @@ object EmailVerificationPage extends BasePage {
 
   def goToEmailVerificationUrl(journeyId: String, mode: String): Unit = {
     val url = mode match {
-      case "registration"                                                       => "bank-details"
+      case "registration"                                                       => "bank-account-details"
       case "change answers"                                                     => "check-your-answers"
       case "amend registration"                                                 => "change-your-registration"
       case "amend previous registration" | "second amend previous registration" => "change-a-previous-registration"

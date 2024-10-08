@@ -51,8 +51,8 @@ Feature: Change and remove answers for registrations in progress
     Then the user answers no on the previous-oss page
     Then the user answers yes on the tax-in-eu page
     And the user selects Bulgaria on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds BG123455555 on the first eu-vat-number page
     And the user adds Bulgarian Trading on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -62,9 +62,9 @@ Feature: Change and remove answers for registrations in progress
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Greece on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks tax id number on the registration-type/2 page
-    And the user adds Greece123456 on the second eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks tax id number on the registration-tax-type/2 page
+    And the user adds Greece123456 on the second eu-tax-identification-number page
     And the user adds Grecian Trading on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data          | fieldId    |
@@ -93,7 +93,7 @@ Feature: Change and remove answers for registrations in progress
       | 012012365214               | telephoneNumber |
       | another-test@testemail.com | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data                   | fieldId     |
       | Trader Full-Name       | accountName |
       | ABCDEF2A               | bic         |
@@ -156,8 +156,8 @@ Feature: Change and remove answers for registrations in progress
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
     And the user selects Italy on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds IT01234567899 on the first eu-vat-number page
     And the user adds Italian Trading on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -173,9 +173,9 @@ Feature: Change and remove answers for registrations in progress
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Denmark on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks tax id number on the registration-type/2 page
-    And the user adds DK123456 on the second eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks tax id number on the registration-tax-type/2 page
+    And the user adds DK123456 on the second eu-tax-identification-number page
     And the user adds DK Trading on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data          | fieldId    |
@@ -183,8 +183,8 @@ Feature: Change and remove answers for registrations in progress
       | Suburb        | line2      |
       | A Town        | townOrCity |
       | DK3566        | postCode   |
-    Then the user selects the list change link for second registration-type from check-tax-details-2
-    And the user picks vat number on the registration-type/2 page
+    Then the user selects the list change link for second registration-tax-type from check-tax-details-2
+    And the user picks vat number on the registration-tax-type/2 page
     And the user adds DK12345678 on the second eu-vat-number page
     And the user continues through the check-tax-details/2 page
     Then the user answers no on the add-tax-details page
@@ -204,7 +204,7 @@ Feature: Change and remove answers for registrations in progress
       | 12541256321              | telephoneNumber |
       | email@company-website.eu | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data                   | fieldId     |
       | First Second Last      | accountName |
       | ABCDEF2A               | bic         |
@@ -254,8 +254,8 @@ Feature: Change and remove answers for registrations in progress
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
     And the user selects Romania on the first eu-tax page
-    And the user answers yes on the how-do-you-operate/1 page
-    And the user picks vat number on the registration-type/1 page
+    And the user answers yes on the eu-fixed-establishment/1 page
+    And the user picks vat number on the registration-tax-type/1 page
     And the user adds RO1234567890 on the first eu-vat-number page
     And the user adds Romanian Trading on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -265,9 +265,9 @@ Feature: Change and remove answers for registrations in progress
     And the user continues through the check-tax-details/1 page
     Then the user answers yes on the add-tax-details page
     And the user selects Estonia on the second eu-tax page
-    And the user answers yes on the how-do-you-operate/2 page
-    And the user picks tax id number on the registration-type/2 page
-    And the user adds EST123987369 on the second eu-tax-number page
+    And the user answers yes on the eu-fixed-establishment/2 page
+    And the user picks tax id number on the registration-tax-type/2 page
+    And the user adds EST123987369 on the second eu-tax-identification-number page
     And the user adds Estonian Goods on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data          | fieldId    |
@@ -277,9 +277,9 @@ Feature: Change and remove answers for registrations in progress
       | ES23566       | postCode   |
     And the user continues through the check-tax-details/2 page
     Then the user selects the list change link for first check-tax-details from change-add-tax-details
-    Then the user selects the list change link for first registration-type from check-tax-details-1
-    And the user picks tax id number on the registration-type/1 page
-    And the user adds ROM12345R on the first eu-tax-number page
+    Then the user selects the list change link for first registration-tax-type from check-tax-details-1
+    And the user picks tax id number on the registration-tax-type/1 page
+    And the user adds ROM12345R on the first eu-tax-identification-number page
     And the user continues through the check-tax-details/1 page
     Then the user clicks remove via list for second tax-details
     And the user answers yes on the remove-tax-details/2 page
@@ -298,7 +298,7 @@ Feature: Change and remove answers for registrations in progress
       | 12541256321                 | telephoneNumber |
       | no@company-website.no       | emailAddress    |
     And the user completes the registration email verification process
-    And the user completes details on the bank-details page
+    And the user completes details on the bank-account-details page
       | data                        | fieldId     |
       | First Second Last-Norwegian | accountName |
       | ABCDEF2A                    | bic         |
