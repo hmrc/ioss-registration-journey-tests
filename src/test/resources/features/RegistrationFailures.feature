@@ -79,3 +79,32 @@ Feature: Failures and kickouts relating to user's registration
     And the user picks Yes on the continue-registration page
     Then the user is on the check-your-answers page
 
+  Scenario: ETMP error on submission of registration when account already exists
+    Given the user accesses the IOSS Registration service
+    Then the user answers no on the ioss-registered page
+    And the user answers yes on the selling-goods-outside-single-market page
+    And the user answers yes on the goods-value page
+    And the user answers yes on the registered-for-vat-in-uk page
+    And the user answers yes on the ni-based page
+    And the user continues through the register-to-use-service page
+    Then the user signs in as an Organisation Admin with VAT enrolment 666000000
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the have-uk-trading-name page
+    Then the user answers no on the previous-oss page
+    Then the user answers no on the tax-in-eu page
+    And the user adds https://www.website.com on the first website-address page
+    And the user answers no on the add-website-address page
+    And the user completes details on the business-contact-details page
+      | data                  | fieldId         |
+      | Another Trader        | fullName        |
+      | +17771117771          | telephoneNumber |
+      | minimaltest@email.com | emailAddress    |
+    And the user completes the registration email verification process
+    And the user completes details on the bank-account-details page
+      | data                   | fieldId     |
+      | Another Trader Name    | accountName |
+      | GB29NWBK60161331926819 | iban        |
+    And the user is on the check-your-answers page
+    And the user selects the register button
+    Then the user is on the account-restore-error page
+
