@@ -24,7 +24,7 @@ Feature: Amend Registration journeys
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
     Then the user is on the change-your-registration page
     And the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page
-    Then the user is presented with the technical difficulties page
+    Then the user is presented with the problem page
 
   Scenario: An IOSS registered user cannot use remove all previous registrations if they were entered during the amend registration journey
     Given the user accesses the authority wizard
@@ -48,7 +48,7 @@ Feature: Amend Registration journeys
     And the user answers no on the previous-schemes-overview page
     Then the user is on the change-your-registration page
     And the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page
-    Then the user is presented with the technical difficulties page
+    Then the user is presented with the problem page
 
   Scenario: An IOSS registered user cannot remove an individual previous scheme if they were retrieved from the ETMP registration
     Given the user accesses the authority wizard
@@ -290,10 +290,10 @@ Feature: Amend Registration journeys
     And the user answers yes on the cancel-amend-registration page
     Then the user is redirected to the returns dashboard
 
-  Scenario: A user who gets not found from ETMP for an IOSS registration receives the technical difficulties page
+  Scenario: A user who gets not found from ETMP for an IOSS registration receives the sorry there is a problem page
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999999 accesses the amend registration journey
-    Then the user is presented with the technical difficulties page
+    Then the user is presented with the problem page
 
   Scenario: An IOSS registered user receives an ETMP failure on submission of an amendment
     Given the user accesses the authority wizard

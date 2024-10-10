@@ -96,9 +96,10 @@ class CommonStepDef extends BaseStepDef {
     CommonPage.checkReturnsDashboard()
   }
 
-  Then("""^the user is presented with the technical difficulties page$""") { () =>
+  Then("""^the user is presented with the problem page$""") { () =>
     val htmlHeader = driver.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(htmlHeader.equals("Sorry, we’re experiencing technical difficulties"))
+    Assert.assertTrue(htmlHeader.equals("Sorry, there is a problem with the service"))
+    driver.getCurrentUrl
   }
 
   When("""^the user amends answer to (.*)$""") { (answer: String) =>
