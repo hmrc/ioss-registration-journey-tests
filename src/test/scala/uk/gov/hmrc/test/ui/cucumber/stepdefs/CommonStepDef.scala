@@ -99,7 +99,6 @@ class CommonStepDef extends BaseStepDef {
   Then("""^the user is presented with the problem page$""") { () =>
     val htmlHeader = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(htmlHeader.equals("Sorry, there is a problem with the service"))
-    driver.getCurrentUrl
   }
 
   When("""^the user amends answer to (.*)$""") { (answer: String) =>
