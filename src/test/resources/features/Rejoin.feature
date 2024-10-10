@@ -24,10 +24,10 @@ Feature: Rejoin registration journeys
     When the user manually navigates to the rejoin-registration page
     Then the user is on the cannot-rejoin page
 
-  Scenario: A user who gets not found during a rejoin from ETMP for an IOSS registration receives the technical difficulties page
+  Scenario: A user who gets not found during a rejoin from ETMP for an IOSS registration receives the sorry there is a problem page
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999999 accesses the rejoin registration journey
-    Then the user is presented with the technical difficulties page
+    Then the user is presented with the problem page
   @Accessibility
   Scenario: An IOSS registered user receives an ETMP failure on submission of a rejoin
     Given the user accesses the authority wizard
@@ -293,7 +293,7 @@ Feature: Rejoin registration journeys
     And a user with VRN 100000001 and IOSS Number IM9019999997 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
     And the user manually navigates to the remove-all-previous-registrations?waypoints=rejoin-registration page
-    Then the user is presented with the technical difficulties page
+    Then the user is presented with the problem page
 
   Scenario: A trader cannot remove cannot remove an individual previous scheme if they were retrieved from the ETMP registration during rejoin
     Given the user accesses the authority wizard
