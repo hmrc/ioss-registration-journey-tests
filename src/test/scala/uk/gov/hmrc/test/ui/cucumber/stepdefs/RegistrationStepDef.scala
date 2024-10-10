@@ -161,4 +161,41 @@ class RegistrationStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("Email address amend-test@email.com"))
   }
 
+  Then(
+    """^all of the amended answers for (current|previous) registration (.*) are displayed on the confirmation$"""
+  ) { (registrationType: String, iossNumber: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    if (iossNumber == "IM9007230001") {
+      Assert.assertTrue(htmlBody.contains("Contact name Previous Multiple Registration Trader"))
+      Assert.assertTrue(htmlBody.contains("Telephone number +17771117771"))
+      Assert.assertTrue(htmlBody.contains("Email address previous-registration-test-multiple@email.com"))
+      Assert.assertTrue(htmlBody.contains("Name on the account Previous Multiple Registration Trader Name"))
+      Assert.assertTrue(htmlBody.contains("IBAN GB29NWBK60161331926819"))
+    } else if (iossNumber == "IM9007230002") {
+      Assert.assertTrue(htmlBody.contains("Contact name Previous Multiple Registration Trader 2"))
+      Assert.assertTrue(htmlBody.contains("Name on the account Previous Multiple Registration Trader Name 2"))
+    } else if (iossNumber == "IM9007230003") {
+      Assert.assertTrue(htmlBody.contains("Countries registered in Finland"))
+      Assert.assertTrue(htmlBody.contains("Countries registered in changed Republic of Cyprus"))
+      Assert.assertTrue(htmlBody.contains("Trading websites added https://www.amended-website-name-multiple-ioss.com"))
+      Assert.assertTrue(htmlBody.contains("https://www.2ndmultipleiosswebsite.eu"))
+      Assert.assertTrue(htmlBody.contains("Trading websites removed www.website1.com"))
+      Assert.assertTrue(htmlBody.contains("www.website2.com"))
+    } else if (iossNumber == "IM9006230000") {
+      Assert.assertTrue(htmlBody.contains("Contact name Previous Single Registration Trader"))
+      Assert.assertTrue(htmlBody.contains("Telephone number 01234567891"))
+      Assert.assertTrue(htmlBody.contains("Email address previous-single-registration-test@email.com"))
+      Assert.assertTrue(htmlBody.contains("Name on the account Previous Single Registration Trader Name"))
+      Assert.assertTrue(htmlBody.contains("IBAN GB29NWBK60161331926819"))
+    } else if (iossNumber == "IM9007230000") {
+      Assert.assertTrue(htmlBody.contains("Trading names added an amended current trading name"))
+      Assert.assertTrue(htmlBody.contains("a new current trading name"))
+      Assert.assertTrue(htmlBody.contains("Trading names removed tradingName1"))
+      Assert.assertTrue(htmlBody.contains("tradingName2"))
+      Assert.assertTrue(htmlBody.contains("Registered for tax in EU countries No"))
+      Assert.assertTrue(htmlBody.contains("EU tax details removed Germany"))
+    }
+  }
+
 }

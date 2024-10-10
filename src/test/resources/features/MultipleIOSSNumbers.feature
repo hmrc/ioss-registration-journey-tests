@@ -17,20 +17,21 @@ Feature: Multiple IOSS Number Registration journeys
     Then the correct IOSS number IM9006230000 is displayed on the page
     Then the user selects the amend change link for page business-contact-details from change-a-previous-registration
     And the user completes details on the business-contact-details page
-      | data                                 | fieldId         |
-      | Previous Registration Trader         | fullName        |
-      | +17771117771                         | telephoneNumber |
-      | previous-registration-test@email.com | emailAddress    |
+      | data                                        | fieldId         |
+      | Previous Single Registration Trader         | fullName        |
+      | 01234567891                                 | telephoneNumber |
+      | previous-single-registration-test@email.com | emailAddress    |
     And the user completes the amend previous registration email verification process
     And the user is on the change-a-previous-registration page
     Then the user selects the amend change link for page bank-account-details from change-a-previous-registration
     And the user completes details on the bank-account-details page
-      | data                              | fieldId     |
-      | Previous Registration Trader Name | accountName |
-      | GB29NWBK60161331926819            | iban        |
+      | data                                     | fieldId     |
+      | Previous Single Registration Trader Name | accountName |
+      | GB29NWBK60161331926819                   | iban        |
     And the user is on the change-a-previous-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
+    And all of the amended answers for previous registration IM9006230000 are displayed on the confirmation
     When the user manually navigates to the start-amend-journey page
     Then the user is on the change-your-registration page
     And the correct IOSS number IM9007230000 is displayed on the page
@@ -49,6 +50,7 @@ Feature: Multiple IOSS Number Registration journeys
     Then the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
+    And all of the amended answers for previous registration IM9007230000 are displayed on the confirmation
 
   Scenario: An IOSS registered user with multiple previous registrations can amend the correct sections of each registration
     Given the user accesses the authority wizard
@@ -75,6 +77,7 @@ Feature: Multiple IOSS Number Registration journeys
     And the user is on the change-a-previous-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
+    And all of the amended answers for previous registration IM9007230001 are displayed on the confirmation
     When the user manually navigates to the start-amend-journey page
     Then the user is on the change-your-registration page
     And the correct IOSS number IM9007230003 is displayed on the page
@@ -95,6 +98,7 @@ Feature: Multiple IOSS Number Registration journeys
     And the user is on the change-a-previous-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
+    And all of the amended answers for previous registration IM9007230002 are displayed on the confirmation
     When the user manually navigates to the start-amend-journey page
     Then the user is on the change-your-registration page
     And the correct IOSS number IM9007230003 is displayed on the page
@@ -121,6 +125,7 @@ Feature: Multiple IOSS Number Registration journeys
     And the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
+    And all of the amended answers for current registration IM9007230003 are displayed on the confirmation
 
   Scenario: An IOSS registered user cannot amend sections of a previous registration that are not editable
     Given the user accesses the authority wizard
