@@ -15,6 +15,7 @@ Feature: Unusable Status Email Journey
     Then the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
+    And the updated email address is displayed as changed on the confirmation page
 
   Scenario: The user does not amend the email address following the intercept page for unusable status
     Given the user accesses the authority wizard
@@ -26,5 +27,6 @@ Feature: Unusable Status Email Journey
     And the user completes the amend registration email verification process
     And the user submits their amended registration
     Then the user is on the successful-amend page
+    And the confirmation of no answers changed is displayed
 
 
