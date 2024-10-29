@@ -86,7 +86,15 @@ object AuthPage extends BasePage {
       driver
         .findElement(By.id("input-0-0-value"))
         .sendKeys(vrn)
-      if (enrolment == "IOSS and VAT") {
+      if (enrolment == "OSS and VAT") {
+        driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-OSS-ORG")
+        driver
+          .findElement(By.id("input-1-0-name"))
+          .sendKeys("VRN")
+        driver
+          .findElement(By.id("input-1-0-value"))
+          .sendKeys(vrn)
+      } else if (enrolment == "IOSS and VAT") {
         driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-IOSS-ORG")
         driver
           .findElement(By.id("input-1-0-name"))
