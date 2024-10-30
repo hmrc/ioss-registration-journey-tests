@@ -94,6 +94,21 @@ object AuthPage extends BasePage {
         driver
           .findElement(By.id("input-1-0-value"))
           .sendKeys(vrn)
+      } else if (enrolment == "OSS and IOSS and VAT") {
+        driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-OSS-ORG")
+        driver
+          .findElement(By.id("input-1-0-name"))
+          .sendKeys("VRN")
+        driver
+          .findElement(By.id("input-1-0-value"))
+          .sendKeys(vrn)
+        driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
+        driver
+          .findElement(By.id("input-2-0-name"))
+          .sendKeys("IOSSNumber")
+        driver
+          .findElement(By.id("input-2-0-value"))
+          .sendKeys(iossNumber)
       } else if (enrolment == "IOSS and VAT") {
         driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-IOSS-ORG")
         driver

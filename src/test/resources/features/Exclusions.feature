@@ -2,7 +2,7 @@
 
 Feature: OSS Exclusion journeys
 
-  Scenario: Kickout when the user is quarantined on the One Stop Shop service
+  Scenario: Kickout in the registration journey when the user is quarantined on the One Stop Shop service
     Then the user accesses the authority wizard
     And the user signs into authority wizard as an Organisation Admin with OSS and VAT enrolment 100000025
     Then the user answers no on the ioss-registered page
@@ -56,8 +56,15 @@ Feature: OSS Exclusion journeys
     Then the user is on the scheme-quarantined page
 
   Scenario: Kickout when the user attempts to rejoin the service but is quarantined on the One Stop Shop service
+    Given the user accesses the authority wizard
+    When a user quarantined on OSS with VRN 100000025 and IOSS Number IM9002999993 accesses the rejoin registration journey
+    Then the user is on the scheme-quarantined page
 
   Scenario: User can access the amend registration journey when quarantined on the One Stop Shop service
-
-
+    Given the user accesses the authority wizard
+    When a user quarantined on OSS with VRN 100000025 and IOSS Number IM9001234567 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    And the user submits their amended registration
+    Then the user is on the successful-amend page
+    And the confirmation of no answers changed is displayed
 
