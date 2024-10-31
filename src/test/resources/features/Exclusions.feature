@@ -11,7 +11,7 @@ Feature: OSS Exclusion journeys
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-    Then the user is on the scheme-quarantined page
+    Then the user is on the cannot-register-quarantined-trader page
 
   Scenario: User can access the registration journey when a quarantine on the One Stop Shop service has expired
     Then the user accesses the authority wizard
@@ -53,12 +53,12 @@ Feature: OSS Exclusion journeys
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-    Then the user is on the scheme-quarantined page
+    Then the user is on the cannot-register-quarantined-trader page
 
   Scenario: Kickout when the user attempts to rejoin the service but is quarantined on the One Stop Shop service
     Given the user accesses the authority wizard
     When a user quarantined on OSS with VRN 100000025 and IOSS Number IM9002999993 accesses the rejoin registration journey
-    Then the user is on the scheme-quarantined page
+    Then the user is on the cannot-register-quarantined-trader page
 
   Scenario: User can access the amend registration journey when quarantined on the One Stop Shop service
     Given the user accesses the authority wizard
