@@ -21,7 +21,7 @@ import uk.gov.hmrc.test.ui.pages._
 class AuthStepDef extends BaseStepDef {
 
   Given(
-    "^the (user|assistant) signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT) enrolment (.*)$"
+    "^the (user|assistant) signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT|OSS and VAT) enrolment (.*)$"
   ) { (user: String, role: String, withStatus: String, enrolment: String, vrn: String) =>
     AuthPage.loginUsingAuthorityWizard(user, false, "registration", role, withStatus, enrolment, vrn, "default")
   }
@@ -53,6 +53,21 @@ class AuthStepDef extends BaseStepDef {
         vrn,
         iossNumber
       )
+  }
+
+  When(
+    """^a user quarantined on OSS with VRN (.*) and IOSS Number (.*) accesses the (amend|rejoin) registration journey"""
+  ) { (vrn: String, iossNumber: String, journey: String) =>
+    AuthPage.loginUsingAuthorityWizard(
+      "user",
+      false,
+      journey,
+      "organisation",
+      "with",
+      "OSS and IOSS and VAT",
+      vrn,
+      iossNumber
+    )
   }
 
   Given(
