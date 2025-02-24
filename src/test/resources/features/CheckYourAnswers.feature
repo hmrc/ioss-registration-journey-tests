@@ -87,8 +87,8 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user answers no on the add-uk-trading-name page
     And the user is on the check-your-answers page
     Then the user selects the CYA change link for page previous-schemes-overview from check-your-answers
-    Then the user clicks remove via CYA route for second deregistration
-    And the user answers yes on the remove-deregistration/2 page
+    Then the user clicks remove via CYA route for second registration
+    And the user answers yes on the remove-registration/2 page
     Then the user selects the list within CYA change link for first previous-scheme-answers from change-previous-schemes-overview
     And the user answers yes on the previous-scheme-answers/1 page
     And the user picks ioss on the previous-scheme/1/2 page

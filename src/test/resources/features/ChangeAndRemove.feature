@@ -41,8 +41,8 @@ Feature: Change and remove answers for registrations in progress
     And the user adds EU123456788 on the first previous-oss-scheme-number/2 page
     Then the user answers no on the previous-scheme-answers/2 page
     Then the user is on the previous-schemes-overview page
-    Then the user clicks remove via list for second deregistration
-    And the user answers yes on the remove-deregistration/2 page
+    Then the user clicks remove via list for second registration
+    And the user answers yes on the remove-registration/2 page
     Then the user selects the list change link for first previous-scheme-answers from change-previous-schemes-overview
     Then the user clicks remove via overviewLoop for second previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/2 page
