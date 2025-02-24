@@ -61,7 +61,7 @@ Feature: Amend Registration journeys
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
     When the user is on the change-your-registration page
-    And the user manually navigates to the remove-deregistration/1?waypoints=change-your-registration page
+    And the user manually navigates to the remove-registration/1?waypoints=change-your-registration page
     Then the user is on the cannot-delete-previous-registrations page
 
   Scenario: An IOSS registered user can add details for sections that were previously answered no

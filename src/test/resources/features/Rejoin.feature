@@ -306,7 +306,7 @@ Feature: Rejoin registration journeys
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999997 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
-    And the user manually navigates to the remove-deregistration/1?waypoints=rejoin-registration page
+    And the user manually navigates to the remove-registration/1?waypoints=rejoin-registration page
     Then the user is on the cannot-delete-previous-registrations page
 
   Scenario: A user that has now deregistered from VAT cannot re-register for the IOSS scheme

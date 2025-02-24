@@ -300,8 +300,8 @@ Feature: Save For Later Feature
     Then the user is on the previous-schemes-overview page
     And the user clicks on the save and come back later button
     Then the user clicks on the continue to complete your registration link
-    Then the user clicks remove via list for second deregistration
-    And the user answers yes on the remove-deregistration/2 page
+    Then the user clicks remove via list for second registration
+    And the user answers yes on the remove-registration/2 page
     And the user clicks on the save and come back later button
     Then the user clicks on the continue to complete your registration link
     Then the user selects the list change link for first previous-scheme-answers from change-previous-schemes-overview
