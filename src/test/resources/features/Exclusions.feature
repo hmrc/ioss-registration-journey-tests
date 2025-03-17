@@ -15,7 +15,7 @@ Feature: OSS Exclusion journeys
 
   Scenario: User can access the registration journey when a quarantine on the One Stop Shop service has expired
     Then the user accesses the authority wizard
-    And the user signs into authority wizard as an Organisation Admin with OSS and VAT enrolment 600000014
+    And the user signs into authority wizard as an Organisation Admin with OSS and VAT enrolment 600001414
     Then the user answers no on the ioss-registered page
     And the user answers yes on the selling-goods-outside-single-market page
     And the user answers yes on the goods-value page
