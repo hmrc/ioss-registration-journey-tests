@@ -2,9 +2,6 @@
 
 Feature: Entering the Registration service via BTA
 
-#  Scenario: A user registers via BTA and then has the correct BTA link on the registration submission page
-#  No BTA link yet
-
   Scenario: The user enters the service via BTA and is directed back to BTA via the Already EU Registered kickout page
     Given the user accesses the authority wizard
     And the user signs into authority wizard as an Organisation Admin with VAT enrolment 100000001
