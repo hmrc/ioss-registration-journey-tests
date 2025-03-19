@@ -12,23 +12,27 @@ Feature: Cross Schema journeys
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
     And the user chooses Yes on the confirm-vat-details page
-#    Needs amendments
-    And the user answers no on the have-uk-trading-name page
+    Then the user is on the add-uk-trading-name page
+    And the correct number of existing trading names are displayed for a trader with an OSS registration
+    And the trading name warnings are displayed for a trader with an OSS registration
+    Then the user clicks remove via list for second uk-trading-name
+    And the user answers yes on the remove-uk-trading-name/2 page
+    Then the user answers yes on the add-uk-trading-name page
+    And the user adds New 2nd trading name on the second uk-trading-name page
+    Then the user answers no on the add-uk-trading-name page
     Then the user answers no on the previous-oss page
     Then the user answers no on the tax-in-eu page
     And the user adds https://www.onlywebsite.com on the first website-address page
     And the user answers no on the add-website-address page
-#    Needs amendments
+    And the contact details warnings are displayed for a trader with an OSS registration
     And the user completes details on the business-contact-details page
-      | data                  | fieldId         |
-      | Another Trader        | fullName        |
-      | +17771117771          | telephoneNumber |
-      | minimaltest@email.com | emailAddress    |
+      | data                        | fieldId         |
+      | +17771117771                | telephoneNumber |
+      | cross-schema-test@email.com | emailAddress    |
     And the user completes the registration email verification process
-#    Needs amendments
+    And the bank details warnings are displayed for a trader with an OSS registration
     And the user completes details on the bank-account-details page
       | data                   | fieldId     |
-      | Another Trader Name    | accountName |
       | GB29NWBK60161331926819 | iban        |
     Then the user is on the check-your-answers page
     Then the user submits their registration
@@ -101,24 +105,21 @@ Feature: Cross Schema journeys
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
     And the user chooses Yes on the confirm-vat-details page
-#    Needs amendments - check no warnings
-#    And the user answers no on the have-uk-trading-name page
+    Then the user is on the add-uk-trading-name page
+    And the correct number of existing trading names are displayed for a trader with an OSS registration
+    And the trading name warnings are displayed for a trader with an OSS registration
+    Then the user answers no on the add-uk-trading-name page
     Then the user answers no on the previous-oss page
     Then the user answers no on the tax-in-eu page
     And the user adds https://www.onlywebsite.com on the first website-address page
     And the user answers no on the add-website-address page
-#    Needs amendments - check no warnings
-    And the user completes details on the business-contact-details page
-      | data                  | fieldId         |
-      | Another Trader        | fullName        |
-      | +17771117771          | telephoneNumber |
-      | minimaltest@email.com | emailAddress    |
+    And the user is on the business-contact-details page
+    And the contact details warnings are displayed for a trader with an OSS registration
+    And the user continues through the business-contact-details page
     And the user completes the registration email verification process
-#    Needs amendments - check no warnings
-    And the user completes details on the bank-account-details page
-      | data                   | fieldId     |
-      | Another Trader Name    | accountName |
-      | GB29NWBK60161331926819 | iban        |
+    And the user is on the bank-account-details page
+    And the bank details warnings are displayed for a trader with an OSS registration
+    And the user continues through the bank-account-details page
     Then the user is on the check-your-answers page
     Then the user submits their registration
 #    check acknowledgement page
@@ -152,20 +153,26 @@ Feature: Cross Schema journeys
     And the user continues through the register-to-use-service page
     Then the user signs in as an Organisation Admin with VAT enrolment 100000001
     And the user chooses Yes on the confirm-vat-details page
-#    Needs amendments
-    And the user answers no on the have-uk-trading-name page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds No registration trader on the first uk-trading-name page
+    Then the user is on the add-uk-trading-name page
+    And the new trading name is the only trading name where there are no previous registrations
+    And the trading name warnings are not displayed for a trader with an OSS registration
+    And the user answers no on the add-uk-trading-name page
     Then the user answers no on the previous-oss page
     Then the user answers no on the tax-in-eu page
     And the user adds https://www.onlywebsite.com on the first website-address page
     And the user answers no on the add-website-address page
-    #    Needs amendments
+    And the contact details warnings are not displayed for a trader with an OSS registration
+    And the contact details are blank
     And the user completes details on the business-contact-details page
       | data                  | fieldId         |
       | Another Trader        | fullName        |
       | +17771117771          | telephoneNumber |
       | minimaltest@email.com | emailAddress    |
     And the user completes the registration email verification process
-    #    Needs amendments
+    And the bank details warnings are not displayed for a trader with an OSS registration
+    And the bank details are blank
     And the user completes details on the bank-account-details page
       | data                   | fieldId     |
       | Another Trader Name    | accountName |
