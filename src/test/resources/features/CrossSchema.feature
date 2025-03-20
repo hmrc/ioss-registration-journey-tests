@@ -36,7 +36,7 @@ Feature: Cross Schema journeys
       | GB29NWBK60161331926819 | iban        |
     Then the user is on the check-your-answers page
     Then the user submits their registration
-#    Check details
+    And the text on the confirmation page is displayed when the trader has made changes and has an OSS registration
 
   Scenario: Amend registration for trader with an OSS registration and multiple previous IOSS registrations - amends data
     Given the user accesses the authority wizard
@@ -50,7 +50,7 @@ Feature: Cross Schema journeys
 
   Scenario: Amend registration for trader with 1 previous IOSS registration - amends data
     Given the user accesses the authority wizard
-    And a user with VRN 100000002 and IOSS Number IM9019999997 accesses the amend registration journey
+    And a user with VRN 100005555 and IOSS Number IM9019999997 accesses the amend registration journey
     Then the user is on the change-your-registration page
 #    check required pages and make amends
     Then the user is on the change-your-registration page
@@ -60,7 +60,7 @@ Feature: Cross Schema journeys
 
   Scenario: Amend registration for trader with multiple previous IOSS registrations - amends data
     Given the user accesses the authority wizard
-    And a user with VRN 100000002 and IOSS Number IM9007230000 accesses the amend registration journey
+    And a user with VRN 100005555 and IOSS Number IM9007230000 accesses the amend registration journey
     Then the user is on the change-your-registration page
 #    check required pages and make amends
     Then the user is on the change-your-registration page
@@ -79,7 +79,7 @@ Feature: Cross Schema journeys
 
   Scenario: Rejoin registration for trader with 1 previous IOSS registration - amends data
     Given the user accesses the authority wizard
-    And a user with VRN 100000002 and IOSS Number IM9019999997 accesses the rejoin registration journey
+    And a user with VRN 100005555 and IOSS Number IM9019999997 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
     #    check required pages and make amends
     When the user submits their rejoin registration
@@ -88,7 +88,7 @@ Feature: Cross Schema journeys
 
   Scenario: Rejoin registration for trader with multiple previous IOSS registrations - amends data
     Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9007230000 accesses the rejoin registration journey
+    And a user with VRN 100005555 and IOSS Number IM9007230000 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
     #    check required pages and make amends
     When the user submits their rejoin registration
@@ -122,7 +122,8 @@ Feature: Cross Schema journeys
     And the user continues through the bank-account-details page
     Then the user is on the check-your-answers page
     Then the user submits their registration
-#    check acknowledgement page
+#    Currently displaying it regardless of whether anything is changed or not
+    And the text on the confirmation page is not displayed when the trader has not made changes and has an OSS registration
 
   Scenario: Amend registration for trader with other registrations who did not make changes to data
     Given the user accesses the authority wizard
@@ -179,11 +180,12 @@ Feature: Cross Schema journeys
       | GB29NWBK60161331926819 | iban        |
     Then the user is on the check-your-answers page
     Then the user submits their registration
-#    Check acknowledgement
+    And the text on the confirmation page is not displayed when the trader has not made changes and has no OSS registration
 
+#  Need to know what happens for trader who only has one current IOSS account - not show warnings?
   Scenario: Amend registration for trader with no other registrations does not show warnings
     Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
+    And a user with VRN 100005555 and IOSS Number IM9001234567 accesses the amend registration journey
     Then the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
@@ -191,7 +193,7 @@ Feature: Cross Schema journeys
 
   Scenario: Rejoin registration for trader with no other registrations does not show warnings
     Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+    And a user with VRN 100005555 and IOSS Number IM9019999998 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
