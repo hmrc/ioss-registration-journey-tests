@@ -32,8 +32,8 @@ Feature: Cross Schema journeys
     And the user completes the registration email verification process
     And the bank details warnings are displayed for a trader with an OSS registration
     And the user completes details on the bank-account-details page
-      | data                   | fieldId     |
-      | GB29NWBK60161331926819 | iban        |
+      | data                   | fieldId |
+      | GB29NWBK60161331926819 | iban    |
     Then the user is on the check-your-answers page
     Then the user submits their registration
     And the text on the confirmation page is displayed when the trader has made changes and has an OSS registration
@@ -42,31 +42,59 @@ Feature: Cross Schema journeys
     Given the user accesses the authority wizard
     And a user registered on OSS with VRN 300000002 and IOSS Number IM9007230000 accesses the amend registration journey
     Then the user is on the change-your-registration page
-#    check required pages and make amends
+    Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And the correct number of existing trading names are displayed for a trader with OSS and IOSS registrations
+    And the trading name warning is displayed for a trader with both OSS and IOSS registrations
+    Then the user selects the list within amend change link for first uk-trading-name from change-add-uk-trading-name
+    And the user amends answer to an amended cross schema trading name
+    Then the user answers no on the add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And the contact details warning is displayed for a trader with both OSS and IOSS registrations
+    And the user completes details on the business-contact-details page
+      | data         | fieldId         |
+      | +17771117771 | telephoneNumber |
+    And the user completes the amend registration email verification process
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page bank-account-details from change-your-registration
+    And the bank details warning is displayed for a trader with both OSS and IOSS registrations
+    And the user completes details on the bank-account-details page
+      | data                   | fieldId |
+      | GB29NWBK60161331926819 | iban    |
     Then the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
-#    Check amends and text on confirmation page
-
-  Scenario: Amend registration for trader with 1 previous IOSS registration - amends data
-    Given the user accesses the authority wizard
-    And a user with VRN 100005555 and IOSS Number IM9019999997 accesses the amend registration journey
-    Then the user is on the change-your-registration page
-#    check required pages and make amends
-    Then the user is on the change-your-registration page
-    And the user submits their amended registration
-    Then the user is on the successful-amend page
-#    Check amends and text on confirmation page
+    And all of the updated answers are displayed as changed on the amend confirmation page for OSS and IOSS
+    And the text on the amend confirmation page is displayed when the trader has made changes and has both OSS and IOSS registrations
 
   Scenario: Amend registration for trader with multiple previous IOSS registrations - amends data
     Given the user accesses the authority wizard
     And a user with VRN 100005555 and IOSS Number IM9007230000 accesses the amend registration journey
     Then the user is on the change-your-registration page
-#    check required pages and make amends
+    Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
+    And the trading name warning is displayed for a trader with multiple IOSS registrations
+    Then the user selects the list within amend change link for second uk-trading-name from change-add-uk-trading-name
+    And the user amends answer to another
+    Then the user answers no on the add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And the contact details warning is displayed for a trader with multiple IOSS registrations
+    And the user completes details on the business-contact-details page
+      | data                              | fieldId      |
+      | amend-cross-schema-test@email.com | emailAddress |
+    And the user completes the amend registration email verification process
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page bank-account-details from change-your-registration
+    And the bank details warning is displayed for a trader with multiple IOSS registrations
+    And the user completes details on the bank-account-details page
+      | data                      | fieldId     |
+      | Another Cross Schema Name | accountName |
     Then the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
-#    Check amends and text on confirmation page
+    And all of the updated answers are displayed as changed on the amend confirmation page for multiple IOSS accounts
+    And the text on the amend confirmation page is displayed when the trader has made changes and has multiple IOSS registrations
 
   Scenario: Rejoin registration for trader with an OSS registration and multiple IOSS registrations - amends data
     Given the user accesses the authority wizard
@@ -129,11 +157,10 @@ Feature: Cross Schema journeys
     Given the user accesses the authority wizard
     And a user registered on OSS with VRN 300000002 and IOSS Number IM9007230000 accesses the amend registration journey
     Then the user is on the change-your-registration page
-#    check required pages and don't make amends
-    Then the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
-#    check acknowledgement page
+    And the confirmation of no answers changed is displayed
+    And the text on the amend confirmation page is not displayed when the trader has not made changes and has both OSS and IOSS registrations
 
   Scenario: Rejoin registration for trader with other registrations who did not make changes to data
     Given the user accesses the authority wizard
@@ -182,14 +209,27 @@ Feature: Cross Schema journeys
     Then the user submits their registration
     And the text on the confirmation page is not displayed when the trader has not made changes and has no OSS registration
 
-#  Need to know what happens for trader who only has one current IOSS account - not show warnings?
   Scenario: Amend registration for trader with no other registrations does not show warnings
     Given the user accesses the authority wizard
     And a user with VRN 100005555 and IOSS Number IM9001234567 accesses the amend registration journey
     Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And there are no headings or warnings for trading names mentioning other registrations
+    Then the user answers no on the add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And there is no warning for contact details mentioning other registrations
+    When the user continues through the business-contact-details page
+    And the user completes the amend registration email verification process
+    Then the user is on the change-your-registration page
+    When the user selects the amend change link for page bank-account-details from change-your-registration
+    Then there is no warning for bank details mentioning other registrations
+    And the user continues through the bank-account-details page
+    Then the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
-#    Needs checks on pages and acknowledgement
+    And the confirmation of no answers changed is displayed
+    And the text on the amend confirmation page is not displayed when the trader has no other registrations
 
   Scenario: Rejoin registration for trader with no other registrations does not show warnings
     Given the user accesses the authority wizard
@@ -198,4 +238,71 @@ Feature: Cross Schema journeys
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
     #    Needs checks on pages and acknowledgement
+
+  Scenario: Amend registration for trader with 1 previous IOSS registration - amends data
+    Given the user accesses the authority wizard
+    And a user with VRN 100005555 and IOSS Number IM9019999997 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And there are no headings or warnings for trading names mentioning other registrations
+    Then the user clicks remove via list for second uk-trading-name
+    And the user answers yes on the remove-uk-trading-name/2 page
+    Then the user answers no on the add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And there is no warning for contact details mentioning other registrations
+    When the user continues through the business-contact-details page
+    And the user completes the amend registration email verification process
+    Then the user is on the change-your-registration page
+    When the user selects the amend change link for page bank-account-details from change-your-registration
+    Then there is no warning for bank details mentioning other registrations
+    And the user continues through the bank-account-details page
+    Then the user is on the change-your-registration page
+    And the user submits their amended registration
+    Then the user is on the successful-amend page
+    And the removed trading name is displayed on the amend confirmation
+    And the text on the amend confirmation page is not displayed when the trader has no other registrations
+
+  Scenario: Amend registration for trader with 1 current IOSS registration - amends data
+    Given the user accesses the authority wizard
+    And a user with VRN 100005555 and IOSS Number IM9001234567 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And there are no headings or warnings for trading names mentioning other registrations
+    Then the user answers no on the add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And there is no warning for contact details mentioning other registrations
+    When the user continues through the business-contact-details page
+    And the user completes the amend registration email verification process
+    Then the user is on the change-your-registration page
+    When the user selects the amend change link for page bank-account-details from change-your-registration
+    Then there is no warning for bank details mentioning other registrations
+    And the user completes details on the bank-account-details page
+      | data                   | fieldId |
+      | GB29NWBK60161331926819 | iban    |
+    Then the user is on the change-your-registration page
+    And the user submits their amended registration
+    Then the user is on the successful-amend page
+    And the updated iban is displayed on the amend confirmation
+    And the text on the amend confirmation page is not displayed when the trader has no other registrations
+
+  Scenario: Amend registration for trader with 1 previous IOSS registration - does not amend data
+    Given the user accesses the authority wizard
+    And a user with VRN 100005555 and IOSS Number IM9019999997 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    And the user submits their amended registration
+    Then the user is on the successful-amend page
+    And the confirmation of no answers changed is displayed
+    And the text on the amend confirmation page is not displayed when the trader has not amended any data
+
+  Scenario: Amend registration for trader with 1 current IOSS registration - does not amend data
+    Given the user accesses the authority wizard
+    And a user with VRN 100005555 and IOSS Number IM9001234567 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    And the user submits their amended registration
+    Then the user is on the successful-amend page
+    And the confirmation of no answers changed is displayed
+    And the text on the amend confirmation page is not displayed when the trader has not amended any data
+
 

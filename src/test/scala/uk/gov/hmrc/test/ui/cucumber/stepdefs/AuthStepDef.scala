@@ -57,7 +57,7 @@ class AuthStepDef extends BaseStepDef {
 
   When(
     """^a user (registered|quarantined) on OSS with VRN (.*) and IOSS Number (.*) accesses the (amend|rejoin) registration journey"""
-  ) { (vrn: String, iossNumber: String, journey: String) =>
+  ) { (registrationType: String, vrn: String, iossNumber: String, journey: String) =>
     AuthPage.loginUsingAuthorityWizard(
       "user",
       false,
