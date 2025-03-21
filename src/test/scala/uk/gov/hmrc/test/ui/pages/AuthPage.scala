@@ -125,13 +125,31 @@ object AuthPage extends BasePage {
         }
       }
       if (iossNumber == "IM9007230000") {
-        driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
+        if (enrolment == "OSS and IOSS and VAT") {
+          driver.findElement(By.id("enrolment[3].name")).sendKeys("HMRC-IOSS-ORG")
+          driver
+            .findElement(By.id("input-3-0-name"))
+            .sendKeys("IOSSNumber")
+          driver
+            .findElement(By.id("input-3-0-value"))
+            .sendKeys("IM9006230000")
+        } else {
+          driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
+          driver
+            .findElement(By.id("input-2-0-name"))
+            .sendKeys("IOSSNumber")
+          driver
+            .findElement(By.id("input-2-0-value"))
+            .sendKeys("IM9006230000")
+        }
+      } else if (iossNumber == "IM9007231111") {
+        driver.findElement(By.id("enrolment[3].name")).sendKeys("HMRC-IOSS-ORG")
         driver
-          .findElement(By.id("input-2-0-name"))
+          .findElement(By.id("input-3-0-name"))
           .sendKeys("IOSSNumber")
         driver
-          .findElement(By.id("input-2-0-value"))
-          .sendKeys("IM9006230000")
+          .findElement(By.id("input-3-0-value"))
+          .sendKeys("IM9006231111")
       } else if (iossNumber == "IM9007230003") {
         driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
         driver

@@ -29,6 +29,6 @@ import org.junit.runner.RunWith
     "json:target/cucumber.json",
     "junit:target/test-reports/ChangeSaveRunner.xml"
   ),
-  tags = "@ChangeAndRemove or @CYA or @SaveForLater"
+  tags = "@ChangeAndRemove or @CYA or @SaveForLater or @CrossSchema"
 )
 class ChangeSaveRunner {}
