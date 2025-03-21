@@ -98,30 +98,96 @@ Feature: Cross Schema journeys
 
   Scenario: Rejoin registration for trader with an OSS registration and multiple IOSS registrations - amends data
     Given the user accesses the authority wizard
-    And a user registered on OSS with VRN 300000002 and IOSS Number IM9019999997 accesses the rejoin registration journey
+    And a user registered on OSS with VRN 300000002 and IOSS Number IM9007231111 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
-#    check required pages and make amends
+    Then the user selects the rejoin change link for page add-uk-trading-name from rejoin-registration
+    And the correct number of existing trading names are displayed for a trader with OSS and IOSS registrations
+    And the trading name warning is displayed for a trader with both OSS and IOSS registrations
+    Then the user clicks remove via rejoin route for first uk-trading-name
+    And the user answers yes on the remove-uk-trading-name/1 page
+    Then the user selects the list within rejoin change link for first uk-trading-name from change-add-uk-trading-name
+    And the user amends answer to an amended cross schema trading name for rejoin
+    Then the user answers yes on the add-uk-trading-name page
+    And the user adds new 2nd name on the second uk-trading-name page
+    Then the user answers no on the add-uk-trading-name page
+    Then the user is on the rejoin-registration page
+    Then the user selects the rejoin change link for page business-contact-details from rejoin-registration
+    And the contact details warning is displayed for a trader with both OSS and IOSS registrations
+    And the user completes details on the business-contact-details page
+      | data                               | fieldId      |
+      | rejoin-cross-schema-test@email.com | emailAddress |
+    And the user completes the rejoin registration email verification process
+    Then the user is on the rejoin-registration page
+    Then the user selects the rejoin change link for page bank-account-details from rejoin-registration
+    And the bank details warning is displayed for a trader with both OSS and IOSS registrations
+    And the user completes details on the bank-account-details page
+      | data                   | fieldId     |
+      | Another Trader Name    | accountName |
+      | GB29NWBK60161331926819 | iban        |
+    Then the user is on the rejoin-registration page
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
-#    check text on confirmation page
+    And the text on the rejoin confirmation page is displayed when the trader has made changes and has both OSS and IOSS registrations
 
   Scenario: Rejoin registration for trader with 1 previous IOSS registration - amends data
     Given the user accesses the authority wizard
     And a user with VRN 100005555 and IOSS Number IM9019999997 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
-    #    check required pages and make amends
+    Then the user selects the rejoin change link for page add-uk-trading-name from rejoin-registration
+    And the correct number of existing trading names are displayed for a trader with one previous IOSS registration
+    And the trading name warning is displayed for a trader with one previous IOSS registration
+    Then the user clicks remove via rejoin route for first uk-trading-name
+    And the user answers yes on the remove-uk-trading-name/1 page
+    Then the user selects the list within rejoin change link for first uk-trading-name from change-add-uk-trading-name
+    And the user amends answer to an amended cross schema trading name for rejoin
+    Then the user answers yes on the add-uk-trading-name page
+    And the user adds new 2nd name on the second uk-trading-name page
+    Then the user answers no on the add-uk-trading-name page
+    Then the user is on the rejoin-registration page
+    Then the user selects the rejoin change link for page business-contact-details from rejoin-registration
+    And the contact details warning is displayed for a trader with one previous IOSS registration
+    And the user completes details on the business-contact-details page
+      | data                               | fieldId      |
+      | rejoin-cross-schema-test@email.com | emailAddress |
+    And the user completes the rejoin registration email verification process
+    Then the user is on the rejoin-registration page
+    Then the user selects the rejoin change link for page bank-account-details from rejoin-registration
+    And the bank details warning is displayed for a trader with one previous IOSS registration
+    And the user completes details on the bank-account-details page
+      | data                   | fieldId     |
+      | Another Trader Name    | accountName |
+      | GB29NWBK60161331926819 | iban        |
+    Then the user is on the rejoin-registration page
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
-#    check text on confirmation page
+    And the text on the rejoin confirmation page is displayed when the trader has made changes and has one previous IOSS registration
 
   Scenario: Rejoin registration for trader with multiple previous IOSS registrations - amends data
     Given the user accesses the authority wizard
-    And a user with VRN 100005555 and IOSS Number IM9007230000 accesses the rejoin registration journey
+    And a user with VRN 100005555 and IOSS Number IM9007231111 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
-    #    check required pages and make amends
+    Then the user selects the rejoin change link for page add-uk-trading-name from rejoin-registration
+    And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
+    And the trading name warning is displayed for a trader with multiple IOSS registrations
+    Then the user selects the list within rejoin change link for first uk-trading-name from change-add-uk-trading-name
+    And the user amends answer to an amended cross schema trading name for rejoin
+    Then the user answers no on the add-uk-trading-name page
+    Then the user is on the rejoin-registration page
+    Then the user selects the rejoin change link for page business-contact-details from rejoin-registration
+    And the contact details warning is displayed for a trader with multiple IOSS registrations
+    And the user completes details on the business-contact-details page
+      | data         | fieldId         |
+      | 555666777888 | telephoneNumber |
+    And the user completes the rejoin registration email verification process
+    Then the user is on the rejoin-registration page
+    Then the user selects the rejoin change link for page bank-account-details from rejoin-registration
+    And the bank details warning is displayed for a trader with multiple IOSS registrations
+    And the user completes details on the bank-account-details page
+      | data                   | fieldId     |
+      | Another Trader Name    | accountName |
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
-#    check text on confirmation page
+    And the text on the rejoin confirmation page is displayed when the trader has made changes and has multiple IOSS registrations
 
   Scenario: Registration for trader with other registrations who did not make changes to data
     Then the user accesses the authority wizard
@@ -150,7 +216,7 @@ Feature: Cross Schema journeys
     And the user continues through the bank-account-details page
     Then the user is on the check-your-answers page
     Then the user submits their registration
-#    Currently displaying it regardless of whether anything is changed or not
+#    Currently displaying it regardless of whether anything is changed or not - probably need a generic version as it will be complex to add this
     And the text on the confirmation page is not displayed when the trader has not made changes and has an OSS registration
 
   Scenario: Amend registration for trader with other registrations who did not make changes to data
@@ -166,10 +232,10 @@ Feature: Cross Schema journeys
     Given the user accesses the authority wizard
     And a user registered on OSS with VRN 300000002 and IOSS Number IM9019999997 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
-#    check required pages and don't make amends
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
-#    check acknowledgement page
+#  Currently not implemented
+    And the text on the rejoin confirmation page is not displayed when the trader has not made changes and has both OSS and IOSS registrations
 
   Scenario: Registration for trader with no other registrations does not pre-populate details and does not show warnings
     Given the user accesses the IOSS Registration service
@@ -230,14 +296,6 @@ Feature: Cross Schema journeys
     Then the user is on the successful-amend page
     And the confirmation of no answers changed is displayed
     And the text on the amend confirmation page is not displayed when the trader has no other registrations
-
-  Scenario: Rejoin registration for trader with no other registrations does not show warnings
-    Given the user accesses the authority wizard
-    And a user with VRN 100005555 and IOSS Number IM9019999998 accesses the rejoin registration journey
-    Then the user is on the rejoin-registration page
-    When the user submits their rejoin registration
-    Then the user is on the successful-rejoin page
-    #    Needs checks on pages and acknowledgement
 
   Scenario: Amend registration for trader with 1 previous IOSS registration - amends data
     Given the user accesses the authority wizard

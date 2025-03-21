@@ -142,6 +142,14 @@ object AuthPage extends BasePage {
             .findElement(By.id("input-2-0-value"))
             .sendKeys("IM9006230000")
         }
+      } else if (iossNumber == "IM9007231111") {
+        driver.findElement(By.id("enrolment[3].name")).sendKeys("HMRC-IOSS-ORG")
+        driver
+          .findElement(By.id("input-3-0-name"))
+          .sendKeys("IOSSNumber")
+        driver
+          .findElement(By.id("input-3-0-value"))
+          .sendKeys("IM9006231111")
       } else if (iossNumber == "IM9007230003") {
         driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
         driver

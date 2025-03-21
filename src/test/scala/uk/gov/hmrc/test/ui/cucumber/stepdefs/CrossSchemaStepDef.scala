@@ -44,6 +44,15 @@ class CrossSchemaStepDef extends BaseStepDef {
     )
   }
 
+  Then(
+    """^the correct number of existing trading names are displayed for a trader with one previous IOSS registration$"""
+  ) { () =>
+    val header = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(
+      header.equals("You have 2 UK trading names from your Import One Stop Shop registration")
+    )
+  }
+
   Then("""^the new trading name is the only trading name where there are no previous registrations$""") { () =>
     val header = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(header.equals("You have added one UK trading name"))
@@ -104,6 +113,13 @@ class CrossSchemaStepDef extends BaseStepDef {
       }
   }
 
+  Then("""^the trading name warning is displayed for a trader with one previous IOSS registration$""") { () =>
+    val htmlBody    = driver.findElement(By.tagName("body")).getText
+    val warningText =
+      "Any changes you make here will also update the trading names in your previous Import One Stop Shop registration."
+    Assert.assertTrue(htmlBody.contains(warningText))
+  }
+
   Then("""^the contact details warnings (are|are not) displayed for a trader with an OSS registration$""") {
     (version: String) =>
       val htmlBody    = driver.findElement(By.tagName("body")).getText
@@ -145,6 +161,14 @@ class CrossSchemaStepDef extends BaseStepDef {
       } else {
         Assert.assertTrue(htmlBody.contains(warningText))
       }
+  }
+
+  Then("""^the (contact|bank) details warning is displayed for a trader with one previous IOSS registration$""") {
+    (page: String) =>
+      val htmlBody    = driver.findElement(By.tagName("body")).getText
+      val warningText =
+        s"Any changes you make here will also update the $page details in your previous Import One Stop Shop registration."
+      Assert.assertTrue(htmlBody.contains(warningText))
   }
 
   Then("""^the contact details are blank$""") { () =>
@@ -216,8 +240,8 @@ class CrossSchemaStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the text on the amend confirmation page (is|is not) displayed when the trader (has|has not) made changes and has both OSS and IOSS registrations$"""
-  ) { (version: String, madeChanges: String) =>
+    """^the text on the (amend|rejoin) confirmation page (is|is not) displayed when the trader (has|has not) made changes and has both OSS and IOSS registrations$"""
+  ) { (page: String, version: String, madeChanges: String) =>
     val htmlBody                   = driver.findElement(By.tagName("body")).getText
     val ossAndIossConfirmationText =
       "We've also updated your One Stop Shop and previous Import One Stop Shop registrations."
@@ -230,11 +254,25 @@ class CrossSchemaStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the text on the amend confirmation page (is|is not) displayed when the trader (has|has not) made changes and has multiple IOSS registrations$"""
-  ) { (version: String, madeChanges: String) =>
+    """^the text on the (amend|rejoin) confirmation page (is|is not) displayed when the trader (has|has not) made changes and has multiple IOSS registrations$"""
+  ) { (page: String, version: String, madeChanges: String) =>
     val htmlBody                     = driver.findElement(By.tagName("body")).getText
     val multipleIossConfirmationText =
       "We've also updated your previous Import One Stop Shop registrations."
+
+    if (version == "is not") {
+      Assert.assertFalse(htmlBody.contains(multipleIossConfirmationText))
+    } else {
+      Assert.assertTrue(htmlBody.contains(multipleIossConfirmationText))
+    }
+  }
+
+  Then(
+    """^the text on the rejoin confirmation page (is|is not) displayed when the trader (has|has not) made changes and has one previous IOSS registration$"""
+  ) { (version: String, madeChanges: String) =>
+    val htmlBody                     = driver.findElement(By.tagName("body")).getText
+    val multipleIossConfirmationText =
+      "We've also updated your previous Import One Stop Shop registration."
 
     if (version == "is not") {
       Assert.assertFalse(htmlBody.contains(multipleIossConfirmationText))
