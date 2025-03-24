@@ -234,7 +234,6 @@ Feature: Cross Schema journeys
     Then the user is on the rejoin-registration page
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
-#  Currently not implemented
     And the text on the rejoin confirmation page is not displayed when the trader has not made changes and has both OSS and IOSS registrations
 
   Scenario: Registration for trader with no other registrations does not pre-populate details and does not show warnings
