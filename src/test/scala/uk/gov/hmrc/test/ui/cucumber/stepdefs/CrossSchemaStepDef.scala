@@ -21,36 +21,22 @@ import org.openqa.selenium.By
 
 class CrossSchemaStepDef extends BaseStepDef {
 
-  Then("""^the correct number of existing trading names are displayed for a trader with an OSS registration$""") { () =>
-    val header = driver.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(header.equals("You have 2 UK trading names from your One Stop Shop registration"))
-  }
-
   Then(
-    """^the correct number of existing trading names are displayed for a trader with OSS and IOSS registrations$"""
-  ) { () =>
+    """^the correct number of existing trading names are displayed for a trader with (an OSS|OSS and IOSS|multiple IOSS|one previous IOSS) (registration|registrations)$"""
+  ) { (version: String, registrationNumber: String) =>
     val header = driver.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(
-      header.equals("You have 2 UK trading names from your One Stop Shop and Import One Stop Shop registrations")
-    )
-  }
 
-  Then(
-    """^the correct number of existing trading names are displayed for a trader with multiple IOSS registrations$"""
-  ) { () =>
-    val header = driver.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(
-      header.equals("You have 2 UK trading names from your Import One Stop Shop registrations")
-    )
-  }
+    val headingText = if (version == "an OSS") {
+      "You have 2 UK trading names from your One Stop Shop registration"
+    } else if (version == "OSS and IOSS") {
+      "You have 2 UK trading names from your One Stop Shop and Import One Stop Shop registrations"
+    } else if (version == "multiple IOSS") {
+      "You have 2 UK trading names from your Import One Stop Shop registrations"
+    } else if (version == "one previous IOSS") {
+      "You have 2 UK trading names from your Import One Stop Shop registration"
+    }
 
-  Then(
-    """^the correct number of existing trading names are displayed for a trader with one previous IOSS registration$"""
-  ) { () =>
-    val header = driver.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(
-      header.equals("You have 2 UK trading names from your Import One Stop Shop registration")
-    )
+    Assert.assertTrue(header.equals(headingText))
   }
 
   Then("""^the new trading name is the only trading name where there are no previous registrations$""") { () =>
@@ -70,54 +56,33 @@ class CrossSchemaStepDef extends BaseStepDef {
     Assert.assertFalse(htmlBody.contains(s"Any changes you make here will also update the $page details in"))
   }
 
-  Then("""^the trading name warnings (are|are not) displayed for a trader with an OSS registration$""") {
-    (version: String) =>
-      val htmlBody    = driver.findElement(By.tagName("body")).getText
-      val hintText    =
-        "We added the trading names you entered when you registered for the One Stop Shop service. Check they are still correct."
-      val warningText =
-        "Any changes you make here will also update the trading names in your One Stop Shop registration."
-
-      if (version == "are not") {
-        Assert.assertFalse(htmlBody.contains(hintText))
-        Assert.assertFalse(htmlBody.contains(warningText))
-      } else {
-        Assert.assertTrue(htmlBody.contains(hintText))
-        Assert.assertTrue(htmlBody.contains(warningText))
-      }
-  }
-
-  Then("""^the trading name warning (is|is not) displayed for a trader with both OSS and IOSS registrations$""") {
-    (version: String) =>
-      val htmlBody    = driver.findElement(By.tagName("body")).getText
-      val warningText =
-        "Any changes you make here will also update the trading names in your One Stop Shop and previous Import One Stop Shop registrations."
-
-      if (version == "is not") {
-        Assert.assertFalse(htmlBody.contains(warningText))
-      } else {
-        Assert.assertTrue(htmlBody.contains(warningText))
-      }
-  }
-
-  Then("""^the trading name warning (is|is not) displayed for a trader with multiple IOSS registrations$""") {
-    (version: String) =>
-      val htmlBody    = driver.findElement(By.tagName("body")).getText
-      val warningText =
-        "Any changes you make here will also update the trading names in all of your Import One Stop Shop registrations."
-
-      if (version == "is not") {
-        Assert.assertFalse(htmlBody.contains(warningText))
-      } else {
-        Assert.assertTrue(htmlBody.contains(warningText))
-      }
-  }
-
-  Then("""^the trading name warning is displayed for a trader with one previous IOSS registration$""") { () =>
+  Then(
+    """^the (registration|amend|rejoin) trading name warnings (are|are not) displayed for a trader with (an OSS|both OSS and IOSS|multiple IOSS|one previous IOSS) (registration|registrations)$"""
+  ) { (journey: String, displayed: String, version: String, registrationNumber: String) =>
     val htmlBody    = driver.findElement(By.tagName("body")).getText
-    val warningText =
+    val hintText    =
+      "We added the trading names you entered when you registered for the One Stop Shop service. Check they are still correct."
+    val warningText = if (version == "an OSS") {
+      "Any changes you make here will also update the trading names in your One Stop Shop registration."
+    } else if (version == "both OSS and IOSS") {
+      "Any changes you make here will also update the trading names in your One Stop Shop and previous Import One Stop Shop registrations."
+    } else if (version == "multiple IOSS") {
+      "Any changes you make here will also update the trading names in all of your Import One Stop Shop registrations."
+    } else if (version == "one previous IOSS") {
       "Any changes you make here will also update the trading names in your previous Import One Stop Shop registration."
-    Assert.assertTrue(htmlBody.contains(warningText))
+    }
+
+    if (displayed == "are not") {
+      if (journey == "registration") {
+        Assert.assertFalse(htmlBody.contains(hintText))
+      }
+      Assert.assertFalse(htmlBody.contains(warningText))
+    } else {
+      if (journey == "registration") {
+        Assert.assertTrue(htmlBody.contains(hintText))
+      }
+      Assert.assertTrue(htmlBody.contains(warningText))
+    }
   }
 
   Then("""^the contact details warnings (are|are not) displayed for a trader with an OSS registration$""") {

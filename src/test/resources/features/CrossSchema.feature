@@ -14,7 +14,7 @@ Feature: Cross Schema journeys
     And the user chooses Yes on the confirm-vat-details page
     Then the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with an OSS registration
-    And the trading name warnings are displayed for a trader with an OSS registration
+    And the registration trading name warnings are displayed for a trader with an OSS registration
     Then the user clicks remove via list for second uk-trading-name
     And the user answers yes on the remove-uk-trading-name/2 page
     Then the user answers yes on the add-uk-trading-name page
@@ -44,7 +44,7 @@ Feature: Cross Schema journeys
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
     And the correct number of existing trading names are displayed for a trader with OSS and IOSS registrations
-    And the trading name warning is displayed for a trader with both OSS and IOSS registrations
+    And the amend trading name warnings are displayed for a trader with both OSS and IOSS registrations
     Then the user selects the list within amend change link for first uk-trading-name from change-add-uk-trading-name
     And the user amends answer to an amended cross schema trading name
     Then the user answers no on the add-uk-trading-name page
@@ -73,7 +73,7 @@ Feature: Cross Schema journeys
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
     And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
-    And the trading name warning is displayed for a trader with multiple IOSS registrations
+    And the amend trading name warnings are displayed for a trader with multiple IOSS registrations
     Then the user selects the list within amend change link for second uk-trading-name from change-add-uk-trading-name
     And the user amends answer to another
     Then the user answers no on the add-uk-trading-name page
@@ -102,7 +102,7 @@ Feature: Cross Schema journeys
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page add-uk-trading-name from rejoin-registration
     And the correct number of existing trading names are displayed for a trader with OSS and IOSS registrations
-    And the trading name warning is displayed for a trader with both OSS and IOSS registrations
+    And the rejoin trading name warnings are displayed for a trader with both OSS and IOSS registrations
     Then the user clicks remove via rejoin route for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     Then the user selects the list within rejoin change link for first uk-trading-name from change-add-uk-trading-name
@@ -135,7 +135,7 @@ Feature: Cross Schema journeys
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page add-uk-trading-name from rejoin-registration
     And the correct number of existing trading names are displayed for a trader with one previous IOSS registration
-    And the trading name warning is displayed for a trader with one previous IOSS registration
+    And the rejoin trading name warnings are displayed for a trader with one previous IOSS registrations
     Then the user clicks remove via rejoin route for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     Then the user selects the list within rejoin change link for first uk-trading-name from change-add-uk-trading-name
@@ -168,7 +168,7 @@ Feature: Cross Schema journeys
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page add-uk-trading-name from rejoin-registration
     And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
-    And the trading name warning is displayed for a trader with multiple IOSS registrations
+    And the rejoin trading name warnings are displayed for a trader with multiple IOSS registrations
     Then the user selects the list within rejoin change link for first uk-trading-name from change-add-uk-trading-name
     And the user amends answer to an amended cross schema trading name for rejoin
     Then the user answers no on the add-uk-trading-name page
@@ -201,7 +201,7 @@ Feature: Cross Schema journeys
     And the user chooses Yes on the confirm-vat-details page
     Then the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with an OSS registration
-    And the trading name warnings are displayed for a trader with an OSS registration
+    And the registration trading name warnings are displayed for a trader with an OSS registration
     Then the user answers no on the add-uk-trading-name page
     Then the user answers no on the previous-oss page
     Then the user answers no on the tax-in-eu page
@@ -249,7 +249,7 @@ Feature: Cross Schema journeys
     And the user adds No registration trader on the first uk-trading-name page
     Then the user is on the add-uk-trading-name page
     And the new trading name is the only trading name where there are no previous registrations
-    And the trading name warnings are not displayed for a trader with an OSS registration
+    And the registration trading name warnings are not displayed for a trader with an OSS registration
     And the user answers no on the add-uk-trading-name page
     Then the user answers no on the previous-oss page
     Then the user answers no on the tax-in-eu page
