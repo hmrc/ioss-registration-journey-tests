@@ -216,7 +216,6 @@ Feature: Cross Schema journeys
     And the user continues through the bank-account-details page
     Then the user is on the check-your-answers page
     Then the user submits their registration
-#    Currently displaying it regardless of whether anything is changed or not - probably need a generic version as it will be complex to add this
     And the text on the confirmation page is not displayed when the trader has not made changes and has an OSS registration
 
   Scenario: Amend registration for trader with other registrations who did not make changes to data
