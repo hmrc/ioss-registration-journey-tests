@@ -51,15 +51,9 @@ class CrossSchemaStepDef extends BaseStepDef {
     Assert.assertFalse(htmlBody.contains("Any changes you make here will also update the trading names in"))
   }
 
-  Then("""^there is no warning for (contact|bank) details mentioning other registrations$""") { (page: String) =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertFalse(htmlBody.contains(s"Any changes you make here will also update the $page details in"))
-  }
-
   Then(
-    """^the (registration|amend|rejoin) trading name warnings (are|are not) displayed for a trader with (an OSS|both OSS and IOSS|multiple IOSS|one previous IOSS) (registration|registrations)$"""
+    """^the (registration|amend|rejoin) trading name warnings (are|are not) displayed for a trader with (an OSS|both OSS and IOSS|multiple IOSS|one previous IOSS|no other) (registration|registrations)$"""
   ) { (journey: String, displayed: String, version: String, registrationNumber: String) =>
-    val htmlBody    = driver.findElement(By.tagName("body")).getText
     val hintText    =
       "We added the trading names you entered when you registered for the One Stop Shop service. Check they are still correct."
     val warningText = if (version == "an OSS") {
@@ -70,6 +64,41 @@ class CrossSchemaStepDef extends BaseStepDef {
       "Any changes you make here will also update the trading names in all of your Import One Stop Shop registrations."
     } else if (version == "one previous IOSS") {
       "Any changes you make here will also update the trading names in your previous Import One Stop Shop registration."
+    } else {
+      "Any changes you make here will also update the trading names in"
+    }
+
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+
+    if (displayed == "are not") {
+      Assert.assertFalse(htmlBody.contains(warningText))
+      if (journey == "registration") {
+        Assert.assertFalse(htmlBody.contains(hintText))
+      }
+    } else {
+      Assert.assertTrue(htmlBody.contains(warningText))
+      if (journey == "registration") {
+        Assert.assertTrue(htmlBody.contains(hintText))
+      }
+    }
+  }
+
+  Then(
+    """^the (registration|amend|rejoin) (contact|bank) details warnings (are|are not) displayed for a trader with (an OSS|both OSS and IOSS|multiple IOSS|one previous IOSS|one current IOSS|no other) (registration|registrations)$"""
+  ) { (journey: String, page: String, displayed: String, version: String, registrationNumber: String) =>
+    val htmlBody    = driver.findElement(By.tagName("body")).getText
+    val hintText    =
+      "We have added the details you entered for the One Stop Shop service. Check they are still correct."
+    val warningText = if (version == "an OSS") {
+      s"Any changes you make here will also update the $page details in your One Stop Shop registration."
+    } else if (version == "both OSS and IOSS") {
+      s"Any changes you make here will also update the $page details in your One Stop Shop and previous Import One Stop Shop registrations."
+    } else if (version == "multiple IOSS") {
+      s"Any changes you make here will also update the $page details in all of your Import One Stop Shop registrations."
+    } else if (version == "one previous IOSS") {
+      s"Any changes you make here will also update the $page details in your previous Import One Stop Shop registration."
+    } else {
+      s"Any changes you make here will also update the $page details in"
     }
 
     if (displayed == "are not") {
@@ -85,104 +114,10 @@ class CrossSchemaStepDef extends BaseStepDef {
     }
   }
 
-  Then("""^the contact details warnings (are|are not) displayed for a trader with an OSS registration$""") {
-    (version: String) =>
-      val htmlBody    = driver.findElement(By.tagName("body")).getText
-      val hintText    =
-        "We have added the details you entered for the One Stop Shop service. Check they are still correct."
-      val warningText =
-        "Any changes you make here will also update the contact details in your One Stop Shop registration."
-
-      if (version == "are not") {
-        Assert.assertFalse(htmlBody.contains(hintText))
-        Assert.assertFalse(htmlBody.contains(warningText))
-      } else {
-        Assert.assertTrue(htmlBody.contains(hintText))
-        Assert.assertTrue(htmlBody.contains(warningText))
-      }
-  }
-
-  Then("""^the contact details warning (is|is not) displayed for a trader with both OSS and IOSS registrations$""") {
-    (version: String) =>
-      val htmlBody    = driver.findElement(By.tagName("body")).getText
-      val warningText =
-        "Any changes you make here will also update the contact details in your One Stop Shop and previous Import One Stop Shop registrations."
-
-      if (version == "is not") {
-        Assert.assertFalse(htmlBody.contains(warningText))
-      } else {
-        Assert.assertTrue(htmlBody.contains(warningText))
-      }
-  }
-
-  Then("""^the contact details warning (is|is not) displayed for a trader with multiple IOSS registrations$""") {
-    (version: String) =>
-      val htmlBody    = driver.findElement(By.tagName("body")).getText
-      val warningText =
-        "Any changes you make here will also update the contact details in all of your Import One Stop Shop registrations."
-
-      if (version == "is not") {
-        Assert.assertFalse(htmlBody.contains(warningText))
-      } else {
-        Assert.assertTrue(htmlBody.contains(warningText))
-      }
-  }
-
-  Then("""^the (contact|bank) details warning is displayed for a trader with one previous IOSS registration$""") {
-    (page: String) =>
-      val htmlBody    = driver.findElement(By.tagName("body")).getText
-      val warningText =
-        s"Any changes you make here will also update the $page details in your previous Import One Stop Shop registration."
-      Assert.assertTrue(htmlBody.contains(warningText))
-  }
-
   Then("""^the contact details are blank$""") { () =>
     Assert.assertTrue(driver.findElement(By.id("fullName")).getAttribute("value").isEmpty)
     Assert.assertTrue(driver.findElement(By.id("telephoneNumber")).getAttribute("value").isEmpty)
     Assert.assertTrue(driver.findElement(By.id("emailAddress")).getAttribute("value").isEmpty)
-  }
-
-  Then("""^the bank details warnings (are|are not) displayed for a trader with an OSS registration$""") {
-    (version: String) =>
-      val htmlBody    = driver.findElement(By.tagName("body")).getText
-      val hintText    =
-        "We have added the details you entered for the One Stop Shop service. Check they are still correct."
-      val warningText =
-        "Any changes you make here will also update the bank details in your One Stop Shop registration."
-
-      if (version == "are not") {
-        Assert.assertFalse(htmlBody.contains(hintText))
-        Assert.assertFalse(htmlBody.contains(warningText))
-      } else {
-        Assert.assertTrue(htmlBody.contains(hintText))
-        Assert.assertTrue(htmlBody.contains(warningText))
-      }
-  }
-
-  Then("""^the bank details warning (is|is not) displayed for a trader with both OSS and IOSS registrations$""") {
-    (version: String) =>
-      val htmlBody    = driver.findElement(By.tagName("body")).getText
-      val warningText =
-        "Any changes you make here will also update the bank details in your One Stop Shop and previous Import One Stop Shop registrations."
-
-      if (version == "is not") {
-        Assert.assertFalse(htmlBody.contains(warningText))
-      } else {
-        Assert.assertTrue(htmlBody.contains(warningText))
-      }
-  }
-
-  Then("""^the bank details warning (is|is not) displayed for a trader with multiple IOSS registrations$""") {
-    (version: String) =>
-      val htmlBody    = driver.findElement(By.tagName("body")).getText
-      val warningText =
-        "Any changes you make here will also update the bank details in all of your Import One Stop Shop registrations."
-
-      if (version == "is not") {
-        Assert.assertFalse(htmlBody.contains(warningText))
-      } else {
-        Assert.assertTrue(htmlBody.contains(warningText))
-      }
   }
 
   Then("""^the bank details are blank$""") { () =>
@@ -192,87 +127,46 @@ class CrossSchemaStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the text on the confirmation page (is|is not) displayed when the trader (has|has not) made changes and (has an|has no) OSS registration$"""
-  ) { (version: String, madeChanges: String, hasRegistration: String) =>
-    val htmlBody            = driver.findElement(By.tagName("body")).getText
-    val ossConfirmationText = "We've also updated your One Stop Shop registration."
-
-    if (version == "is not") {
-      Assert.assertFalse(htmlBody.contains(ossConfirmationText))
-    } else {
-      Assert.assertTrue(htmlBody.contains(ossConfirmationText))
-    }
-  }
-
-  Then(
-    """^the text on the (amend|rejoin) confirmation page (is|is not) displayed when the trader (has|has not) made changes and has both OSS and IOSS registrations$"""
-  ) { (page: String, version: String, madeChanges: String) =>
-    val htmlBody                   = driver.findElement(By.tagName("body")).getText
-    val ossAndIossConfirmationText =
+    """^the text on the (registration|amend|rejoin) confirmation page (is|is not) displayed when the trader (has|has not) made changes and has (an OSS|both OSS and IOSS|multiple IOSS|one previous IOSS|no other) (registration|registrations)$"""
+  ) { (journey: String, displayed: String, madeChanges: String, version: String, registrationNumber: String) =>
+    val htmlBody         = driver.findElement(By.tagName("body")).getText
+    val confirmationText = if (version == "an OSS") {
+      "We've also updated your One Stop Shop registration."
+    } else if (version == "both OSS and IOSS") {
       "We've also updated your One Stop Shop and previous Import One Stop Shop registrations."
-
-    if (version == "is not") {
-      Assert.assertFalse(htmlBody.contains(ossAndIossConfirmationText))
-    } else {
-      Assert.assertTrue(htmlBody.contains(ossAndIossConfirmationText))
-    }
-  }
-
-  Then(
-    """^the text on the (amend|rejoin) confirmation page (is|is not) displayed when the trader (has|has not) made changes and has multiple IOSS registrations$"""
-  ) { (page: String, version: String, madeChanges: String) =>
-    val htmlBody                     = driver.findElement(By.tagName("body")).getText
-    val multipleIossConfirmationText =
+    } else if (version == "multiple IOSS") {
       "We've also updated your previous Import One Stop Shop registrations."
-
-    if (version == "is not") {
-      Assert.assertFalse(htmlBody.contains(multipleIossConfirmationText))
-    } else {
-      Assert.assertTrue(htmlBody.contains(multipleIossConfirmationText))
-    }
-  }
-
-  Then(
-    """^the text on the rejoin confirmation page (is|is not) displayed when the trader (has|has not) made changes and has one previous IOSS registration$"""
-  ) { (version: String, madeChanges: String) =>
-    val htmlBody                     = driver.findElement(By.tagName("body")).getText
-    val multipleIossConfirmationText =
+    } else if (version == "one previous IOSS") {
       "We've also updated your previous Import One Stop Shop registration."
-
-    if (version == "is not") {
-      Assert.assertFalse(htmlBody.contains(multipleIossConfirmationText))
     } else {
-      Assert.assertTrue(htmlBody.contains(multipleIossConfirmationText))
+      "We've also updated your"
+    }
+
+    if (displayed == "is not") {
+      Assert.assertFalse(htmlBody.contains(confirmationText))
+    } else {
+      Assert.assertTrue(htmlBody.contains(confirmationText))
     }
   }
 
   Then(
-    """^the text on the amend confirmation page is not displayed when the trader has (no other registrations|not amended any data)$"""
-  ) { (status: String) =>
+    """^all of the updated answers are displayed as changed on the amend confirmation page for (OSS and IOSS|multiple IOSS accounts)$"""
+  ) { (version: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertFalse(htmlBody.contains("We've also updated your"))
-  }
+    if (version == "OSS and IOSS") {
+      Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+      Assert.assertTrue(htmlBody.contains("Trading names added an amended cross schema trading name"))
+      Assert.assertTrue(htmlBody.contains("Trading names removed tradingName1"))
+      Assert.assertTrue(htmlBody.contains("Telephone number +17771117771"))
+      Assert.assertTrue(htmlBody.contains("IBAN GB29NWBK60161331926819"))
+    } else {
+      Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+      Assert.assertTrue(htmlBody.contains("Trading names added another"))
+      Assert.assertTrue(htmlBody.contains("Trading names removed tradingName2"))
+      Assert.assertTrue(htmlBody.contains("Email address amend-cross-schema-test@email.com"))
+      Assert.assertTrue(htmlBody.contains("Name on the account Another Cross Schema Name"))
+    }
 
-  Then(
-    """^all of the updated answers are displayed as changed on the amend confirmation page for OSS and IOSS$"""
-  ) { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
-    Assert.assertTrue(htmlBody.contains("Trading names added an amended cross schema trading name"))
-    Assert.assertTrue(htmlBody.contains("Trading names removed tradingName1"))
-    Assert.assertTrue(htmlBody.contains("Telephone number +17771117771"))
-    Assert.assertTrue(htmlBody.contains("IBAN GB29NWBK60161331926819"))
-  }
-
-  Then(
-    """^all of the updated answers are displayed as changed on the amend confirmation page for multiple IOSS accounts$"""
-  ) { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
-    Assert.assertTrue(htmlBody.contains("Trading names added another"))
-    Assert.assertTrue(htmlBody.contains("Trading names removed tradingName2"))
-    Assert.assertTrue(htmlBody.contains("Email address amend-cross-schema-test@email.com"))
-    Assert.assertTrue(htmlBody.contains("Name on the account Another Cross Schema Name"))
   }
 
   Then(
