@@ -119,7 +119,7 @@ Feature: Rejoin registration journeys
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin add link for page previous-oss from rejoin-registration
     Then the user answers yes on the previous-oss page
-    And the user selects Republic of Cyprus on the first previous-country page
+    And the user selects Cyprus on the first previous-country page
     And the user picks ioss on the previous-scheme/1/1 page
     And the user answers no on the previous-ioss-scheme/1/1 page
     And the user completes details on the previous-ioss-number/1/1 page
