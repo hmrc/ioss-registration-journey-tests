@@ -32,7 +32,7 @@ Feature: Amend Registration journeys
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page previous-oss from change-your-registration
     Then the user answers yes on the previous-oss page
-    And the user selects Republic of Cyprus on the first previous-country page
+    And the user selects Cyprus on the first previous-country page
     And the user picks ioss on the previous-scheme/1/1 page
     And the user answers no on the previous-ioss-scheme/1/1 page
     And the user completes details on the previous-ioss-number/1/1 page
@@ -75,7 +75,7 @@ Feature: Amend Registration journeys
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page previous-oss from change-your-registration
     Then the user answers yes on the previous-oss page
-    And the user selects Republic of Cyprus on the first previous-country page
+    And the user selects Cyprus on the first previous-country page
     And the user picks ioss on the previous-scheme/1/1 page
     And the user answers no on the previous-ioss-scheme/1/1 page
     And the user completes details on the previous-ioss-number/1/1 page
@@ -121,7 +121,7 @@ Feature: Amend Registration journeys
     Then the user is on the change-your-registration page
     Then the user selects the amend add link for page previous-oss from change-your-registration
     Then the user answers yes on the previous-oss page
-    And the user selects Republic of Cyprus on the first previous-country page
+    And the user selects Cyprus on the first previous-country page
     And the user picks ioss on the previous-scheme/1/1 page
     And the user answers no on the previous-ioss-scheme/1/1 page
     And the user completes details on the previous-ioss-number/1/1 page
