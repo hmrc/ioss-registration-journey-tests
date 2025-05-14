@@ -18,8 +18,11 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import org.junit.Assert
 import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.pages.CommonPage
 import uk.gov.hmrc.test.ui.pages.CommonPage._
 import uk.gov.hmrc.test.ui.pages.RegistrationPage._
+
+import java.time.LocalDate
 
 class RegistrationStepDef extends BaseStepDef {
 
@@ -203,5 +206,10 @@ class RegistrationStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("Email address different-email@test.com"))
   }
+
+  When("""^the user has been directed to the registration quarantine page$""") { () =>
+    val currentYear = LocalDate.now().getYear
+    CommonPage.checkUrl(s"other-country-excluded-and-quarantined?countryCode=EE&exclusionDate=$currentYear-01-01")
+    }
 
 }

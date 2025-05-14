@@ -10,7 +10,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with existing EU quarantine is not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 333333334 and IOSS Number IM9019999998 accesses the rejoin registration journey
-    Then the user is on the other-country-excluded-and-quarantined?countryCode=EE&exclusionDate=2023-01-01 page
+    Then the user has been directed to the registration quarantine page
 
   Scenario: Trader with active OSS scheme - previous registration - can rejoin
     Given the user accesses the authority wizard
