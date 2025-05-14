@@ -22,7 +22,7 @@ Feature: Core Validation Scenarios
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
     And the user signs in as an Organisation Admin with VAT enrolment 333333334
-    Then the user is on the other-country-excluded-and-quarantined?countryCode=EE&exclusionDate=2023-01-01 page
+    Then the user has been directed to the registration quarantine page
 
   Scenario: Trader with active OSS scheme - previous registration - can register
     Given the user accesses the IOSS Registration service
