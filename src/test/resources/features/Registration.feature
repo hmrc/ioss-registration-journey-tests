@@ -35,7 +35,6 @@ Feature: Registration journeys
     And the user completes details on the previous-ioss-number/1/3 page
       | data         | fieldId                    |
       | IM3487777777 | previousSchemeNumber       |
-      | IN3487777777 | previousIntermediaryNumber |
     Then the user is on the previous-scheme-answers/1 page
     And the user continues through the previous-scheme-answers/1 page
     And the user answers yes on the previous-schemes-overview page

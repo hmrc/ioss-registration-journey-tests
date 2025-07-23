@@ -47,7 +47,6 @@ Feature: Rejoin - Core Validation Scenarios
     And the user completes details on the previous-ioss-number/1/1 page
       | data         | fieldId                    |
       | IM7051122334 | previousSchemeNumber       |
-      | IN7051122334 | previousIntermediaryNumber |
     Then the user is on the scheme-still-active?countryCode=SI page
 
   Scenario: Trader with active IOSS scheme retrieved from ETMP - previous registration - not able to rejoin
@@ -88,7 +87,6 @@ Feature: Rejoin - Core Validation Scenarios
     And the user completes details on the previous-ioss-number/1/1 page
       | data         | fieldId                    |
       | IM4281122334 | previousSchemeNumber       |
-      | IN4281122334 | previousIntermediaryNumber |
     Then the user is on the scheme-quarantined page
 
   Scenario: Trader with quarantined IOSS scheme retrieved from ETMP - previous registration - not able to rejoin
