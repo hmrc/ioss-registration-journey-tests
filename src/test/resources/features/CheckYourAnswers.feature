@@ -33,7 +33,6 @@ Feature: Change answers for registrations via Check Your Answers
     And the user completes details on the previous-ioss-number/2/1 page
       | data         | fieldId                    |
       | IM0401234567 | previousSchemeNumber       |
-      | IN0407654321 | previousIntermediaryNumber |
     Then the user answers no on the previous-scheme-answers/2 page
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
@@ -96,7 +95,6 @@ Feature: Change answers for registrations via Check Your Answers
     And the user completes details on the previous-ioss-number/1/2 page
       | data         | fieldId                    |
       | IM3487777777 | previousSchemeNumber       |
-      | IN3487777777 | previousIntermediaryNumber |
     Then the user answers no on the previous-scheme-answers/1 page
     And the user answers yes on the previous-schemes-overview page
     And the user selects Finland on the second previous-country page
@@ -177,7 +175,6 @@ Feature: Change answers for registrations via Check Your Answers
     And the user completes details on the previous-ioss-number/2/1 page
       | data         | fieldId                    |
       | IM0401234567 | previousSchemeNumber       |
-      | IN0407654321 | previousIntermediaryNumber |
     Then the user answers no on the previous-scheme-answers/2 page
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page

@@ -32,7 +32,6 @@ Feature: Change and remove answers for registrations in progress
     And the user completes details on the previous-ioss-number/1/2 page
       | data         | fieldId                    |
       | IM3487777777 | previousSchemeNumber       |
-      | IN3487777777 | previousIntermediaryNumber |
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers yes on the previous-schemes-overview page
@@ -131,7 +130,6 @@ Feature: Change and remove answers for registrations in progress
     And the user completes details on the previous-ioss-number/1/2 page
       | data         | fieldId                    |
       | IM0563332221 | previousSchemeNumber       |
-      | IN0563332221 | previousIntermediaryNumber |
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers yes on the previous-schemes-overview page
@@ -249,7 +247,6 @@ Feature: Change and remove answers for registrations in progress
     And the user completes details on the previous-ioss-number/1/1 page
       | data         | fieldId                    |
       | IM2506544561 | previousSchemeNumber       |
-      | IN2507412365 | previousIntermediaryNumber |
     Then the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
     Then the user answers yes on the tax-in-eu page
