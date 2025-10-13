@@ -1,4 +1,4 @@
-@Registration @Accessibility
+@Registration
 
 Feature: Unusable Status Email Journey
 

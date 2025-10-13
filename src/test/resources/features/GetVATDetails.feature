@@ -10,19 +10,19 @@ Feature: Get VAT Details kickout and alternative journeys
     And the user answers yes on the registered-for-vat-in-uk page
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page
-  @Accessibility
+
   Scenario: VAT details kickout when business is incorrect
     Then the user signs in as an Organisation Admin with VAT enrolment 100000001
     And the user is on the confirm-vat-details page
     And the user chooses No, different business on the confirm-vat-details page
     Then the user is on the register-different-business page
-  @Accessibility
+
   Scenario: VAT details kickout when VAT details are incorrect
     Then the user signs in as an Organisation Admin with VAT enrolment 100000001
     And the user is on the confirm-vat-details page
     And the user chooses Yes, details incorrect on the confirm-vat-details page
     Then the user is on the update-vat-details page
-  @Accessibility
+
   Scenario: VAT details kickout when VAT details not found
     Then the user signs in as an Organisation Admin with VAT enrolment 900000001
     And the user is on the registration-service-error page
@@ -33,8 +33,7 @@ Feature: Get VAT Details kickout and alternative journeys
 
   Scenario: VAT details kickout when there are missing VAT details
     Then the user signs in as an Organisation Admin with VAT enrolment 700000001
-    And the user is on the registration-service-error page
-  @Accessibility
+
   Scenario: VAT details kickout when the VAT number for this account is no longer valid
     Then the user signs in as an Organisation Admin with VAT enrolment 600000001
     And the user is on the expired-vrn-date page

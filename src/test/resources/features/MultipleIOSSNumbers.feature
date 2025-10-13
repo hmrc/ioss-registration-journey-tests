@@ -1,4 +1,4 @@
-@Accessibility @MultipleIOSS
+@MultipleIOSS
 
 Feature: Multiple IOSS Number Registration journeys
 
@@ -105,12 +105,15 @@ Feature: Multiple IOSS Number Registration journeys
     Then the user selects the amend change link for page add-website-address from change-your-registration
     Then the user clicks remove via amend route for second website-address
     And the user answers yes on the remove-website-address/2 page
+    And the user is on the add-website-address page
     And the user selects the list within amend change link for first website-address from change-add-website-address
     And the user amends data to www.amended-website-name-multiple-ioss.com on the website-address/1 page
     Then the user answers yes on the add-website-address page
     And the user adds https://www.2ndmultipleiosswebsite.eu on the second website-address page
     Then the user answers no on the add-website-address page
+    Then the user is on the change-your-registration page
     Then the user selects the amend change link for page previous-schemes-overview from change-your-registration
+    Then the user is on the previous-schemes-overview page
     Then the user selects the list within amend change link for second previous-scheme-answers from change-previous-schemes-overview
     Then the user answers yes on the previous-scheme-answers/2 page
     And the user picks oss on the previous-scheme/2/2 page

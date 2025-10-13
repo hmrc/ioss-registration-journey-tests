@@ -15,7 +15,6 @@ Feature: NETP scenarios
     Then the user signs in as an Organisation Admin with VAT enrolment 444666661
     And the user is on the confirm-vat-details page
 
-  @Accessibility
   Scenario: Trader with Single Market Indicator set to true and NETP set to true cannot progress through registration
     And the user answers yes on the ni-based page
     And the user continues through the register-to-use-service page

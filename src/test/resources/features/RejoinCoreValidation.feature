@@ -15,6 +15,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with active OSS scheme - previous registration - can rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page previous-oss from rejoin-registration
     Then the user answers yes on the previous-oss page
     And the user selects Slovenia on the first previous-country page
@@ -39,6 +40,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with active IOSS scheme - previous registration - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page previous-oss from rejoin-registration
     Then the user answers yes on the previous-oss page
     And the user selects Slovenia on the first previous-country page
@@ -57,6 +59,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with quarantined OSS scheme - previous registration - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page previous-oss from rejoin-registration
     Then the user answers yes on the previous-oss page
     And the user selects Latvia on the first previous-country page
@@ -79,6 +82,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with quarantined IOSS scheme - previous registration - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page previous-oss from rejoin-registration
     Then the user answers yes on the previous-oss page
     And the user selects Latvia on the first previous-country page
@@ -97,6 +101,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with active scheme - EU details - VRN - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
     And the user answers yes on the tax-in-eu page
     And the user selects Portugal on the first eu-tax page
@@ -113,6 +118,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with active scheme - EU details - Tax ID - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
     And the user answers yes on the tax-in-eu page
     And the user selects Portugal on the first eu-tax page
@@ -129,6 +135,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with quarantined scheme - EU details - VRN - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
     And the user answers yes on the tax-in-eu page
     And the user selects Lithuania on the first eu-tax page
@@ -145,6 +152,7 @@ Feature: Rejoin - Core Validation Scenarios
   Scenario: Trader with quarantined scheme - EU details - Tax ID - not able to rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999998 accesses the rejoin registration journey
+    Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
     And the user answers yes on the tax-in-eu page
     And the user selects Lithuania on the first eu-tax page

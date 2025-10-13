@@ -1,4 +1,4 @@
-@Registration @Accessibility
+@Registration
 
 Feature: Other Journey Kickout pages
 

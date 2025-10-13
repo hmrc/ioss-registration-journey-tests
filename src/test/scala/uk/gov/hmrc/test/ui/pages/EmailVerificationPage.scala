@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,8 +57,11 @@ object EmailVerificationPage extends BasePage {
     driver.findElement(By.className("govuk-button")).click()
   }
 
-  def checkInterceptPage(): Unit =
-    driver.getCurrentUrl should startWith(TestConfiguration.url("ioss-returns-frontend") + "/intercept-unusable-email")
+  def checkInterceptPage(): Unit = {
+    val interceptUrl = TestConfiguration.url("ioss-returns-frontend") + "/intercept-unusable-email"
+    fluentWait.until(ExpectedConditions.urlContains(interceptUrl))
+    driver.getCurrentUrl should startWith(interceptUrl)
+  }
 
   def checkBusinessContactDetails(): Unit =
     driver.getCurrentUrl should startWith(

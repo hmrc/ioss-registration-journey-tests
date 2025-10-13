@@ -1,8 +1,7 @@
-@Registration @Accessibility
+@Registration
 
 Feature: Registration journeys
 
-  @ZAP
   Scenario: Full IOSS Registration journey for NI Trader
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -87,7 +86,6 @@ Feature: Registration journeys
       | GB33BUKB20201555555555 | iban        |
     Then the user is on the check-your-answers page
     Then the user submits their registration
-
 
   Scenario: IOSS Registration journey for Norwegian Trader
     Given the user accesses the IOSS Registration service

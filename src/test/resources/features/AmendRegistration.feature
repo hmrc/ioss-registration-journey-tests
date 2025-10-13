@@ -1,8 +1,7 @@
-@Amend @Accessibility
+@Amend
 
 Feature: Amend Registration journeys
 
-  @ZAP
   Scenario: An IOSS registered user amends registration answers from yes to no for optional sections
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey

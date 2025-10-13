@@ -1,7 +1,7 @@
 @ChangeAndRemove
 
 Feature: Change and remove answers for registrations in progress
-  @Accessibility
+
   Scenario: Remove answers via list pages during registration for NI Trader
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -16,8 +16,10 @@ Feature: Change and remove answers for registrations in progress
     And the user adds Alternative trading on the first uk-trading-name page
     And the user answers yes on the add-uk-trading-name page
     And the user adds 789 & trading on the second uk-trading-name page
+    And the user is on the add-uk-trading-name page
     Then the user clicks remove via list for second uk-trading-name
     And the user answers yes on the remove-uk-trading-name/2 page
+    And the user is on the add-uk-trading-name page
     Then the user clicks remove via list for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     Then the user answers no on the have-uk-trading-name page
@@ -42,9 +44,12 @@ Feature: Change and remove answers for registrations in progress
     Then the user is on the previous-schemes-overview page
     Then the user clicks remove via list for second registration
     And the user answers yes on the remove-registration/2 page
+    And the user is on the previous-schemes-overview page
     Then the user selects the list change link for first previous-scheme-answers from change-previous-schemes-overview
+    And the user is on the previous-scheme-answers/1 page
     Then the user clicks remove via overviewLoop for second previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/2 page
+    And the user is on the previous-scheme-answers/1 page
     Then the user clicks remove via overviewLoop for first previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/1 page
     Then the user answers no on the previous-oss page
@@ -72,16 +77,20 @@ Feature: Change and remove answers for registrations in progress
       | A Town        | townOrCity |
       | G23566        | postCode   |
     And the user continues through the check-tax-details/2 page
+    And the user is on the add-tax-details page
     Then the user clicks remove via list for second tax-details
     And the user answers yes on the remove-tax-details/2 page
+    And the user is on the add-tax-details page
     Then the user clicks remove via list for first tax-details
     And the user answers yes on the remove-tax-details/1 page
     Then the user answers no on the tax-in-eu page
     And the user adds www.1st-website.com on the first website-address page
     And the user answers yes on the add-website-address page
     And the user adds https://website2.eu on the second website-address page
+    And the user is on the add-website-address page
     Then the user clicks remove via list for second website-address
     And the user answers yes on the remove-website-address/2 page
+    And the user is on the add-website-address page
     Then the user clicks remove via list for first website-address
     And the user answers yes on the remove-website-address/1 page
     Then the user adds www.new1st-website.com on the first website-address page
@@ -116,6 +125,7 @@ Feature: Change and remove answers for registrations in progress
     And the user adds 2nd name! on the second uk-trading-name page
     Then the user selects the list change link for second uk-trading-name from change-add-uk-trading-name
     And the user amends data to Different trading name on the uk-trading-name/2 page
+    And the user is on the add-uk-trading-name page
     Then the user clicks remove via list for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     Then the user answers no on the add-uk-trading-name page
@@ -162,8 +172,10 @@ Feature: Change and remove answers for registrations in progress
       | data          | fieldId    |
       | 1 Street Name | line1      |
       | A Town        | townOrCity |
+    And the user is on the check-tax-details/1 page
     Then the user selects the list change link for first eu-vat-number from check-tax-details-1
     And the user amends data to IT01234567888 on the eu-vat-number/1 page
+    And the user is on the check-tax-details/1 page
     Then the user selects the list change link for first eu-fixed-establishment-address from check-tax-details-1
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data   | fieldId |
@@ -181,6 +193,7 @@ Feature: Change and remove answers for registrations in progress
       | Suburb        | line2      |
       | A Town        | townOrCity |
       | DK3566        | postCode   |
+    And the user is on the check-tax-details/2 page
     Then the user selects the list change link for second registration-tax-type from check-tax-details-2
     And the user picks vat number on the registration-tax-type/2 page
     And the user adds DK12345678 on the second eu-vat-number page
@@ -189,8 +202,10 @@ Feature: Change and remove answers for registrations in progress
     And the user adds www.1st-website.com on the first website-address page
     And the user answers yes on the add-website-address page
     And the user adds https://website2.eu on the second website-address page
+    And the user is on the add-website-address page
     Then the user selects the list change link for first website-address from change-add-website-address
     And the user amends data to http://www.1st-website.com on the website-address/1 page
+    And the user is on the add-website-address page
     Then the user selects the list change link for second website-address from change-add-website-address
     And the user amends data to 2ndwebsite-amend.eu on the website-address/2 page
     Then the user answers yes on the add-website-address page
@@ -225,8 +240,10 @@ Feature: Change and remove answers for registrations in progress
     And the user adds A Norwegian trading name on the first uk-trading-name page
     And the user answers yes on the add-uk-trading-name page
     And the user adds 2nd Norwegian name! on the second uk-trading-name page
+    And the user is on the add-uk-trading-name page
     Then the user selects the list change link for first uk-trading-name from change-add-uk-trading-name
     And the user amends data to Different Norwegian trading name on the uk-trading-name/1 page
+    And the user is on the add-uk-trading-name page
     Then the user clicks remove via list for second uk-trading-name
     And the user answers yes on the remove-uk-trading-name/2 page
     Then the user answers yes on the add-uk-trading-name page
@@ -237,7 +254,9 @@ Feature: Change and remove answers for registrations in progress
     And the user picks oss on the previous-scheme/1/1 page
     And the user adds HR01234567888 on the first previous-oss-scheme-number/1 page
     Then the user answers no on the previous-scheme-answers/1 page
+    And the user is on the previous-schemes-overview page
     Then the user selects the list change link for first previous-scheme-answers from change-previous-schemes-overview
+    And the user is on the previous-scheme-answers/1 page
     Then the user clicks remove via list for first previous-scheme\/1
     And the user answers yes on the remove-previous-scheme/1/1 page
     Then the user answers yes on the previous-oss page
@@ -273,19 +292,23 @@ Feature: Change and remove answers for registrations in progress
       | A Town        | townOrCity |
       | ES23566       | postCode   |
     And the user continues through the check-tax-details/2 page
+    And the user is on the add-tax-details page
     Then the user selects the list change link for first check-tax-details from change-add-tax-details
     Then the user selects the list change link for first registration-tax-type from check-tax-details-1
     And the user picks tax id number on the registration-tax-type/1 page
     And the user adds ROM12345R on the first eu-tax-identification-number page
     And the user continues through the check-tax-details/1 page
+    And the user is on the add-tax-details page
     Then the user clicks remove via list for second tax-details
     And the user answers yes on the remove-tax-details/2 page
     And the user answers no on the add-tax-details page
     And the user adds www.1st-norwegian-website.no on the first website-address page
     And the user answers yes on the add-website-address page
     And the user adds https://otherwebsite.eu on the second website-address page
+    And the user is on the add-website-address page
     Then the user clicks remove via list for first website-address
     And the user answers yes on the remove-website-address/1 page
+    And the user is on the add-website-address page
     Then the user selects the list change link for first website-address from change-add-website-address
     And the user amends data to only-norwegian-website.no on the website-address/1 page
     Then the user answers no on the add-website-address page
