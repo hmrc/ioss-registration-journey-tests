@@ -17,6 +17,7 @@
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.test.ui.pages.EmailVerificationPage._
 import uk.gov.hmrc.test.ui.pages._
 
@@ -25,6 +26,8 @@ class EmailVerificationStepDef extends BaseStepDef {
   And(
     """^the user completes the (registration|change answers|amend registration|amend previous registration|second amend previous registration|rejoin registration) email verification process"""
   ) { (mode: String) =>
+    fluentWait.until(ExpectedConditions.urlContains("http://localhost:9890/email-verification/journey"))
+
     val journeyId = driver.getCurrentUrl.split("/")(5)
     goToEmailVerificationPasscodeGeneratorUrl()
 

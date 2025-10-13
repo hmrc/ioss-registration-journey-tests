@@ -17,15 +17,20 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object EmailVerificationPage extends BasePage {
 
-  def goToEmailVerificationPasscodeGeneratorUrl(): Unit =
+  def goToEmailVerificationPasscodeGeneratorUrl(): Unit = {
+
+    val testOnlyUrl =
+      "http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/test-only/get-passcodes"
     driver.navigate
-      .to(
-        "http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/test-only/get-passcodes"
-      )
+      .to(testOnlyUrl)
+
+    fluentWait.until(ExpectedConditions.urlContains(testOnlyUrl))
+  }
 
   def goToEmailVerificationUrl(journeyId: String, mode: String): Unit = {
     val url = mode match {
@@ -37,11 +42,14 @@ object EmailVerificationPage extends BasePage {
       case _                                                                    =>
         throw new Exception("URL doesn't exist")
     }
+
+    val emailVerificationUrl =
+      s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/$url&origin=IOSS&service=ioss-registration-frontend"
     driver
       .navigate()
-      .to(
-        s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/$url&origin=IOSS&service=ioss-registration-frontend"
-      )
+      .to(emailVerificationUrl)
+
+    fluentWait.until(ExpectedConditions.urlContains(emailVerificationUrl))
   }
 
   def enterPasscode(passcode: String): Unit = {

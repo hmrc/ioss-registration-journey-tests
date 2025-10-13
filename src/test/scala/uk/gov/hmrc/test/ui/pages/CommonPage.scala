@@ -28,8 +28,11 @@ object CommonPage extends BasePage {
   val registrationUrl: String = TestConfiguration.url("ioss-registration-frontend")
   var credId: String          = "1234123412341234"
 
-  def checkUrl(url: String): Unit =
-    driver.getCurrentUrl should startWith(s"${TestConfiguration.url("ioss-registration-frontend")}/$url")
+  def checkUrl(url: String): Unit = {
+    val urlToCheck = s"${TestConfiguration.url("ioss-registration-frontend")}/$url"
+    fluentWait.until(ExpectedConditions.urlContains(urlToCheck))
+    driver.getCurrentUrl should startWith(urlToCheck)
+  }
 
   def selectAnswer(data: String): Unit = {
     data match {

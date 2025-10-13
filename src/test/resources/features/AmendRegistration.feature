@@ -144,6 +144,7 @@ Feature: Amend Registration journeys
       | 1 Street Name | line1      |
       | A Town        | townOrCity |
     And the user continues through the check-tax-details/1 page
+    And the user is on the add-tax-details page
     Then the user clicks remove via amend route for first tax-details
     And the user answers yes on the remove-tax-details/1 page
     Then the user answers no on the tax-in-eu page
@@ -158,6 +159,7 @@ Feature: Amend Registration journeys
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And the user is on the add-uk-trading-name page
     Then the user clicks remove via amend route for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     Then the user selects the list within amend change link for first uk-trading-name from change-add-uk-trading-name
@@ -212,12 +214,14 @@ Feature: Amend Registration journeys
       | 111 Porto Street | line1      |
       | Porto            | townOrCity |
     And the user continues through the check-tax-details/3 page
+    And the user is on the add-tax-details page
     Then the user selects the list within amend change link for third check-tax-details from change-add-tax-details
     Then the user selects the additional tax details list within amend change link for third registration-tax-type from check-tax-details-3
     And the user picks vat number on the registration-tax-type/3 page
     And the user adds PT123456789 on the third eu-vat-number page
     And the user continues through the check-tax-details/3 page
     And the user answers no on the add-tax-details page
+    And the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
     And all of the amended non-mandatory answers are displayed as changed on the confirmation page
@@ -278,6 +282,7 @@ Feature: Amend Registration journeys
       | data                 | fieldId      |
       | amend-test@email.com | emailAddress |
     And the user completes the amend registration email verification process
+    And the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
     And the amended email address is displayed as changed on the confirmation page
@@ -306,7 +311,6 @@ Feature: Amend Registration journeys
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the amend registration journey
     Then the user is on the change-your-registration page
-    Then the user is on the change-your-registration page
     Then the user selects the amend add link for page previous-oss from change-your-registration
     Then the user answers yes on the previous-oss page
     And the user selects Slovenia on the first previous-country page
@@ -328,6 +332,7 @@ Feature: Amend Registration journeys
     And the user adds LV11111222222 on the second previous-oss-scheme-number/2 page
     Then the user answers no on the previous-scheme-answers/2 page
     And the user answers no on the previous-schemes-overview page
+    Then the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
 
@@ -359,6 +364,7 @@ Feature: Amend Registration journeys
       | Lisbon         | townOrCity |
     And the user continues through the check-tax-details/2 page
     Then the user answers no on the add-tax-details page
+    And the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
 
@@ -390,6 +396,7 @@ Feature: Amend Registration journeys
       | Lisbon         | townOrCity |
     And the user continues through the check-tax-details/2 page
     Then the user answers no on the add-tax-details page
+    And the user is on the change-your-registration page
     And the user submits their amended registration
     Then the user is on the successful-amend page
 
@@ -420,12 +427,14 @@ Feature: Amend Registration journeys
     And the user answers yes on the have-uk-trading-name page
     And the user adds A new trading name after 6 years in amend journey on the first uk-trading-name page
     And the user answers no on the add-uk-trading-name page
+    And the user is on the change-your-registration page
     When the user submits their amended registration
     Then the user is on the successful-amend page
 
   Scenario: A user can submit an amended registration without changing any details
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
+    And the user is on the change-your-registration page
     When the user submits their amended registration
     Then the user is on the successful-amend page
     And the confirmation of no answers changed is displayed
