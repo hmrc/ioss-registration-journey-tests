@@ -161,6 +161,7 @@ Feature: Amend Registration journeys
     And the user is on the add-uk-trading-name page
     Then the user clicks remove via amend route for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
+    And the user is on the add-uk-trading-name page
     Then the user selects the list within amend change link for first uk-trading-name from change-add-uk-trading-name
     And the user amends answer to an amended trading name
     Then the user answers yes on the add-uk-trading-name page
@@ -168,6 +169,7 @@ Feature: Amend Registration journeys
     Then the user answers no on the add-uk-trading-name page
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page previous-schemes-overview from change-your-registration
+    And the user is on the previous-schemes-overview page
     Then the user selects the list within amend change link for second previous-scheme-answers from change-previous-schemes-overview
     Then the user answers yes on the previous-scheme-answers/2 page
     And the user picks oss on the previous-scheme/2/2 page
@@ -181,10 +183,13 @@ Feature: Amend Registration journeys
     And the user answers no on the previous-schemes-overview page
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page add-tax-details from change-your-registration
+    And the user is on the add-tax-details page
     Then the user selects the list within amend change link for first check-tax-details from change-add-tax-details
+    And the user is on the check-tax-details/1 page
     Then the user selects the additional tax details list within amend change link for first registration-tax-type from check-tax-details-1
     And the user picks tax id number on the registration-tax-type/1 page
     And the user adds TAXID12345A on the first eu-tax-identification-number page
+    And the user is on the check-tax-details/1 page
     Then the user selects the additional tax details list within amend change link for first eu-fixed-establishment-address from check-tax-details-1
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data   | fieldId |
@@ -215,6 +220,7 @@ Feature: Amend Registration journeys
     And the user continues through the check-tax-details/3 page
     And the user is on the add-tax-details page
     Then the user selects the list within amend change link for third check-tax-details from change-add-tax-details
+    And the user is on the check-tax-details/3 page
     Then the user selects the additional tax details list within amend change link for third registration-tax-type from check-tax-details-3
     And the user picks vat number on the registration-tax-type/3 page
     And the user adds PT123456789 on the third eu-vat-number page

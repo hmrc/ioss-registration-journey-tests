@@ -123,6 +123,7 @@ Feature: Change and remove answers for registrations in progress
     And the user adds A trading name on the first uk-trading-name page
     And the user answers yes on the add-uk-trading-name page
     And the user adds 2nd name! on the second uk-trading-name page
+    And the user is on the add-uk-trading-name page
     Then the user selects the list change link for second uk-trading-name from change-add-uk-trading-name
     And the user amends data to Different trading name on the uk-trading-name/2 page
     And the user is on the add-uk-trading-name page
@@ -147,11 +148,13 @@ Feature: Change and remove answers for registrations in progress
     And the user picks oss on the previous-scheme/2/1 page
     And the user adds EE111111111 on the first previous-oss-scheme-number/2 page
     Then the user answers no on the previous-scheme-answers/2 page
+    And the user is on the previous-schemes-overview page
     Then the user selects the list change link for first previous-scheme-answers from change-previous-schemes-overview
     And the user answers yes on the previous-scheme-answers/1 page
     And the user picks oss on the previous-scheme/1/3 page
     And the user adds EU111555999 on the new previous-oss-scheme-number/1/3 page
     Then the user continues through the previous-scheme-answers/1 page
+    And the user is on the previous-schemes-overview page
     Then the user selects the list change link for second previous-scheme-answers from change-previous-schemes-overview
     And the user answers yes on the previous-scheme-answers/2 page
     And the user picks ioss on the previous-scheme/2/2 page
