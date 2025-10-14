@@ -2,7 +2,6 @@
 
 Feature: Rejoin registration journeys
 
-  @Accessibility
   Scenario: A trader with a future exclusion effective date is not able to access the rejoin registration journey
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999997 accesses the rejoin registration journey
@@ -28,7 +27,7 @@ Feature: Rejoin registration journeys
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999999 accesses the rejoin registration journey
     Then the user is presented with the problem page
-  @Accessibility
+
   Scenario: An IOSS registered user receives an ETMP failure on submission of a rejoin
     Given the user accesses the authority wizard
     And a user with VRN 600000022 and IOSS Number IM9029999997 accesses the rejoin registration journey
@@ -89,6 +88,7 @@ Feature: Rejoin registration journeys
       | A Town        | townOrCity |
     And the user continues through the check-tax-details/1 page
     Then the user answers no on the add-tax-details page
+    Then the user is on the rejoin-registration page
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
@@ -103,6 +103,7 @@ Feature: Rejoin registration journeys
     Then the user selects the rejoin change link for page tax-in-eu from rejoin-registration
     And the user answers no on the tax-in-eu page
     Then the user answers yes on the remove-all-tax-details page
+    Then the user is on the rejoin-registration page
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
@@ -113,6 +114,7 @@ Feature: Rejoin registration journeys
     Then the user selects the rejoin change link for page have-uk-trading-name from rejoin-registration
     And the user answers yes on the have-uk-trading-name page
     And the user adds A new trading name in rejoin journey on the first uk-trading-name page
+    And the user is on the add-uk-trading-name page
     Then the user clicks remove via rejoin route for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     And the user answers no on the have-uk-trading-name page
@@ -145,9 +147,10 @@ Feature: Rejoin registration journeys
     Then the user clicks remove via rejoin route for first tax-details
     And the user answers yes on the remove-tax-details/1 page
     Then the user answers no on the tax-in-eu page
+    Then the user is on the rejoin-registration page
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
-  @ZAP
+
   Scenario: A trader can amend non-mandatory answers during rejoin
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9019999997 accesses the rejoin registration journey
@@ -207,12 +210,14 @@ Feature: Rejoin registration journeys
       | 111 Porto Street | line1      |
       | Porto            | townOrCity |
     And the user continues through the check-tax-details/3 page
+    And the user is on the add-tax-details page
     Then the user selects the list within rejoin change link for third check-tax-details from change-add-tax-details
     Then the user selects the additional tax details list within rejoin change link for third registration-tax-type from check-tax-details-3
     And the user picks vat number on the registration-tax-type/3 page
     And the user adds PT123456789 on the third eu-vat-number page
     And the user continues through the check-tax-details/3 page
     And the user answers no on the add-tax-details page
+    Then the user is on the rejoin-registration page
     When the user submits their rejoin registration
     Then the user is on the successful-rejoin page
 
@@ -225,8 +230,9 @@ Feature: Rejoin registration journeys
       | data                 | fieldId      |
       | rejoin-test@email.com | emailAddress |
     And the user completes the rejoin registration email verification process
-  When the user submits their rejoin registration
-  Then the user is on the successful-rejoin page
+    Then the user is on the rejoin-registration page
+    When the user submits their rejoin registration
+    Then the user is on the successful-rejoin page
 
   Scenario: A trader removes some registration answers and amends mandatory answers during rejoin
     Given the user accesses the authority wizard
@@ -251,6 +257,7 @@ Feature: Rejoin registration journeys
     Then the user selects the rejoin change link for page add-website-address from rejoin-registration
     Then the user clicks remove via rejoin route for second website-address
     And the user answers yes on the remove-website-address/2 page
+    And the user is on the add-website-address page
     And the user selects the list within rejoin change link for first website-address from change-add-website-address
     And the user amends data to www.amended-website-name.com on the website-address/1 page
     Then the user answers yes on the add-website-address page
@@ -269,10 +276,10 @@ Feature: Rejoin registration journeys
       | data                   | fieldId     |
       | Another Trader Name    | accountName |
       | GB29NWBK60161331926819 | iban        |
-  When the user submits their rejoin registration
-  Then the user is on the successful-rejoin page
+    Then the user is on the rejoin-registration page
+    When the user submits their rejoin registration
+    Then the user is on the successful-rejoin page
 
-  @Accessibility
   Scenario: A trader with a future exclusion effective date is not able to access the rejoin registration journey
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999997 accesses the rejoin registration journey

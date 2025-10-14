@@ -81,6 +81,7 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user selects the CYA change link for page add-uk-trading-name from check-your-answers
     Then the user selects the list within CYA change link for second uk-trading-name from change-add-uk-trading-name
     And the user amends data to CYA trading name on the uk-trading-name/2 page
+    And the user is on the add-uk-trading-name page
     Then the user clicks remove via CYA route for third uk-trading-name
     And the user answers yes on the remove-uk-trading-name/3 page
     Then the user answers no on the add-uk-trading-name page
@@ -88,6 +89,7 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user selects the CYA change link for page previous-schemes-overview from check-your-answers
     Then the user clicks remove via CYA route for second registration
     And the user answers yes on the remove-registration/2 page
+    And the user is on the previous-schemes-overview page
     Then the user selects the list within CYA change link for first previous-scheme-answers from change-previous-schemes-overview
     And the user answers yes on the previous-scheme-answers/1 page
     And the user picks ioss on the previous-scheme/1/2 page
@@ -106,6 +108,7 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user selects the CYA change link for page add-tax-details from check-your-answers
     Then the user clicks remove via CYA route for second tax-details
     And the user answers yes on the remove-tax-details/2 page
+    And the user is on the add-tax-details page
     Then the user selects the list within CYA change link for first check-tax-details from change-add-tax-details
     Then the user selects the additional tax details list within CYA change link for first eu-trading-name from check-tax-details-1
     And the user amends data to CYA trading name on the eu-trading-name/1 page
@@ -128,6 +131,7 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers yes on the remove-website-address/2 page
     Then the user answers yes on the add-website-address page
     And the user adds www.newwebsitethree.com on the third website-address page
+    And the user is on the add-website-address page
     Then the user selects the list within CYA change link for second website-address from change-add-website-address
     And the user amends data to www.websitetwo.com on the website-address/2 page
     Then the user answers no on the add-website-address page
@@ -146,7 +150,6 @@ Feature: Change answers for registrations via Check Your Answers
     And the user is on the check-your-answers page
     Then the user submits their registration
 
-  @Accessibility
   Scenario: Change from yes to no via Check Your Answers for NI Trader registration
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page

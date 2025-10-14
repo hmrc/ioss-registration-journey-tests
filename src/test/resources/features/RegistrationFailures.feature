@@ -1,7 +1,7 @@
 @Registration
 
 Feature: Failures and kickouts relating to user's registration
-  @Accessibility
+
   Scenario: User is already registered for the IOSS service
     Given the user accesses the authority wizard
     And the user signs into authority wizard as an Organisation Admin with IOSS and VAT enrolment 100000001
@@ -15,7 +15,6 @@ Feature: Failures and kickouts relating to user's registration
     When the user clicks on the Back to your account button
     Then the user is redirected to the returns dashboard
 
-  @Accessibility
   Scenario: Error creating enrolment on submission of registration
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page

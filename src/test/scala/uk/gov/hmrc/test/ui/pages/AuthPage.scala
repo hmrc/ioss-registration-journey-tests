@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.Select
+import org.openqa.selenium.support.ui.{ExpectedConditions, Select}
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object AuthPage extends BasePage {
@@ -177,6 +177,8 @@ object AuthPage extends BasePage {
     vrn: String
   ): Unit = {
 
+    fluentWait.until(ExpectedConditions.urlContains("http://localhost:9597/bas-stub/login"))
+
     driver.findElement(By.partialLinkText("Register SCP User")).click()
 
     val select = new Select(driver.findElement(By.id("accountType")))
@@ -197,6 +199,7 @@ object AuthPage extends BasePage {
   }
 
   def selectMfaSuccess(): Unit = {
+    fluentWait.until(ExpectedConditions.urlContains("http://localhost:9597/bas-stub/required-mfa-register"))
     driver.findElement(By.id("mfaOutcome")).click()
     driver.findElement(By.className("submit")).click()
   }

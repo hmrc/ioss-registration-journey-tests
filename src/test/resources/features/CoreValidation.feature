@@ -1,7 +1,7 @@
 @CoreValidation
 
 Feature: Core Validation Scenarios
-  @Accessibility
+
   Scenario: Trader with existing EU registration is not able to register
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -12,7 +12,7 @@ Feature: Core Validation Scenarios
     And the user continues through the register-to-use-service page
     And the user signs in as an Organisation Admin with VAT enrolment 333333333
     Then the user is on the already-registered-other-country?countryCode=EE page
-  @Accessibility
+
   Scenario: Trader with existing EU quarantine is not able to register
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -40,7 +40,7 @@ Feature: Core Validation Scenarios
     And the user picks oss on the previous-scheme/1/1 page
     And the user adds SI11223344 on the first previous-oss-scheme-number/1 page
     Then the user is on the previous-scheme-answers/1 page
-  @Accessibility
+
   Scenario: Trader with active IOSS scheme - previous registration - not able to register
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -60,7 +60,7 @@ Feature: Core Validation Scenarios
       | data         | fieldId                    |
       | IM7051122334 | previousSchemeNumber       |
     Then the user is on the scheme-still-active?countryCode=SI page
-  @Accessibility
+
   Scenario: Trader with quarantined OSS scheme - previous registration - not able to register
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -97,7 +97,7 @@ Feature: Core Validation Scenarios
       | data         | fieldId                    |
       | IM4281122334 | previousSchemeNumber       |
     Then the user is on the scheme-quarantined page
-  @Accessibility
+
   Scenario: Trader with active scheme - EU details - VRN - not able to register
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
@@ -135,7 +135,7 @@ Feature: Core Validation Scenarios
     And the user picks tax id number on the registration-tax-type/1 page
     And the user adds 123LIS123 on the first eu-tax-identification-number page
     Then the user is on the fixed-establishment-vrn-already-registered?countryCode=PT page
-  @Accessibility
+
   Scenario: Trader with quarantined scheme - EU details - VRN - not able to register
     Given the user accesses the IOSS Registration service
     Then the user answers no on the ioss-registered page
