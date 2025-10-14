@@ -19,6 +19,8 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.ExpectedConditions
+import uk.gov.hmrc.test.ui.pages.AuthPage.fluentWait
 import uk.gov.hmrc.test.ui.pages.CommonPage.clickBackButton
 import uk.gov.hmrc.test.ui.pages._
 
@@ -63,6 +65,13 @@ class CommonStepDef extends BaseStepDef {
 
   When("""^the user manually navigates to the (.*) page$""") { (page: String) =>
     CommonPage.goToPage(page)
+    if (page == "test-only/from-external?lang=cy") {
+      fluentWait.until(
+        ExpectedConditions.urlContains(
+          "http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/no-welsh-service"
+        )
+      )
+    }
   }
 
   When("""^the user (completes|amends) details on the (.*) page$""") {
