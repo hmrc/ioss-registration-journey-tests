@@ -26,8 +26,7 @@ object EmailVerificationPage extends BasePage {
 
     val testOnlyUrl =
       "http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/test-only/get-passcodes"
-    driver.navigate
-      .to(testOnlyUrl)
+    get(testOnlyUrl)
 
     fluentWait.until(ExpectedConditions.urlContains(testOnlyUrl))
   }
@@ -45,26 +44,24 @@ object EmailVerificationPage extends BasePage {
 
     val emailVerificationUrl =
       s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/$url&origin=IOSS&service=ioss-registration-frontend"
-    driver
-      .navigate()
-      .to(emailVerificationUrl)
+    get(emailVerificationUrl)
 
     fluentWait.until(ExpectedConditions.urlContains(emailVerificationUrl))
   }
 
   def enterPasscode(passcode: String): Unit = {
-    driver.findElement(By.id("passcode")).sendKeys(passcode)
-    driver.findElement(By.className("govuk-button")).click()
+    sendKeys(By.id("passcode"), passcode)
+    click(By.className("govuk-button"))
   }
 
   def checkInterceptPage(): Unit = {
     val interceptUrl = TestConfiguration.url("ioss-returns-frontend") + "/intercept-unusable-email"
     fluentWait.until(ExpectedConditions.urlContains(interceptUrl))
-    driver.getCurrentUrl should startWith(interceptUrl)
+    getCurrentUrl should startWith(interceptUrl)
   }
 
   def checkBusinessContactDetails(): Unit =
-    driver.getCurrentUrl should startWith(
+    getCurrentUrl should startWith(
       TestConfiguration.url(
         "ioss-registration-frontend"
       ) + "/business-contact-details?waypoints=change-your-registration"

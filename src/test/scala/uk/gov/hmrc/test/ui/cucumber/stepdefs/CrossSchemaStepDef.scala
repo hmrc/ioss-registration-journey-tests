@@ -18,13 +18,14 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import org.junit.Assert
 import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
 
 class CrossSchemaStepDef extends BaseStepDef {
 
   Then(
     """^the correct number of existing trading names are displayed for a trader with (an OSS|OSS and IOSS|multiple IOSS|one previous IOSS) (registration|registrations)$"""
   ) { (version: String, registrationNumber: String) =>
-    val header = driver.findElement(By.tagName("h1")).getText
+    val header = Driver.instance.findElement(By.tagName("h1")).getText
 
     val headingText = if (version == "an OSS") {
       "You have 2 UK trading names from your One Stop Shop registration"
@@ -40,13 +41,13 @@ class CrossSchemaStepDef extends BaseStepDef {
   }
 
   Then("""^the new trading name is the only trading name where there are no previous registrations$""") { () =>
-    val header = driver.findElement(By.tagName("h1")).getText
+    val header = Driver.instance.findElement(By.tagName("h1")).getText
     Assert.assertTrue(header.equals("You have added one UK trading name"))
   }
 
   Then("""^there are no headings or warnings for trading names mentioning other registrations$""") { () =>
-    val header   = driver.findElement(By.tagName("h1")).getText
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val header   = Driver.instance.findElement(By.tagName("h1")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(header.equals("You have added 2 UK trading names"))
     Assert.assertFalse(htmlBody.contains("Any changes you make here will also update the trading names in"))
   }
@@ -68,7 +69,7 @@ class CrossSchemaStepDef extends BaseStepDef {
       "Any changes you make here will also update the trading names in"
     }
 
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
 
     if (displayed == "are not") {
       Assert.assertFalse(htmlBody.contains(warningText))
@@ -86,7 +87,7 @@ class CrossSchemaStepDef extends BaseStepDef {
   Then(
     """^the (registration|amend|rejoin) (contact|bank) details warnings (are|are not) displayed for a trader with (an OSS|both OSS and IOSS|multiple IOSS|one previous IOSS|one current IOSS|no other) (registration|registrations)$"""
   ) { (journey: String, page: String, displayed: String, version: String, registrationNumber: String) =>
-    val htmlBody    = driver.findElement(By.tagName("body")).getText
+    val htmlBody    = Driver.instance.findElement(By.tagName("body")).getText
     val hintText    =
       "We have added the details you entered for the One Stop Shop service. Check they are still correct."
     val warningText = if (version == "an OSS") {
@@ -115,21 +116,21 @@ class CrossSchemaStepDef extends BaseStepDef {
   }
 
   Then("""^the contact details are blank$""") { () =>
-    Assert.assertTrue(driver.findElement(By.id("fullName")).getAttribute("value").isEmpty)
-    Assert.assertTrue(driver.findElement(By.id("telephoneNumber")).getAttribute("value").isEmpty)
-    Assert.assertTrue(driver.findElement(By.id("emailAddress")).getAttribute("value").isEmpty)
+    Assert.assertTrue(Driver.instance.findElement(By.id("fullName")).getAttribute("value").isEmpty)
+    Assert.assertTrue(Driver.instance.findElement(By.id("telephoneNumber")).getAttribute("value").isEmpty)
+    Assert.assertTrue(Driver.instance.findElement(By.id("emailAddress")).getAttribute("value").isEmpty)
   }
 
   Then("""^the bank details are blank$""") { () =>
-    Assert.assertTrue(driver.findElement(By.id("accountName")).getAttribute("value").isEmpty)
-    Assert.assertTrue(driver.findElement(By.id("bic")).getAttribute("value").isEmpty)
-    Assert.assertTrue(driver.findElement(By.id("iban")).getAttribute("value").isEmpty)
+    Assert.assertTrue(Driver.instance.findElement(By.id("accountName")).getAttribute("value").isEmpty)
+    Assert.assertTrue(Driver.instance.findElement(By.id("bic")).getAttribute("value").isEmpty)
+    Assert.assertTrue(Driver.instance.findElement(By.id("iban")).getAttribute("value").isEmpty)
   }
 
   Then(
     """^the text on the (registration|amend|rejoin) confirmation page (is|is not) displayed when the trader (has|has not) made changes and has (an OSS|both OSS and IOSS|multiple IOSS|one previous IOSS|no other) (registration|registrations)$"""
   ) { (journey: String, displayed: String, madeChanges: String, version: String, registrationNumber: String) =>
-    val htmlBody         = driver.findElement(By.tagName("body")).getText
+    val htmlBody         = Driver.instance.findElement(By.tagName("body")).getText
     val confirmationText = if (version == "an OSS") {
       "We've also updated your One Stop Shop registration."
     } else if (version == "both OSS and IOSS") {
@@ -152,7 +153,7 @@ class CrossSchemaStepDef extends BaseStepDef {
   Then(
     """^all of the updated answers are displayed as changed on the amend confirmation page for (OSS and IOSS|multiple IOSS accounts)$"""
   ) { (version: String) =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     if (version == "OSS and IOSS") {
       Assert.assertTrue(htmlBody.contains("You changed the following details:"))
       Assert.assertTrue(htmlBody.contains("Trading names added an amended cross schema trading name"))
@@ -172,7 +173,7 @@ class CrossSchemaStepDef extends BaseStepDef {
   Then(
     """^the removed trading name is displayed on the amend confirmation$"""
   ) { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("Trading names removed tradingName2"))
   }
@@ -180,7 +181,7 @@ class CrossSchemaStepDef extends BaseStepDef {
   Then(
     """^the updated iban is displayed on the amend confirmation$"""
   ) { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("IBAN GB29NWBK60161331926819"))
   }

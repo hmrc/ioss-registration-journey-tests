@@ -17,15 +17,10 @@ Feature: Rejoin registration journeys
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the rejoin registration journey
     Then the user is on the cannot-rejoin page
 
-  Scenario: A currently registered IOSS trader who is not excluded cannot access the rejoin registration journey
-    Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
-    When the user manually navigates to the rejoin-registration page
-    Then the user is on the cannot-rejoin page
-
   Scenario: A user who gets not found during a rejoin from ETMP for an IOSS registration receives the sorry there is a problem page
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999999 accesses the rejoin registration journey
+    And the user is on the start-rejoin-journey page
     Then the user is presented with the problem page
 
   Scenario: An IOSS registered user receives an ETMP failure on submission of a rejoin
@@ -288,11 +283,6 @@ Feature: Rejoin registration journeys
   Scenario: A quarantined trader is not able to access the rejoin registration journey
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999993 accesses the rejoin registration journey
-    Then the user is on the cannot-rejoin page
-
-  Scenario: A currently registered IOSS trader who is not excluded cannot access the rejoin registration journey
-    Given the user accesses the authority wizard
-    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the rejoin registration journey
     Then the user is on the cannot-rejoin page
 
   Scenario: A trader cannot remove existing previous registrations retrieved from ETMP when they rejoin

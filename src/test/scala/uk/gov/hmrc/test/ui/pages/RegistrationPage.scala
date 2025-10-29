@@ -23,30 +23,28 @@ object RegistrationPage extends BasePage {
   val registrationUrl: String = TestConfiguration.url("ioss-registration-frontend")
 
   def goToRegistrationJourney(): Unit =
-    driver.navigate().to(registrationUrl)
+    get(registrationUrl)
 
   def checkJourneyUrl(): Unit =
-    driver.getCurrentUrl shouldBe registrationUrl + "/ioss-registered"
+    getCurrentUrl shouldBe registrationUrl + "/ioss-registered"
 
   def selectVatInfoChoice(data: String): Unit =
     data match {
-      case "Yes"                    => driver.findElement(By.id("value_0")).click()
-      case "Yes, details incorrect" => driver.findElement(By.id("value_1")).click()
-      case "No, different business" => driver.findElement(By.id("value_2")).click()
+      case "Yes"                    => click(By.id("value_0"))
+      case "Yes, details incorrect" => click(By.id("value_1"))
+      case "No, different business" => click(By.id("value_2"))
     }
 
   def checkBTA(): Unit =
-    driver.getCurrentUrl should endWith("business-account")
+    getCurrentUrl should endWith("business-account")
 
   def goToContinueOnSignInPage(): Unit =
-    driver
-      .navigate()
-      .to("http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/continue-on-sign-in")
+    get("http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/continue-on-sign-in")
 
   def selectContinueRegistration(data: String): Unit = {
     data match {
-      case "Yes"                                  => driver.findElement(By.id("continueProgress")).click()
-      case "No,delete my answers and start again" => driver.findElement(By.id("deleteProgress")).click()
+      case "Yes"                                  => click(By.id("continueProgress"))
+      case "No,delete my answers and start again" => click(By.id("deleteProgress"))
       case _                                      => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()

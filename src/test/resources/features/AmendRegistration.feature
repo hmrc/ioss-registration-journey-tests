@@ -303,6 +303,7 @@ Feature: Amend Registration journeys
   Scenario: A user who gets not found from ETMP for an IOSS registration receives the sorry there is a problem page
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999999 accesses the amend registration journey
+    And the user is on the start-amend-journey page
     Then the user is presented with the problem page
 
   Scenario: An IOSS registered user receives an ETMP failure on submission of an amendment

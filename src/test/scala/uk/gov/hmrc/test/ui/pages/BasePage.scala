@@ -19,16 +19,16 @@ package uk.gov.hmrc.test.ui.pages
 import org.openqa.selenium.support.ui.{FluentWait, Wait}
 import org.openqa.selenium.{By, WebDriver}
 import org.scalatest.matchers.should.Matchers
+import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
 import java.time.Duration
 
-trait BasePage extends BrowserDriver with Matchers {
+trait BasePage extends PageObject with Matchers {
   val continueButton = "continue-button"
 
   def submitPage(): Unit =
-    driver.findElement(By.id(continueButton)).click()
+    click(By.id(continueButton))
 
   def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(3))

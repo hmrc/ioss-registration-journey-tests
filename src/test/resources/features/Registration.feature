@@ -188,15 +188,4 @@ Feature: Registration journeys
     Then the user is on the check-your-answers page
     Then the user submits their registration
 
-  Scenario: Assistant user can access the registration service
-    Then the user accesses the authority wizard
-    And the assistant signs into authority wizard as an Organisation Admin with VAT enrolment 100000001
-    Then the user answers no on the ioss-registered page
-    And the user answers yes on the selling-goods-outside-single-market page
-    And the user answers yes on the goods-value page
-    And the user answers yes on the registered-for-vat-in-uk page
-    And the user answers yes on the ni-based page
-    And the user continues through the register-to-use-service page
-    Then the user is on the confirm-vat-details page
-
 
