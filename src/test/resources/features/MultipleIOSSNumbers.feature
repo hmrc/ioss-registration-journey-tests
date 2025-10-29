@@ -36,9 +36,12 @@ Feature: Multiple IOSS Number Registration journeys
     Then the user is on the change-your-registration page
     And the correct IOSS number IM9007230000 is displayed on the page
     When the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And the user is on the add-uk-trading-name page
     Then the user clicks remove via amend route for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
+    And the user is on the add-uk-trading-name page
     Then the user selects the list within amend change link for first uk-trading-name from change-add-uk-trading-name
+    And the user is on the uk-trading-name/1 page
     And the user amends answer to an amended current trading name
     Then the user answers yes on the add-uk-trading-name page
     And the user adds a new current trading name on the second uk-trading-name page
