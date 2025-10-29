@@ -18,6 +18,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.pages.EmailVerificationPage._
 import uk.gov.hmrc.test.ui.pages._
 
@@ -33,11 +34,11 @@ class EmailVerificationStepDef extends BaseStepDef {
 
     val passcode = mode match {
       case "registration" | "amend registration" | "amend previous registration" | "rejoin registration" =>
-        driver.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
+        Driver.instance.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
       case "change answers"                                                                              =>
-        driver.findElement(By.tagName("body")).getText.split("test@newtestemail.com,")(1).dropRight(42)
+        Driver.instance.findElement(By.tagName("body")).getText.split("test@newtestemail.com,")(1).dropRight(42)
       case "second amend previous registration"                                                          =>
-        driver.findElement(By.tagName("body")).getText.split("email@test.com,")(1).dropRight(42)
+        Driver.instance.findElement(By.tagName("body")).getText.split("email@test.com,")(1).dropRight(42)
       case _                                                                                             =>
         throw new Exception("mode doesn't exist")
     }

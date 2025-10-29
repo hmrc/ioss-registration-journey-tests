@@ -20,6 +20,7 @@ import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.pages.AuthPage.fluentWait
 import uk.gov.hmrc.test.ui.pages.CommonPage.clickBackButton
 import uk.gov.hmrc.test.ui.pages._
@@ -39,7 +40,7 @@ class CommonStepDef extends BaseStepDef {
   Then("""^the user is on the (.*) page$""") { (url: String) =>
     CommonPage.checkUrl(url)
     if (url == "successful-rejoin") {
-      val htmlBody = driver.findElement(By.tagName("body")).getText
+      val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
       Assert.assertTrue(htmlBody.contains("Your new IOSS number is"))
       Assert.assertTrue(htmlBody.contains("-NEW"))
     }
@@ -59,7 +60,6 @@ class CommonStepDef extends BaseStepDef {
 
   When("""^the user amends data to (.*) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
-    CommonPage.clearData()
     CommonPage.enterData(data)
   }
 
@@ -83,19 +83,19 @@ class CommonStepDef extends BaseStepDef {
   Then("""^the user clicks on the (.*) (link|button)$""") { (link: String, element: String) =>
     link match {
       case "BTA"                                       =>
-        driver.findElement(By.id("back-to-your-account")).click()
+        click(By.id("back-to-your-account"))
       case "continue to complete your registration"    =>
-        driver.findElement(By.cssSelector("a#continueToYourReturn")).click()
+        click(By.cssSelector("a#continueToYourReturn"))
       case "sign out and come back later"              =>
-        driver.findElement(By.id("signOut")).click()
+        click(By.id("signOut"))
       case "cancel"                                    =>
-        driver.findElement(By.id("cancel")).click()
+        click(By.id("cancel"))
       case "Back to your account"                      =>
-        driver.findElement(By.id("backToYourAccount")).click()
+        click(By.id("backToYourAccount"))
       case "save and come back later"                  =>
-        driver.findElement(By.id("saveProgress")).click()
+        click(By.id("saveProgress"))
       case "View or change your previous registration" =>
-        driver.findElement(By.id("change-previous-registrations")).click()
+        click(By.id("change-previous-registrations"))
       case _                                           =>
         throw new Exception("Link doesn't exist")
     }
@@ -106,12 +106,11 @@ class CommonStepDef extends BaseStepDef {
   }
 
   Then("""^the user is presented with the problem page$""") { () =>
-    val htmlHeader = driver.findElement(By.tagName("h1")).getText
+    val htmlHeader = Driver.instance.findElement(By.tagName("h1")).getText
     Assert.assertTrue(htmlHeader.equals("Sorry, there is a problem with the service"))
   }
 
   When("""^the user amends answer to (.*)$""") { (answer: String) =>
-    driver.findElement(By.id("value")).clear()
     CommonPage.enterData(answer)
   }
 

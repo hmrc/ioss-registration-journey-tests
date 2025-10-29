@@ -18,6 +18,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import org.junit.Assert
 import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.pages.CommonPage
 import uk.gov.hmrc.test.ui.pages.CommonPage._
 import uk.gov.hmrc.test.ui.pages.RegistrationPage._
@@ -85,7 +86,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then("^the user accesses the continue on sign in url$") { () =>
-    driver.manage().deleteAllCookies()
+    Driver.instance.manage().deleteAllCookies()
     goToContinueOnSignInPage()
   }
 
@@ -96,17 +97,17 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then("""^the correct IOSS number (.*) is displayed on the page$""") { (iossNumber: String) =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("IOSS number: " + iossNumber))
   }
 
   Then("""^the confirmation of no answers changed is displayed$""") { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You have not changed any of your registration details."))
   }
 
   Then("""^all of the yes to no amendments are displayed as changed on the confirmation page$""") { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("Have a different UK trading name No"))
     Assert.assertTrue(htmlBody.contains("Trading names removed tradingName1"))
@@ -116,7 +117,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then("""^all of the no to yes amendments are displayed as changed on the confirmation page$""") { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("Have a different UK trading name Yes"))
     Assert.assertTrue(htmlBody.contains("Trading names added A new trading name in amend journey"))
@@ -128,7 +129,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then("""^all of the amended non-mandatory answers are displayed as changed on the confirmation page$""") { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("Trading names added an amended trading name"))
     Assert.assertTrue(htmlBody.contains("new 2nd name"))
@@ -144,7 +145,7 @@ class RegistrationStepDef extends BaseStepDef {
   Then(
     """^all of the removed answers and amended mandatory answers are displayed as changed on the confirmation page$"""
   ) { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("EU tax details added Estonia"))
     Assert.assertTrue(htmlBody.contains("EU tax details removed Germany"))
@@ -159,7 +160,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then("""^the amended email address is displayed as changed on the confirmation page$""") { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("Email address amend-test@email.com"))
   }
@@ -167,7 +168,7 @@ class RegistrationStepDef extends BaseStepDef {
   Then(
     """^all of the amended answers for (current|previous) registration (.*) are displayed on the confirmation$"""
   ) { (registrationType: String, iossNumber: String) =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     if (iossNumber == "IM9007230001") {
       Assert.assertTrue(htmlBody.contains("Contact name Previous Multiple Registration Trader"))
@@ -202,7 +203,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then("""^the updated email address is displayed as changed on the confirmation page$""") { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("Email address different-email@test.com"))
   }

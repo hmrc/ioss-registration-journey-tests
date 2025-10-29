@@ -17,7 +17,7 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.{ExpectedConditions, Select}
+import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object AuthPage extends BasePage {

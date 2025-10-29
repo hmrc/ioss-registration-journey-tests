@@ -18,10 +18,9 @@ package uk.gov.hmrc.test.ui.pages
 
 import io.cucumber.datatable.DataTable
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
+import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.AuthPage.fluentWait
 
 import scala.jdk.CollectionConverters._
 import scala.util.Random
