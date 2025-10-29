@@ -33,141 +33,85 @@ object AuthPage extends BasePage {
   ): Unit = {
 
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
-    driver.getCurrentUrl should startWith(stubUrl)
+    getCurrentUrl should startWith(stubUrl)
 
     if (credId) {
       if (journey == "registration") {
         CommonPage.generateCredId()
       }
-      driver.findElement(By.id("authorityId")).clear()
-      driver.findElement(By.id("authorityId")).sendKeys(CommonPage.retrieveCredId())
+      sendKeys(By.id("authorityId"), CommonPage.retrieveCredId())
     }
 
     if (journey == "unusableStatus") {
-      driver
-        .findElement(By.id("redirectionUrl"))
-        .sendKeys(TestConfiguration.url("ioss-returns-frontend"))
+      sendKeys(By.id("redirectionUrl"), TestConfiguration.url("ioss-returns-frontend"))
     } else if (journey == "amend") {
-      driver
-        .findElement(By.id("redirectionUrl"))
-        .sendKeys(TestConfiguration.url("ioss-registration-frontend") + "/start-amend-journey")
+      sendKeys(By.id("redirectionUrl"), TestConfiguration.url("ioss-registration-frontend") + "/start-amend-journey")
     } else if (journey == "rejoin") {
-      driver
-        .findElement(By.id("redirectionUrl"))
-        .sendKeys(TestConfiguration.url("ioss-registration-frontend") + "/start-rejoin-journey")
+      sendKeys(By.id("redirectionUrl"), TestConfiguration.url("ioss-registration-frontend") + "/start-rejoin-journey")
     } else if (journey == "saved") {
-      driver
-        .findElement(By.id("redirectionUrl"))
-        .sendKeys(TestConfiguration.url("ioss-registration-frontend") + "/continue-on-sign-in")
+      sendKeys(By.id("redirectionUrl"), TestConfiguration.url("ioss-registration-frontend") + "/continue-on-sign-in")
     } else {
-      driver.findElement(By.id("redirectionUrl")).sendKeys(TestConfiguration.url("ioss-registration-frontend"))
+      sendKeys(By.id("redirectionUrl"), TestConfiguration.url("ioss-registration-frontend"))
     }
 
-    val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
     if (role == "Agent") {
-      selectAffinityGroup.selectByValue("Agent")
-      driver.findElement(By.id("agentId")).sendKeys("123")
-      driver.findElement(By.id("agentCode")).sendKeys("123")
-      driver.findElement(By.id("agentFriendlyName")).sendKeys("Name")
+      selectByValue(By.id("affinityGroupSelect"), "Agent")
+      sendKeys(By.id("agentId"), "123")
+      sendKeys(By.id("agentCode"), "123")
+      sendKeys(By.id("agentFriendlyName"), "Name")
     } else {
-      selectAffinityGroup.selectByValue("Organisation")
-    }
-
-    if (user == "assistant") {
-      val selectCredentialRole = new Select(driver.findElement(By.id("credential-role-select")))
-      selectCredentialRole.selectByValue("Assistant")
+      selectByValue(By.id("affinityGroupSelect"), "Organisation")
     }
 
     if (withStatus == "with") {
-      driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
-      driver
-        .findElement(By.id("input-0-0-name"))
-        .sendKeys("VRN")
-      driver
-        .findElement(By.id("input-0-0-value"))
-        .sendKeys(vrn)
+      sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
+      sendKeys(By.id("input-0-0-name"), "VRN")
+      sendKeys(By.id("input-0-0-value"), vrn)
+
       if (enrolment == "OSS and VAT") {
-        driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-OSS-ORG")
-        driver
-          .findElement(By.id("input-1-0-name"))
-          .sendKeys("VRN")
-        driver
-          .findElement(By.id("input-1-0-value"))
-          .sendKeys(vrn)
+        sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
+        sendKeys(By.id("input-1-0-name"), "VRN")
+        sendKeys(By.id("input-1-0-value"), vrn)
       } else if (enrolment == "OSS and IOSS and VAT") {
-        driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-OSS-ORG")
-        driver
-          .findElement(By.id("input-1-0-name"))
-          .sendKeys("VRN")
-        driver
-          .findElement(By.id("input-1-0-value"))
-          .sendKeys(vrn)
-        driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
-        driver
-          .findElement(By.id("input-2-0-name"))
-          .sendKeys("IOSSNumber")
-        driver
-          .findElement(By.id("input-2-0-value"))
-          .sendKeys(iossNumber)
+        sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
+        sendKeys(By.id("input-1-0-name"), "VRN")
+        sendKeys(By.id("input-1-0-value"), vrn)
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-2-0-value"), iossNumber)
       } else if (enrolment == "IOSS and VAT") {
-        driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-IOSS-ORG")
-        driver
-          .findElement(By.id("input-1-0-name"))
-          .sendKeys("IOSSNumber")
+        sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-1-0-name"), "IOSSNumber")
         if (iossNumber == "default") {
-          driver
-            .findElement(By.id("input-1-0-value"))
-            .sendKeys("IM9001234567")
+          sendKeys(By.id("input-1-0-value"), "IM9001234567")
         } else {
-          driver
-            .findElement(By.id("input-1-0-value"))
-            .sendKeys(iossNumber)
+          sendKeys(By.id("input-1-0-value"), iossNumber)
         }
       }
       if (iossNumber == "IM9007230000") {
         if (enrolment == "OSS and IOSS and VAT") {
-          driver.findElement(By.id("enrolment[3].name")).sendKeys("HMRC-IOSS-ORG")
-          driver
-            .findElement(By.id("input-3-0-name"))
-            .sendKeys("IOSSNumber")
-          driver
-            .findElement(By.id("input-3-0-value"))
-            .sendKeys("IM9006230000")
+          sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-ORG")
+          sendKeys(By.id("input-3-0-name"), "IOSSNumber")
+          sendKeys(By.id("input-3-0-value"), "IM9006230000")
         } else {
-          driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
-          driver
-            .findElement(By.id("input-2-0-name"))
-            .sendKeys("IOSSNumber")
-          driver
-            .findElement(By.id("input-2-0-value"))
-            .sendKeys("IM9006230000")
+          sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+          sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+          sendKeys(By.id("input-2-0-value"), "IM9006230000")
         }
       } else if (iossNumber == "IM9007231111") {
-        driver.findElement(By.id("enrolment[3].name")).sendKeys("HMRC-IOSS-ORG")
-        driver
-          .findElement(By.id("input-3-0-name"))
-          .sendKeys("IOSSNumber")
-        driver
-          .findElement(By.id("input-3-0-value"))
-          .sendKeys("IM9006231111")
+        sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-3-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-3-0-value"), "IM9006231111")
       } else if (iossNumber == "IM9007230003") {
-        driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
-        driver
-          .findElement(By.id("input-2-0-name"))
-          .sendKeys("IOSSNumber")
-        driver
-          .findElement(By.id("input-2-0-value"))
-          .sendKeys("IM9007230002")
-        driver.findElement(By.id("enrolment[3].name")).sendKeys("HMRC-IOSS-ORG")
-        driver
-          .findElement(By.id("input-3-0-name"))
-          .sendKeys("IOSSNumber")
-        driver
-          .findElement(By.id("input-3-0-value"))
-          .sendKeys("IM9007230001")
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-2-0-value"), "IM9007230002")
+        sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-3-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-3-0-value"), "IM9007230001")
       }
     }
-    driver.findElement(By.cssSelector("Input[value='Submit']")).click()
+    click(By.cssSelector("Input[value='Submit']"))
   }
 
   def loginUsingScpStub(
@@ -179,32 +123,31 @@ object AuthPage extends BasePage {
 
     fluentWait.until(ExpectedConditions.urlContains("http://localhost:9597/bas-stub/login"))
 
-    driver.findElement(By.partialLinkText("Register SCP User")).click()
+    click(By.partialLinkText("Register SCP User"))
 
-    val select = new Select(driver.findElement(By.id("accountType")))
-    select.selectByValue(affinityGroup)
+    selectByValue(By.id("accountType"), affinityGroup)
 
     if (admin == "Admin") {
-      driver.findElement(By.id("isAdmin")).click()
+      click(By.id("isAdmin"))
     }
-    driver.findElement(By.id("groupProfile")).sendKeys("123")
+    sendKeys(By.id("groupProfile"), "123")
 
     if (vatEnrolment == "with") {
-      driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
-      driver.findElement(By.id("enrolment[0].identifier")).sendKeys("VRN")
-      driver.findElement(By.id("enrolment[0].value")).sendKeys(vrn)
+      sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
+      sendKeys(By.id("enrolment[0].identifier"), "VRN")
+      sendKeys(By.id("enrolment[0].value"), vrn)
     }
 
-    driver.findElement(By.className("submit")).click()
+    click(By.className("submit"))
   }
 
   def selectMfaSuccess(): Unit = {
     fluentWait.until(ExpectedConditions.urlContains("http://localhost:9597/bas-stub/required-mfa-register"))
-    driver.findElement(By.id("mfaOutcome")).click()
-    driver.findElement(By.className("submit")).click()
+    click(By.id("mfaOutcome"))
+    click(By.className("submit"))
   }
 
   def goToAuthStub(): Unit =
-    driver.navigate().to("http://localhost:9949/auth-login-stub/gg-sign-in/")
+    get("http://localhost:9949/auth-login-stub/gg-sign-in/")
 
 }

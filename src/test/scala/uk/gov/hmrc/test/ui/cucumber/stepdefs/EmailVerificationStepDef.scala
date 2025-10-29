@@ -28,7 +28,7 @@ class EmailVerificationStepDef extends BaseStepDef {
   ) { (mode: String) =>
     fluentWait.until(ExpectedConditions.urlContains("http://localhost:9890/email-verification/journey"))
 
-    val journeyId = driver.getCurrentUrl.split("/")(5)
+    val journeyId = getCurrentUrl.split("/")(5)
     goToEmailVerificationPasscodeGeneratorUrl()
 
     val passcode = mode match {

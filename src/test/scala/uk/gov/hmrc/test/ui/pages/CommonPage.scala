@@ -19,7 +19,9 @@ package uk.gov.hmrc.test.ui.pages
 import io.cucumber.datatable.DataTable
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.test.ui.pages.AuthPage.fluentWait
 
 import scala.jdk.CollectionConverters._
 import scala.util.Random
@@ -31,68 +33,65 @@ object CommonPage extends BasePage {
   def checkUrl(url: String): Unit = {
     val urlToCheck = s"${TestConfiguration.url("ioss-registration-frontend")}/$url"
     fluentWait.until(ExpectedConditions.urlContains(urlToCheck))
-    driver.getCurrentUrl should startWith(urlToCheck)
+    getCurrentUrl should startWith(urlToCheck)
   }
 
   def selectAnswer(data: String): Unit = {
     data match {
-      case "yes" => driver.findElement(By.id("value")).click()
-      case "no"  => driver.findElement(By.id("value-no")).click()
+      case "yes" => click(By.id("value"))
+      case "no"  => click(By.id("value-no"))
       case _     => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
   }
 
   def clickContinue(): Unit =
-    driver.findElement(By.id("continue")).click()
+    click(By.id("continue"))
 
   def clickSubmit(): Unit =
-    driver.findElement(By.id("submit")).click()
+    click(By.id("submit"))
 
   def enterData(data: String, inputId: String = "value"): Unit = {
-    driver.findElement(By.id(inputId)).sendKeys(data)
+    sendKeys(By.id(inputId), data)
     CommonPage.clickContinue()
   }
 
   def selectLink(link: String): Unit =
-    driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
-
-  def clearData(): Unit =
-    driver.findElement(By.id("value")).clear()
+    click(By.cssSelector(s"a[href*=$link]"))
 
   def goToPage(url: String): Unit =
-    driver.navigate().to(s"$registrationUrl/$url")
+    get(s"$registrationUrl/$url")
 
   def completeForm(dataTable: DataTable): Unit = {
     dataTable.asMaps[String, String](classOf[String], classOf[String]).asScala.foreach { row =>
-      driver.findElement(By.id(row.get("fieldId"))).clear()
-      driver.findElement(By.id(row.get("fieldId"))).sendKeys(row.get("data"))
+      Driver.instance.findElement(By.id(row.get("fieldId"))).clear()
+      Driver.instance.findElement(By.id(row.get("fieldId"))).sendKeys(row.get("data"))
     }
     clickContinue()
   }
 
-  def waitForElement(by: By): Unit =
-    new FluentWait(driver).until(ExpectedConditions.presenceOfElementLocated(by))
+  def waitForElement(by: By) =
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(by))
 
   def selectValueAutocomplete(country: String): Unit = {
     val inputId = "value"
-    driver.findElement(By.id(inputId)).sendKeys(country)
+    sendKeys(By.id(inputId), country)
     waitForElement(By.id(inputId))
-    driver.findElement(By.cssSelector("li#value__option--0")).click()
-    CommonPage.clickContinue()
+    click(By.cssSelector("li#value__option--0"))
+    clickContinue()
   }
 
   def selectRadioButton(scheme: String): Unit = {
     scheme match {
-      case "1" => driver.findElement(By.id("value_0")).click()
-      case "2" => driver.findElement(By.id("value_1")).click()
+      case "1" => click(By.id("value_0"))
+      case "2" => click(By.id("value_1"))
       case _   => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
   }
 
   def checkReturnsDashboard(): Unit =
-    driver.getCurrentUrl should startWith(TestConfiguration.url("ioss-returns-frontend") + "/your-account")
+    getCurrentUrl should startWith(TestConfiguration.url("ioss-returns-frontend") + "/your-account")
 
   def retrieveCredId(): String =
     credId
@@ -101,7 +100,7 @@ object CommonPage extends BasePage {
     credId = Random.between(1000000000000000L, 9000000000000000L).toString
 
   def clickBackButton(): Unit =
-    driver
+    Driver.instance
       .navigate()
       .back()
 

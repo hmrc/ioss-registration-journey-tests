@@ -21,7 +21,7 @@ import uk.gov.hmrc.test.ui.pages._
 class AuthStepDef extends BaseStepDef {
 
   Given(
-    "^the (user|assistant) signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT|OSS and VAT) enrolment (.*)$"
+    "^the (user) signs into authority wizard as an (Organisation|Agent) Admin (with|without) (VAT|IOSS and VAT|OSS and VAT) enrolment (.*)$"
   ) { (user: String, role: String, withStatus: String, enrolment: String, vrn: String) =>
     AuthPage.loginUsingAuthorityWizard(user, false, "registration", role, withStatus, enrolment, vrn, "default")
   }
