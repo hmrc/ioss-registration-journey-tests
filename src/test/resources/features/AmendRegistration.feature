@@ -255,6 +255,7 @@ Feature: Amend Registration journeys
     Then the user selects the amend change link for page add-website-address from change-your-registration
     Then the user clicks remove via amend route for second website-address
     And the user answers yes on the remove-website-address/2 page
+    And the user is on the add-website-address?waypoints=change-your-registration page
     And the user selects the list within amend change link for first website-address from change-add-website-address
     And the user amends data to www.amended-website-name.com on the website-address/1 page
     Then the user answers yes on the add-website-address page
