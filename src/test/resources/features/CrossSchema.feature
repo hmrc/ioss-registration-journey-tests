@@ -24,12 +24,14 @@ Feature: Cross Schema journeys
     Then the user answers no on the tax-in-eu page
     And the user adds https://www.onlywebsite.com on the first website-address page
     And the user answers no on the add-website-address page
+    And the user is on the business-contact-details page
     And the registration contact details warnings are displayed for a trader with an OSS registration
     And the user completes details on the business-contact-details page
       | data                        | fieldId         |
       | +17771117771                | telephoneNumber |
       | cross-schema-test@email.com | emailAddress    |
     And the user completes the registration email verification process
+    And the user is on the bank-account-details page
     And the registration bank details warnings are displayed for a trader with an OSS registration
     And the user completes details on the bank-account-details page
       | data                   | fieldId |
@@ -43,13 +45,16 @@ Feature: Cross Schema journeys
     And a user registered on OSS with VRN 300000002 and IOSS Number IM9007230000 accesses the amend registration journey
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with OSS and IOSS registrations
     And the amend trading name warnings are displayed for a trader with both OSS and IOSS registrations
     Then the user selects the list within amend change link for first uk-trading-name from change-add-uk-trading-name
+    And the user is on the uk-trading-name/1 page
     And the user amends answer to an amended cross schema trading name
     Then the user answers no on the add-uk-trading-name page
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And the user is on the business-contact-details page
     And the amend contact details warnings are displayed for a trader with both OSS and IOSS registrations
     And the user completes details on the business-contact-details page
       | data         | fieldId         |
@@ -57,6 +62,7 @@ Feature: Cross Schema journeys
     And the user completes the amend registration email verification process
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page bank-account-details from change-your-registration
+    And the user is on the bank-account-details page
     And the amend bank details warnings are displayed for a trader with both OSS and IOSS registrations
     And the user completes details on the bank-account-details page
       | data                   | fieldId |
@@ -72,13 +78,16 @@ Feature: Cross Schema journeys
     And a user with VRN 100005555 and IOSS Number IM9007230000 accesses the amend registration journey
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
     And the amend trading name warnings are displayed for a trader with multiple IOSS registrations
     Then the user selects the list within amend change link for second uk-trading-name from change-add-uk-trading-name
+    And the user is on the uk-trading-name/2 page
     And the user amends answer to another
     Then the user answers no on the add-uk-trading-name page
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And the user is on the business-contact-details page
     And the amend contact details warnings are displayed for a trader with multiple IOSS registrations
     And the user completes details on the business-contact-details page
       | data                              | fieldId      |
@@ -86,6 +95,7 @@ Feature: Cross Schema journeys
     And the user completes the amend registration email verification process
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page bank-account-details from change-your-registration
+    And the user is on the bank-account-details page
     And the amend bank details warnings are displayed for a trader with multiple IOSS registrations
     And the user completes details on the bank-account-details page
       | data                      | fieldId     |
@@ -101,17 +111,20 @@ Feature: Cross Schema journeys
     And a user registered on OSS with VRN 300000002 and IOSS Number IM9007231111 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page add-uk-trading-name from rejoin-registration
+    And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with OSS and IOSS registrations
     And the rejoin trading name warnings are displayed for a trader with both OSS and IOSS registrations
     Then the user clicks remove via rejoin route for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     Then the user selects the list within rejoin change link for first uk-trading-name from change-add-uk-trading-name
+    And the user is on the uk-trading-name/1 page
     And the user amends answer to an amended cross schema trading name for rejoin
     Then the user answers yes on the add-uk-trading-name page
     And the user adds new 2nd name on the second uk-trading-name page
     Then the user answers no on the add-uk-trading-name page
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page business-contact-details from rejoin-registration
+    And the user is on the business-contact-details page
     And the rejoin contact details warnings are displayed for a trader with both OSS and IOSS registrations
     And the user completes details on the business-contact-details page
       | data                               | fieldId      |
@@ -119,6 +132,7 @@ Feature: Cross Schema journeys
     And the user completes the rejoin registration email verification process
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page bank-account-details from rejoin-registration
+    And the user is on the bank-account-details page
     And the rejoin bank details warnings are displayed for a trader with both OSS and IOSS registrations
     And the user completes details on the bank-account-details page
       | data                   | fieldId     |
@@ -134,17 +148,20 @@ Feature: Cross Schema journeys
     And a user with VRN 100005555 and IOSS Number IM9019999997 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page add-uk-trading-name from rejoin-registration
+    And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with one previous IOSS registration
     And the rejoin trading name warnings are displayed for a trader with one previous IOSS registrations
     Then the user clicks remove via rejoin route for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     Then the user selects the list within rejoin change link for first uk-trading-name from change-add-uk-trading-name
+    And the user is on the uk-trading-name/1 page
     And the user amends answer to an amended cross schema trading name for rejoin
     Then the user answers yes on the add-uk-trading-name page
     And the user adds new 2nd name on the second uk-trading-name page
     Then the user answers no on the add-uk-trading-name page
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page business-contact-details from rejoin-registration
+    And the user is on the business-contact-details page
     And the rejoin contact details warnings are displayed for a trader with one previous IOSS registration
     And the user completes details on the business-contact-details page
       | data                               | fieldId      |
@@ -152,6 +169,7 @@ Feature: Cross Schema journeys
     And the user completes the rejoin registration email verification process
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page bank-account-details from rejoin-registration
+    And the user is on the bank-account-details page
     And the rejoin bank details warnings are displayed for a trader with one previous IOSS registration
     And the user completes details on the bank-account-details page
       | data                   | fieldId     |
@@ -167,13 +185,16 @@ Feature: Cross Schema journeys
     And a user with VRN 100005555 and IOSS Number IM9007231111 accesses the rejoin registration journey
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page add-uk-trading-name from rejoin-registration
+    And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
     And the rejoin trading name warnings are displayed for a trader with multiple IOSS registrations
     Then the user selects the list within rejoin change link for first uk-trading-name from change-add-uk-trading-name
+    And the user is on the uk-trading-name/1 page
     And the user amends answer to an amended cross schema trading name for rejoin
     Then the user answers no on the add-uk-trading-name page
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page business-contact-details from rejoin-registration
+    And the user is on the business-contact-details page
     And the rejoin contact details warnings are displayed for a trader with multiple IOSS registrations
     And the user completes details on the business-contact-details page
       | data         | fieldId         |
@@ -181,6 +202,7 @@ Feature: Cross Schema journeys
     And the user completes the rejoin registration email verification process
     Then the user is on the rejoin-registration page
     Then the user selects the rejoin change link for page bank-account-details from rejoin-registration
+    And the user is on the bank-account-details page
     And the rejoin bank details warnings are displayed for a trader with multiple IOSS registrations
     And the user completes details on the bank-account-details page
       | data                   | fieldId     |
@@ -255,6 +277,7 @@ Feature: Cross Schema journeys
     Then the user answers no on the tax-in-eu page
     And the user adds https://www.onlywebsite.com on the first website-address page
     And the user answers no on the add-website-address page
+    And the user is on the business-contact-details page
     And the registration contact details warnings are not displayed for a trader with no other registration
     And the contact details are blank
     And the user completes details on the business-contact-details page
@@ -263,6 +286,7 @@ Feature: Cross Schema journeys
       | +17771117771          | telephoneNumber |
       | minimaltest@email.com | emailAddress    |
     And the user completes the registration email verification process
+    And the user is on the bank-account-details page
     And the registration bank details warnings are not displayed for a trader with no other registration
     And the bank details are blank
     And the user completes details on the bank-account-details page
@@ -278,15 +302,18 @@ Feature: Cross Schema journeys
     And a user with VRN 100005555 and IOSS Number IM9001234567 accesses the amend registration journey
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And the user is on the add-uk-trading-name page
     And there are no headings or warnings for trading names mentioning other registrations
     Then the user answers no on the add-uk-trading-name page
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And the user is on the business-contact-details page
     And the amend contact details warnings are not displayed for a trader with no other registration
     When the user continues through the business-contact-details page
     And the user completes the amend registration email verification process
     Then the user is on the change-your-registration page
     When the user selects the amend change link for page bank-account-details from change-your-registration
+    And the user is on the bank-account-details page
     And the amend bank details warnings are not displayed for a trader with no other registration
     And the user continues through the bank-account-details page
     Then the user is on the change-your-registration page
@@ -300,17 +327,20 @@ Feature: Cross Schema journeys
     And a user with VRN 100005555 and IOSS Number IM9019999997 accesses the amend registration journey
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And the user is on the add-uk-trading-name page
     And there are no headings or warnings for trading names mentioning other registrations
     Then the user clicks remove via list for second uk-trading-name
     And the user answers yes on the remove-uk-trading-name/2 page
     Then the user answers no on the add-uk-trading-name page
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And the user is on the business-contact-details page
     And the amend contact details warnings are not displayed for a trader with one previous IOSS registration
     When the user continues through the business-contact-details page
     And the user completes the amend registration email verification process
     Then the user is on the change-your-registration page
     When the user selects the amend change link for page bank-account-details from change-your-registration
+    And the user is on the bank-account-details page
     And the amend bank details warnings are not displayed for a trader with one previous IOSS registration
     And the user continues through the bank-account-details page
     Then the user is on the change-your-registration page
@@ -324,15 +354,18 @@ Feature: Cross Schema journeys
     And a user with VRN 100005555 and IOSS Number IM9001234567 accesses the amend registration journey
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page add-uk-trading-name from change-your-registration
+    And the user is on the add-uk-trading-name page
     And there are no headings or warnings for trading names mentioning other registrations
     Then the user answers no on the add-uk-trading-name page
     Then the user is on the change-your-registration page
     Then the user selects the amend change link for page business-contact-details from change-your-registration
+    And the user is on the business-contact-details page
     And the amend contact details warnings are not displayed for a trader with one current IOSS registration
     When the user continues through the business-contact-details page
     And the user completes the amend registration email verification process
     Then the user is on the change-your-registration page
     When the user selects the amend change link for page bank-account-details from change-your-registration
+    And the user is on the bank-account-details page
     Then the amend bank details warnings are not displayed for a trader with one current IOSS registration
     And the user completes details on the bank-account-details page
       | data                   | fieldId |

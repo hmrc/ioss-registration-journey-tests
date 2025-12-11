@@ -297,6 +297,7 @@ Feature: Change and remove answers for registrations in progress
     And the user continues through the check-tax-details/2 page
     And the user is on the add-tax-details page
     Then the user selects the list change link for first check-tax-details from change-add-tax-details
+    And the user is on the check-tax-details/1 page
     Then the user selects the list change link for first registration-tax-type from check-tax-details-1
     And the user picks tax id number on the registration-tax-type/1 page
     And the user adds ROM12345R on the first eu-tax-identification-number page
