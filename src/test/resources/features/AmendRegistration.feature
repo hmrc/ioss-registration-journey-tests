@@ -23,6 +23,7 @@ Feature: Amend Registration journeys
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
     Then the user is on the change-your-registration page
     And the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page
+    And the user is on the remove-all-previous-registrations?waypoints=change-your-registration page
     Then the user is presented with the problem page
 
   Scenario: An IOSS registered user cannot use remove all previous registrations if they were entered during the amend registration journey
@@ -47,6 +48,7 @@ Feature: Amend Registration journeys
     And the user answers no on the previous-schemes-overview page
     Then the user is on the change-your-registration page
     And the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page
+    And the user is on the remove-all-previous-registrations?waypoints=change-your-registration page
     Then the user is presented with the problem page
 
   Scenario: An IOSS registered user cannot remove an individual previous scheme if they were retrieved from the ETMP registration
@@ -163,6 +165,7 @@ Feature: Amend Registration journeys
     And the user answers yes on the remove-uk-trading-name/1 page
     And the user is on the add-uk-trading-name page
     Then the user selects the list within amend change link for first uk-trading-name from change-add-uk-trading-name
+    And the user is on the uk-trading-name/1 page
     And the user amends answer to an amended trading name
     Then the user answers yes on the add-uk-trading-name page
     And the user adds new 2nd name on the second uk-trading-name page
@@ -237,6 +240,7 @@ Feature: Amend Registration journeys
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the amend registration journey
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page add-tax-details from change-your-registration
+    And the user is on the add-tax-details page
     Then the user clicks remove via amend route for first tax-details
     And the user answers yes on the remove-tax-details/1 page
     Then the user continues through the tax-in-eu page
@@ -253,6 +257,7 @@ Feature: Amend Registration journeys
     And the user answers no on the add-tax-details page
     And the user is on the change-your-registration page
     Then the user selects the amend change link for page add-website-address from change-your-registration
+    And the user is on the add-website-address page
     Then the user clicks remove via amend route for second website-address
     And the user answers yes on the remove-website-address/2 page
     And the user is on the add-website-address?waypoints=change-your-registration page

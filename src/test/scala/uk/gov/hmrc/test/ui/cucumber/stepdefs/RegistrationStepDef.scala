@@ -62,13 +62,13 @@ class RegistrationStepDef extends BaseStepDef {
   When(
     """^the user picks (oss|ioss|vat number|tax id number|IM9007230001|IM9007230002) on the (.*) page$"""
   ) { (answer: String, url: String) =>
+    checkUrl(url)
     val radioButtonToSelect = answer match {
       case "oss" | "vat number" | "IM9007230001"     => "1"
       case "ioss" | "tax id number" | "IM9007230002" => "2"
       case _                                         =>
         throw new Exception("Selection doesn't exist")
     }
-    checkUrl(url)
     selectRadioButton(radioButtonToSelect)
   }
 

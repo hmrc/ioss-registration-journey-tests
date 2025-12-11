@@ -79,6 +79,7 @@ Feature: Change answers for registrations via Check Your Answers
       | GB33BUKB20201555555555 | iban        |
     Then the user is on the check-your-answers page
     Then the user selects the CYA change link for page add-uk-trading-name from check-your-answers
+    And the user is on the add-uk-trading-name page
     Then the user selects the list within CYA change link for second uk-trading-name from change-add-uk-trading-name
     And the user amends data to CYA trading name on the uk-trading-name/2 page
     And the user is on the add-uk-trading-name page
@@ -106,10 +107,12 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the previous-schemes-overview page
     Then the user is on the check-your-answers page
     Then the user selects the CYA change link for page add-tax-details from check-your-answers
+    And the user is on the add-tax-details page
     Then the user clicks remove via CYA route for second tax-details
     And the user answers yes on the remove-tax-details/2 page
     And the user is on the add-tax-details page
     Then the user selects the list within CYA change link for first check-tax-details from change-add-tax-details
+    And the user is on the check-tax-details/1 page
     Then the user selects the additional tax details list within CYA change link for first eu-trading-name from check-tax-details-1
     And the user amends data to CYA trading name on the eu-trading-name/1 page
     And the user continues through the check-tax-details page
@@ -127,6 +130,7 @@ Feature: Change answers for registrations via Check Your Answers
     Then the user answers no on the add-tax-details page
     And the user is on the check-your-answers page
     Then the user selects the CYA change link for page add-website-address from check-your-answers
+    And the user is on the add-website-address page
     Then the user clicks remove via CYA route for second website-address
     And the user answers yes on the remove-website-address/2 page
     Then the user answers yes on the add-website-address page
@@ -266,6 +270,7 @@ Feature: Change answers for registrations via Check Your Answers
       | NO9386011117947    | iban        |
     And the user is on the check-your-answers page
     Then the user selects the CYA change link for page add-uk-trading-name from check-your-answers
+    And the user is on the add-uk-trading-name page
     Then the user selects the list within CYA change link for first uk-trading-name from change-add-uk-trading-name
     And the user amends data to CYA Norwegian trading name on the uk-trading-name/1 page
     Then the user answers no on the add-uk-trading-name page
@@ -305,6 +310,7 @@ Feature: Change answers for registrations via Check Your Answers
     And the user answers no on the add-tax-details page
     And the user is on the check-your-answers page
     Then the user selects the CYA change link for page add-website-address from check-your-answers
+    And the user is on the add-website-address page
     Then the user selects the list within CYA change link for first website-address from change-add-website-address
     And the user amends data to www.1stNorwegianCYAwebsite.no on the website-address/1 page
     Then the user answers no on the add-website-address page
