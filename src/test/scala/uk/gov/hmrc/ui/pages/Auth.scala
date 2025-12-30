@@ -1,0 +1,152 @@
+/*
+ * Copyright 2025 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package uk.gov.hmrc.ui.pages
+
+import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.ExpectedConditions
+import uk.gov.hmrc.configuration.TestEnvironment
+import org.scalatest.matchers.should.Matchers._
+
+import scala.util.Random
+
+object Auth extends BasePage {
+
+  private val authUrl: String             = TestEnvironment.url("auth-login-stub") + "/auth-login-stub/gg-sign-in"
+  private val registrationUrl: String     =
+    TestEnvironment.url("ioss-registration-frontend")
+  private val journeyUrl: String          = "/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop"
+  private val returnsUrl: String        =
+    TestEnvironment.url("ioss-returns-frontend")
+  private val returnsJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
+
+  var credId: String = "1234123412341234"
+
+  def goToAuthorityWizard(): Unit =
+    get(authUrl)
+    fluentWait.until(ExpectedConditions.urlContains(authUrl))
+
+  def checkAuthUrl(): Unit =
+    getCurrentUrl should startWith(authUrl)
+
+  def loginUsingAuthorityWizard(vrn: String, affinityGroup: String, accountType: String, journey: String): Unit = {
+
+    getCurrentUrl should startWith(authUrl)
+
+    val redirectUrl = journey match {
+      case "amend"                                                                 =>
+        s"$registrationUrl$journeyUrl/start-amend-journey"
+      case "savedRegistration" | "registrationFailureSave" | "retrievedWithCredId" =>
+        s"$registrationUrl$journeyUrl/continue-on-sign-in"
+      case "rejoin"                                                                =>
+        s"$registrationUrl$journeyUrl/start-rejoin-journey"
+      case "dashboard"                                                             =>
+        s"$returnsUrl$returnsJourneyUrl"
+      case _                                                                       =>
+        s"$registrationUrl$journeyUrl"
+    }
+    sendKeys(By.name("redirectionUrl"), redirectUrl)
+
+    if (journey == "registrationFailure" || journey == "savedWithCredId") {
+      generateCredId()
+      sendKeys(By.name("authorityId"), retrieveCredId())
+    } else if (journey == "registrationFailureSave" || journey == "retrievedWithCredId") {
+      sendKeys(By.name("authorityId"), retrieveCredId())
+    }
+
+    if (affinityGroup == "Agent") {
+      selectByValue(By.id("affinityGroupSelect"), "Agent")
+    } else if (affinityGroup == "Individual") {
+      selectByValue(By.id("affinityGroupSelect"), "Individual")
+      selectByValue(By.id("confidenceLevel"), "250")
+      sendKeys(By.id("nino"), "AA123456D")
+    } else {
+      selectByValue(By.id("affinityGroupSelect"), "Organisation")
+    }
+
+    if (vrn != "None") {
+      sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
+      sendKeys(By.id("input-0-0-name"), "VRN")
+      sendKeys(By.id("input-0-0-value"), vrn)
+    }
+
+    if (accountType != "noVat" && accountType != "vatOnly") {
+      sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-1-0-name"), "IntNumber")
+
+      val intNumber = accountType match {
+        case "registration"                       => ""
+        case "fullAmendAnswers"                   => "IN9001234568"
+        case "amendNIManual"                      => "IN9001234444"
+        case "excludedPast"                       => "IN9002323232"
+        case "excludedFuture"                     => "IN9003232323"
+        case "reversal"                           => "IN9002323333"
+        case "quarantined"                        => "IN9002323334"
+        case "quarantineExpired"                  => "IN9002323335"
+        case "excludedFullData"                   => "IN9001113232"
+        case "excludedNiManual"                   => "IN9001235555"
+        case "fixedEstablishmentActiveVrn"        => "IN9003344551"
+        case "fixedEstablishmentQuarantineVrn"    => "IN9003344552"
+        case "fixedEstablishmentActiveTaxRef"     => "IN9003344553"
+        case "fixedEstablishmentQuarantineTaxRef" => "IN9003344554"
+        case "previousRegistrationActive"         => "IN9003344555"
+        case "previousRegistrationQuarantine"     => "IN9003344556"
+        case "onePreviousRegistration"            => "IN9008230001"
+        case "multiplePreviousRegistrations"      => "IN9009230002"
+        case "unusableEmailStatus"                => "IN9002222222"
+        case "netpOutstandingReturns"             => "IN9000306832"
+        case _                                    => "IN9001234567"
+      }
+      if (accountType != "registration") {
+        sendKeys(By.id("input-1-0-value"), intNumber)
+      }
+
+      if (accountType == "onePreviousRegistration") {
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+        sendKeys(By.id("input-2-0-name"), "IntNumber")
+        sendKeys(By.id("input-2-0-value"), "IN9007230001")
+      }
+
+      if (accountType == "multiplePreviousRegistrations") {
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+        sendKeys(By.id("input-2-0-name"), "IntNumber")
+        sendKeys(By.id("input-2-0-value"), "IN9008230002")
+
+        sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-INT")
+        sendKeys(By.id("input-3-0-name"), "IntNumber")
+        sendKeys(By.id("input-3-0-value"), "IN9007230002")
+      }
+    }
+
+    click(By.cssSelector("Input[value='Submit']"))
+
+    if (journey == "retrievedWithCredId") {
+      fluentWait.until(
+        ExpectedConditions.urlToBe(
+          "http://localhost:10184/pay-clients-vat-on-eu-sales/register-import-one-stop-shop-intermediary/continue-registration"
+        )
+      )
+    }
+
+  }
+
+  def retrieveCredId(): String =
+    credId
+
+  def generateCredId(): Unit =
+    credId = Random.between(1000000000000000L, 9000000000000000L).toString
+
+}

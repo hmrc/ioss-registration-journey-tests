@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.cucumber.utils
+package uk.gov.hmrc.ui.utils
 
 import org.mongodb.scala.MongoClient
 import org.mongodb.scala.model.Filters

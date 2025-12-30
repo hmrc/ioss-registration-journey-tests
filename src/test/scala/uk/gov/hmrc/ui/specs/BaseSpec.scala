@@ -14,23 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.ui.specs
 
-import org.openqa.selenium.support.ui.{FluentWait, Wait}
-import org.openqa.selenium.{By, WebDriver}
+import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.selenium.component.PageObject
-import uk.gov.hmrc.selenium.webdriver.Driver
+import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
+import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
+import uk.gov.hmrc.ui.utils.MongoConnection
 
-import java.time.Duration
+trait BaseSpec
+    extends AnyFeatureSpec
+    with GivenWhenThen
+    with Matchers
+    with BeforeAndAfterEach
+    with Browser
+    with ScreenshotOnFailure {
 
-trait BasePage extends PageObject with Matchers {
-  val continueButton = "continue-button"
+  override def beforeEach(): Unit =
+    startBrowser()
+    MongoConnection.dropSavedAnswers()
 
-  def submitPage(): Unit =
-    click(By.id(continueButton))
+  override def afterEach(): Unit =
+    quitBrowser()
 
-  def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
-    .withTimeout(Duration.ofSeconds(3))
-    .pollingEvery(Duration.ofMillis(200))
 }
