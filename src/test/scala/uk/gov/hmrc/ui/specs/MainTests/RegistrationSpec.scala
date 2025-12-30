@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.specs.MainTests
 
-import uk.gov.hmrc.ui.pages._
+import uk.gov.hmrc.ui.pages.{Auth, EmailVerification, Registration}
 import uk.gov.hmrc.ui.specs.BaseSpec
 
 class RegistrationSpec extends BaseSpec {
@@ -67,7 +67,7 @@ class RegistrationSpec extends BaseSpec {
 
       And("the user adds the first trading name")
       registration.checkJourneyUrl("uk-trading-name/1")
-      registration.enterAnswer("first trading name")
+      registration.enterAnswer("A trading name")
 
       And("the user selects yes on the add-uk-trading-name page")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -75,7 +75,15 @@ class RegistrationSpec extends BaseSpec {
 
       And("the user adds the second trading name")
       registration.checkJourneyUrl("uk-trading-name/2")
-      registration.enterAnswer("trading 2!")
+      registration.enterAnswer("2nd name!")
+
+      And("the user selects yes on the add-uk-trading-name page")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+
+      And("the user adds the second trading name")
+      registration.checkJourneyUrl("uk-trading-name/3")
+      registration.enterAnswer("Number 3")
 
       And("the user selects no on the add-uk-trading-name page")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -271,6 +279,185 @@ class RegistrationSpec extends BaseSpec {
       registration.submit()
 
       Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+
+    }
+
+    Scenario("IOSS Registration journey for Norwegian Trader") {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("444555555", "Organisation", "vatOnly", "registration")
+
+      When("the user answers the filter questions")
+      registration.checkJourneyUrl("ioss-registered")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("selling-goods-outside-single-market")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("goods-value")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("registered-for-vat-in-uk")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("ni-based")
+      registration.answerRadioButton("no")
+
+      And("the user selects yes on the norway-based page")
+      registration.checkJourneyUrl("norway-based")
+      registration.answerRadioButton("yes")
+
+      Then("the user presses continue on the register-to-use-service page")
+      registration.checkJourneyUrl("register-to-use-service")
+      registration.continue()
+
+      Then("the user selects yes on the confirm-vat-details page")
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+
+      And("the user enters an additional trading name")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("Norwegian trading name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+
+      Then("the user adds previous scheme details")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("yes")
+
+      Then("the user selects which country was it registered in on previous eu country page")
+      registration.checkJourneyUrl("previous-country/1")
+      registration.selectCountry("Cyprus")
+      registration.checkJourneyUrl("previous-scheme/1/1")
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl("previous-ioss-scheme/1/1")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-ioss-number/1/1")
+      registration.enterIossScheme("IM1962223333")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/2")
+      registration.selectCountry("Finland")
+      registration.checkJourneyUrl("previous-scheme/2/1")
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl("previous-oss-scheme-number/2/1")
+      registration.enterAnswer("EU222456788")
+      registration.checkJourneyUrl("previous-scheme-answers/2")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("no")
+
+      Then("the user enters fixed establishment details")
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("eu-tax/1")
+      registration.selectCountry("Spain")
+      registration.checkJourneyUrl("eu-fixed-establishment/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("registration-tax-type/1")
+      registration.selectRegistrationType("tax id number")
+      registration.checkJourneyUrl("eu-tax-identification-number/1")
+      registration.enterAnswer("1236ES34x")
+      registration.checkJourneyUrl("eu-trading-name/1")
+      registration.enterAnswer("Spanish-Trading Name")
+      registration.checkJourneyUrl("eu-fixed-establishment-address/1")
+      registration.enterFixedEstablishmentAddress(
+        "5201 Spanish Plaza",
+        "Spanish Area",
+        "Barcelona",
+        "Catalonia",
+        "ES 56201"
+      )
+      registration.checkJourneyUrl("check-tax-details/1")
+      registration.continue()
+      registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("eu-tax/2")
+      registration.selectCountry("Germany")
+      registration.checkJourneyUrl("eu-fixed-establishment/2")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("registration-tax-type/2")
+      registration.selectRegistrationType("vat number")
+      registration.checkJourneyUrl("eu-vat-number/2")
+      registration.enterAnswer("DE999555111")
+      registration.checkJourneyUrl("eu-trading-name/2")
+      registration.enterAnswer("German Food Wholesalers Ltd")
+      registration.checkJourneyUrl("eu-fixed-establishment-address/2")
+      registration.enterFixedEstablishmentAddress("63 German Street", "", "Munich", "", "")
+      registration.checkJourneyUrl("check-tax-details/2")
+      registration.continue()
+      registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("no")
+
+      Then("the user adds websites")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("a-norwegian-website.no")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("website-address/2")
+      registration.enterAnswer("www.2nd-norwegian-website.no")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+
+      Then("the user enters contact information on the business-contact-details page")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Trader Name", "07771117771", "test@testemail.com")
+      email.completeEmailVerification("registration")
+
+      Then("the user enters bank or building society account details on bank-account-details page")
+      registration.checkJourneyUrl("bank-account-details")
+      registration.fillBankAccountDetails("Trader Name", "ABCDEF2A", "GB33BUKB20201555555555")
+
+      When("the user submits the registration on the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.submit()
+      registration.checkJourneyUrl("successful")
+    }
+
+    Scenario("Minimal IOSS Registration journey for NI Trader") {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "registration")
+      registration.checkJourneyUrl("ioss-registered")
+
+      When("the user answers all of the filter questions")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("selling-goods-outside-single-market")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("goods-value")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("registered-for-vat-in-uk")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("ni-based")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("register-to-use-service")
+      registration.continue()
+
+      Then("the user only adds minimal details to their registration")
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("https://www.onlywebsite.com")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Another Trader", "+17771117771", "minimaltest@email.com")
+      email.completeEmailVerification("registration")
+      registration.checkJourneyUrl("bank-account-details")
+      registration.fillBankAccountDetails("Another Trader Name", "", "GB29NWBK60161331926819")
+
+      And("the user submits the registration on the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.submit()
       registration.checkJourneyUrl("successful")
 
     }

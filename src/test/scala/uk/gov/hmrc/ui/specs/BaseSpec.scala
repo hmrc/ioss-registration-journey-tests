@@ -30,9 +30,10 @@ trait BaseSpec
     with Browser
     with ScreenshotOnFailure {
 
-  override def beforeEach(): Unit =
+  override def beforeEach(): Unit = {
     startBrowser()
     MongoConnection.dropSavedAnswers()
+  }
 
   override def afterEach(): Unit =
     quitBrowser()

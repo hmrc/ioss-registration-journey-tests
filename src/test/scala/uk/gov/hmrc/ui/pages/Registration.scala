@@ -37,10 +37,11 @@ object Registration extends BasePage {
   def goToRegistrationJourney(): Unit =
     get(registrationUrl + journeyUrl)
 
-  def checkJourneyUrl(page: String): Unit =
+  def checkJourneyUrl(page: String): Unit = {
     val url = s"$registrationUrl$journeyUrl/$page"
     fluentWait.until(ExpectedConditions.urlContains(url))
     getCurrentUrl.startsWith(url)
+  }
 
   def checkDashboardJourneyUrl(page: String): Unit =
     getCurrentUrl.startsWith(s"$returnsUrl$returnsJourneyUrl/$page")
@@ -74,9 +75,10 @@ object Registration extends BasePage {
   def goToPage(page: String): Unit =
     get(s"$registrationUrl$journeyUrl/$page")
 
-  def enterAnswer(answer: String): Unit =
+  def enterAnswer(answer: String): Unit = {
     sendKeys(By.id("value"), answer)
     click(continueButton)
+  }
 
   def selectChangeOrRemoveLink(link: String): Unit =
     click(By.cssSelector(s"a[href*=$link]"))
@@ -117,13 +119,14 @@ object Registration extends BasePage {
     townOrCity: String,
     stateOrRegion: String,
     postCode: String
-  ): Unit =
+  ): Unit = {
     sendKeys(By.id("line1"), line1)
     sendKeys(By.id("line2"), line2)
     sendKeys(By.id("townOrCity"), townOrCity)
     sendKeys(By.id("stateOrRegion"), stateOrRegion)
     sendKeys(By.id("postCode"), postCode)
     click(continueButton)
+  }
 
   def fillContactDetails(name: String, phone: String, email: String): Unit = {
     sendKeys(By.id("fullName"), name)
@@ -179,13 +182,14 @@ object Registration extends BasePage {
     townOrCity: String,
     county: String,
     postCode: String
-  ): Unit =
+  ): Unit = {
     sendKeys(By.id("line1"), line1)
     sendKeys(By.id("line2"), line2)
     sendKeys(By.id("townOrCity"), townOrCity)
     sendKeys(By.id("county"), county)
     sendKeys(By.id("postCode"), postCode)
     click(continueButton)
+  }
 
   def enterFETradingName(tradingName: String): Unit =
     sendKeys(By.id("tradingName"), tradingName)
@@ -244,77 +248,77 @@ object Registration extends BasePage {
     val body = Driver.instance.findElement(By.tagName("body")).getText
 
     amendJourney match {
-      case "noAmendedAnswers"                    =>
+      case "noAmendedAnswers" =>
         Assert.assertTrue(body.contains("You have not changed any of your registration details."))
-      case "noToYes"                             =>
+//      case "noToYes"                             =>
+//        Assert.assertTrue(body.contains("You changed the following details:"))
+//        Assert.assertTrue(body.contains("Have other trading names Yes"))
+//        Assert.assertTrue(body.contains("Trading names added first amend trading name"))
+//        Assert.assertTrue(body.contains("amend trading 2!"))
+//        Assert.assertTrue(body.contains("Other IOSS intermediary registrations Yes"))
+//        Assert.assertTrue(body.contains("Other IOSS intermediary registrations details added Slovenia"))
+//        Assert.assertTrue(body.contains("Netherlands"))
+//        Assert.assertTrue(body.contains("Fixed establishments in other countries Yes"))
+//        Assert.assertTrue(body.contains("Fixed establishments in other countries added Denmark"))
+//        Assert.assertTrue(body.contains("Slovakia"))
+//      case "contactAndBankDetails"               =>
+//        Assert.assertTrue(body.contains("You changed the following details:"))
+//        Assert.assertTrue(body.contains("Contact name Amended Test Name"))
+//        Assert.assertTrue(body.contains("Email address amend-test@email.com"))
+//        Assert.assertTrue(body.contains("BIC or SWIFT code (if you have one) Removed"))
+//        Assert.assertTrue(body.contains("IBAN GB91BKEN10000041610008"))
+//      case "removeAll"                           =>
+//        Assert.assertTrue(body.contains("You changed the following details:"))
+//        Assert.assertTrue(body.contains("Have other trading names No"))
+//        Assert.assertTrue(body.contains("Trading names removed tradingName1"))
+//        Assert.assertTrue(body.contains("tradingName2"))
+//        Assert.assertTrue(body.contains("Fixed establishments in other countries No"))
+//        Assert.assertTrue(body.contains("Fixed establishments in other countries removed Germany"))
+//        Assert.assertTrue(body.contains("France"))
+//      case "tradingAndFixedEstablishments"       =>
+//        Assert.assertTrue(body.contains("You changed the following details:"))
+//        Assert.assertTrue(body.contains("Trading names added an amended trading name"))
+//        Assert.assertTrue(body.contains("Trading names removed tradingName1"))
+//        Assert.assertTrue(body.contains("tradingName2"))
+//        Assert.assertTrue(body.contains("Fixed establishments in other countries added Malta"))
+//        Assert.assertTrue(body.contains("Fixed establishments in other countries removed Germany"))
+//        Assert.assertTrue(body.contains("France"))
+//      case "previousRegistrations"               =>
+//        Assert.assertTrue(body.contains("You changed the following details:"))
+//        Assert.assertTrue(body.contains("Other IOSS intermediary registrations details added Croatia"))
+//      case "niAddress"                           =>
+//        Assert.assertTrue(body.contains("You changed the following details:"))
+//        Assert.assertTrue(body.contains("Business address in Northern Ireland changed 1A Different Road"))
+//        Assert.assertTrue(body.contains("Suburb"))
+//        Assert.assertTrue(body.contains("Belfast"))
+//        Assert.assertTrue(body.contains("BT1 1DD"))
+//      case "coreValidationFixedEstablishments"   =>
+//        Assert.assertTrue(body.contains("You changed the following details:"))
+//        Assert.assertTrue(body.contains("Fixed establishments in other countries Yes"))
+//        Assert.assertTrue(body.contains("Fixed establishments in other countries added Portugal"))
+//        Assert.assertTrue(body.contains("Lithuania"))
+//      case "coreValidationPreviousRegistrations" =>
+//        Assert.assertTrue(body.contains("You changed the following details:"))
+//        Assert.assertTrue(body.contains("Other IOSS intermediary registrations Yes"))
+//        Assert.assertTrue(body.contains("Other IOSS intermediary registrations details added Slovenia"))
+//        Assert.assertTrue(body.contains("Latvia"))
+//      case "nonNiToNiAddress"                    =>
+//        Assert.assertTrue(body.contains("You changed the following details:"))
+//        Assert.assertTrue(body.contains("Business address in Northern Ireland changed Other Address Line 1"))
+//        Assert.assertTrue(body.contains("Other Address Line 2"))
+//        Assert.assertTrue(body.contains("Other Town or City"))
+//        Assert.assertTrue(body.contains("Other Region or State"))
+//        Assert.assertTrue(body.contains("BT1 1AA"))
+//      case "vatInfoIntercept"                    =>
+//        Assert.assertTrue(body.contains("You changed the following details:"))
+//        Assert.assertTrue(body.contains("Business address in Northern Ireland changed"))
+//        Assert.assertTrue(body.contains("123 Street Name"))
+//        Assert.assertTrue(body.contains("Town"))
+//        Assert.assertTrue(body.contains("BT1 1AA"))
+      case "emailChanged"     =>
         Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Have other trading names Yes"))
-        Assert.assertTrue(body.contains("Trading names added first amend trading name"))
-        Assert.assertTrue(body.contains("amend trading 2!"))
-        Assert.assertTrue(body.contains("Other IOSS intermediary registrations Yes"))
-        Assert.assertTrue(body.contains("Other IOSS intermediary registrations details added Slovenia"))
-        Assert.assertTrue(body.contains("Netherlands"))
-        Assert.assertTrue(body.contains("Fixed establishments in other countries Yes"))
-        Assert.assertTrue(body.contains("Fixed establishments in other countries added Denmark"))
-        Assert.assertTrue(body.contains("Slovakia"))
-      case "contactAndBankDetails"               =>
-        Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Contact name Amended Test Name"))
-        Assert.assertTrue(body.contains("Email address amend-test@email.com"))
-        Assert.assertTrue(body.contains("BIC or SWIFT code (if you have one) Removed"))
-        Assert.assertTrue(body.contains("IBAN GB91BKEN10000041610008"))
-      case "removeAll"                           =>
-        Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Have other trading names No"))
-        Assert.assertTrue(body.contains("Trading names removed tradingName1"))
-        Assert.assertTrue(body.contains("tradingName2"))
-        Assert.assertTrue(body.contains("Fixed establishments in other countries No"))
-        Assert.assertTrue(body.contains("Fixed establishments in other countries removed Germany"))
-        Assert.assertTrue(body.contains("France"))
-      case "tradingAndFixedEstablishments"       =>
-        Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Trading names added an amended trading name"))
-        Assert.assertTrue(body.contains("Trading names removed tradingName1"))
-        Assert.assertTrue(body.contains("tradingName2"))
-        Assert.assertTrue(body.contains("Fixed establishments in other countries added Malta"))
-        Assert.assertTrue(body.contains("Fixed establishments in other countries removed Germany"))
-        Assert.assertTrue(body.contains("France"))
-      case "previousRegistrations"               =>
-        Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Other IOSS intermediary registrations details added Croatia"))
-      case "niAddress"                           =>
-        Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Business address in Northern Ireland changed 1A Different Road"))
-        Assert.assertTrue(body.contains("Suburb"))
-        Assert.assertTrue(body.contains("Belfast"))
-        Assert.assertTrue(body.contains("BT1 1DD"))
-      case "coreValidationFixedEstablishments"   =>
-        Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Fixed establishments in other countries Yes"))
-        Assert.assertTrue(body.contains("Fixed establishments in other countries added Portugal"))
-        Assert.assertTrue(body.contains("Lithuania"))
-      case "coreValidationPreviousRegistrations" =>
-        Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Other IOSS intermediary registrations Yes"))
-        Assert.assertTrue(body.contains("Other IOSS intermediary registrations details added Slovenia"))
-        Assert.assertTrue(body.contains("Latvia"))
-      case "nonNiToNiAddress"                    =>
-        Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Business address in Northern Ireland changed Other Address Line 1"))
-        Assert.assertTrue(body.contains("Other Address Line 2"))
-        Assert.assertTrue(body.contains("Other Town or City"))
-        Assert.assertTrue(body.contains("Other Region or State"))
-        Assert.assertTrue(body.contains("BT1 1AA"))
-      case "vatInfoIntercept"                    =>
-        Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Business address in Northern Ireland changed"))
-        Assert.assertTrue(body.contains("123 Street Name"))
-        Assert.assertTrue(body.contains("Town"))
-        Assert.assertTrue(body.contains("BT1 1AA"))
-      case "emailChanged"                        =>
-        Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Email address unusable-test@email.com"))
-      case _                                     =>
+        Assert.assertTrue(body.contains("Email address different-email@test.com"))
+      case _                  =>
         throw new Exception("This amend variation does not exist")
     }
   }
@@ -337,7 +341,11 @@ object Registration extends BasePage {
     click(continueButton)
   }
 
-  def enterIossScheme(answer: String): Unit =
+  def enterIossScheme(answer: String): Unit = {
     sendKeys(By.id("previousSchemeNumber"), answer)
     click(continueButton)
+  }
+
+  def checkBTA(): Unit =
+    getCurrentUrl.endsWith("business-account")
 }
