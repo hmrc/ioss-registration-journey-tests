@@ -22,7 +22,7 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 class ExclusionsSpec extends BaseSpec {
 
   private val registration = Registration
-  private val auth = Auth
+  private val auth         = Auth
 
   Feature("OSS Exclusion journeys") {
 
@@ -44,7 +44,9 @@ class ExclusionsSpec extends BaseSpec {
       registration.checkJourneyUrl("ni-based")
       registration.answerRadioButton("yes")
 
-      Then("the user presses continue on the register-to-use-service page and is redirected to the cannot-register-quarantined-trader page")
+      Then(
+        "the user presses continue on the register-to-use-service page and is redirected to the cannot-register-quarantined-trader page"
+      )
       registration.checkJourneyUrl("register-to-use-service")
       registration.continue()
       registration.checkJourneyUrl("cannot-register-quarantined-trader")
@@ -68,13 +70,17 @@ class ExclusionsSpec extends BaseSpec {
       registration.checkJourneyUrl("ni-based")
       registration.answerRadioButton("yes")
 
-      Then("the user presses continue on the register-to-use-service page and is able to continue with the registration journey")
+      Then(
+        "the user presses continue on the register-to-use-service page and is able to continue with the registration journey"
+      )
       registration.checkJourneyUrl("register-to-use-service")
       registration.continue()
       registration.checkJourneyUrl("confirm-vat-details")
     }
 
-    Scenario("Kickout when the user returns to a saved registration but is now quarantined on the One Stop Shop service") {
+    Scenario(
+      "Kickout when the user returns to a saved registration but is now quarantined on the One Stop Shop service"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -146,7 +152,7 @@ class ExclusionsSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000025", "Organisation", "quarantinedRejoin", "rejoin")
-      
+
       Then("the user is on the cannot-register-quarantined-trader page")
       registration.checkJourneyUrl("cannot-register-quarantined-trader")
     }
@@ -159,7 +165,7 @@ class ExclusionsSpec extends BaseSpec {
 
       Then("the user is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
-      
+
       And("the user can submit their registration without amending any details")
       registration.submit()
       registration.checkJourneyUrl("successful-amend")

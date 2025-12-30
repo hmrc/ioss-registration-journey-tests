@@ -22,7 +22,7 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 class GetVATDetailsSpec extends BaseSpec {
 
   private val registration = Registration
-  private val auth = Auth
+  private val auth         = Auth
 
   Feature("Get VAT Details kickout and alternative journeys") {
 

@@ -459,7 +459,6 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("check-your-answers")
       registration.submit()
       registration.checkJourneyUrl("successful")
-
     }
   }
 }

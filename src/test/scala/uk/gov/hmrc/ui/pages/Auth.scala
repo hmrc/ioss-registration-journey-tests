@@ -48,23 +48,25 @@ object Auth extends BasePage {
     getCurrentUrl should startWith(authUrl)
 
     val redirectUrl = journey match {
-      case "amend"                                                                 =>
+      case "amend"                                                                                        =>
         s"$registrationUrl$journeyUrl/start-amend-journey"
-      case "savedRegistration" | "registrationFailureSave" | "retrievedWithCredId" =>
+      case "savedRegistration" | "registrationFailureSave" | "retrievedWithCredId" | "etmpCredIdRetrieve" =>
         s"$registrationUrl$journeyUrl/continue-on-sign-in"
-      case "rejoin"                                                                =>
+      case "rejoin"                                                                                       =>
         s"$registrationUrl$journeyUrl/start-rejoin-journey"
-      case "dashboard"                                                             =>
+      case "dashboard"                                                                                    =>
         s"$returnsUrl$returnsJourneyUrl"
-      case _                                                                       =>
+      case _                                                                                              =>
         s"$registrationUrl$journeyUrl"
     }
     sendKeys(By.name("redirectionUrl"), redirectUrl)
 
-    if (journey == "registrationFailure" || journey == "savedWithCredId") {
+    if (journey == "registrationFailure" || journey == "savedWithCredId" || journey == "etmpCredId") {
       generateCredId()
       sendKeys(By.name("authorityId"), retrieveCredId())
-    } else if (journey == "registrationFailureSave" || journey == "retrievedWithCredId") {
+    } else if (
+      journey == "registrationFailureSave" || journey == "retrievedWithCredId" || journey == "etmpCredIdRetrieve"
+    ) {
       sendKeys(By.name("authorityId"), retrieveCredId())
     }
 
@@ -89,27 +91,9 @@ object Auth extends BasePage {
       sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
       val iossNumber = accountType match {
-        case "registration"        => ""
-//        case "fullAmendAnswers"                   => "IN9001234568"
-//        case "amendNIManual"                      => "IN9001234444"
-//        case "excludedPast"                       => "IN9002323232"
-//        case "excludedFuture"                     => "IN9003232323"
-//        case "reversal"                           => "IN9002323333"
-//        case "quarantined"                        => "IN9002323334"
-//        case "quarantineExpired"                  => "IN9002323335"
-//        case "excludedFullData"                   => "IN9001113232"
-//        case "excludedNiManual"                   => "IN9001235555"
-//        case "fixedEstablishmentActiveVrn"        => "IN9003344551"
-//        case "fixedEstablishmentQuarantineVrn"    => "IN9003344552"
-//        case "fixedEstablishmentActiveTaxRef"     => "IN9003344553"
-//        case "fixedEstablishmentQuarantineTaxRef" => "IN9003344554"
-//        case "previousRegistrationActive"         => "IN9003344555"
-//        case "previousRegistrationQuarantine"     => "IN9003344556"
-//        case "onePreviousRegistration"            => "IN9008230001"
-//        case "multiplePreviousRegistrations"      => "IN9009230002"
         case "unusableEmailStatus" => "IM9009999990"
         case "quarantinedRejoin"   => "IM9002999993"
-//        case "netpOutstandingReturns"             => "IN9000306832"
+        case "amendMinimalAccount" => "IM9009999998"
         case _                     => "IN9001234567"
       }
       if (accountType != "registration") {

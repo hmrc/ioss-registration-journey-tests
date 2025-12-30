@@ -22,7 +22,7 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 class NiNorwayKickoutsSpec extends BaseSpec {
 
   private val registration = Registration
-  private val auth = Auth
+  private val auth         = Auth
 
   Feature("Northern Ireland and Norway Kickout journeys") {
 
@@ -44,7 +44,9 @@ class NiNorwayKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("ni-based")
       registration.answerRadioButton("yes")
 
-      Then("the user presses continue on the register-to-use-service page and is redirected to the cannot-register-no-ni-protocol page")
+      Then(
+        "the user presses continue on the register-to-use-service page and is redirected to the cannot-register-no-ni-protocol page"
+      )
       registration.checkJourneyUrl("register-to-use-service")
       registration.continue()
       registration.checkJourneyUrl("cannot-register-no-ni-protocol")
@@ -70,7 +72,9 @@ class NiNorwayKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("norway-based")
       registration.answerRadioButton("yes")
 
-      Then("the user presses continue on the register-to-use-service page and is redirected to the cannot-register-not-norwegian-based-business page")
+      Then(
+        "the user presses continue on the register-to-use-service page and is redirected to the cannot-register-not-norwegian-based-business page"
+      )
       registration.checkJourneyUrl("register-to-use-service")
       registration.continue()
       registration.checkJourneyUrl("cannot-register-not-norwegian-based-business")
