@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs.MainTests
+package uk.gov.hmrc.ui.specs.RegistrationTests
 
 import uk.gov.hmrc.ui.pages.{Auth, EmailVerification, Registration}
 import uk.gov.hmrc.ui.specs.BaseSpec
@@ -69,7 +69,9 @@ class JourneyKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("tax-in-eu")
     }
 
-    Scenario("Can resume registration journey for an already entered country with a Fixed Establishment following the Fixed Establishment kickout page") {
+    Scenario(
+      "Can resume registration journey for an already entered country with a Fixed Establishment following the Fixed Establishment kickout page"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs.MainTests
+package uk.gov.hmrc.ui.specs.RegistrationTests
 
 import uk.gov.hmrc.ui.pages.{Auth, Registration}
 import uk.gov.hmrc.ui.specs.BaseSpec
@@ -22,11 +22,13 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 class BTASpec extends BaseSpec {
 
   private val registration = Registration
-  private val auth = Auth
+  private val auth         = Auth
 
   Feature("Entering the Registration service via BTA") {
 
-    Scenario("The user enters the service via BTA and is directed back to BTA via the Already EU Registered kickout page") {
+    Scenario(
+      "The user enters the service via BTA and is directed back to BTA via the Already EU Registered kickout page"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -50,7 +52,9 @@ class BTASpec extends BaseSpec {
       registration.checkBTA()
     }
 
-    Scenario("A Welsh user enters the service via BTA and is first directed to the Welsh transition page before continuing") {
+    Scenario(
+      "A Welsh user enters the service via BTA and is first directed to the Welsh transition page before continuing"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -68,7 +72,9 @@ class BTASpec extends BaseSpec {
       registration.checkJourneyUrl("ioss-registered")
     }
 
-    Scenario("A user enters the service via BTA using the en parameter and is directed straight to the registration service") {
+    Scenario(
+      "A user enters the service via BTA using the en parameter and is directed straight to the registration service"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()

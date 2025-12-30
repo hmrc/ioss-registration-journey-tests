@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs.MainTests
+package uk.gov.hmrc.ui.specs.RegistrationTests
 
 import uk.gov.hmrc.ui.pages.{Auth, Registration}
 import uk.gov.hmrc.ui.specs.BaseSpec
 
-class GGLoginKickoutsSpec extends BaseSpec {
+class NiNorwayKickoutsSpec extends BaseSpec {
 
   private val registration = Registration
-  private val auth         = Auth
+  private val auth = Auth
 
-  Feature("Government Gateway Login Kickout journeys") {
+  Feature("Northern Ireland and Norway Kickout journeys") {
 
-    Scenario("GG kickout when the user is not registered for VAT") {
+    Scenario("Kickout when the user answered yes to ni-based but does not have Single Market Indicator") {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("None", "Organisation", "noVat", "registration")
+      auth.loginUsingAuthorityWizard("500000001", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("ioss-registered")
 
       When("the user answers the filter questions")
@@ -44,17 +44,17 @@ class GGLoginKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("ni-based")
       registration.answerRadioButton("yes")
 
-      Then("the user presses continue on the register-to-use-service page and is redirected to the credential-unsupported page")
+      Then("the user presses continue on the register-to-use-service page and is redirected to the cannot-register-no-ni-protocol page")
       registration.checkJourneyUrl("register-to-use-service")
       registration.continue()
-      registration.checkJourneyUrl("credential-unsupported")
+      registration.checkJourneyUrl("cannot-register-no-ni-protocol")
     }
 
-    Scenario("GG kickout when the user is an agent") {
+    Scenario("Kickout when the user answered yes to norway-based but does not have an address in Norway") {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100000001", "Agent", "vatOnly", "registration")
+      auth.loginUsingAuthorityWizard("500000001", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("ioss-registered")
 
       When("the user answers the filter questions")
@@ -66,12 +66,14 @@ class GGLoginKickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("registered-for-vat-in-uk")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("ni-based")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("norway-based")
       registration.answerRadioButton("yes")
 
-      Then("the user presses continue on the register-to-use-service page and is redirected to the cannot-use-agent page")
+      Then("the user presses continue on the register-to-use-service page and is redirected to the cannot-register-not-norwegian-based-business page")
       registration.checkJourneyUrl("register-to-use-service")
       registration.continue()
-      registration.checkJourneyUrl("cannot-use-agent")
+      registration.checkJourneyUrl("cannot-register-not-norwegian-based-business")
     }
   }
 }

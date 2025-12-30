@@ -108,11 +108,22 @@ object Auth extends BasePage {
 //        case "onePreviousRegistration"            => "IN9008230001"
 //        case "multiplePreviousRegistrations"      => "IN9009230002"
         case "unusableEmailStatus" => "IM9009999990"
+        case "quarantinedRejoin"   => "IM9002999993"
 //        case "netpOutstandingReturns"             => "IN9000306832"
         case _                     => "IN9001234567"
       }
       if (accountType != "registration") {
         sendKeys(By.id("input-1-0-value"), iossNumber)
+      }
+
+      if (accountType == "ossRegistration") {
+        sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
+        sendKeys(By.id("input-1-0-name"), "VRN")
+        sendKeys(By.id("input-1-0-value"), vrn)
+      } else if (accountType == "quarantinedRejoin" || accountType == "quarantinedAmend") {
+        sendKeys(By.id("enrolment[2].name"), "HMRC-OSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "VRN")
+        sendKeys(By.id("input-2-0-value"), vrn)
       }
 
       if (accountType == "onePreviousRegistration") {

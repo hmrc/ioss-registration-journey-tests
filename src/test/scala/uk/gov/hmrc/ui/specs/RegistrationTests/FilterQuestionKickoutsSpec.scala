@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs.MainTests
+package uk.gov.hmrc.ui.specs.RegistrationTests
 
 import uk.gov.hmrc.ui.pages.Registration
 import uk.gov.hmrc.ui.specs.BaseSpec
