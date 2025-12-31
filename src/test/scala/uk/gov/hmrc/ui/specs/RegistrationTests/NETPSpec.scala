@@ -26,7 +26,9 @@ class NETPSpec extends BaseSpec {
 
   Feature("NETP Scenarios") {
 
-    Scenario("Trader with Single Market Indicator set to true and NETP set to false can progress through registration") {
+    Scenario(
+      "Trader with Single Market Indicator set to true and NETP set to false can progress through registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -50,7 +52,9 @@ class NETPSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
     }
 
-    Scenario("Trader with Single Market Indicator set to true and NETP set to true cannot progress through registration") {
+    Scenario(
+      "Trader with Single Market Indicator set to true and NETP set to true cannot progress through registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -74,7 +78,9 @@ class NETPSpec extends BaseSpec {
       registration.checkJourneyUrl("cannot-register-non-established-taxable-person")
     }
 
-    Scenario("Trader with Single Market Indicator set to false and NETP set to false cannot progress through registration but hits NI Protocol rejection before NETP") {
+    Scenario(
+      "Trader with Single Market Indicator set to false and NETP set to false cannot progress through registration but hits NI Protocol rejection before NETP"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -98,7 +104,9 @@ class NETPSpec extends BaseSpec {
       registration.checkJourneyUrl("cannot-register-no-ni-protocol")
     }
 
-    Scenario("Trader with Single Market Indicator set to false and NETP set to false and has a Norway address can progress through registration") {
+    Scenario(
+      "Trader with Single Market Indicator set to false and NETP set to false and has a Norway address can progress through registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -124,7 +132,9 @@ class NETPSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
     }
 
-    Scenario("Trader with Single Market Indicator set to true and NETP set to false and has a Norway address can progress through registration") {
+    Scenario(
+      "Trader with Single Market Indicator set to true and NETP set to false and has a Norway address can progress through registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()

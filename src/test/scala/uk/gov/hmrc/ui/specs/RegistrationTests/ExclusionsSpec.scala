@@ -151,7 +151,7 @@ class ExclusionsSpec extends BaseSpec {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100000025", "Organisation", "quarantinedRejoin", "rejoin")
+      auth.loginUsingAuthorityWizard("100000025", "Organisation", "quarantinedOSSRejoin", "rejoin")
 
       Then("the user is on the cannot-register-quarantined-trader page")
       registration.checkJourneyUrl("cannot-register-quarantined-trader")
@@ -161,7 +161,7 @@ class ExclusionsSpec extends BaseSpec {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100000025", "Organisation", "quarantinedAmend", "amend")
+      auth.loginUsingAuthorityWizard("100000025", "Organisation", "quarantinedOSSAmend", "amend")
 
       Then("the user is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")

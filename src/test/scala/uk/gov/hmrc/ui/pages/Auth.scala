@@ -91,13 +91,19 @@ object Auth extends BasePage {
       sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
       val iossNumber = accountType match {
-        case "unusableEmailStatus" => "IM9009999990"
-        case "quarantinedRejoin"   => "IM9002999993"
-        case "amendMinimalAccount" => "IM9009999998"
-        case "etmpNotFound"        => "IM9009999999"
-        case "amendFailure"        => "IM9002222222"
-        case "excludedSixYears"    => "IM9019999994"
-        case _                     => "IN9001234567"
+        case "unusableEmailStatus"                        => "IM9009999990"
+        case "quarantinedOSSRejoin" | "quarantinedRejoin" => "IM9002999993"
+        case "amendMinimalAccount"                        => "IM9009999998"
+        case "etmpNotFound"                               => "IM9009999999"
+        case "amendFailure"                               => "IM9002222222"
+        case "excludedSixYears"                           => "IM9019999994"
+        case "excludedFuture"                             => "IM9009999997"
+        case "quarantined"                                => "IM9009999993"
+        case "rejoinFailure"                              => "IM9029999997"
+        case "minimalRejoin"                              => "IM9019999998"
+        case "fullRejoin"                                 => "IM9019999997"
+        case "deregisteredVat"                            => "IM9039999994"
+        case _                                            => "IN9001234567"
       }
       if (accountType != "registration") {
         sendKeys(By.id("input-1-0-value"), iossNumber)
@@ -107,7 +113,7 @@ object Auth extends BasePage {
         sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
         sendKeys(By.id("input-1-0-name"), "VRN")
         sendKeys(By.id("input-1-0-value"), vrn)
-      } else if (accountType == "quarantinedRejoin" || accountType == "quarantinedAmend") {
+      } else if (accountType == "quarantinedOSSRejoin" || accountType == "quarantinedOSSAmend") {
         sendKeys(By.id("enrolment[2].name"), "HMRC-OSS-ORG")
         sendKeys(By.id("input-2-0-name"), "VRN")
         sendKeys(By.id("input-2-0-value"), vrn)

@@ -49,7 +49,7 @@ object EmailVerification extends BasePage {
       case "amend"                                               =>
         "change-your-registration"
       case "rejoin"                                              =>
-        "rejoin-check-your-details"
+        "rejoin-registration"
       case "previousRegistration" | "secondPreviousRegistration" =>
         "change-a-previous-registration"
       case _                                                     => "bank-account-details"
