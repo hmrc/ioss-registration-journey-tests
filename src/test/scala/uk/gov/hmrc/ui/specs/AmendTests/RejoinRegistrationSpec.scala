@@ -57,7 +57,9 @@ class RejoinRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("cannot-rejoin")
     }
 
-    Scenario("A user who gets not found during a rejoin from ETMP for an IOSS registration receives the sorry there is a problem page") {
+    Scenario(
+      "A user who gets not found during a rejoin from ETMP for an IOSS registration receives the sorry there is a problem page"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -82,7 +84,9 @@ class RejoinRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("error-submitting-rejoin")
     }
 
-    Scenario("A trader with an expired quarantine period can submit a rejoin registration without amending any details") {
+    Scenario(
+      "A trader with an expired quarantine period can submit a rejoin registration without amending any details"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -238,7 +242,9 @@ class RejoinRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-rejoin")
     }
 
-    Scenario("A trader can add details for sections during rejoin that were previously answered no and then remove them") {
+    Scenario(
+      "A trader can add details for sections during rejoin that were previously answered no and then remove them"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -629,7 +635,9 @@ class RejoinRegistrationSpec extends BaseSpec {
       registration.checkProblemPage()
     }
 
-    Scenario("A trader cannot remove cannot remove an individual previous scheme if they were retrieved from the ETMP registration during rejoin") {
+    Scenario(
+      "A trader cannot remove cannot remove an individual previous scheme if they were retrieved from the ETMP registration during rejoin"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -647,7 +655,9 @@ class RejoinRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("cannot-delete-previous-registrations")
     }
 
-    Scenario("A trader cannot remove previous schemes for a country if it was retrieved from the ETMP registration during rejoin") {
+    Scenario(
+      "A trader cannot remove previous schemes for a country if it was retrieved from the ETMP registration during rejoin"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()

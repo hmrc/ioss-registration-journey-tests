@@ -325,4 +325,19 @@ object Registration extends BasePage {
 
   def checkBTA(): Unit =
     getCurrentUrl.endsWith("business-account")
+
+  def standardFilterQuestions(): Unit = {
+    checkJourneyUrl("ioss-registered")
+    answerRadioButton("no")
+    checkJourneyUrl("selling-goods-outside-single-market")
+    answerRadioButton("yes")
+    checkJourneyUrl("goods-value")
+    answerRadioButton("yes")
+    checkJourneyUrl("registered-for-vat-in-uk")
+    answerRadioButton("yes")
+    checkJourneyUrl("ni-based")
+    answerRadioButton("yes")
+    checkJourneyUrl("register-to-use-service")
+    continue()
+  }
 }

@@ -103,6 +103,15 @@ object Auth extends BasePage {
         case "minimalRejoin"                              => "IM9019999998"
         case "fullRejoin"                                 => "IM9019999997"
         case "deregisteredVat"                            => "IM9039999994"
+        case "coreActiveOSS"                              => "IM9005999992"
+        case "coreActiveIOSS"                             => "IM9005999994"
+        case "coreActiveOSSNonUnion"                      => "IM9005999996"
+        case "coreQuarantinedOSS"                         => "IM9005999991"
+        case "coreQuarantinedIOSS"                        => "IM9005999993"
+        case "coreActiveVRN"                              => "IM9004999994"
+        case "coreQuarantinedVRN"                         => "IM9004999993"
+        case "coreActiveTaxId"                            => "IM9004999992"
+        case "coreQuarantinedTaxId"                       => "IM9004999991"
         case _                                            => "IN9001234567"
       }
       if (accountType != "registration") {
