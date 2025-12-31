@@ -70,14 +70,18 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkAmendedAnswers("yesToNo")
     }
 
-    Scenario("An IOSS registered user cannot remove all previous registrations if they were retrieved from the ETMP registration") {
+    Scenario(
+      "An IOSS registered user cannot remove all previous registrations if they were retrieved from the ETMP registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
       registration.checkJourneyUrl("change-your-registration")
 
-      When("the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page")
+      When(
+        "the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page"
+      )
       registration.goToPage("remove-all-previous-registrations?waypoints=change-your-registration")
 
       Then("the user is on the problem page")
@@ -85,7 +89,9 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkProblemPage()
     }
 
-    Scenario("An IOSS registered user cannot use remove all previous registrations if they were entered during the amend registration journey") {
+    Scenario(
+      "An IOSS registered user cannot use remove all previous registrations if they were entered during the amend registration journey"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -126,7 +132,9 @@ class AmendRegistrationSpec extends BaseSpec {
       Then("the user is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
 
-      When("the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page")
+      When(
+        "the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page"
+      )
       registration.goToPage("remove-all-previous-registrations?waypoints=change-your-registration")
 
       Then("the user is on the problem page")
@@ -134,21 +142,29 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkProblemPage()
     }
 
-    Scenario("An IOSS registered user cannot remove an individual previous scheme if they were retrieved from the ETMP registration") {
+    Scenario(
+      "An IOSS registered user cannot remove an individual previous scheme if they were retrieved from the ETMP registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
       registration.checkJourneyUrl("change-your-registration")
 
-      When("the user manually navigates to the remove-previous-scheme/1/1?waypoints=change-previous-schemes-overview%2Cchange-your-registration page")
-      registration.goToPage("remove-previous-scheme/1/1?waypoints=change-previous-schemes-overview%2Cchange-your-registration")
+      When(
+        "the user manually navigates to the remove-previous-scheme/1/1?waypoints=change-previous-schemes-overview%2Cchange-your-registration page"
+      )
+      registration.goToPage(
+        "remove-previous-scheme/1/1?waypoints=change-previous-schemes-overview%2Cchange-your-registration"
+      )
 
       Then("the user is on the cannot-delete-previous-registrations page")
       registration.checkJourneyUrl("cannot-delete-previous-registrations")
     }
 
-    Scenario("An IOSS registered user cannot remove previous schemes for a country if it was retrieved from the ETMP registration") {
+    Scenario(
+      "An IOSS registered user cannot remove previous schemes for a country if it was retrieved from the ETMP registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -241,11 +257,260 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.answerRadioButton("no")
 
       Then("the user can submit their amended registration")
+      registration.checkJourneyUrl("change-your-registration")
       registration.submit()
       registration.checkJourneyUrl("successful-amend")
 
       And("the correct answers are shown as amended")
       registration.checkAmendedAnswers("noToYes")
+    }
+
+    Scenario(
+      "An IOSS registered user can add details for sections that were previously answered no and remove them straight away again"
+    ) {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendMinimalAccount", "amend")
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user clicks change for have-uk-trading-name")
+      registration.selectChangeOrRemoveLink(
+        "have-uk-trading-name\\?waypoints\\=change-your-registration"
+      )
+
+      And("the user enters a trading name")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("A new trading name in amend journey")
+      registration.checkJourneyUrl("add-uk-trading-name")
+
+      When("the user removes the trading name they just added")
+      registration.selectChangeOrRemoveLink(
+        "remove-uk-trading-name\\/1\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("no")
+
+      Then("the user clicks change for previous-oss")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.selectChangeOrRemoveLink(
+        "previous-oss\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the user enters previous scheme details")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/1")
+      registration.selectCountry("Cyprus")
+      registration.checkJourneyUrl("previous-scheme/1/1")
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl("previous-ioss-scheme/1/1")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-ioss-number/1/1")
+      registration.enterIossScheme("IM1962223333")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+
+      Then("the user removes the scheme they just added")
+      registration.selectChangeOrRemoveLink(
+        "remove-previous-scheme\\/1\\/1\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("remove-previous-scheme/1/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+
+      Then("the user clicks change for tax-in-eu")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.selectChangeOrRemoveLink(
+        "tax-in-eu\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the user enters other registration details")
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("eu-tax/1")
+      registration.selectCountry("Romania")
+      registration.checkJourneyUrl("eu-fixed-establishment/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("registration-tax-type/1")
+      registration.selectRegistrationType("vat number")
+      registration.checkJourneyUrl("eu-vat-number/1")
+      registration.enterAnswer("RO1234567890")
+      registration.checkJourneyUrl("eu-trading-name/1")
+      registration.enterAnswer("Romanian Trading")
+      registration.checkJourneyUrl("eu-fixed-establishment-address/1")
+      registration.enterFixedEstablishmentAddress("1 Street Name", "", "A Town", "", "")
+      registration.checkJourneyUrl("check-tax-details/1")
+      registration.continue()
+      registration.checkJourneyUrl("add-tax-details")
+
+      Then("the user removes the registration they just added")
+      registration.selectChangeOrRemoveLink(
+        "remove-tax-details\\/1\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("remove-tax-details/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+
+      Then("the user can submit their amended registration")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.submit()
+      registration.checkJourneyUrl("successful-amend")
+
+      And("the correct answers are shown as amended")
+      registration.checkAmendedAnswers("noAmendedAnswers")
+    }
+
+    Scenario("An IOSS registered user amends non-mandatory registration answers") {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user clicks change for add-uk-trading-name")
+      registration.selectChangeOrRemoveLink(
+        "add-uk-trading-name\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the user removes, amends and adds answers within the trading name section")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.selectChangeOrRemoveLink(
+        "remove-uk-trading-name\\/1\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.selectChangeOrRemoveLink(
+        "uk-trading-name\\/1\\?waypoints\\=change-add-uk-trading-name\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("an amended trading name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("new 2nd name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user clicks change for previous-schemes-overview")
+      registration.selectChangeOrRemoveLink(
+        "previous-schemes-overview\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the user adds answers within the previous schemes section")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.selectChangeOrRemoveLink(
+        "previous-scheme-answers\\/2\\?waypoints\\=change-previous-schemes-overview\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("previous-scheme-answers/2")
+      registration.answerRadioButton("yes")
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl("previous-oss-scheme-number/2/2")
+      registration.enterAnswer("CY12345678X")
+      registration.checkJourneyUrl("previous-scheme-answers/2")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/3")
+      registration.selectCountry("Finland")
+      registration.checkJourneyUrl("previous-scheme/3/1")
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl("previous-oss-scheme-number/3/1")
+      registration.enterAnswer("EU222456788")
+      registration.checkJourneyUrl("previous-scheme-answers/3")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user clicks change for add-tax-details")
+      registration.selectChangeOrRemoveLink(
+        "add-tax-details\\?waypoints\\=change-your-registration"
+      )
+
+      Then("the user adds and amends answers within the other registrations section")
+      registration.checkJourneyUrl("add-tax-details")
+      registration.selectChangeOrRemoveLink(
+        "check-tax-details\\/1\\?waypoints\\=change-add-tax-details\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("check-tax-details/1")
+      registration.selectChangeOrRemoveLink(
+        "registration-tax-type\\/1\\?waypoints\\=check-tax-details-1\\%2Cchange-add-tax-details\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("registration-tax-type/1")
+      registration.selectRegistrationType("tax id number")
+      registration.checkJourneyUrl("eu-tax-identification-number/1")
+      registration.enterAnswer("TAXID12345A")
+      registration.checkJourneyUrl("check-tax-details/1")
+      registration.selectChangeOrRemoveLink(
+        "eu-fixed-establishment-address\\/1\\?waypoints\\=check-tax-details-1\\%2Cchange-add-tax-details\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("eu-fixed-establishment-address/1")
+      registration.enterFixedEstablishmentAddress("Line 1", "Suburb", "Town", "Region", "AB12 3CD")
+      registration.checkJourneyUrl("check-tax-details/1")
+      registration.continue()
+      registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("eu-tax/2")
+      registration.selectCountry("Estonia")
+      registration.checkJourneyUrl("eu-fixed-establishment/2")
+      registration.answerRadioButton("yes")
+      registration.selectRegistrationType("vat number")
+      registration.checkJourneyUrl("eu-vat-number/2")
+      registration.enterAnswer("EE123456789")
+      registration.checkJourneyUrl("eu-trading-name/2")
+      registration.enterAnswer("Estonian Wholesalers Ltd")
+      registration.checkJourneyUrl("eu-fixed-establishment-address/2")
+      registration.enterFixedEstablishmentAddress("111 Estonian Street", "", "Tallinn", "", "TAL 1234A")
+      registration.checkJourneyUrl("check-tax-details/2")
+      registration.continue()
+      registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("eu-tax/3")
+      registration.selectCountry("Portugal")
+      registration.checkJourneyUrl("eu-fixed-establishment/3")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("registration-tax-type/3")
+      registration.selectRegistrationType("tax id number")
+      registration.checkJourneyUrl("eu-tax-identification-number/3")
+      registration.enterAnswer("PT12345A")
+      registration.checkJourneyUrl("eu-trading-name/3")
+      registration.enterAnswer("Portuguese Trading")
+      registration.checkJourneyUrl("eu-fixed-establishment-address/3")
+      registration.enterFixedEstablishmentAddress("111 Porto Street", "", "Porto", "", "")
+      registration.checkJourneyUrl("check-tax-details/3")
+      registration.continue()
+      registration.checkJourneyUrl("add-tax-details")
+      registration.selectChangeOrRemoveLink(
+        "check-tax-details\\/3\\?waypoints\\=change-add-tax-details\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("check-tax-details/3")
+      registration.selectChangeOrRemoveLink(
+        "registration-tax-type\\/3\\?waypoints\\=check-tax-details-3\\%2Cchange-add-tax-details\\%2Cchange-your-registration"
+      )
+      registration.checkJourneyUrl("registration-tax-type/3")
+      registration.selectRegistrationType("vat number")
+      registration.checkJourneyUrl("eu-vat-number/3")
+      registration.enterAnswer("PT123456789")
+      registration.checkJourneyUrl("check-tax-details/3")
+      registration.continue()
+      registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("no")
+
+      Then("the user can submit their amended registration")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.submit()
+      registration.checkJourneyUrl("successful-amend")
+
+      And("the correct answers are shown as amended")
+      registration.checkAmendedAnswers("nonMandatory")
     }
   }
 }

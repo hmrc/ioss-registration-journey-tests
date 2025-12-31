@@ -269,6 +269,17 @@ object Registration extends BasePage {
         Assert.assertTrue(body.contains("Finland"))
         Assert.assertTrue(body.contains("Registered for tax in EU countries Yes"))
         Assert.assertTrue(body.contains("EU tax details added Romania"))
+      case "nonMandatory"     =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("Trading names added an amended trading name"))
+        Assert.assertTrue(body.contains("new 2nd name"))
+        Assert.assertTrue(body.contains("Trading names removed tradingName1"))
+        Assert.assertTrue(body.contains("tradingName2"))
+        Assert.assertTrue(body.contains("Countries registered in Finland"))
+        Assert.assertTrue(body.contains("Countries registered in changed Cyprus"))
+        Assert.assertTrue(body.contains("EU tax details added Estonia"))
+        Assert.assertTrue(body.contains("Portugal"))
+        Assert.assertTrue(body.contains("EU tax details changed Germany"))
       case _                  =>
         throw new Exception("This amend variation does not exist")
     }
