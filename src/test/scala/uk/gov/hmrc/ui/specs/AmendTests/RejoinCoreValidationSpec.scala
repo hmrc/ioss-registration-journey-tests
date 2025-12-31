@@ -22,7 +22,7 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 class RejoinCoreValidationSpec extends BaseSpec {
 
   private val registration = Registration
-  private val auth = Auth
+  private val auth         = Auth
 
   Feature("Rejoin - Core Validation Scenarios") {
 
@@ -86,7 +86,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-rejoin")
     }
 
-    Scenario("Trader with active OSS non-union scheme retrieved from ETMP registration - previous registration - can rejoin") {
+    Scenario(
+      "Trader with active OSS non-union scheme retrieved from ETMP registration - previous registration - can rejoin"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -164,7 +166,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("scheme-quarantined")
     }
 
-    Scenario("Trader with quarantined OSS scheme retrieved from ETMP registration - previous registration - not able to rejoin") {
+    Scenario(
+      "Trader with quarantined OSS scheme retrieved from ETMP registration - previous registration - not able to rejoin"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -202,7 +206,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("scheme-quarantined")
     }
 
-    Scenario("Trader with quarantined IOSS scheme retrieved from ETMP registration - previous registration - not able to rejoin") {
+    Scenario(
+      "Trader with quarantined IOSS scheme retrieved from ETMP registration - previous registration - not able to rejoin"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -237,7 +243,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.enterAnswer("PT111222333")
 
       And("the user cannot progress the registration")
-      registration.checkJourneyUrl("fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=PT")
+      registration.checkJourneyUrl(
+        "fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=PT"
+      )
     }
 
     Scenario("Trader with active scheme retrieved from ETMP registration - EU details - VRN - not able to rejoin") {
@@ -247,7 +255,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "coreActiveVRN", "rejoin")
 
       Then("the user cannot progress the registration")
-      registration.checkJourneyUrl("fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=IE")
+      registration.checkJourneyUrl(
+        "fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=IE"
+      )
     }
 
     Scenario("Trader with active scheme - EU details - Tax ID - not able to rejoin") {
@@ -275,7 +285,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.enterAnswer("123LIS123")
 
       And("the user cannot progress the registration")
-      registration.checkJourneyUrl("fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=PT")
+      registration.checkJourneyUrl(
+        "fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=PT"
+      )
     }
 
     Scenario("Trader with active scheme retrieved from ETMP registration - EU details - Tax ID - not able to rejoin") {
@@ -285,7 +297,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "coreActiveTaxId", "rejoin")
 
       Then("the user cannot progress the registration")
-      registration.checkJourneyUrl("fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=IE")
+      registration.checkJourneyUrl(
+        "fixed-establishment-vrn-already-registered?waypoints=rejoin-registration&countryCode=IE"
+      )
     }
 
     Scenario("Trader with quarantined scheme - EU details - VRN - not able to register") {
@@ -316,7 +330,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("excluded-vrn")
     }
 
-    Scenario("Trader with quarantined scheme retrieved from ETMP registration - EU details - VRN - not able to rejoin") {
+    Scenario(
+      "Trader with quarantined scheme retrieved from ETMP registration - EU details - VRN - not able to rejoin"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -354,7 +370,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("excluded-vrn")
     }
 
-    Scenario("Trader with quarantined scheme retrieved from ETMP registration - EU details - Tax ID - not able to rejoin") {
+    Scenario(
+      "Trader with quarantined scheme retrieved from ETMP registration - EU details - Tax ID - not able to rejoin"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
