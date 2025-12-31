@@ -94,6 +94,9 @@ object Auth extends BasePage {
         case "unusableEmailStatus" => "IM9009999990"
         case "quarantinedRejoin"   => "IM9002999993"
         case "amendMinimalAccount" => "IM9009999998"
+        case "etmpNotFound"        => "IM9009999999"
+        case "amendFailure"        => "IM9002222222"
+        case "excludedSixYears"    => "IM9019999994"
         case _                     => "IN9001234567"
       }
       if (accountType != "registration") {
