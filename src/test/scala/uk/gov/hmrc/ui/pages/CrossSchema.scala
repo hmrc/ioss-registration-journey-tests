@@ -25,50 +25,56 @@ object CrossSchema extends BasePage {
   def checkTradingNames(version: String): Unit = {
     val header = Driver.instance.findElement(By.tagName("h1")).getText
 
-      val headingText = version match {
-        case "an OSS" => "You have 2 UK trading names from your One Stop Shop registration"
-        case "OSS and IOSS" => "You have 2 UK trading names from your One Stop Shop and Import One Stop Shop registrations"
-        case "multiple IOSS" => "You have 2 UK trading names from your Import One Stop Shop registrations"
-        case _ => "You have 2 UK trading names from your Import One Stop Shop registration"
-      }
+    val headingText = version match {
+      case "an OSS"        => "You have 2 UK trading names from your One Stop Shop registration"
+      case "OSS and IOSS"  =>
+        "You have 2 UK trading names from your One Stop Shop and Import One Stop Shop registrations"
+      case "multiple IOSS" => "You have 2 UK trading names from your Import One Stop Shop registrations"
+      case _               => "You have 2 UK trading names from your Import One Stop Shop registration"
+    }
 
     Assert.assertTrue(header.equals(headingText))
   }
 
   def checkWarningsForTradingNames(journey: String, displayed: Boolean, version: String): Unit = {
-        val hintText    =
-          "We added the trading names you entered when you registered for the One Stop Shop service. Check they are still correct."
-        val warningText = if (version == "an OSS") {
-          "Any changes you make here will also update the trading names in your One Stop Shop registration."
-        } else if (version == "both OSS and IOSS") {
-          "Any changes you make here will also update the trading names in your One Stop Shop and previous Import One Stop Shop registrations."
-        } else if (version == "multiple IOSS") {
-          "Any changes you make here will also update the trading names in all of your Import One Stop Shop registrations."
-        } else if (version == "one previous IOSS") {
-          "Any changes you make here will also update the trading names in your previous Import One Stop Shop registration."
-        } else {
-          "Any changes you make here will also update the trading names in"
-        }
-
-        val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
-
-        if (!displayed) {
-          Assert.assertFalse(htmlBody.contains(warningText))
-          if (journey == "registration") {
-            Assert.assertFalse(htmlBody.contains(hintText))
-          }
-        } else {
-          Assert.assertTrue(htmlBody.contains(warningText))
-          if (journey == "registration") {
-            Assert.assertTrue(htmlBody.contains(hintText))
-          }
-        }
-  }
-
-  def checkWarningsForBankAndContactDetails(journey: String, displayed: Boolean, version: String, page: String): Unit = {
+    val hintText    =
+      "We added the trading names you entered when you registered for the One Stop Shop service. Check they are still correct."
+    val warningText = if (version == "an OSS") {
+      "Any changes you make here will also update the trading names in your One Stop Shop registration."
+    } else if (version == "both OSS and IOSS") {
+      "Any changes you make here will also update the trading names in your One Stop Shop and previous Import One Stop Shop registrations."
+    } else if (version == "multiple IOSS") {
+      "Any changes you make here will also update the trading names in all of your Import One Stop Shop registrations."
+    } else if (version == "one previous IOSS") {
+      "Any changes you make here will also update the trading names in your previous Import One Stop Shop registration."
+    } else {
+      "Any changes you make here will also update the trading names in"
+    }
 
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
-    val hintText =
+
+    if (!displayed) {
+      Assert.assertFalse(htmlBody.contains(warningText))
+      if (journey == "registration") {
+        Assert.assertFalse(htmlBody.contains(hintText))
+      }
+    } else {
+      Assert.assertTrue(htmlBody.contains(warningText))
+      if (journey == "registration") {
+        Assert.assertTrue(htmlBody.contains(hintText))
+      }
+    }
+  }
+
+  def checkWarningsForBankAndContactDetails(
+    journey: String,
+    displayed: Boolean,
+    version: String,
+    page: String
+  ): Unit = {
+
+    val htmlBody    = Driver.instance.findElement(By.tagName("body")).getText
+    val hintText    =
       "We have added the details you entered for the One Stop Shop service. Check they are still correct."
     val warningText = if (version == "an OSS") {
       s"Any changes you make here will also update the $page details in your One Stop Shop registration."
@@ -95,27 +101,27 @@ object CrossSchema extends BasePage {
     }
   }
 
-    def checkConfirmation(journey: String, displayed: Boolean, version: String): Unit = {
+  def checkConfirmation(journey: String, displayed: Boolean, version: String): Unit = {
 
-      val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
-          val confirmationText = if (version == "an OSS") {
-            "We've also updated your One Stop Shop registration."
-          } else if (version == "both OSS and IOSS") {
-            "We've also updated your One Stop Shop and previous Import One Stop Shop registrations."
-          } else if (version == "multiple IOSS") {
-            "We've also updated your previous Import One Stop Shop registrations."
-          } else if (version == "one previous IOSS") {
-            "We've also updated your previous Import One Stop Shop registration."
-          } else {
-            "We've also updated your"
-          }
-
-          if (!displayed) {
-            Assert.assertFalse(htmlBody.contains(confirmationText))
-          } else {
-            Assert.assertTrue(htmlBody.contains(confirmationText))
-          }
+    val htmlBody         = Driver.instance.findElement(By.tagName("body")).getText
+    val confirmationText = if (version == "an OSS") {
+      "We've also updated your One Stop Shop registration."
+    } else if (version == "both OSS and IOSS") {
+      "We've also updated your One Stop Shop and previous Import One Stop Shop registrations."
+    } else if (version == "multiple IOSS") {
+      "We've also updated your previous Import One Stop Shop registrations."
+    } else if (version == "one previous IOSS") {
+      "We've also updated your previous Import One Stop Shop registration."
+    } else {
+      "We've also updated your"
     }
+
+    if (!displayed) {
+      Assert.assertFalse(htmlBody.contains(confirmationText))
+    } else {
+      Assert.assertTrue(htmlBody.contains(confirmationText))
+    }
+  }
 
   def checkAmendedAnswers(amendJourney: String): Unit = {
     val body = Driver.instance.findElement(By.tagName("body")).getText
@@ -127,7 +133,7 @@ object CrossSchema extends BasePage {
         Assert.assertTrue(body.contains("Trading names removed firstPreviousTradingName1"))
         Assert.assertTrue(body.contains("Telephone number +17771117771"))
         Assert.assertTrue(body.contains("IBAN GB29NWBK60161331926819"))
-      case _ =>
+      case _            =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Trading names added another"))
         Assert.assertTrue(body.contains("Trading names removed tradingName2"))

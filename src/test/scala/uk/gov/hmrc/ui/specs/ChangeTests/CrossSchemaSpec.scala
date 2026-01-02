@@ -24,7 +24,7 @@ class CrossSchemaSpec extends BaseSpec {
   private val registration = Registration
   private val auth         = Auth
   private val email        = EmailVerification
-  private val crossSchema        = CrossSchema
+  private val crossSchema  = CrossSchema
 
   Feature("Cross Schema journeys") {
 
@@ -99,11 +99,15 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the user is on the successful submission page")
       registration.checkJourneyUrl("successful")
 
-      And("the text on the registration confirmation page is displayed when the user has made changes and has an OSS registration")
+      And(
+        "the text on the registration confirmation page is displayed when the user has made changes and has an OSS registration"
+      )
       crossSchema.checkConfirmation("registration", true, "an OSS")
     }
 
-    Scenario("Amend registration for trader with an OSS registration and multiple previous IOSS registrations - amends data") {
+    Scenario(
+      "Amend registration for trader with an OSS registration and multiple previous IOSS registrations - amends data"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -129,7 +133,6 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("change-your-registration")
-
 
       When("the user clicks change for business-contact-details")
       registration.selectChangeOrRemoveLink(
@@ -169,7 +172,9 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the user is on the successful submission page")
       registration.checkJourneyUrl("successful-amend")
 
-      And("the text on the amend confirmation page is displayed when the user has made changes and has OSS and IOSS registration")
+      And(
+        "the text on the amend confirmation page is displayed when the user has made changes and has OSS and IOSS registration"
+      )
       crossSchema.checkConfirmation("amend", true, "OSS and IOSS")
 
       And("the correct details are shown as amended")
@@ -202,7 +207,6 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("change-your-registration")
-
 
       When("the user clicks change for business-contact-details")
       registration.selectChangeOrRemoveLink(
@@ -242,11 +246,262 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the user is on the successful submission page")
       registration.checkJourneyUrl("successful-amend")
 
-      And("the text on the amend confirmation page is displayed when the user has made changes and has OSS and IOSS registration")
+      And(
+        "the text on the amend confirmation page is displayed when the user has made changes and has OSS and IOSS registration"
+      )
       crossSchema.checkConfirmation("amend", true, "multiple IOSS")
 
       And("the correct details are shown as amended")
       crossSchema.checkAmendedAnswers("multipleIoss")
+    }
+
+    Scenario("Rejoin registration for trader with an OSS registration and multiple IOSS registrations - amends data") {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("300000002", "Organisation", "rejoinCrossSchemaOssAndIoss", "rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user clicks change for add-uk-trading-name")
+      registration.selectChangeOrRemoveLink(
+        "add-uk-trading-name\\?waypoints\\=rejoin-registration"
+      )
+      registration.checkJourneyUrl("add-uk-trading-name")
+
+      Then("the correct number of existing trading names are displayed for a user with OSS and IOSS registrations")
+      crossSchema.checkTradingNames("OSS and IOSS")
+      crossSchema.checkWarningsForTradingNames("rejoin", true, "OSS and IOSS")
+
+      And("the user removes existing trading name and adds a new one")
+      registration.selectChangeOrRemoveLink(
+        "remove-uk-trading-name\\/1"
+      )
+      registration.checkJourneyUrl("remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-uk-trading-name")
+
+      And("the user amends an existing trading name")
+      registration.selectChangeOrRemoveLink(
+        "uk-trading-name\\/1\\?waypoints\\=change-add-uk-trading-name\\%2Crejoin-registration"
+      )
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("an amended cross schema trading name for rejoin")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("new 2nd name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user clicks change for business-contact-details")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=rejoin-registration"
+      )
+
+      And("the correct warnings are displayed on the contact details for a trader with OSS and IOSS registrations")
+      registration.checkJourneyUrl("business-contact-details")
+      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "OSS and IOSS", "contact")
+
+      Then("the user amends some of their contact details")
+      registration.updateField("emailAddress", "rejoin-cross-schema-test@email.com")
+      registration.continue()
+
+      Then("the user completes the email verification process")
+      email.completeEmailVerification("rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user clicks change for bank-account-details")
+      registration.selectChangeOrRemoveLink(
+        "bank-account-details\\?waypoints\\=rejoin-registration"
+      )
+
+      And("the correct warnings are displayed on the bank details for a trader with OSS and IOSS registrations")
+      registration.checkJourneyUrl("bank-account-details")
+      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "OSS and IOSS", "bank")
+
+      Then("the user amends some of their bank details")
+      registration.checkJourneyUrl("bank-account-details")
+      registration.updateField("accountName", "Another Cross Schema Name")
+      registration.continue()
+
+      When("the user submits the registration on the change-your-registration page")
+      registration.checkJourneyUrl("rejoin")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful-rejoin")
+
+      And(
+        "the text on the rejoin confirmation page is displayed when the user has made changes and has OSS and IOSS registrations"
+      )
+      crossSchema.checkConfirmation("rejoin", true, "OSS and IOSS")
+    }
+
+    Scenario("Rejoin registration for trader with 1 previous IOSS registration - amends data") {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100005555", "Organisation", "crossSchemaOneIoss", "rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user clicks change for add-uk-trading-name")
+      registration.selectChangeOrRemoveLink(
+        "add-uk-trading-name\\?waypoints\\=rejoin-registration"
+      )
+      registration.checkJourneyUrl("add-uk-trading-name")
+
+      Then("the correct number of existing trading names are displayed for a user with one IOSS registration")
+      crossSchema.checkTradingNames("one previous IOSS")
+      crossSchema.checkWarningsForTradingNames("rejoin", true, "one previous IOSS")
+
+      And("the user removes existing trading name and adds a new one")
+      registration.selectChangeOrRemoveLink(
+        "remove-uk-trading-name\\/1"
+      )
+      registration.checkJourneyUrl("remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-uk-trading-name")
+
+      And("the user amends an existing trading name")
+      registration.selectChangeOrRemoveLink(
+        "uk-trading-name\\/1\\?waypoints\\=change-add-uk-trading-name\\%2Crejoin-registration"
+      )
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("an amended cross schema trading name for rejoin")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("new 2nd name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user clicks change for business-contact-details")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=rejoin-registration"
+      )
+
+      And("the correct warnings are displayed on the contact details for a trader with one IOSS registration")
+      registration.checkJourneyUrl("business-contact-details")
+      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "one previous IOSS", "contact")
+
+      Then("the user amends some of their contact details")
+      registration.updateField("emailAddress", "rejoin-cross-schema-test@email.com")
+      registration.continue()
+
+      Then("the user completes the email verification process")
+      email.completeEmailVerification("rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user clicks change for bank-account-details")
+      registration.selectChangeOrRemoveLink(
+        "bank-account-details\\?waypoints\\=rejoin-registration"
+      )
+
+      And("the correct warnings are displayed on the bank details for a trader with one IOSS registration")
+      registration.checkJourneyUrl("bank-account-details")
+      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "one previous IOSS", "bank")
+
+      Then("the user amends some of their bank details")
+      registration.checkJourneyUrl("bank-account-details")
+      registration.updateField("accountName", "Another Cross Schema Name")
+      registration.continue()
+
+      When("the user submits the registration on the change-your-registration page")
+      registration.checkJourneyUrl("rejoin")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful-rejoin")
+
+      And(
+        "the text on the rejoin confirmation page is displayed when the user has made changes and has one IOSS registration"
+      )
+      crossSchema.checkConfirmation("rejoin", true, "one previous IOSS")
+    }
+
+    Scenario("Rejoin registration for trader with multiple previous IOSS registrations - amends data") {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100005555", "Organisation", "crossSchemaMultipleIoss", "rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user clicks change for add-uk-trading-name")
+      registration.selectChangeOrRemoveLink(
+        "add-uk-trading-name\\?waypoints\\=rejoin-registration"
+      )
+      registration.checkJourneyUrl("add-uk-trading-name")
+
+      Then("the correct number of existing trading names are displayed for a user with multiple IOSS registrations")
+      crossSchema.checkTradingNames("multiple IOSS")
+      crossSchema.checkWarningsForTradingNames("rejoin", true, "multiple IOSS")
+
+      And("the user removes existing trading name and adds a new one")
+      registration.selectChangeOrRemoveLink(
+        "remove-uk-trading-name\\/1"
+      )
+      registration.checkJourneyUrl("remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-uk-trading-name")
+
+      And("the user amends an existing trading name")
+      registration.selectChangeOrRemoveLink(
+        "uk-trading-name\\/1\\?waypoints\\=change-add-uk-trading-name\\%2Crejoin-registration"
+      )
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("an amended cross schema trading name for rejoin")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("new 2nd name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user clicks change for business-contact-details")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=rejoin-registration"
+      )
+
+      And("the correct warnings are displayed on the contact details for a trader with multiple IOSS registrations")
+      registration.checkJourneyUrl("business-contact-details")
+      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "multiple IOSS", "contact")
+
+      Then("the user amends some of their contact details")
+      registration.updateField("emailAddress", "rejoin-cross-schema-test@email.com")
+      registration.continue()
+
+      Then("the user completes the email verification process")
+      email.completeEmailVerification("rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user clicks change for bank-account-details")
+      registration.selectChangeOrRemoveLink(
+        "bank-account-details\\?waypoints\\=rejoin-registration"
+      )
+
+      And("the correct warnings are displayed on the bank details for a trader with multiple IOSS registrations")
+      registration.checkJourneyUrl("bank-account-details")
+      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "multiple IOSS", "bank")
+
+      Then("the user amends some of their bank details")
+      registration.checkJourneyUrl("bank-account-details")
+      registration.updateField("accountName", "Another Cross Schema Name")
+      registration.continue()
+
+      When("the user submits the registration on the change-your-registration page")
+      registration.checkJourneyUrl("rejoin")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful-rejoin")
+
+      And(
+        "the text on the rejoin confirmation page is displayed when the user has made changes and has multiple IOSS registrations"
+      )
+      crossSchema.checkConfirmation("rejoin", true, "multiple IOSS")
     }
   }
 }

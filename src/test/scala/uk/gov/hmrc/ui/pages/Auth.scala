@@ -114,6 +114,8 @@ object Auth extends BasePage {
         case "coreQuarantinedTaxId"                                                  => "IM9004999991"
         case "onePreviousRegistration" | "crossSchemaOssAndIoss" | "crossSchemaIoss" => "IM9007230000"
         case "multiplePreviousRegistrations"                                         => "IM9007230003"
+        case "rejoinCrossSchemaOssAndIoss" | "crossSchemaMultipleIoss"               => "IM9007231111"
+        case "crossSchemaOneIoss"                                                    => "IM9019999997"
         case _                                                                       => "IN9001234567"
       }
       if (accountType != "registration") {
@@ -138,6 +140,12 @@ object Auth extends BasePage {
         sendKeys(By.id("input-2-0-value"), "IM9006230000")
       }
 
+      if (accountType == "rejoinCrossSchemaOssAndIoss" || accountType == "crossSchemaMultipleIoss") {
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-2-0-value"), "IM9006231111")
+      }
+
       if (accountType == "multiplePreviousRegistrations") {
         sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
         sendKeys(By.id("input-2-0-name"), "IOSSNumber")
@@ -148,7 +156,7 @@ object Auth extends BasePage {
         sendKeys(By.id("input-3-0-value"), "IM9007230001")
       }
 
-      if (accountType == "crossSchemaOssAndIoss") {
+      if (accountType == "crossSchemaOssAndIoss" || accountType == "rejoinCrossSchemaOssAndIoss") {
         sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
         sendKeys(By.id("input-3-0-name"), "VRN")
         sendKeys(By.id("input-3-0-value"), vrn)
