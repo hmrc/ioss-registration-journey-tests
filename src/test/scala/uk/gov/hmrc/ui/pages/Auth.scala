@@ -112,6 +112,8 @@ object Auth extends BasePage {
         case "coreQuarantinedVRN"                         => "IM9004999993"
         case "coreActiveTaxId"                            => "IM9004999992"
         case "coreQuarantinedTaxId"                       => "IM9004999991"
+        case "onePreviousRegistration"                    => "IM9007230000"
+        case "multiplePreviousRegistrations"              => "IM9007230003"
         case _                                            => "IN9001234567"
       }
       if (accountType != "registration") {
@@ -129,19 +131,19 @@ object Auth extends BasePage {
       }
 
       if (accountType == "onePreviousRegistration") {
-        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
-        sendKeys(By.id("input-2-0-name"), "IntNumber")
-        sendKeys(By.id("input-2-0-value"), "IN9007230001")
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-2-0-value"), "IM9006230000")
       }
 
       if (accountType == "multiplePreviousRegistrations") {
-        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
-        sendKeys(By.id("input-2-0-name"), "IntNumber")
-        sendKeys(By.id("input-2-0-value"), "IN9008230002")
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-2-0-value"), "IM9007230002")
 
-        sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-INT")
-        sendKeys(By.id("input-3-0-name"), "IntNumber")
-        sendKeys(By.id("input-3-0-value"), "IN9007230002")
+        sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-3-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-3-0-value"), "IM9007230001")
       }
     }
 
@@ -150,7 +152,7 @@ object Auth extends BasePage {
     if (journey == "retrievedWithCredId") {
       fluentWait.until(
         ExpectedConditions.urlToBe(
-          "http://localhost:10184/pay-clients-vat-on-eu-sales/register-import-one-stop-shop-intermediary/continue-registration"
+          "http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/continue-registration"
         )
       )
     }

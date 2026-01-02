@@ -32,7 +32,7 @@ object EmailVerification extends BasePage {
     fluentWait.until(ExpectedConditions.urlContains(testOnlyUrl))
 
     val passcode = if (journey == "secondPreviousRegistration") {
-      getText(By.tagName("body")).split("rocky.balboa@chartoffwinkler.co.uk,")(1).dropRight(42)
+      getText(By.tagName("body")).split("previous-registration-test-another@email.com,")(1).dropRight(42)
     } else {
       getText(By.tagName("body")).split(">")(3).dropRight(3)
     }

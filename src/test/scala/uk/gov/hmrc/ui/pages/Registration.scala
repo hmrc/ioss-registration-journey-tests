@@ -340,4 +340,7 @@ object Registration extends BasePage {
     checkJourneyUrl("register-to-use-service")
     continue()
   }
+
+  def continueSavedRegistration(): Unit =
+    click(By.cssSelector("a#continueToYourReturn"))
 }

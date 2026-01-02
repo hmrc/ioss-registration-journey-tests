@@ -22,92 +22,57 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 
 object PreviousRegistration extends BasePage {
 
-  def checkIntermediaryNumber(intermediaryNumber: String): Unit = {
+  def checkIossNumber(iossNumber: String): Unit = {
     val body = Driver.instance.findElement(By.tagName("body")).getText
-    Assert.assertTrue(body.contains(s"IOSS intermediary number: $intermediaryNumber"))
+    Assert.assertTrue(body.contains(s"IOSS number: $iossNumber"))
   }
 
-  def checkChangeLinks(): Unit = {
+  def checkAmendedAnswers(previousRegistrationAccount: String): Unit = {
     val body = Driver.instance.findElement(By.tagName("body")).getText
 
-    Assert.assertTrue(
-      body.contains(
-        "Import One Stop Shop details\n" +
-          "Have other trading names No\n" +
-          "Other IOSS intermediary registrations No\n" +
-          "Fixed establishments in other countries No\n" +
-          "Contact name Rocky Balboa Change\n" +
-          "your contact name or department\n" + // hidden text
-          "Telephone number 028 123 4567 Change\n" +
-          "your telephone number\n" + // hidden text
-          "Email address rocky.balboa@chartoffwinkler.co.uk Change\n" +
-          "your email address\n" + // hidden text
-          "Name on the account Chartoff Winkler and Co. Change\n" +
-          "the name on this bank account\n" + // hidden text
-          "BIC or SWIFT code BARCGB22456 Change\n" +
-          "your BIC or SWIFT code\n" + // hidden text
-          "IBAN GB33BUKB202015555555555 Change\n" +
-          "your IBAN\n" + // hidden text
-          "Confirm these changes to save them to your account."
-      )
-    )
+    previousRegistrationAccount match {
+      case "IM9006230000" =>
+        Assert.assertTrue(body.contains("Contact name Previous Single Registration Trader"))
+        Assert.assertTrue(body.contains("Telephone number 01234567891"))
+        Assert.assertTrue(body.contains("Email address previous-single-registration-test@email.com"))
+        Assert.assertTrue(body.contains("Name on the account Previous Single Registration Trader Name"))
+        Assert.assertTrue(body.contains("IBAN GB29NWBK60161331926819"))
+      case "IM9007230000" =>
+        Assert.assertTrue(body.contains("Trading names added an amended current trading name"))
+        Assert.assertTrue(body.contains("a new current trading name"))
+        Assert.assertTrue(body.contains("Trading names removed tradingName1"))
+        Assert.assertTrue(body.contains("tradingName2"))
+        Assert.assertTrue(body.contains("Registered for tax in EU countries No"))
+        Assert.assertTrue(body.contains("EU tax details removed Germany"))
+      case "IM9007230001" =>
+        Assert.assertTrue(body.contains("Contact name Previous Multiple Registration Trader"))
+        Assert.assertTrue(body.contains("Telephone number +17771117771"))
+        Assert.assertTrue(body.contains("Email address previous-registration-test-multiple@email.com"))
+        Assert.assertTrue(body.contains("Name on the account Previous Multiple Registration Trader Name"))
+        Assert.assertTrue(body.contains("IBAN GB29NWBK60161331926819"))
+      case "IM9007230002" =>
+        Assert.assertTrue(body.contains("Contact name Previous Multiple Registration Trader 2"))
+        Assert.assertTrue(body.contains("Email address previous-registration-test-another@email.com"))
+        Assert.assertTrue(body.contains("Name on the account Previous Multiple Registration Trader Name 2"))
+      case "IM9007230003" =>
+        Assert.assertTrue(body.contains("Countries registered in Finland"))
+        Assert.assertTrue(body.contains("Countries registered in changed Cyprus"))
+        Assert.assertTrue(body.contains("Trading websites added https://www.amended-website-name-multiple-ioss.com"))
+        Assert.assertTrue(body.contains("https://www.2ndmultipleiosswebsite.eu"))
+        Assert.assertTrue(body.contains("Trading websites removed www.website1.com"))
+        Assert.assertTrue(body.contains("www.website2.com"))
+      case _              =>
+        throw new Exception("This amend variation does not exist")
+    }
   }
 
-  def selectPreviousRegistration(intermediaryNumber: String): Unit = {
-    intermediaryNumber match {
-      case "IN9007230002" => click(By.id("value_0"))
-      case "IN9008230002" => click(By.id("value_1"))
+  def selectPreviousRegistration(iossNumber: String): Unit = {
+    iossNumber match {
+      case "IM9007230001" => click(By.id("value_0"))
+      case "IM9007230002" => click(By.id("value_1"))
       case _              => throw new Exception("Option doesn't exist")
     }
     click(continueButton)
-  }
-
-  def checkAmendedAnswersMultipleRegistrations(journey: String): Unit = {
-    val body = Driver.instance.findElement(By.tagName("body")).getText
-
-    journey match {
-      case "onePreviousRegistrationCurrent"                                          =>
-        Assert.assertTrue(
-          body.contains(
-            "You changed the following details:\n" +
-              "Trading names removed tradingName2\n" +
-              "Fixed establishments in other countries No\n" +
-              "Fixed establishments in other countries removed Germany\n" +
-              "France"
-          )
-        )
-      case "multiplePreviousRegistrationsCurrent"                                    =>
-        Assert.assertTrue(
-          body.contains(
-            "You changed the following details:\n" +
-              "Have other trading names No\n" +
-              "Trading names removed tradingName1\n" +
-              "tradingName2\n" +
-              "Other IOSS intermediary registrations details added Croatia"
-          )
-        )
-      case "onePreviousRegistrationPrevious" | "multiplePreviousRegistrationsOldest" =>
-        Assert.assertTrue(
-          body.contains(
-            "You changed the following details:\n" +
-              "Contact name Previous Registration Test Name\n" +
-              "Email address amend-test@email.com\n" +
-              "BIC or SWIFT code (if you have one) Removed\n" +
-              "IBAN GB91BKEN10000041610008"
-          )
-        )
-      case "multiplePreviousRegistrationsPrevious"                                   =>
-        Assert.assertTrue(
-          body.contains(
-            "You changed the following details:\n" +
-              "Telephone number 01234 564712\n" +
-              "Name on the account Previous registration bank-account-name\n" +
-              "BIC or SWIFT code (if you have one) CITIGB2L"
-          )
-        )
-      case _                                                                         =>
-        throw new Exception("This amend variation does not exist")
-    }
   }
 
 }
