@@ -22,8 +22,8 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 class SaveForLaterSpec extends BaseSpec {
 
   private val registration = Registration
-  private val auth = Auth
-  private val email = EmailVerification
+  private val auth         = Auth
+  private val email        = EmailVerification
 
   Feature("Save For Later Feature") {
 
@@ -342,7 +342,6 @@ class SaveForLaterSpec extends BaseSpec {
       registration.checkJourneyUrl("bank-account-details")
       registration.fillBankAccountDetails("Trader Name ", "ABCDEF2A", "GB33BUKB20201555555555")
 
-
       And("the user successfully submits the registration on the check-your-answers page")
       registration.checkJourneyUrl("check-your-answers")
       registration.submit()
@@ -460,4 +459,3 @@ class SaveForLaterSpec extends BaseSpec {
     }
   }
 }
-

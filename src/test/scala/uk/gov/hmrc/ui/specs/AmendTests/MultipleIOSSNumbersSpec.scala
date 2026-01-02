@@ -21,14 +21,16 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 
 class MultipleIOSSNumbersSpec extends BaseSpec {
 
-  private val registration = Registration
-  private val auth         = Auth
-  private val email        = EmailVerification
-  private val previousRegistration        = PreviousRegistration
+  private val registration         = Registration
+  private val auth                 = Auth
+  private val email                = EmailVerification
+  private val previousRegistration = PreviousRegistration
 
   Feature("Multiple IOSS Number Registration journeys") {
 
-    Scenario("An IOSS registered user with one previous registration can amend the correct sections of each registration") {
+    Scenario(
+      "An IOSS registered user with one previous registration can amend the correct sections of each registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -133,7 +135,9 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       previousRegistration.checkAmendedAnswers("IM9007230000")
     }
 
-    Scenario("An IOSS registered user with multiple previous registrations can amend the correct sections of each registration") {
+    Scenario(
+      "An IOSS registered user with multiple previous registrations can amend the correct sections of each registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
