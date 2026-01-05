@@ -450,11 +450,11 @@ class SaveForLaterSpec extends BaseSpec {
 
     Scenario("A user with no saved registration accessing the saved registration journey") {
 
-      Given("the intermediary accesses the IOSS Intermediary Registration Service via the saved registration endpoint")
+      Given("the user accesses the IOSS Registration Service via the saved registration endpoint")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "savedRegistration")
 
-      Then("the intermediary is on the no-registration-in-progress page")
+      Then("the user is on the no-registration-in-progress page")
       registration.checkJourneyUrl("no-saved-registration")
     }
   }

@@ -129,7 +129,7 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("previous-scheme/1/3")
       registration.answerSchemeType("IOSS")
 
-      Then("the user answers yes to their client using an intermediary")
+      Then("the user answers yes to using an intermediary")
       registration.checkJourneyUrl("previous-ioss-scheme/1/3")
       registration.answerRadioButton("yes")
 

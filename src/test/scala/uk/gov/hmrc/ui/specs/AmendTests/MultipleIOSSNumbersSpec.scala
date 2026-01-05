@@ -47,7 +47,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-previous-registration?waypoints=change-your-registration")
       registration.answerRadioButton("yes")
 
-      And("the intermediary's previous registration is displayed")
+      And("the user's previous registration is displayed")
       registration.checkJourneyUrl("change-a-previous-registration")
       previousRegistration.checkIossNumber("IM9006230000")
 
@@ -154,7 +154,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-previous-registrations?waypoints=change-your-registration")
       previousRegistration.selectPreviousRegistration("IM9007230001")
 
-      And("the intermediary's previous registration is displayed")
+      And("the user's previous registration is displayed")
       registration.checkJourneyUrl("change-a-previous-registration")
       previousRegistration.checkIossNumber("IM9007230001")
 
@@ -207,7 +207,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-previous-registrations?waypoints=change-your-registration")
       previousRegistration.selectPreviousRegistration("IM9007230002")
 
-      And("the intermediary's previous registration is displayed")
+      And("the user's previous registration is displayed")
       registration.checkJourneyUrl("change-a-previous-registration")
       previousRegistration.checkIossNumber("IM9007230002")
 

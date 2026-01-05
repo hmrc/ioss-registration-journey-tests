@@ -32,8 +32,6 @@ object Registration extends BasePage {
     TestEnvironment.url("ioss-returns-frontend")
   private val returnsJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
 
-  private val email = EmailVerification
-
   def goToRegistrationJourney(): Unit =
     get(registrationUrl + journeyUrl)
 
