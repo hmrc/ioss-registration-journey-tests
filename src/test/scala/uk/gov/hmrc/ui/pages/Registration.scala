@@ -1,0 +1,245 @@
+/*
+ * Copyright 2025 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package uk.gov.hmrc.ui.pages
+
+import org.junit.Assert
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
+import org.openqa.selenium.{By, Keys}
+import uk.gov.hmrc.configuration.TestEnvironment
+import uk.gov.hmrc.selenium.webdriver.Driver
+
+object Registration extends BasePage {
+
+  private val registrationUrl: String =
+    TestEnvironment.url("ioss-registration-frontend")
+  private val journeyUrl: String      = "/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop"
+
+  private val returnsUrl: String        =
+    TestEnvironment.url("ioss-returns-frontend")
+  private val returnsJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
+
+  def goToRegistrationJourney(): Unit =
+    get(registrationUrl + journeyUrl)
+
+  def checkJourneyUrl(page: String): Unit = {
+    val url = s"$registrationUrl$journeyUrl/$page"
+    fluentWait.until(ExpectedConditions.urlContains(url))
+    getCurrentUrl.startsWith(url)
+  }
+
+  def checkDashboardJourneyUrl(page: String): Unit =
+    getCurrentUrl.startsWith(s"$returnsUrl$returnsJourneyUrl/$page")
+
+  def answerRadioButton(answer: String): Unit = {
+
+    answer match {
+      case "yes" => click(By.id("value"))
+      case "no"  => click(By.id("value-no"))
+      case _     => throw new Exception("Option doesn't exist")
+    }
+    click(continueButton)
+  }
+
+  def answerVatDetailsChoice(answer: String): Unit = {
+    answer match {
+      case "Yes"                                           => click(By.id("value_0"))
+      case "Yes, but some of my VAT details are incorrect" => click(By.id("value_1"))
+      case "No, I want to register a different business"   => click(By.id("value_2"))
+      case _                                               => throw new Exception("Option doesn't exist")
+    }
+    click(continueButton)
+  }
+
+  def continue(): Unit =
+    click(continueButton)
+
+  def submit(): Unit =
+    click(submitButton)
+
+  def goToPage(page: String): Unit =
+    get(s"$registrationUrl$journeyUrl/$page")
+
+  def enterAnswer(answer: String): Unit = {
+    sendKeys(By.id("value"), answer)
+    click(continueButton)
+  }
+
+  def selectChangeOrRemoveLink(link: String): Unit =
+    click(By.cssSelector(s"a[href*=$link]"))
+
+  def waitForElement(by: By): Unit =
+    new FluentWait(Driver.instance).until(ExpectedConditions.presenceOfElementLocated(by))
+
+  def selectCountry(country: String): Unit = {
+    val inputId = "value"
+    sendKeys(By.id(inputId), country)
+    waitForElement(By.id(inputId))
+    click(By.cssSelector("li#value__option--0"))
+    click(continueButton)
+  }
+
+  def selectRegistrationType(data: String): Unit = {
+    data match {
+      case "vat number"    => click(By.id("value_0"))
+      case "tax id number" => click(By.id("value_1"))
+      case _               => throw new Exception("Option doesn't exist")
+    }
+    continue()
+  }
+
+  def enterFixedEstablishmentAddress(
+    line1: String,
+    line2: String,
+    townOrCity: String,
+    stateOrRegion: String,
+    postCode: String
+  ): Unit = {
+    sendKeys(By.id("line1"), line1)
+    sendKeys(By.id("line2"), line2)
+    sendKeys(By.id("townOrCity"), townOrCity)
+    sendKeys(By.id("stateOrRegion"), stateOrRegion)
+    sendKeys(By.id("postCode"), postCode)
+    click(continueButton)
+  }
+
+  def fillContactDetails(name: String, phone: String, email: String): Unit = {
+    sendKeys(By.id("fullName"), name)
+    sendKeys(By.id("telephoneNumber"), phone)
+    sendKeys(By.id("emailAddress"), email)
+    click(continueButton)
+  }
+
+  def fillBankAccountDetails(accountName: String, bicNumber: String, ibanNumber: String): Unit = {
+    sendKeys(By.id("accountName"), accountName)
+    sendKeys(By.id("bic"), bicNumber)
+    sendKeys(By.id("iban"), ibanNumber)
+    click(continueButton)
+  }
+
+  def updateField(id: String, text: String): Unit =
+    sendKeys(By.id(id), text)
+
+  def clearCountry(): Unit = {
+    val input = Driver.instance.findElement(By.id("value")).getAttribute("value")
+    if (input != null) {
+      for (n <- input)
+        Driver.instance.findElement(By.id("value")).sendKeys(Keys.BACK_SPACE)
+    }
+  }
+
+  def clickLink(link: String): Unit =
+    click(By.id(link))
+
+  def saveAndComeBackLater(): Unit =
+    click(By.id("saveProgress"))
+
+  def checkProblemPage(): Unit = {
+    val h1 = Driver.instance.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(h1.equals("Sorry, there is a problem with the service"))
+  }
+
+  def checkAmendedAnswers(amendJourney: String): Unit = {
+    val body = Driver.instance.findElement(By.tagName("body")).getText
+
+    amendJourney match {
+      case "noAmendedAnswers" =>
+        Assert.assertTrue(body.contains("You have not changed any of your registration details."))
+      case "emailChanged"     =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("Email address different-email@test.com"))
+      case "yesToNo"          =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("Have a different UK trading name No"))
+        Assert.assertTrue(body.contains("Trading names removed tradingName1"))
+        Assert.assertTrue(body.contains("tradingName2"))
+        Assert.assertTrue(body.contains("Registered for tax in EU countries No"))
+        Assert.assertTrue(body.contains("EU tax details removed Germany"))
+      case "noToYes"          =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("Have a different UK trading name Yes"))
+        Assert.assertTrue(body.contains("Trading names added A new trading name in amend journey"))
+        Assert.assertTrue(body.contains("Other One Stop Shop registrations Yes"))
+        Assert.assertTrue(body.contains("Countries registered in Cyprus"))
+        Assert.assertTrue(body.contains("Finland"))
+        Assert.assertTrue(body.contains("Registered for tax in EU countries Yes"))
+        Assert.assertTrue(body.contains("EU tax details added Romania"))
+      case "nonMandatory"     =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("Trading names added an amended trading name"))
+        Assert.assertTrue(body.contains("new 2nd name"))
+        Assert.assertTrue(body.contains("Trading names removed tradingName1"))
+        Assert.assertTrue(body.contains("tradingName2"))
+        Assert.assertTrue(body.contains("Countries registered in Finland"))
+        Assert.assertTrue(body.contains("Countries registered in changed Cyprus"))
+        Assert.assertTrue(body.contains("EU tax details added Estonia"))
+        Assert.assertTrue(body.contains("Portugal"))
+        Assert.assertTrue(body.contains("EU tax details changed Germany"))
+      case "mandatory"        =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("EU tax details added Estonia"))
+        Assert.assertTrue(body.contains("EU tax details removed Germany"))
+        Assert.assertTrue(body.contains("Trading websites added https://www.amended-website-name.com"))
+        Assert.assertTrue(body.contains("https://www.2nd-website.eu"))
+        Assert.assertTrue(body.contains("Trading websites removed www.website1.com"))
+        Assert.assertTrue(body.contains("www.website2.com"))
+        Assert.assertTrue(body.contains("Contact name Another Trader"))
+        Assert.assertTrue(body.contains("Telephone number +17771117771"))
+        Assert.assertTrue(body.contains("Name on the account Another Trader Name"))
+        Assert.assertTrue(body.contains("IBAN GB29NWBK60161331926819"))
+      case "email"            =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("Email address amend-test@email.com"))
+      case _                  =>
+        throw new Exception("This amend variation does not exist")
+    }
+  }
+
+  def answerSchemeType(answer: String): Unit = {
+    answer match {
+      case "OSS"  => click(By.id("value_0"))
+      case "IOSS" => click(By.id("value_1"))
+      case _      => throw new Exception("Option doesn't exist")
+    }
+    click(continueButton)
+  }
+
+  def enterIossScheme(answer: String): Unit = {
+    sendKeys(By.id("previousSchemeNumber"), answer)
+    click(continueButton)
+  }
+
+  def checkBTA(): Unit =
+    getCurrentUrl.endsWith("business-account")
+
+  def standardFilterQuestions(): Unit = {
+    checkJourneyUrl("ioss-registered")
+    answerRadioButton("no")
+    checkJourneyUrl("selling-goods-outside-single-market")
+    answerRadioButton("yes")
+    checkJourneyUrl("goods-value")
+    answerRadioButton("yes")
+    checkJourneyUrl("registered-for-vat-in-uk")
+    answerRadioButton("yes")
+    checkJourneyUrl("ni-based")
+    answerRadioButton("yes")
+    checkJourneyUrl("register-to-use-service")
+    continue()
+  }
+
+  def continueSavedRegistration(): Unit =
+    click(By.cssSelector("a#continueToYourReturn"))
+}
