@@ -387,6 +387,7 @@ class RejoinRegistrationSpec extends BaseSpec {
       )
       registration.checkJourneyUrl("previous-scheme-answers/2")
       registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-scheme/2/2")
       registration.answerSchemeType("OSS")
       registration.checkJourneyUrl("previous-oss-scheme-number/2/2")
       registration.enterAnswer("CY12345678X")
