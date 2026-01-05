@@ -127,13 +127,19 @@ object CrossSchema extends BasePage {
     val body = Driver.instance.findElement(By.tagName("body")).getText
 
     amendJourney match {
-      case "ossAndIoss" =>
+      case "ossAndIoss"         =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Trading names added an amended cross schema trading name"))
         Assert.assertTrue(body.contains("Trading names removed firstPreviousTradingName1"))
         Assert.assertTrue(body.contains("Telephone number +17771117771"))
         Assert.assertTrue(body.contains("IBAN GB29NWBK60161331926819"))
-      case _            =>
+      case "removedTradingName" =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("Trading names removed tradingName2"))
+      case "updatedIban"        =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("IBAN GB29NWBK60161331926819"))
+      case _                    =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Trading names added another"))
         Assert.assertTrue(body.contains("Trading names removed tradingName2"))
