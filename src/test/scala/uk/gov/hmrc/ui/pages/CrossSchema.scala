@@ -141,4 +141,9 @@ object CrossSchema extends BasePage {
         Assert.assertTrue(body.contains("Name on the account Another Cross Schema Name"))
     }
   }
+
+  def onlyNewTradingNameAdded(): Unit = {
+    val header = Driver.instance.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(header.equals("You have added one UK trading name"))
+  }
 }
