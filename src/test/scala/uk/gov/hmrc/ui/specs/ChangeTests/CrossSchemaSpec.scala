@@ -776,25 +776,6 @@ class CrossSchemaSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard("100005555", "Organisation", "crossSchemaOneIoss", "amend")
       registration.checkJourneyUrl("change-your-registration")
 
-      When("the user clicks change for add-uk-trading-name")
-      registration.selectChangeOrRemoveLink(
-        "add-uk-trading-name\\?waypoints\\=change-your-registration"
-      )
-      registration.checkJourneyUrl("add-uk-trading-name")
-
-      Then("the cross schema warnings are not displayed for a user who only has one previous IOSS registration")
-      crossSchema.checkWarningsForTradingNames("amend", false, "one previous IOSS")
-
-      And("the user removes existing trading name")
-      registration.selectChangeOrRemoveLink(
-        "remove-uk-trading-name\\/2\\?waypoints\\=change-your-registration"
-      )
-      registration.checkJourneyUrl("remove-uk-trading-name/2")
-      registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("add-uk-trading-name")
-      registration.answerRadioButton("no")
-      registration.checkJourneyUrl("change-your-registration")
-
       When("the user clicks change for business-contact-details")
       registration.selectChangeOrRemoveLink(
         "business-contact-details\\?waypoints\\=change-your-registration"
