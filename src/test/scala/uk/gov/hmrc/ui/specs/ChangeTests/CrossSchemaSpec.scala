@@ -811,7 +811,7 @@ class CrossSchemaSpec extends BaseSpec {
         "the cross schema text on the amend confirmation page is not displayed"
       )
       crossSchema.checkConfirmation("amend", false, "one previous IOSS")
-      crossSchema.checkAmendedAnswers("noAmendedAnswers")
+      registration.checkAmendedAnswers("noAmendedAnswers")
     }
 
     Scenario(
