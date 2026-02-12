@@ -27,6 +27,21 @@
       "url":"http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/start-rejoin-journey",
       "ruleId":10038,
       "newLevel":-1
+    },
+    {
+      "reason":"No PII in this response",
+      "contextId":1,
+      "url":"http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/goods-value",
+      "ruleId":10062,
+      "newLevel":-1
+    },
+    {
+      "reason":"No PII in this response",
+      "contextId":1,
+      "url":"http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/website-address/.*",
+      "ruleId":10062,
+      "urlIsRegex": "true",
+      "newLevel":-1
     }
   ]
 }
