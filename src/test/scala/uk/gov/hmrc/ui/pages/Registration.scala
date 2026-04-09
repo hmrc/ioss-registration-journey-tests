@@ -199,7 +199,7 @@ object Registration extends BasePage {
         Assert.assertTrue(body.contains("Contact name Another Trader"))
         Assert.assertTrue(body.contains("Telephone number +17771117771"))
         Assert.assertTrue(body.contains("Name on the account Another Trader Name"))
-        Assert.assertTrue(body.contains("IBAN GB29NWBK60161331926819"))
+        Assert.assertTrue(body.contains("IBAN (International Bank Account Number) GB29NWBK60161331926819"))
       case "email"            =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Email address amend-test@email.com"))
