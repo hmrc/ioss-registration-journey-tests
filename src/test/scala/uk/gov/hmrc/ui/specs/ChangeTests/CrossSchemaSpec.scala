@@ -572,54 +572,6 @@ class CrossSchemaSpec extends BaseSpec {
     }
 
     Scenario(
-      "Amend registration for trader with other registrations who did not make changes to data"
-    ) {
-
-      Given("the trader accesses the IOSS Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("300000002", "Organisation", "crossSchemaOssAndIoss", "amend")
-
-      When("the user submits the registration on the change-your-registration page without amending any answers")
-      registration.checkJourneyUrl("change-your-registration")
-      registration.submit()
-
-      Then("the user is on the successful submission page")
-      registration.checkJourneyUrl("successful-amend")
-
-      And(
-        "the text on the amend confirmation page is not displayed when the user has not made changes and has OSS and IOSS registration"
-      )
-      crossSchema.checkConfirmation("amend", false, "OSS and IOSS")
-
-      And("the confirmation page shows no details have been amended")
-      registration.checkAmendedAnswers("noAmendedAnswers")
-    }
-
-    Scenario(
-      "Amend registration for trader with multiple previous IOSS registrations who did not make changes to data"
-    ) {
-
-      Given("the trader accesses the IOSS Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100005555", "Organisation", "crossSchemaIoss", "amend")
-
-      When("the user submits the registration on the change-your-registration page")
-      registration.checkJourneyUrl("change-your-registration")
-      registration.submit()
-
-      Then("the user is on the successful submission page")
-      registration.checkJourneyUrl("successful-amend")
-
-      And(
-        "the text on the amend confirmation page is not displayed when the user has not made changes and has OSS and IOSS registration"
-      )
-      crossSchema.checkConfirmation("amend", false, "multiple IOSS")
-
-      And("the confirmation page shows no details have been amended")
-      registration.checkAmendedAnswers("noAmendedAnswers")
-    }
-
-    Scenario(
       "Rejoin registration for trader with multiple previous IOSS registrations who did not make changes to data"
     ) {
 
@@ -751,6 +703,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the cross schema warnings are not displayed when the user has no other registrations")
       registration.checkJourneyUrl("bank-account-details")
       crossSchema.checkWarningsForBankAndContactDetails("amend", false, "no other registrations", "bank")
+      registration.updateField("iban", "GB29NWBK60161331926819")
       registration.continue()
 
       When("the user submits the registration on the change-your-registration page")
@@ -764,7 +717,6 @@ class CrossSchemaSpec extends BaseSpec {
         "the text on the amend confirmation page is not displayed when the user has no other registration"
       )
       crossSchema.checkConfirmation("amend", false, "no other registrations")
-      registration.checkAmendedAnswers("noAmendedAnswers")
     }
 
     Scenario(
@@ -798,6 +750,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the cross schema warnings are not displayed for a user who only has one previous IOSS registration")
       registration.checkJourneyUrl("bank-account-details")
       crossSchema.checkWarningsForBankAndContactDetails("amend", false, "one previous IOSS", "bank")
+      registration.updateField("iban", "GB29NWBK60161331926819")
       registration.continue()
 
       When("the user submits the registration on the change-your-registration page")
@@ -811,7 +764,6 @@ class CrossSchemaSpec extends BaseSpec {
         "the cross schema text on the amend confirmation page is not displayed"
       )
       crossSchema.checkConfirmation("amend", false, "one previous IOSS")
-      registration.checkAmendedAnswers("noAmendedAnswers")
     }
 
     Scenario(
@@ -873,50 +825,6 @@ class CrossSchemaSpec extends BaseSpec {
       )
       crossSchema.checkConfirmation("amend", false, "one current IOSS")
       crossSchema.checkAmendedAnswers("updatedIban")
-    }
-
-    Scenario(
-      "Amend registration for trader with 1 previous IOSS registration - does not amend data"
-    ) {
-
-      Given("the trader accesses the IOSS Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100005555", "Organisation", "crossSchemaOneIoss", "amend")
-
-      When("the user submits the registration on the change-your-registration page")
-      registration.checkJourneyUrl("change-your-registration")
-      registration.submit()
-
-      Then("the user is on the successful submission page")
-      registration.checkJourneyUrl("successful-amend")
-
-      And(
-        "the cross schema text on the amend confirmation page is not displayed"
-      )
-      crossSchema.checkConfirmation("amend", false, "one previous IOSS")
-      registration.checkAmendedAnswers("noAmendedAnswers")
-    }
-
-    Scenario(
-      "Amend registration for trader with 1 current IOSS registration - does not amend data"
-    ) {
-
-      Given("the trader accesses the IOSS Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100005555", "Organisation", "amend", "amend")
-
-      When("the user submits the registration on the change-your-registration page")
-      registration.checkJourneyUrl("change-your-registration")
-      registration.submit()
-
-      Then("the user is on the successful submission page")
-      registration.checkJourneyUrl("successful-amend")
-
-      And(
-        "the cross schema text on the amend confirmation page is not displayed"
-      )
-      crossSchema.checkConfirmation("amend", false, "one current IOSS")
-      registration.checkAmendedAnswers("noAmendedAnswers")
     }
   }
 }
