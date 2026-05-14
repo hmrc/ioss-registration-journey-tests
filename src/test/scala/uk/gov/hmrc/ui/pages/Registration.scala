@@ -242,4 +242,10 @@ object Registration extends BasePage {
 
   def continueSavedRegistration(): Unit =
     click(By.cssSelector("a#continueToYourReturn"))
+
+  def noAmendments(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You have not made any changes."))
+  }
+
 }
