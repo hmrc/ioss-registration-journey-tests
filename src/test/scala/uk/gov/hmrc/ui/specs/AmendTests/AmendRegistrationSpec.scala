@@ -32,7 +32,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user clicks change for Have UK trading name")
       registration.selectChangeOrRemoveLink(
@@ -77,7 +80,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When(
         "the user manually navigates to the remove-all-previous-registrations?waypoints=change-your-registration page"
@@ -96,7 +102,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendMinimalAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user clicks change for previous-oss")
       registration.selectChangeOrRemoveLink(
@@ -149,7 +158,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When(
         "the user manually navigates to the remove-previous-scheme/1/1?waypoints=change-previous-schemes-overview%2Cchange-your-registration page"
@@ -169,7 +181,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user manually navigates to the remove-registration/1?waypoints=change-your-registration page")
       registration.goToPage("remove-registration/1?waypoints=change-your-registration")
@@ -183,7 +198,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendMinimalAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user clicks change for have-uk-trading-name")
       registration.selectChangeOrRemoveLink(
@@ -272,7 +290,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendMinimalAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user clicks change for have-uk-trading-name")
       registration.selectChangeOrRemoveLink(
@@ -357,13 +378,9 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("tax-in-eu")
       registration.answerRadioButton("no")
 
-      Then("the user can submit their amended registration")
+      And("the change-your-registration page has returned to a state of no amended answers")
       registration.checkJourneyUrl("change-your-registration")
-      registration.submit()
-      registration.checkJourneyUrl("successful-amend")
-
-      And("the correct answers are shown as amended")
-      registration.checkAmendedAnswers("noAmendedAnswers")
+      registration.noAmendments()
     }
 
     Scenario("An IOSS registered user amends non-mandatory registration answers") {
@@ -371,7 +388,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user clicks change for add-uk-trading-name")
       registration.selectChangeOrRemoveLink(
@@ -520,7 +540,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user clicks change for add-tax-details")
       registration.selectChangeOrRemoveLink(
@@ -622,7 +645,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user clicks change for business-contact-details")
       registration.selectChangeOrRemoveLink(
@@ -651,6 +677,19 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers yet")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+
+      When("the user makes an amendment")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("business-contact-details")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+      email.completeEmailVerification("amend")
       registration.checkJourneyUrl("change-your-registration")
 
       When("the user cancels their amend registration journey")
@@ -680,6 +719,19 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("600000022", "Organisation", "amendFailure", "amend")
+
+      And("the trader has not amended any answers yet")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+
+      When("the user makes an amendment")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("business-contact-details")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+      email.completeEmailVerification("amend")
       registration.checkJourneyUrl("change-your-registration")
 
       When("the user submits their amended registration")
@@ -696,7 +748,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendMinimalAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user clicks change for previous-oss")
       registration.selectChangeOrRemoveLink(
@@ -749,7 +804,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendMinimalAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the user clicks change for tax-in-eu")
       registration.checkJourneyUrl("change-your-registration")
@@ -806,7 +864,10 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendMinimalAccount", "amend")
+
+      And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the user clicks change for tax-in-eu")
       registration.checkJourneyUrl("change-your-registration")
@@ -871,12 +932,24 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("333333333", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers yet")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+
+      When("the user makes an amendment")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("business-contact-details")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+      email.completeEmailVerification("amend")
       registration.checkJourneyUrl("change-your-registration")
 
-      Then("the user can submit their registration without amending any details")
+      Then("the user successfully submits their amended registration")
       registration.submit()
       registration.checkJourneyUrl("successful-amend")
-      registration.checkAmendedAnswers("noAmendedAnswers")
     }
 
     Scenario("An IOSS registered user with existing EU quarantine is able to access the amend journey") {
@@ -884,12 +957,24 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("333333334", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers yet")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+
+      When("the user makes an amendment")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("business-contact-details")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+      email.completeEmailVerification("amend")
       registration.checkJourneyUrl("change-your-registration")
 
-      Then("the user can submit their registration without amending any details")
+      Then("the user successfully submits their amended registration")
       registration.submit()
       registration.checkJourneyUrl("successful-amend")
-      registration.checkAmendedAnswers("noAmendedAnswers")
     }
 
     Scenario("An excluded trader with an effective date 6 years ago can access the amend journey") {
@@ -897,12 +982,43 @@ class AmendRegistrationSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "excludedSixYears", "amend")
+
+      And("the trader has not amended any answers yet")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+
+      When("the user makes an amendment")
+      registration.selectChangeOrRemoveLink(
+        "business-contact-details\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("business-contact-details")
+      registration.updateField("emailAddress", "amend-test@email.com")
+      registration.continue()
+      email.completeEmailVerification("amend")
       registration.checkJourneyUrl("change-your-registration")
 
-      Then("the user can submit their registration without amending any details")
+      Then("the user successfully submits their amended registration")
       registration.submit()
       registration.checkJourneyUrl("successful-amend")
-      registration.checkAmendedAnswers("noAmendedAnswers")
+    }
+
+    Scenario(
+      "An IOSS registered user visits amends registration without making any changes and returns to their dashboard"
+    ) {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendAccount", "amend")
+
+      And("the trader has not amended any answers")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+
+      When("the trader clicks the Return to your account link")
+      registration.clickLink("return-to-your-account")
+
+      Then("the trader is returned to their dashboard")
+      registration.checkDashboardJourneyUrl("your-account")
     }
   }
 }

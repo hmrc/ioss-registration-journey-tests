@@ -165,11 +165,6 @@ class ExclusionsSpec extends BaseSpec {
 
       Then("the user is on the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
-
-      And("the user can submit their registration without amending any details")
-      registration.submit()
-      registration.checkJourneyUrl("successful-amend")
-      registration.checkAmendedAnswers("noAmendedAnswers")
     }
   }
 }
