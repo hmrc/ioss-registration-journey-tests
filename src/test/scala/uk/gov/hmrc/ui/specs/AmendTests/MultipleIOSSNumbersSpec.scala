@@ -39,6 +39,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       When("the user's current registration is displayed")
       registration.checkJourneyUrl("change-your-registration")
       previousRegistration.checkIossNumber("IM9007230000")
+      registration.noAmendments()
 
       Then("the user clicks on the View or change your previous registration link")
       registration.clickLink("change-previous-registrations")
@@ -50,6 +51,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       And("the user's previous registration is displayed")
       registration.checkJourneyUrl("change-a-previous-registration")
       previousRegistration.checkIossNumber("IM9006230000")
+      registration.noAmendments()
 
       Then("the user amends the contact details on the previous registration")
       registration.selectChangeOrRemoveLink(
@@ -92,6 +94,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
 
       Then("the user's current registration is displayed")
       previousRegistration.checkIossNumber("IM9007230000")
+      registration.noAmendments()
 
       And("the user can remove and amend trading name details in their current registration")
       registration.selectChangeOrRemoveLink(
@@ -146,6 +149,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       When("the user's current registration is displayed")
       registration.checkJourneyUrl("change-your-registration")
       previousRegistration.checkIossNumber("IM9007230003")
+      registration.noAmendments()
 
       Then("the user clicks on the View or change your previous registration link")
       registration.clickLink("change-previous-registrations")
@@ -157,6 +161,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       And("the user's previous registration is displayed")
       registration.checkJourneyUrl("change-a-previous-registration")
       previousRegistration.checkIossNumber("IM9007230001")
+      registration.noAmendments()
 
       Then("the user amends the contact details on the previous registration")
       registration.selectChangeOrRemoveLink(
@@ -199,6 +204,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
 
       Then("the user's current registration is displayed")
       previousRegistration.checkIossNumber("IM9007230003")
+      registration.noAmendments()
 
       Then("the user clicks on the View or change your previous registration link")
       registration.clickLink("change-previous-registrations")
@@ -210,6 +216,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       And("the user's previous registration is displayed")
       registration.checkJourneyUrl("change-a-previous-registration")
       previousRegistration.checkIossNumber("IM9007230002")
+      registration.noAmendments()
 
       Then("the user amends the contact details on the previous registration")
       registration.selectChangeOrRemoveLink(
