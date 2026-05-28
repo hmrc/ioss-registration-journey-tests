@@ -52,6 +52,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       registration.checkJourneyUrl("change-a-previous-registration")
       previousRegistration.checkIossNumber("IM9006230000")
       registration.noAmendments()
+      previousRegistration.checkChangeLinks("yesVersion")
 
       Then("the user amends the contact details on the previous registration")
       registration.selectChangeOrRemoveLink(
@@ -162,6 +163,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       registration.checkJourneyUrl("change-a-previous-registration")
       previousRegistration.checkIossNumber("IM9007230001")
       registration.noAmendments()
+      previousRegistration.checkChangeLinks("oldest")
 
       Then("the user amends the contact details on the previous registration")
       registration.selectChangeOrRemoveLink(
@@ -217,6 +219,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
       registration.checkJourneyUrl("change-a-previous-registration")
       previousRegistration.checkIossNumber("IM9007230002")
       registration.noAmendments()
+      previousRegistration.checkChangeLinks("yesVersion")
 
       Then("the user amends the contact details on the previous registration")
       registration.selectChangeOrRemoveLink(

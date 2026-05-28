@@ -75,4 +75,67 @@ object PreviousRegistration extends BasePage {
     click(continueButton)
   }
 
+  def checkChangeLinks(version: String): Unit = {
+    val body = Driver.instance.findElement(By.tagName("body")).getText
+
+    if (version == "oldest") {
+      Assert.assertTrue(
+        body.contains(
+          "Import One Stop Shop details\n" +
+            "Have a different UK trading name Yes\n" +
+            "Other trading names secondPreviousTradingName1\n" +
+            "secondPreviousTradingName2\n" +
+            "Other One Stop Shop registrations Yes\n" +
+            "Countries registered in France\n" +
+            "Spain\n" +
+            "Registered for tax in EU countries Yes\n" +
+            "EU tax details added Italy\n" +
+            "Trading websites www.secondpreviousregwebsite1.com\n" +
+            "www.secondpreviousregwebsite2.com\n" +
+            "Contact name Second Test name Change\n" +
+            "your contact name or department\n" + // hidden text
+            "Telephone number 1234567890 Change\n" +
+            "your telephone number\n" + // hidden text
+            "Email address email@test.com Change\n" +
+            "your email address\n" + // hidden text
+            "Name on the account Second Account name Change\n" +
+            "the name on this bank account\n" + // hidden text
+            "BIC or SWIFT code ABCDGB2A Change\n" +
+            "your BIC or SWIFT code\n" + // hidden text
+            "IBAN (International Bank Account Number) GB33BUKB20201555555555 Change\n" +
+            "your IBAN\n" + // hidden text
+            "You have not made any changes."
+        )
+      )
+    } else {
+      Assert.assertTrue(
+        body.contains(
+          "Import One Stop Shop details\n" +
+            "Have a different UK trading name Yes\n" +
+            "Other trading names firstPreviousTradingName1\n" +
+            "firstPreviousTradingName2\n" +
+            "Other One Stop Shop registrations Yes\n" +
+            "Countries registered in Austria\n" +
+            "Cyprus\n" +
+            "Registered for tax in EU countries Yes\n" +
+            "EU tax details added Denmark\n" +
+            "Trading websites www.firstpreviousregwebsite1.com\n" +
+            "www.firstpreviousregwebsite2.com\n" +
+            "Contact name First Test name Change\n" +
+            "your contact name or department\n" + // hidden text
+            "Telephone number 1234567890 Change\n" +
+            "your telephone number\n" + // hidden text
+            "Email address email@test.com Change\n" +
+            "your email address\n" + // hidden text
+            "Name on the account First Account name Change\n" +
+            "the name on this bank account\n" + // hidden text
+            "BIC or SWIFT code ABCDGB2A Change\n" +
+            "your BIC or SWIFT code\n" + // hidden text
+            "IBAN (International Bank Account Number) GB33BUKB20201555555555 Change\n" +
+            "your IBAN\n" + // hidden text
+            "You have not made any changes."
+        )
+      )
+    }
+  }
 }
