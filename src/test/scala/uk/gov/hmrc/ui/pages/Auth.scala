@@ -157,7 +157,7 @@ object Auth extends BasePage {
       }
 
       if (accountType == "crossSchemaOssAndIoss" || accountType == "rejoinCrossSchemaOssAndIoss") {
-        sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
+        sendKeys(By.id("enrolment[3].name"), "HMRC-OSS-ORG")
         sendKeys(By.id("input-3-0-name"), "VRN")
         sendKeys(By.id("input-3-0-value"), vrn)
       }
