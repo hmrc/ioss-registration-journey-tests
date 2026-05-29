@@ -119,6 +119,7 @@ class ExclusionsSpec extends BaseSpec {
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("tax-in-eu")
       registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
 
       And("the user clicks save and come back later then logs out")
       registration.saveAndComeBackLater()
