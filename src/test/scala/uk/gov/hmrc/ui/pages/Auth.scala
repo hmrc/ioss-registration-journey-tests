@@ -116,6 +116,8 @@ object Auth extends BasePage {
         case "multiplePreviousRegistrations"                                         => "IM9007230003"
         case "rejoinCrossSchemaOssAndIoss" | "crossSchemaMultipleIoss"               => "IM9007231111"
         case "crossSchemaOneIoss"                                                    => "IM9019999997"
+        case "amendNoWebsites"                                                       => "IM9000000033"
+        case "rejoinNoWebsites"                                                      => "IM9000000044"
         case _                                                                       => "IN9001234567"
       }
       if (accountType != "registration") {

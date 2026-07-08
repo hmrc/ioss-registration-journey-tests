@@ -426,6 +426,26 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("remove-all-tax-details")
       registration.answerRadioButton("yes")
 
+      Then("the user removes the website details they entered")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.selectChangeOrRemoveLink(
+        "add-website-address\\?waypoints\\=check-your-answers"
+      )
+      registration.checkJourneyUrl("add-website-address")
+      registration.selectChangeOrRemoveLink("remove-website-address\\/3\\?waypoints\\=check-your-answers")
+      registration.checkJourneyUrl("remove-website-address/3")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-website-address")
+      registration.selectChangeOrRemoveLink("remove-website-address\\/2\\?waypoints\\=check-your-answers")
+      registration.checkJourneyUrl("remove-website-address/2")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-website-address")
+      registration.selectChangeOrRemoveLink("remove-website-address\\/1\\?waypoints\\=check-your-answers")
+      registration.checkJourneyUrl("remove-website-address/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
+
       And("the user successfully submits the registration on the check-your-answers page")
       registration.checkJourneyUrl("check-your-answers")
       registration.submit()
@@ -449,9 +469,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("tax-in-eu")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("website-address/1")
-      registration.enterAnswer("www.first-website.com")
-      registration.checkJourneyUrl("add-website-address")
-      registration.answerRadioButton("no")
+      registration.continue()
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Trader Name", "07771117771", "test@testemail.com")
       email.completeEmailVerification("registration")
@@ -510,6 +528,20 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("check-tax-details/1")
       registration.continue()
       registration.checkJourneyUrl("add-tax-details")
+      registration.answerRadioButton("no")
+
+      And("the user clicks change on website address and adds website details")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.selectChangeOrRemoveLink(
+        "website-address\\/1\\?waypoints\\=check-your-answers"
+      )
+      registration.checkJourneyUrl("website-address/1?waypoints=check-your-answers")
+      registration.enterAnswer("first-website.co")
+      registration.checkJourneyUrl("add-website-address?waypoints=check-your-answers")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("website-address/2?waypoints=check-your-answers")
+      registration.enterAnswer("2ndwebsite.web")
+      registration.checkJourneyUrl("add-website-address?waypoints=check-your-answers")
       registration.answerRadioButton("no")
 
       And("the user successfully submits the registration on the check-your-answers page")

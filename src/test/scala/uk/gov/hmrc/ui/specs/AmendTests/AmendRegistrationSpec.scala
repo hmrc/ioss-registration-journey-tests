@@ -65,7 +65,31 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("change-your-registration")
 
+      When("the user clicks change for websites")
+      registration.selectChangeOrRemoveLink(
+        "add-website-address\\?waypoints\\=change-your-registration"
+      )
+
+      And("the user removes both websites")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.selectChangeOrRemoveLink(
+        "remove-website-address\\/1\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("remove-website-address/1?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.selectChangeOrRemoveLink(
+        "remove-website-address\\/1\\?waypoints\\=change-your-registration"
+      )
+      registration.checkJourneyUrl("remove-website-address/1?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+
+      And("the user now leaves the website section blank")
+      registration.checkJourneyUrl("website-address/1?waypoints=change-your-registration")
+      registration.continue()
+
       Then("the user can submit their amended registration")
+      registration.checkJourneyUrl("change-your-registration")
       registration.submit()
       registration.checkJourneyUrl("successful-amend")
 
@@ -1020,6 +1044,41 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Then("the trader is returned to their dashboard")
       registration.checkDashboardJourneyUrl("your-account")
+    }
+
+    Scenario(
+      "An IOSS registered user does not have any websites in their registration and then adds some via amend registration"
+    ) {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "amendNoWebsites", "amend")
+
+      And("the trader has not amended any answers yet")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+      registration.noWebsitesAdded()
+
+      When("the user clicks Add for Trading websites")
+      registration.selectChangeOrRemoveLink(
+        "website-address\\/1\\?waypoints\\=change-your-registration"
+      )
+
+      And("the user adds a few websites")
+      registration.checkJourneyUrl("website-address/1?waypoints=change-your-registration")
+      registration.enterAnswer("one.com")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("website-address/2?waypoints=change-your-registration")
+      registration.enterAnswer("two.com")
+      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
+      registration.answerRadioButton("no")
+
+      Then("the user can submit their amended registration")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.submit()
+      registration.checkJourneyUrl("successful-amend")
+      registration.checkAmendedAnswers("websites")
     }
   }
 }

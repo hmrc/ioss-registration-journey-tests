@@ -192,9 +192,9 @@ class ChangeAndRemoveSpec extends BaseSpec {
       registration.checkJourneyUrl("remove-website-address/1")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("website-address/1")
-      registration.enterAnswer("www.new1st-website.com")
-      registration.checkJourneyUrl("add-website-address")
-      registration.answerRadioButton("no")
+
+      And("the user continues without adding a new website")
+      registration.continue()
 
       Then("the user enters contact information on the business-contact-details page")
       registration.checkJourneyUrl("business-contact-details")
