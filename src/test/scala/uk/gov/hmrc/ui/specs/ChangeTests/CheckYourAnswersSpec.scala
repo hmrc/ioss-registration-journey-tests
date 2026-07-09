@@ -539,7 +539,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.enterAnswer("first-website.co")
       registration.checkJourneyUrl("add-website-address?waypoints=check-your-answers")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("website-address/2?waypoints=check-your-answers")
+      registration.checkJourneyUrl("website-address/2?waypoints=add-website-address%2Ccheck-your-answers")
       registration.enterAnswer("2ndwebsite.web")
       registration.checkJourneyUrl("add-website-address?waypoints=check-your-answers")
       registration.answerRadioButton("no")
