@@ -718,7 +718,7 @@ class RejoinRegistrationSpec extends BaseSpec {
       registration.enterAnswer("one.com")
       registration.checkJourneyUrl("add-website-address?waypoints=rejoin-registration")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("website-address/2?waypoints=rejoin-registration")
+      registration.checkJourneyUrl("website-address/2?waypoints=add-website-address%2Crejoin-registration")
       registration.enterAnswer("two.com")
       registration.checkJourneyUrl("add-website-address?waypoints=rejoin-registration")
       registration.answerRadioButton("no")

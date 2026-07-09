@@ -1069,7 +1069,7 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.enterAnswer("one.com")
       registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("website-address/2?waypoints=change-your-registration")
+      registration.checkJourneyUrl("website-address/2?waypoints=add-website-address%2Cchange-your-registration")
       registration.enterAnswer("two.com")
       registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
       registration.answerRadioButton("no")
