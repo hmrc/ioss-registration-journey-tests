@@ -168,6 +168,8 @@ object Registration extends BasePage {
         Assert.assertTrue(body.contains("tradingName2"))
         Assert.assertTrue(body.contains("Registered for tax in EU countries No"))
         Assert.assertTrue(body.contains("EU tax details removed Germany"))
+        Assert.assertTrue(body.contains("Trading websites removed www.website1.com"))
+        Assert.assertTrue(body.contains("www.website2.com"))
       case "noToYes"          =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Have a different UK trading name Yes"))
@@ -203,6 +205,10 @@ object Registration extends BasePage {
       case "email"            =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Email address amend-test@email.com"))
+      case "websites"         =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("Trading websites added https://one.com"))
+        Assert.assertTrue(body.contains("https://two.com"))
       case _                  =>
         throw new Exception("This amend variation does not exist")
     }
@@ -246,6 +252,11 @@ object Registration extends BasePage {
   def noAmendments(): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You have not made any changes."))
+  }
+
+  def noWebsitesAdded(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Trading websites None supplied Add"))
   }
 
 }

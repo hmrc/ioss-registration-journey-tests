@@ -446,9 +446,7 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("tax-in-eu")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("website-address/1")
-      registration.enterAnswer("https://www.onlywebsite.com")
-      registration.checkJourneyUrl("add-website-address")
-      registration.answerRadioButton("no")
+      registration.continue()
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Another Trader", "+17771117771", "minimaltest@email.com")
       email.completeEmailVerification("registration")
@@ -457,6 +455,7 @@ class RegistrationSpec extends BaseSpec {
 
       And("the user submits the registration on the check-your-answers page")
       registration.checkJourneyUrl("check-your-answers")
+      registration.noWebsitesAdded()
       registration.submit()
       registration.checkJourneyUrl("successful")
     }

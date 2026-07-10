@@ -685,5 +685,89 @@ class RejoinRegistrationSpec extends BaseSpec {
       Then("the user is on the cannot-rejoin page")
       registration.checkJourneyUrl("cannot-rejoin")
     }
+
+    Scenario("A trader with no websites in their registration can rejoin without adding any websites") {
+
+      Given("the trader accesses the IOSS Registration Service with no websites in their ETMP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "rejoinNoWebsites", "rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user submits the rejoin")
+      registration.submit()
+
+      Then("the user is on the successful-rejoin page")
+      registration.checkJourneyUrl("successful-rejoin")
+    }
+
+    Scenario("A trader with no websites in their registration can rejoin after adding websites") {
+
+      Given("the trader accesses the IOSS Registration Service with no websites in their ETMP registration")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "rejoinNoWebsites", "rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+      registration.noWebsitesAdded()
+
+      When("the user clicks Add for Trading websites")
+      registration.selectChangeOrRemoveLink(
+        "website-address\\/1\\?waypoints\\=rejoin-registration"
+      )
+
+      And("the user adds a few websites")
+      registration.checkJourneyUrl("website-address/1?waypoints=rejoin-registration")
+      registration.enterAnswer("one.com")
+      registration.checkJourneyUrl("add-website-address?waypoints=rejoin-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("website-address/2?waypoints=add-website-address%2Crejoin-registration")
+      registration.enterAnswer("two.com")
+      registration.checkJourneyUrl("add-website-address?waypoints=rejoin-registration")
+      registration.answerRadioButton("no")
+
+      When("the user submits the rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+      registration.submit()
+
+      Then("the user is on the successful-rejoin page")
+      registration.checkJourneyUrl("successful-rejoin")
+    }
+
+    Scenario("A trader with websites in their registration can remove them and rejoin the service") {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "fullRejoin", "rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user clicks change for Trading websites")
+      registration.selectChangeOrRemoveLink(
+        "add-website-address\\?waypoints\\=rejoin-registration"
+      )
+
+      And("the user removes the websites")
+      registration.checkJourneyUrl("add-website-address?waypoints=rejoin-registration")
+      registration.selectChangeOrRemoveLink(
+        "remove-website-address\\/1\\?waypoints\\=rejoin-registration"
+      )
+      registration.checkJourneyUrl("remove-website-address/1?waypoints=rejoin-registration")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("add-website-address?waypoints=rejoin-registration")
+      registration.selectChangeOrRemoveLink(
+        "remove-website-address\\/1\\?waypoints\\=rejoin-registration"
+      )
+      registration.checkJourneyUrl("remove-website-address/1?waypoints=rejoin-registration")
+      registration.answerRadioButton("yes")
+
+      And("the user now leaves the website section blank")
+      registration.checkJourneyUrl("website-address/1?waypoints=rejoin-registration")
+      registration.continue()
+
+      Then("the user submits the rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+      registration.noWebsitesAdded()
+      registration.submit()
+
+      And("the user is on the successful-rejoin page")
+      registration.checkJourneyUrl("successful-rejoin")
+    }
   }
 }
