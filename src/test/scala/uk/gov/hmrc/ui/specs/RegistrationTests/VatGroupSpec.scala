@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ class VatGroupSpec extends BaseSpec {
 
   private val registration = Registration
   private val auth         = Auth
-  private val email = EmailVerification
+  private val email        = EmailVerification
 
   Feature("VAT group journeys") {
 
@@ -135,7 +135,9 @@ class VatGroupSpec extends BaseSpec {
       registration.checkJourneyUrl("successful")
     }
 
-    Scenario("IOSS Amend Registration journey for NI Trader who is now part of a VAT group but has fixed establishments in their ETMP registration") {
+    Scenario(
+      "IOSS Amend Registration journey for NI Trader who is now part of a VAT group but has fixed establishments in their ETMP registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service to view their registration")
       auth.goToAuthorityWizard()
@@ -165,7 +167,9 @@ class VatGroupSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-amend")
     }
 
-    Scenario("IOSS Rejoin Registration journey for NI Trader who is now part of a VAT group but has fixed establishments in their ETMP registration") {
+    Scenario(
+      "IOSS Rejoin Registration journey for NI Trader who is now part of a VAT group but has fixed establishments in their ETMP registration"
+    ) {
 
       Given("the trader accesses the IOSS Registration Service to rejoin")
       auth.goToAuthorityWizard()
