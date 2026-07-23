@@ -259,4 +259,10 @@ object Registration extends BasePage {
     Assert.assertTrue(htmlBody.contains("Trading websites None supplied Add"))
   }
 
+  def noFixedEstablishments(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertFalse(htmlBody.contains("Registered for tax in EU countries"))
+    Assert.assertFalse(htmlBody.contains("EU tax details"))
+  }
+
 }
