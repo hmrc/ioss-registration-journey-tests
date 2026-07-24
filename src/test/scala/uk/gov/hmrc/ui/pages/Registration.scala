@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -257,6 +257,12 @@ object Registration extends BasePage {
   def noWebsitesAdded(): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("Trading websites None supplied Add"))
+  }
+
+  def noFixedEstablishments(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertFalse(htmlBody.contains("Registered for tax in EU countries"))
+    Assert.assertFalse(htmlBody.contains("EU tax details"))
   }
 
 }

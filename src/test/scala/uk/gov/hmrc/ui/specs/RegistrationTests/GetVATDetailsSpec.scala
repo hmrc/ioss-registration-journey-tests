@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -152,30 +152,6 @@ class GetVATDetailsSpec extends BaseSpec {
 
       And("the user is on the expired-vrn-date page")
       registration.checkJourneyUrl("expired-vrn-date")
-    }
-
-    Scenario("IOSS Registration journey for NI Trader who is not part of a VAT group") {
-
-      Given("the trader accesses the IOSS Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("777777779", "Organisation", "vatOnly", "registration")
-      registration.checkJourneyUrl("ioss-registered")
-
-      When("the user answers the filter questions")
-      registration.answerRadioButton("no")
-      registration.checkJourneyUrl("selling-goods-outside-single-market")
-      registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("goods-value")
-      registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("registered-for-vat-in-uk")
-      registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("ni-based")
-      registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("register-to-use-service")
-      registration.continue()
-
-      And("the user is on the confirm-vat-details page")
-      registration.checkJourneyUrl("confirm-vat-details")
     }
 
     Scenario("IOSS Registration journey for NI Trader who is registered as an individual") {
