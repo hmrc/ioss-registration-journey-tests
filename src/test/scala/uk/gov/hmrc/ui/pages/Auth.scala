@@ -118,6 +118,7 @@ object Auth extends BasePage {
         case "crossSchemaOneIoss"                                                    => "IM9019999997"
         case "amendNoWebsites"                                                       => "IM9000000033"
         case "rejoinNoWebsites"                                                      => "IM9000000044"
+        case "changeDateTwoYears"                                                    => "IM9003232323"
         case _                                                                       => "IN9001234567"
       }
       if (accountType != "registration") {

@@ -36,6 +36,7 @@ class AmendRegistrationSpec extends BaseSpec {
       And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
       registration.noAmendments()
+      registration.checkAmendHeading("amend")
 
       When("the user clicks change for Have UK trading name")
       registration.selectChangeOrRemoveLink(
