@@ -43,8 +43,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
 
       Then("the correct number of existing trading names are displayed for a user with an OSS registration")
-      crossSchema.checkTradingNames("an OSS")
-      crossSchema.checkWarningsForTradingNames("registration", true, "current OSS")
+      crossSchema.checkTradingNames()
+      crossSchema.checkHintTextAndWarnings("registration", true, "trading names")
 
       And("the user removes existing trading name and adds a new one")
       registration.selectChangeOrRemoveLink(
@@ -77,7 +77,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the contact details for a trader with an existing OSS registration")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("registration", true, "an OSS", "contact")
+      crossSchema.checkHintTextAndWarnings("registration", true, "contact details")
 
       And("the user enters their contact details")
       registration.fillContactDetails("Trader Name", "07771117771", "test@testemail.com")
@@ -87,7 +87,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the bank details for a trader with an existing OSS registration")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("registration", true, "an OSS", "bank")
+      crossSchema.checkHintTextAndWarnings("registration", true, "bank details")
 
       And("the user enters their bank details")
       registration.fillBankAccountDetails("Trader Name ", "ABCDEF2A", "GB33BUKB20201555555555")
@@ -102,7 +102,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the text on the registration confirmation page is displayed when the user has made changes and has an OSS registration"
       )
-      crossSchema.checkConfirmation("registration", true, "an OSS")
+      crossSchema.checkConfirmation(true)
     }
 
     Scenario(
@@ -121,8 +121,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
 
       Then("the correct number of existing trading names are displayed for a user with OSS and IOSS registrations")
-      crossSchema.checkTradingNames("OSS and IOSS")
-      crossSchema.checkWarningsForTradingNames("amend", true, "OSS and IOSS")
+      crossSchema.checkTradingNames()
+      crossSchema.checkHintTextAndWarnings("amend", true, "trading names")
 
       And("the user amends an existing trading name")
       registration.selectChangeOrRemoveLink(
@@ -141,7 +141,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the contact details for a trader with OSS and IOSS registrations")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("amend", true, "OSS and IOSS", "contact")
+      crossSchema.checkHintTextAndWarnings("amend", true, "contact details")
 
       Then("the user amends some of their contact details")
       registration.updateField("telephoneNumber", "+17771117771")
@@ -158,7 +158,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the bank details for a trader with OSS and IOSS registrations")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("amend", true, "OSS and IOSS", "bank")
+      crossSchema.checkHintTextAndWarnings("amend", true, "bank details")
 
       Then("the user amends some of their bank details")
       registration.checkJourneyUrl("bank-account-details")
@@ -175,7 +175,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the text on the amend confirmation page is displayed when the user has made changes and has OSS and IOSS registration"
       )
-      crossSchema.checkConfirmation("amend", true, "OSS and IOSS")
+      crossSchema.checkConfirmation(true)
 
       And("the correct details are shown as amended")
       crossSchema.checkAmendedAnswers("ossAndIoss")
@@ -195,8 +195,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
 
       Then("the correct number of existing trading names are displayed for a user with multiple IOSS registrations")
-      crossSchema.checkTradingNames("multiple IOSS")
-      crossSchema.checkWarningsForTradingNames("amend", true, "multiple IOSS")
+      crossSchema.checkTradingNames()
+      crossSchema.checkHintTextAndWarnings("amend", true, "trading names")
 
       And("the user amends an existing trading name")
       registration.selectChangeOrRemoveLink(
@@ -215,7 +215,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the contact details for a trader with multiple IOSS registrations")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("amend", true, "multiple IOSS", "contact")
+      crossSchema.checkHintTextAndWarnings("amend", true, "contact details")
 
       Then("the user amends some of their contact details")
       registration.updateField("emailAddress", "amend-cross-schema-test@email.com")
@@ -232,7 +232,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the bank details for a trader with multipleIOSS registrations")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("amend", true, "multiple IOSS", "bank")
+      crossSchema.checkHintTextAndWarnings("amend", true, "bank details")
 
       Then("the user amends some of their bank details")
       registration.checkJourneyUrl("bank-account-details")
@@ -249,7 +249,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the text on the amend confirmation page is displayed when the user has made changes and has OSS and IOSS registration"
       )
-      crossSchema.checkConfirmation("amend", true, "multiple IOSS")
+      crossSchema.checkConfirmation(true)
 
       And("the correct details are shown as amended")
       crossSchema.checkAmendedAnswers("multipleIoss")
@@ -269,8 +269,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
 
       Then("the correct number of existing trading names are displayed for a user with OSS and IOSS registrations")
-      crossSchema.checkTradingNames("OSS and IOSS")
-      crossSchema.checkWarningsForTradingNames("rejoin", true, "OSS and IOSS")
+      crossSchema.checkTradingNames()
+      crossSchema.checkHintTextAndWarnings("rejoin", true, "trading names")
 
       And("the user removes existing trading name and adds a new one")
       registration.selectChangeOrRemoveLink(
@@ -301,7 +301,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the contact details for a trader with OSS and IOSS registrations")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "OSS and IOSS", "contact")
+      crossSchema.checkHintTextAndWarnings("rejoin", true, "contact details")
 
       Then("the user amends some of their contact details")
       registration.updateField("emailAddress", "rejoin-cross-schema-test@email.com")
@@ -318,7 +318,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the bank details for a trader with OSS and IOSS registrations")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "OSS and IOSS", "bank")
+      crossSchema.checkHintTextAndWarnings("rejoin", true, "bank details")
 
       Then("the user amends some of their bank details")
       registration.checkJourneyUrl("bank-account-details")
@@ -335,7 +335,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the text on the rejoin confirmation page is displayed when the user has made changes and has OSS and IOSS registrations"
       )
-      crossSchema.checkConfirmation("rejoin", true, "OSS and IOSS")
+      crossSchema.checkConfirmation(true)
     }
 
     Scenario("Rejoin registration for trader with 1 previous IOSS registration - amends data") {
@@ -352,8 +352,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
 
       Then("the correct number of existing trading names are displayed for a user with one IOSS registration")
-      crossSchema.checkTradingNames("one previous IOSS")
-      crossSchema.checkWarningsForTradingNames("rejoin", true, "one previous IOSS")
+      crossSchema.checkTradingNames()
+      crossSchema.checkHintTextAndWarnings("rejoin", true, "trading names")
 
       And("the user removes existing trading name and adds a new one")
       registration.selectChangeOrRemoveLink(
@@ -384,7 +384,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the contact details for a trader with one IOSS registration")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "one previous IOSS", "contact")
+      crossSchema.checkHintTextAndWarnings("rejoin", true, "contact details")
 
       Then("the user amends some of their contact details")
       registration.updateField("emailAddress", "rejoin-cross-schema-test@email.com")
@@ -401,7 +401,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the bank details for a trader with one IOSS registration")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "one previous IOSS", "bank")
+      crossSchema.checkHintTextAndWarnings("rejoin", true, "bank details")
 
       Then("the user amends some of their bank details")
       registration.checkJourneyUrl("bank-account-details")
@@ -418,7 +418,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the text on the rejoin confirmation page is displayed when the user has made changes and has one IOSS registration"
       )
-      crossSchema.checkConfirmation("rejoin", true, "one previous IOSS")
+      crossSchema.checkConfirmation(true)
     }
 
     Scenario("Rejoin registration for trader with multiple previous IOSS registrations - amends data") {
@@ -435,8 +435,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
 
       Then("the correct number of existing trading names are displayed for a user with multiple IOSS registrations")
-      crossSchema.checkTradingNames("multiple IOSS")
-      crossSchema.checkWarningsForTradingNames("rejoin", true, "multiple IOSS")
+      crossSchema.checkTradingNames()
+      crossSchema.checkHintTextAndWarnings("rejoin", true, "trading names")
 
       And("the user removes existing trading name and adds a new one")
       registration.selectChangeOrRemoveLink(
@@ -467,7 +467,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the contact details for a trader with multiple IOSS registrations")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "multiple IOSS", "contact")
+      crossSchema.checkHintTextAndWarnings("rejoin", true, "contact details")
 
       Then("the user amends some of their contact details")
       registration.updateField("emailAddress", "rejoin-cross-schema-test@email.com")
@@ -484,7 +484,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the bank details for a trader with multiple IOSS registrations")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("rejoin", true, "multiple IOSS", "bank")
+      crossSchema.checkHintTextAndWarnings("rejoin", true, "bank details")
 
       Then("the user amends some of their bank details")
       registration.checkJourneyUrl("bank-account-details")
@@ -501,7 +501,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the text on the rejoin confirmation page is displayed when the user has made changes and has multiple IOSS registrations"
       )
-      crossSchema.checkConfirmation("rejoin", true, "multiple IOSS")
+      crossSchema.checkConfirmation(true)
     }
 
     Scenario("Registration for trader with other registrations who did not make changes to data") {
@@ -519,8 +519,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
 
       Then("the correct number of existing trading names are displayed for a user with an OSS registration")
-      crossSchema.checkTradingNames("an OSS")
-      crossSchema.checkWarningsForTradingNames("registration", true, "current OSS")
+      crossSchema.checkTradingNames()
+      crossSchema.checkHintTextAndWarnings("registration", true, "trading names")
 
       And("the user answers no on the add-uk-trading-name page without amending any details")
       registration.answerRadioButton("no")
@@ -543,7 +543,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the contact details for a trader with an existing OSS registration")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("registration", true, "an OSS", "contact")
+      crossSchema.checkHintTextAndWarnings("registration", true, "contact details")
 
       And("the user presses continue on the business-contact-details page without amending any details")
       registration.continue()
@@ -553,7 +553,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("the correct warnings are displayed on the bank details for a trader with an existing OSS registration")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("registration", true, "an OSS", "bank")
+      crossSchema.checkHintTextAndWarnings("registration", true, "bank details")
 
       And("the user presses continue on the bank-account-details page without amending any details")
       registration.continue()
@@ -568,7 +568,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the text on the registration confirmation page is not displayed when the user has not made changes and has an OSS registration"
       )
-      crossSchema.checkConfirmation("registration", false, "an OSS")
+      crossSchema.checkConfirmation(false)
     }
 
     Scenario(
@@ -589,7 +589,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the text on the rejoin confirmation page is not displayed when the user has not made changes and has OSS and IOSS registrations"
       )
-      crossSchema.checkConfirmation("rejoin", false, "OSS and IOSS")
+      crossSchema.checkConfirmation(false)
     }
 
     Scenario(
@@ -616,7 +616,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("there are no warnings relating to cross schema registrations on the add-uk-trading-name page")
       registration.checkJourneyUrl("add-uk-trading-name")
       crossSchema.onlyNewTradingNameAdded()
-      crossSchema.checkWarningsForTradingNames("registration", false, "no other registrations")
+      crossSchema.checkHintTextAndWarnings("registration", false, "trading names")
       registration.answerRadioButton("no")
 
       Then("the user selects on no on previous-oss page")
@@ -637,7 +637,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("there are no cross schema registration warnings on the business-contact-details page")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("registration", false, "no other registrations", "contact")
+      crossSchema.checkHintTextAndWarnings("registration", false, "contact details")
       registration.fillContactDetails("Another Trader", "+17771117771", "minimaltest@email.com")
 
       Then("the user completes the email verification process")
@@ -645,7 +645,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("there are no cross schema registration warnings on the bank-account-details page")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("registration", false, "no other registrations", "bank")
+      crossSchema.checkHintTextAndWarnings("registration", false, "bank details")
       registration.fillBankAccountDetails("Another Trader Name ", "", "GB29NWBK60161331926819")
 
       When("the user submits the registration on the check-your-answers page")
@@ -658,7 +658,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the text on the registration confirmation page is not displayed when the user has no other registrations"
       )
-      crossSchema.checkConfirmation("registration", false, "no other registrations")
+      crossSchema.checkConfirmation(false)
     }
 
     Scenario(
@@ -677,7 +677,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
 
       Then("the cross schema warnings are not displayed when the user has no other registrations")
-      crossSchema.checkWarningsForTradingNames("amend", false, "no other registrations")
+      crossSchema.checkHintTextAndWarnings("amend", false, "trading names")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("change-your-registration")
 
@@ -688,7 +688,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the cross schema warnings are not displayed when the user has no other registrations")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("amend", false, "no other registrations", "contact")
+      crossSchema.checkHintTextAndWarnings("amend", false, "contact details")
       registration.continue()
 
       Then("the user completes the email verification process")
@@ -702,7 +702,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the cross schema warnings are not displayed when the user has no other registrations")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("amend", false, "no other registrations", "bank")
+      crossSchema.checkHintTextAndWarnings("amend", false, "bank details")
       registration.updateField("iban", "GB29NWBK60161331926819")
       registration.continue()
 
@@ -716,7 +716,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the text on the amend confirmation page is not displayed when the user has no other registration"
       )
-      crossSchema.checkConfirmation("amend", false, "no other registrations")
+      crossSchema.checkConfirmation(false)
     }
 
     Scenario(
@@ -735,7 +735,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the cross schema warnings are not displayed for a user who only has one previous IOSS registration")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("amend", false, "one previous IOSS", "contact")
+      crossSchema.checkHintTextAndWarnings("amend", false, "contact details")
       registration.continue()
 
       Then("the user completes the email verification process")
@@ -749,7 +749,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the cross schema warnings are not displayed for a user who only has one previous IOSS registration")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("amend", false, "one previous IOSS", "bank")
+      crossSchema.checkHintTextAndWarnings("amend", false, "bank details")
       registration.updateField("iban", "GB29NWBK60161331926819")
       registration.continue()
 
@@ -763,7 +763,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the cross schema text on the amend confirmation page is not displayed"
       )
-      crossSchema.checkConfirmation("amend", false, "one previous IOSS")
+      crossSchema.checkConfirmation(false)
     }
 
     Scenario(
@@ -782,7 +782,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("add-uk-trading-name")
 
       Then("the cross schema warnings are not displayed for a user who only has one current IOSS registration")
-      crossSchema.checkWarningsForTradingNames("amend", false, "one current IOSS")
+      crossSchema.checkHintTextAndWarnings("amend", false, "trading names")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("change-your-registration")
 
@@ -793,7 +793,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the cross schema warnings are not displayed for a user who only has one current IOSS registration")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.checkWarningsForBankAndContactDetails("amend", false, "one current IOSS", "contact")
+      crossSchema.checkHintTextAndWarnings("amend", false, "contact details")
       registration.continue()
 
       Then("the user completes the email verification process")
@@ -807,7 +807,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the cross schema warnings are not displayed for a user who only has one current IOSS registration")
       registration.checkJourneyUrl("bank-account-details")
-      crossSchema.checkWarningsForBankAndContactDetails("amend", false, "one current IOSS", "bank")
+      crossSchema.checkHintTextAndWarnings("amend", false, "bank details")
       Then("the user amends some of their bank details")
       registration.checkJourneyUrl("bank-account-details")
       registration.updateField("iban", "GB29NWBK60161331926819")
@@ -823,7 +823,7 @@ class CrossSchemaSpec extends BaseSpec {
       And(
         "the cross schema text on the amend confirmation page is not displayed"
       )
-      crossSchema.checkConfirmation("amend", false, "one current IOSS")
+      crossSchema.checkConfirmation(false)
       crossSchema.checkAmendedAnswers("updatedIban")
     }
   }
