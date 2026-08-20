@@ -23,8 +23,8 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 object CrossSchema extends BasePage {
 
   def checkTradingNames(): Unit = {
-//    val header = Driver.instance.findElement(By.tagName("h1")).getText
-//    Assert.assertTrue(header.equals("You have 2 UK trading names from your One Stop Shop registration"))
+    val header = Driver.instance.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(header.equals("You have 2 UK trading names from previous One Stop Shop scheme registrations"))
   }
 
   def checkHintTextAndWarnings(journey: String, displayed: Boolean, version: String): Unit = {
