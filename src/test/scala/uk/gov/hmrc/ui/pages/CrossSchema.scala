@@ -27,6 +27,11 @@ object CrossSchema extends BasePage {
     Assert.assertTrue(header.equals("You have 2 UK trading names from previous One Stop Shop scheme registrations"))
   }
 
+  def checkNoTradingNames(): Unit = {
+    val header = Driver.instance.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(header.equals("You have added one UK trading name"))
+  }
+
   def checkHintTextAndWarnings(journey: String, displayed: Boolean, version: String): Unit = {
     val hintText    =
       "We have added the details you entered for a previous One Stop Shop scheme. Check they are still correct."

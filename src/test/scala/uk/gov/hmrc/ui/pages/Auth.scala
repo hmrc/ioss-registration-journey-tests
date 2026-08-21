@@ -86,7 +86,7 @@ object Auth extends BasePage {
       sendKeys(By.id("input-0-0-value"), vrn)
     }
 
-    if (accountType != "noVat" && accountType != "vatOnly" && accountType != "hasOssAndIntermediaryEnrolments") {
+    if (accountType != "noVat" && accountType != "vatOnly") {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-ORG")
       sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
@@ -125,9 +125,7 @@ object Auth extends BasePage {
         sendKeys(By.id("input-1-0-value"), iossNumber)
       }
 
-      if (
-        accountType == "ossRegistration" || accountType == "crossSchemaOss" || accountType == "hasOssAndIntermediaryEnrolments"
-      ) {
+      if (accountType == "ossRegistration" || accountType == "crossSchemaOss") {
         sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
         sendKeys(By.id("input-1-0-name"), "VRN")
         sendKeys(By.id("input-1-0-value"), vrn)
@@ -173,7 +171,17 @@ object Auth extends BasePage {
         sendKeys(By.id("input-1-0-value"), "IN9001234568")
       }
 
-      if (accountType == "hasIossAndIntermediaryEnrolment" || accountType == "hasOssAndIntermediaryEnrolments") {
+      if (accountType == "hasOssAndIntermediaryEnrolments") {
+        sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
+        sendKeys(By.id("input-1-0-name"), "VRN")
+        sendKeys(By.id("input-1-0-value"), vrn)
+
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+        sendKeys(By.id("input-2-0-name"), "IntNumber")
+        sendKeys(By.id("input-2-0-value"), "IN9001234568")
+      }
+
+      if (accountType == "hasIossAndIntermediaryEnrolment") {
         sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
         sendKeys(By.id("input-2-0-name"), "IntNumber")
         sendKeys(By.id("input-2-0-value"), "IN9001234568")

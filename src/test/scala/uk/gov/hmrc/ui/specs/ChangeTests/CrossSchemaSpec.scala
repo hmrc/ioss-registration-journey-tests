@@ -1272,5 +1272,152 @@ class CrossSchemaSpec extends BaseSpec {
       )
       crossSchema.checkConfirmation(true)
     }
+
+    Scenario("Registration for trader with an OSS registration who has no trading names") {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("300000001", "Organisation", "crossSchemaOss", "registration")
+
+      Then("the user completes the filter questions")
+      registration.standardFilterQuestions()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+
+      When("the user is on the trading names section")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("a trading name")
+
+      Then("there are no existing trading names from the OSS registration")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      crossSchema.checkNoTradingNames()
+      crossSchema.checkHintTextAndWarnings("registrationNoTradingNames", true, "trading names")
+      registration.answerRadioButton("no")
+
+      Then("the user selects no on previous-oss page")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+
+      Then("the user selects no on the tax-in-eu page")
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+
+      Then("the user adds a website address")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("https://www.onlywebsite.com")
+
+      Then("the user answers no to add another website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+
+      And("the correct warnings are displayed on the contact details for a trader with an existing OSS registration")
+      registration.checkJourneyUrl("business-contact-details")
+      crossSchema.checkHintTextAndWarnings("registration", true, "contact details")
+
+      And("the user enters their contact details")
+      registration.fillContactDetails("Trader Name", "07771117771", "test@testemail.com")
+
+      Then("the user completes the email verification process")
+      email.completeEmailVerification("registration")
+
+      And("the correct warnings are displayed on the bank details for a trader with an existing OSS registration")
+      registration.checkJourneyUrl("bank-account-details")
+      crossSchema.checkHintTextAndWarnings("registration", true, "bank details")
+
+      And("the user enters their bank details")
+      registration.fillBankAccountDetails("Trader Name ", "ABCDEF2A", "GB33BUKB20201555555555")
+
+      When("the user submits the registration on the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+
+      And(
+        "the text on the registration confirmation page is displayed when the user has made changes and has an OSS registration"
+      )
+      crossSchema.checkConfirmation(true)
+    }
+
+    Scenario("Registration for trader with an intermediary registration who has no trading names") {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(
+        "300000001",
+        "Organisation",
+        "hasIntermediaryEnrolmentNoTradingNames",
+        "registration"
+      )
+
+      Then("the user completes the filter questions")
+      registration.standardFilterQuestions()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+
+      When("the user is on the trading names section")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("a trading name")
+
+      Then("there are no existing trading names from the intermediary registration")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      crossSchema.checkNoTradingNames()
+      crossSchema.checkHintTextAndWarnings("registrationNoTradingNames", true, "trading names")
+      registration.answerRadioButton("no")
+
+      Then("the user selects no on previous-oss page")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+
+      Then("the user selects no on the tax-in-eu page")
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+
+      Then("the user adds a website address")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("https://www.onlywebsite.com")
+
+      Then("the user answers no to add another website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+
+      And(
+        "the correct warnings are displayed on the contact details for a trader with an existing intermediary registration"
+      )
+      registration.checkJourneyUrl("business-contact-details")
+      crossSchema.checkHintTextAndWarnings("registration", true, "contact details")
+
+      And("the user enters their contact details")
+      registration.fillContactDetails("Trader Name", "07771117771", "test@testemail.com")
+
+      Then("the user completes the email verification process")
+      email.completeEmailVerification("registration")
+
+      And(
+        "the correct warnings are displayed on the bank details for a trader with an existing intermediary registration"
+      )
+      registration.checkJourneyUrl("bank-account-details")
+      crossSchema.checkHintTextAndWarnings("registration", true, "bank details")
+
+      And("the user enters their bank details")
+      registration.fillBankAccountDetails("Trader Name ", "ABCDEF2A", "GB33BUKB20201555555555")
+
+      When("the user submits the registration on the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+
+      And(
+        "the text on the registration confirmation page is displayed when the user has made changes and has an intermediary registration"
+      )
+      crossSchema.checkConfirmation(true)
+    }
   }
 }
