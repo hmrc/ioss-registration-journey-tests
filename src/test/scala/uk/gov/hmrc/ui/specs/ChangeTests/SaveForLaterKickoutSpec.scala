@@ -34,8 +34,8 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       When("the trader's VAT registration has expired")
       auth.loginUsingAuthorityWizard("600000001", "Organisation", "vatOnly", "savedRegistration")
 
-      Then("the user is on the expired-vat-cannot-be-used-for-save-and-come-back page")
-      registration.checkJourneyUrl("expired-vat-cannot-be-used-for-save-and-come-back")
+      Then("the user is on the cannot-register-vat-expired page")
+      registration.checkJourneyUrl("cannot-register-vat-expired")
     }
 
     Scenario("A user returns to a saved registration where their VRN is now used in another active registration") {
@@ -43,11 +43,11 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
 
-      When("the trader's VAT registration has expired")
+      When("the trader is now already registered for IOSS")
       auth.loginUsingAuthorityWizard("333333333", "Organisation", "vatOnly", "savedRegistration")
 
-      Then("the user is on the already-registered-vat-cannot-be-used-for-save-and-come-back?countryCode=EE page")
-      registration.checkJourneyUrl("already-registered-vat-cannot-be-used-for-save-and-come-back?countryCode=EE")
+      Then("the user is on the cannot-register-vat-already-registered page")
+      registration.checkJourneyUrl("cannot-register-vat-already-registered?countryCode=EE")
     }
 
     Scenario("A user returns to a saved registration where their VRN is now quarantined in another country") {
@@ -55,11 +55,107 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
 
-      When("the trader's VAT registration has expired")
+      When("the trader is now quarantined from IOSS")
       auth.loginUsingAuthorityWizard("333333334", "Organisation", "vatOnly", "savedRegistration")
 
-      Then("the user is on the quarantined-vat-cannot-be-used-for-save-and-come-back?countryCode=EE&exclusionDate=2026-01-01 page")
-      registration.checkJourneyUrl("quarantined-vat-cannot-be-used-for-save-and-come-back?countryCode=EE&exclusionDate=2026-01-01")
+      Then("the user is on the cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01 page")
+      registration.checkJourneyUrl("cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01")
+    }
+
+    Scenario(
+      "A user returns to a saved registration where the details provided for a previous registration are now registered for IOSS in another country"
+    ) {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+
+      When(
+        "the trader has a saved registration containing a previous IOSS scheme that is still active in another country"
+      )
+      auth.loginUsingAuthorityWizard("100000100", "Organisation", "vatOnly", "savedRegistration")
+
+      Then("the user is on the cannot-register-vat-already-registered?countryCode=EE page")
+      registration.checkJourneyUrl("cannot-register-vat-already-registered?countryCode=EE")
+    }
+
+    Scenario(
+      "A user returns to a saved registration where the details provided for a previous registration are now quarantined from IOSS in another country"
+    ) {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+
+      When(
+        "the trader has a saved registration containing a previous IOSS scheme that is quarantined in another country"
+      )
+      auth.loginUsingAuthorityWizard("100000200", "Organisation", "vatOnly", "savedRegistration")
+
+      Then("the user is on the cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01 page")
+      registration.checkJourneyUrl("cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01")
+    }
+
+    Scenario(
+      "A user returns to a saved registration where the details provided for another EU registration are currently registered for IOSS in another country - VRN based"
+    ) {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+
+      When(
+        "the trader has a saved registration containing other EU registration details that is still active in another country"
+      )
+      auth.loginUsingAuthorityWizard("100000300", "Organisation", "vatOnly", "savedRegistration")
+
+      Then("the user is on the cannot-register-vat-already-registered?countryCode=EE page")
+      registration.checkJourneyUrl("cannot-register-vat-already-registered?countryCode=EE")
+    }
+
+    Scenario(
+      "A user returns to a saved registration where the details provided for another EU registration are currently registered for IOSS in another country - tax reference based"
+    ) {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+
+      When(
+        "the trader has a saved registration containing other EU registration details that is still active in another country"
+      )
+      auth.loginUsingAuthorityWizard("100000400", "Organisation", "vatOnly", "savedRegistration")
+
+      Then("the user is on the cannot-register-vat-already-registered?countryCode=EE page")
+      registration.checkJourneyUrl("cannot-register-vat-already-registered?countryCode=EE")
+    }
+
+    Scenario(
+      "A user returns to a saved registration where the details provided for another EU registration are quarantined for IOSS in another country - VRN based"
+    ) {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+
+      When(
+        "the trader has a saved registration containing other EU registration details that is quarantined in another country"
+      )
+      auth.loginUsingAuthorityWizard("100000500", "Organisation", "vatOnly", "savedRegistration")
+
+      Then("the user is on the cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01 page")
+      registration.checkJourneyUrl("cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01")
+    }
+
+    Scenario(
+      "A user returns to a saved registration where the details provided for another EU registration are quarantined for IOSS in another country - tax reference based"
+    ) {
+
+      Given("the trader accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+
+      When(
+        "the trader has a saved registration containing other EU registration details that is quarantined in another country"
+      )
+      auth.loginUsingAuthorityWizard("100000600", "Organisation", "vatOnly", "savedRegistration")
+
+      Then("the user is on the cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01 page")
+      registration.checkJourneyUrl("cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01")
     }
   }
 }
