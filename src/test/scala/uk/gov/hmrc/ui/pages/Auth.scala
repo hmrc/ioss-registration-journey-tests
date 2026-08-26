@@ -101,7 +101,7 @@ object Auth extends BasePage {
         case "quarantined"                                                           => "IM9009999993"
         case "rejoinFailure"                                                         => "IM9029999997"
         case "minimalRejoin"                                                         => "IM9019999998"
-        case "fullRejoin"                                                            => "IM9019999997"
+        case "fullRejoin" | "hasIossAndIntermediaryEnrolmentRejoin"                  => "IM9019999997"
         case "deregisteredVat"                                                       => "IM9039999994"
         case "coreActiveOSS"                                                         => "IM9005999992"
         case "coreActiveIOSS"                                                        => "IM9005999994"
@@ -163,6 +163,44 @@ object Auth extends BasePage {
         sendKeys(By.id("enrolment[3].name"), "HMRC-OSS-ORG")
         sendKeys(By.id("input-3-0-name"), "VRN")
         sendKeys(By.id("input-3-0-value"), vrn)
+      }
+
+      if (accountType == "hasIntermediaryEnrolment") {
+        sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
+        sendKeys(By.id("input-1-0-name"), "IntNumber")
+        sendKeys(By.id("input-1-0-value"), "IN9001234568")
+      }
+
+      if (accountType == "hasOssAndIntermediaryEnrolments") {
+        sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
+        sendKeys(By.id("input-1-0-name"), "VRN")
+        sendKeys(By.id("input-1-0-value"), vrn)
+
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+        sendKeys(By.id("input-2-0-name"), "IntNumber")
+        sendKeys(By.id("input-2-0-value"), "IN9001234568")
+      }
+
+      if (accountType == "hasIossAndIntermediaryEnrolment") {
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+        sendKeys(By.id("input-2-0-name"), "IntNumber")
+        sendKeys(By.id("input-2-0-value"), "IN9001234568")
+      }
+
+      if (accountType == "hasIntermediaryEnrolmentNoTradingNames") {
+        sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
+        sendKeys(By.id("input-1-0-name"), "IntNumber")
+        sendKeys(By.id("input-1-0-value"), "IN9001234567")
+      }
+
+      if (accountType == "hasMultipleIntermediaryEnrolments") {
+        sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
+        sendKeys(By.id("input-1-0-name"), "IntNumber")
+        sendKeys(By.id("input-1-0-value"), "IN9008230001")
+
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+        sendKeys(By.id("input-2-0-name"), "IntNumber")
+        sendKeys(By.id("input-2-0-value"), "IN9007230001")
       }
     }
 
