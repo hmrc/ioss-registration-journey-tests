@@ -680,7 +680,7 @@ class RejoinRegistrationSpec extends BaseSpec {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("600000001", "Organisation", "deregisteredVat", "rejoin")
+      auth.loginUsingAuthorityWizard("600000002", "Organisation", "deregisteredVat", "rejoin")
 
       Then("the user is on the cannot-rejoin page")
       registration.checkJourneyUrl("cannot-rejoin")
