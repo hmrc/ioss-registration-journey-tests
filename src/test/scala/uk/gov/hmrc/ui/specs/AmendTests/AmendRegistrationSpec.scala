@@ -957,7 +957,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("333333333", "Organisation", "amendAccount", "amend")
+      auth.loginUsingAuthorityWizard("333333335", "Organisation", "amendAccount", "amend")
 
       And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")
@@ -982,7 +982,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("333333334", "Organisation", "amendAccount", "amend")
+      auth.loginUsingAuthorityWizard("333333336", "Organisation", "amendAccount", "amend")
 
       And("the trader has not amended any answers yet")
       registration.checkJourneyUrl("change-your-registration")

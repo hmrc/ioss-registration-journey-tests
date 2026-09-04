@@ -30,7 +30,7 @@ class RejoinCoreValidationSpec extends BaseSpec {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("333333333", "Organisation", "minimalRejoin", "rejoin")
+      auth.loginUsingAuthorityWizard("333333335", "Organisation", "minimalRejoin", "rejoin")
 
       Then("the user is on the already-registered-other-country?countryCode=EE page")
       registration.checkJourneyUrl("already-registered-other-country?countryCode=EE")
@@ -40,7 +40,7 @@ class RejoinCoreValidationSpec extends BaseSpec {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("333333334", "Organisation", "minimalRejoin", "rejoin")
+      auth.loginUsingAuthorityWizard("333333336", "Organisation", "minimalRejoin", "rejoin")
 
       Then("the user is on the other-country-excluded-and-quarantined?countryCode=EE&exclusionDate= page")
       registration.checkJourneyUrl("other-country-excluded-and-quarantined?countryCode=EE&exclusionDate=")

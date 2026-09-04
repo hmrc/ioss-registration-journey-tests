@@ -30,7 +30,7 @@ class CoreValidationSpec extends BaseSpec {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("333333333", "Organisation", "vatOnly", "registration")
+      auth.loginUsingAuthorityWizard("333333335", "Organisation", "vatOnly", "registration")
 
       When("the user answers the filter questions")
       registration.standardFilterQuestions()
@@ -43,7 +43,7 @@ class CoreValidationSpec extends BaseSpec {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("333333334", "Organisation", "vatOnly", "registration")
+      auth.loginUsingAuthorityWizard("333333336", "Organisation", "vatOnly", "registration")
 
       When("the user answers the filter questions")
       registration.standardFilterQuestions()

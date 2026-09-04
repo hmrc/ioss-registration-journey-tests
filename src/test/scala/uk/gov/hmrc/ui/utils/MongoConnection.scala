@@ -16,8 +16,9 @@
 
 package uk.gov.hmrc.ui.utils
 
-import org.mongodb.scala.MongoClient
+import org.mongodb.scala.{MongoClient, SingleObservableFuture}
 import org.mongodb.scala.model.Filters
+import org.mongodb.scala.bson.collection.immutable.Document
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
@@ -50,5 +51,32 @@ object MongoConnection {
     dropRecord("ioss-registration", "saved-user-answers", "100000026")
     dropRecord("ioss-registration", "saved-user-answers", "666000001")
     dropRecord("ioss-registration", "saved-user-answers", "222222233")
+    dropRecord("ioss-registration", "saved-user-answers", "600000001")
+    dropRecord("ioss-registration", "saved-user-answers", "600000002")
+    dropRecord("ioss-registration", "saved-user-answers", "333333333")
+    dropRecord("ioss-registration", "saved-user-answers", "333333334")
+    dropRecord("ioss-registration", "saved-user-answers", "333333335")
+    dropRecord("ioss-registration", "saved-user-answers", "333333336")
+    dropRecord("ioss-registration", "saved-user-answers", "100000100")
+    dropRecord("ioss-registration", "saved-user-answers", "100000200")
+    dropRecord("ioss-registration", "saved-user-answers", "100000300")
+    dropRecord("ioss-registration", "saved-user-answers", "100000400")
+    dropRecord("ioss-registration", "saved-user-answers", "100000500")
+    dropRecord("ioss-registration", "saved-user-answers", "100000600")
   }
+
+  def insert(source: List[String], database: String, collection: String): Unit =
+    try {
+      val db  = mongoClient.getDatabase(database)
+      val col = db.getCollection(collection)
+      source.map { e =>
+        val doc = Document(e)
+        Await.result(
+          col.insertOne(doc).toFutureOption(),
+          timeout
+        )
+      }
+    } catch {
+      case ex: Exception => println(s"Error inserting data into MongoDB: $ex")
+    }
 }

@@ -134,7 +134,7 @@ class GetVATDetailsSpec extends BaseSpec {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("600000001", "Organisation", "vatOnly", "registration")
+      auth.loginUsingAuthorityWizard("600000002", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("ioss-registered")
 
       When("the user answers the filter questions")
