@@ -74,8 +74,8 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       )
       auth.loginUsingAuthorityWizard("100000100", "Organisation", "vatOnly", "savedRegistration")
 
-      Then("the user is on the cannot-register-vat-already-registered?countryCode=EE page")
-      registration.checkJourneyUrl("cannot-register-vat-already-registered?countryCode=EE")
+      Then("the user is on the cannot-register-vat-already-registered?countryCode=SI page")
+      registration.checkJourneyUrl("cannot-register-vat-already-registered?countryCode=SI")
     }
 
     Scenario(
