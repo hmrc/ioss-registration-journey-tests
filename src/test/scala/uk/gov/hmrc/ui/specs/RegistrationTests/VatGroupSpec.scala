@@ -145,26 +145,17 @@ class VatGroupSpec extends BaseSpec {
       When("the trader is now part of a VAT group")
       auth.loginUsingAuthorityWizard("777777779", "Organisation", "amendAccount", "amend")
 
-      //Further implementation of an intercept page to be added in VEIOSS-903
-      Then("the trader's existing fixed establishments are removed from the registration")
-      registration.checkJourneyUrl("change-your-registration")
-      registration.noFixedEstablishments()
+      Then("the trader is redirected to the delete-all-fixed-establishments-as-part-of-vat-group page")
+      registration.checkJourneyUrl("delete-all-fixed-establishments-as-part-of-vat-group")
 
-      And("the trader can submit an amendment to their registration successfully")
-      registration.selectChangeOrRemoveLink(
-        "add-website-address\\?waypoints\\=change-your-registration"
-      )
-      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
-      registration.selectChangeOrRemoveLink(
-        "remove-website-address\\/1\\?waypoints\\=change-your-registration"
-      )
-      registration.checkJourneyUrl("remove-website-address/1?waypoints=change-your-registration")
-      registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
-      registration.answerRadioButton("no")
-      registration.checkJourneyUrl("change-your-registration")
-      registration.submit()
+      And("the trader clicks continue")
+      registration.continue()
+
+      And("the trader is on the successful-amend page")
       registration.checkJourneyUrl("successful-amend")
+
+      And("the fixed establihsments are shown as removed")
+      registration.checkAmendedAnswers("fixedEstablishments")
     }
 
     Scenario(
@@ -177,7 +168,6 @@ class VatGroupSpec extends BaseSpec {
       When("the trader is now part of a VAT group")
       auth.loginUsingAuthorityWizard("777777779", "Organisation", "fullRejoin", "rejoin")
 
-      //Further implementation of an intercept page to be added in VEIOSS-903
       Then("the trader's existing fixed establishments are removed from the registration")
       registration.checkJourneyUrl("rejoin-registration")
       registration.noFixedEstablishments()

@@ -156,12 +156,12 @@ object Registration extends BasePage {
     val body = Driver.instance.findElement(By.tagName("body")).getText
 
     amendJourney match {
-      case "noAmendedAnswers"   =>
+      case "noAmendedAnswers"    =>
         Assert.assertTrue(body.contains("You have not changed any of your registration details."))
-      case "emailChanged"       =>
+      case "emailChanged"        =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Email address different-email@test.com"))
-      case "yesToNo"            =>
+      case "yesToNo"             =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Have a different UK trading name No"))
         Assert.assertTrue(body.contains("Trading names removed tradingName1"))
@@ -170,7 +170,7 @@ object Registration extends BasePage {
         Assert.assertTrue(body.contains("EU tax details removed Germany"))
         Assert.assertTrue(body.contains("Trading websites removed www.website1.com"))
         Assert.assertTrue(body.contains("www.website2.com"))
-      case "noToYes"            =>
+      case "noToYes"             =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Have a different UK trading name Yes"))
         Assert.assertTrue(body.contains("Trading names added A new trading name in amend journey"))
@@ -179,7 +179,7 @@ object Registration extends BasePage {
         Assert.assertTrue(body.contains("Finland"))
         Assert.assertTrue(body.contains("Registered for tax in EU countries Yes"))
         Assert.assertTrue(body.contains("EU tax details added Romania"))
-      case "nonMandatory"       =>
+      case "nonMandatory"        =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Trading names added an amended trading name"))
         Assert.assertTrue(body.contains("new 2nd name"))
@@ -190,7 +190,7 @@ object Registration extends BasePage {
         Assert.assertTrue(body.contains("EU tax details added Estonia"))
         Assert.assertTrue(body.contains("Portugal"))
         Assert.assertTrue(body.contains("EU tax details changed Germany"))
-      case "mandatory"          =>
+      case "mandatory"           =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("EU tax details added Estonia"))
         Assert.assertTrue(body.contains("EU tax details removed Germany"))
@@ -202,18 +202,22 @@ object Registration extends BasePage {
         Assert.assertTrue(body.contains("Telephone number +17771117771"))
         Assert.assertTrue(body.contains("Name on the account Another Trader Name"))
         Assert.assertTrue(body.contains("IBAN (International Bank Account Number) GB29NWBK60161331926819"))
-      case "email"              =>
+      case "email"               =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Email address amend-test@email.com"))
-      case "websites"           =>
+      case "websites"            =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Trading websites added https://one.com"))
         Assert.assertTrue(body.contains("https://two.com"))
-      case "reviewRegistration" =>
+      case "reviewRegistration"  =>
         Assert.assertTrue(body.contains("You changed the following details:"))
         Assert.assertTrue(body.contains("Other One Stop Shop registrations Yes"))
         Assert.assertTrue(body.contains("Countries registered in Cyprus"))
-      case _                    =>
+      case "fixedEstablishments" =>
+        Assert.assertTrue(body.contains("You changed the following details:"))
+        Assert.assertTrue(body.contains("Registered for tax in EU countries No"))
+        Assert.assertTrue(body.contains("EU tax details removed Germany"))
+      case _                     =>
         throw new Exception("This amend variation does not exist")
     }
   }
