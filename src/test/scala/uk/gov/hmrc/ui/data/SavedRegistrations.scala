@@ -130,6 +130,18 @@ object SavedRegistrations {
          |    "$$date": "${yesterday}T14:13:45.200Z"
          |  }
          |}
-      """.stripMargin
+      """.stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "6abbc361ee420fdab007334f"
+         |  },
+         |  "vrn": "777777772",
+         |  "data": "8a8QCw7Md/9Wq0EcgPELOqVgEYgq2efClYL3emfGrEO6yrzPpplP3mqZ6ycVjIUG7D8qoJYBhcg1s4ZfI0Y+4S4pKmRr/MW3An1xZeotOddHcT8kKDj1EVNeuSEpe8cS77B6gcqFDefeVW3q6Qu9Wg7vcPMKAvmR7xX64JwTZOUf0HmbTNf/UUOsqmB/SMF8pkKRls5fiCozU/jrqOnMfZTt99ftbPDiaXTVDz/4MFp0tQOT4exuOMtEOQFh8OmARPtEJAuGXMg0G2dJjm71nnuRuLcEegWEsWaN8LZRwSLmvpyA8JVzggNZP4TDUTLEyuYNxyIrxObL6Mis+LPMJYSTZpQpHs+IgcxxwAMssw0q9/toogQlUWfwUHoPorPDrmZlD0E9zmD2mtA9V04jB1XJMqAyrT/KiBiGtP+7wYOnjKZAqmovjIikfXvgUtgidULHbcYhF6orxbCkbqoMiEaThYwrihSoR8azpEqwMiXAXXC1FkwFvwAOjZOH20n1c/8o6hdh0w4XmgEJWLuENiSyYomQ0hiOAYtzVMGm6YSep9ZDwems8dv67WFtLUASe/CciK/ZbAeQo3/KbWjPZC7k6udn7uU+yu3O2zDilPw2OjAxunYXAWi4c/sTtUmBqkHKVZi5kgmT29xpk3n6RnRl5ApRa3LEs24U78vXyce0iqy1TsngAEUkpoHBBzsd5WjPSPgDSXQMxcm1VobaaSQ=",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T13:55:45.246Z"
+         |  }
+         |}
+         |""".stripMargin
     )
 }
