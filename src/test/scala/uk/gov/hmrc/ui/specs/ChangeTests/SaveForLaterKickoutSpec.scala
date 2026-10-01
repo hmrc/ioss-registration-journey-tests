@@ -32,7 +32,13 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       auth.goToAuthorityWizard()
 
       When("the trader's VAT registration has expired")
-      auth.loginUsingAuthorityWizard("600000001", "Organisation", "vatOnly", "savedRegistration")
+      auth.loginUsingAuthorityWizard(
+        "600000001",
+        "Organisation",
+        "vatOnly",
+        "savedRegistration",
+        credentialId = Some("6a8d9ec575a5d19a85b1d558")
+      )
 
       Then("the user is on the cannot-register-vat-expired page")
       registration.checkJourneyUrl("cannot-register-vat-expired")
@@ -44,7 +50,13 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       auth.goToAuthorityWizard()
 
       When("the trader is now already registered for IOSS")
-      auth.loginUsingAuthorityWizard("333333333", "Organisation", "vatOnly", "savedRegistration")
+      auth.loginUsingAuthorityWizard(
+        "333333333",
+        "Organisation",
+        "vatOnly",
+        "savedRegistration",
+        credentialId = Some("6a8ea39a75a5d19a85d97549")
+      )
 
       Then("the user is on the cannot-register-vat-already-registered page")
       registration.checkJourneyUrl("cannot-register-vat-already-registered?countryCode=EE")
@@ -56,7 +68,13 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       auth.goToAuthorityWizard()
 
       When("the trader is now quarantined from IOSS")
-      auth.loginUsingAuthorityWizard("333333334", "Organisation", "vatOnly", "savedRegistration")
+      auth.loginUsingAuthorityWizard(
+        "333333334",
+        "Organisation",
+        "vatOnly",
+        "savedRegistration",
+        credentialId = Some("6a8ec1ff75a5d19a85f881bc")
+      )
 
       Then("the user is on the cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01 page")
       registration.checkJourneyUrl("cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01")
@@ -72,7 +90,13 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       When(
         "the trader has a saved registration containing a previous IOSS scheme that is still active in another country"
       )
-      auth.loginUsingAuthorityWizard("100000100", "Organisation", "vatOnly", "savedRegistration")
+      auth.loginUsingAuthorityWizard(
+        "100000100",
+        "Organisation",
+        "vatOnly",
+        "savedRegistration",
+        credentialId = Some("6a8eddd375a5d19a8507a2e2")
+      )
 
       Then("the user is on the cannot-register-vat-already-registered?countryCode=SI page")
       registration.checkJourneyUrl("cannot-register-vat-already-registered?countryCode=SI")
@@ -88,7 +112,13 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       When(
         "the trader has a saved registration containing a previous IOSS scheme that is quarantined in another country"
       )
-      auth.loginUsingAuthorityWizard("100000200", "Organisation", "vatOnly", "savedRegistration")
+      auth.loginUsingAuthorityWizard(
+        "100000200",
+        "Organisation",
+        "vatOnly",
+        "savedRegistration",
+        credentialId = Some("6a8ef23c75a5d19a851c8396")
+      )
 
       Then("the user is on the cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01 page")
       registration.checkJourneyUrl("cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01")
@@ -104,7 +134,13 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       When(
         "the trader has a saved registration containing other EU registration details that is still active in another country"
       )
-      auth.loginUsingAuthorityWizard("100000300", "Organisation", "vatOnly", "savedRegistration")
+      auth.loginUsingAuthorityWizard(
+        "100000300",
+        "Organisation",
+        "vatOnly",
+        "savedRegistration",
+        credentialId = Some("6a8ef30c75a5d19a851d58f1")
+      )
 
       Then("the user is on the cannot-register-vat-already-registered?countryCode=EE page")
       registration.checkJourneyUrl("cannot-register-vat-already-registered?countryCode=EE")
@@ -120,7 +156,13 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       When(
         "the trader has a saved registration containing other EU registration details that is still active in another country"
       )
-      auth.loginUsingAuthorityWizard("100000400", "Organisation", "vatOnly", "savedRegistration")
+      auth.loginUsingAuthorityWizard(
+        "100000400",
+        "Organisation",
+        "vatOnly",
+        "savedRegistration",
+        credentialId = Some("6a8ef37675a5d19a851dc670")
+      )
 
       Then("the user is on the cannot-register-vat-already-registered?countryCode=EE page")
       registration.checkJourneyUrl("cannot-register-vat-already-registered?countryCode=EE")
@@ -136,7 +178,13 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       When(
         "the trader has a saved registration containing other EU registration details that is quarantined in another country"
       )
-      auth.loginUsingAuthorityWizard("100000500", "Organisation", "vatOnly", "savedRegistration")
+      auth.loginUsingAuthorityWizard(
+        "100000500",
+        "Organisation",
+        "vatOnly",
+        "savedRegistration",
+        credentialId = Some("6a8ef40a75a5d19a851e5e85")
+      )
 
       Then("the user is on the cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01 page")
       registration.checkJourneyUrl("cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01")
@@ -152,7 +200,13 @@ class SaveForLaterKickoutSpec extends BaseSpec {
       When(
         "the trader has a saved registration containing other EU registration details that is quarantined in another country"
       )
-      auth.loginUsingAuthorityWizard("100000600", "Organisation", "vatOnly", "savedRegistration")
+      auth.loginUsingAuthorityWizard(
+        "100000600",
+        "Organisation",
+        "vatOnly",
+        "savedRegistration",
+        credentialId = Some("6a8ef49975a5d19a851ef166")
+      )
 
       Then("the user is on the cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01 page")
       registration.checkJourneyUrl("cannot-register-vat-quarantined?countryCode=EE&exclusionDate=2026-01-01")
