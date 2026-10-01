@@ -145,26 +145,17 @@ class VatGroupSpec extends BaseSpec {
       When("the trader is now part of a VAT group")
       auth.loginUsingAuthorityWizard("777777779", "Organisation", "amendAccount", "amend")
 
-      //Further implementation of an intercept page to be added in VEIOSS-903
-      Then("the trader's existing fixed establishments are removed from the registration")
-      registration.checkJourneyUrl("change-your-registration")
-      registration.noFixedEstablishments()
+      Then("the trader is redirected to the delete-all-fixed-establishments-as-part-of-vat-group page")
+      registration.checkJourneyUrl("delete-all-fixed-establishments-as-part-of-vat-group")
 
-      And("the trader can submit an amendment to their registration successfully")
-      registration.selectChangeOrRemoveLink(
-        "add-website-address\\?waypoints\\=change-your-registration"
-      )
-      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
-      registration.selectChangeOrRemoveLink(
-        "remove-website-address\\/1\\?waypoints\\=change-your-registration"
-      )
-      registration.checkJourneyUrl("remove-website-address/1?waypoints=change-your-registration")
-      registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("add-website-address?waypoints=change-your-registration")
-      registration.answerRadioButton("no")
-      registration.checkJourneyUrl("change-your-registration")
-      registration.submit()
+      And("the trader clicks continue")
+      registration.continue()
+
+      And("the trader is on the successful-amend page")
       registration.checkJourneyUrl("successful-amend")
+
+      And("the fixed establihsments are shown as removed")
+      registration.checkAmendedAnswers("fixedEstablishments")
     }
 
     Scenario(
@@ -177,7 +168,6 @@ class VatGroupSpec extends BaseSpec {
       When("the trader is now part of a VAT group")
       auth.loginUsingAuthorityWizard("777777779", "Organisation", "fullRejoin", "rejoin")
 
-      //Further implementation of an intercept page to be added in VEIOSS-903
       Then("the trader's existing fixed establishments are removed from the registration")
       registration.checkJourneyUrl("rejoin-registration")
       registration.noFixedEstablishments()
@@ -185,6 +175,40 @@ class VatGroupSpec extends BaseSpec {
       And("the trader can submit their registration to rejoin the service")
       registration.submit()
       registration.checkJourneyUrl("successful-rejoin")
+    }
+
+    Scenario(
+      "A user returns to a saved registration containing fixed establishment details where they are now in a vat group"
+    ) {
+
+      Given("the trader who is now a VAT group accesses the IOSS Registration Service")
+      auth.goToAuthorityWizard()
+
+      When(
+        "the trader has a saved registration containing fixed establishments"
+      )
+      auth.loginUsingAuthorityWizard("777777772", "Organisation", "vatOnly", "savedRegistration")
+
+      Then("the trader is redirected to the saved-progress-remove-fixed-establishments page")
+      registration.checkJourneyUrl("saved-progress-remove-fixed-establishments")
+
+      And("the trader clicks continue")
+      registration.continue()
+
+      Then("the user is able to resume the registration from the website section ")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Another Trader", "+17771117771", "minimaltest@email.com")
+      email.completeEmailVerification("registration")
+      registration.checkJourneyUrl("bank-account-details")
+      registration.fillBankAccountDetails("Another Trader Name", "", "GB29NWBK60161331926819")
+
+      And("the user submits the registration on the check-your-answers page")
+      registration.checkJourneyUrl("check-your-answers")
+      registration.noFixedEstablishments()
+      registration.submit()
+      registration.checkJourneyUrl("successful")
     }
   }
 }
