@@ -43,13 +43,7 @@ object Auth extends BasePage {
   def checkAuthUrl(): Unit =
     getCurrentUrl should startWith(authUrl)
 
-  def loginUsingAuthorityWizard(
-    vrn: String,
-    affinityGroup: String,
-    accountType: String,
-    journey: String,
-    credentialId: Option[String] = None
-  ): Unit = {
+  def loginUsingAuthorityWizard(vrn: String, affinityGroup: String, accountType: String, journey: String): Unit = {
 
     getCurrentUrl should startWith(authUrl)
 
@@ -70,8 +64,6 @@ object Auth extends BasePage {
     if (journey == "registrationFailure" || journey == "savedWithCredId" || journey == "etmpCredId") {
       generateCredId()
       sendKeys(By.name("authorityId"), retrieveCredId())
-    } else if (credentialId.nonEmpty) {
-      sendKeys(By.name("authorityId"), credentialId.get)
     } else if (
       journey == "registrationFailureSave" || journey == "retrievedWithCredId" || journey == "etmpCredIdRetrieve"
     ) {
