@@ -39,8 +39,8 @@ class ChangeAndRemoveSpec extends BaseSpec {
       registration.answerVatDetailsChoice("Yes")
 
       And("the user adds trading names")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("Alternative trading")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -61,8 +61,8 @@ class ChangeAndRemoveSpec extends BaseSpec {
       )
       registration.checkJourneyUrl("remove-uk-trading-name/1")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
 
       Then("the user enters previous scheme details")
       registration.checkJourneyUrl("previous-oss")
@@ -227,8 +227,8 @@ class ChangeAndRemoveSpec extends BaseSpec {
       registration.answerVatDetailsChoice("Yes")
 
       And("the user adds trading names")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("A trading name")
       registration.checkJourneyUrl("add-uk-trading-name")

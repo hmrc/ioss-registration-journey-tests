@@ -56,10 +56,10 @@ object Registration extends BasePage {
 
   def answerVatDetailsChoice(answer: String): Unit = {
     answer match {
-      case "Yes"                                           => click(By.id("value_0"))
-      case "Yes, but some of my VAT details are incorrect" => click(By.id("value_1"))
-      case "No, I want to register a different business"   => click(By.id("value_2"))
-      case _                                               => throw new Exception("Option doesn't exist")
+      case "Yes"                                         => click(By.id("value_0"))
+      case "Yes, but some of my details are incorrect"   => click(By.id("value_1"))
+      case "No, I want to register a different business" => click(By.id("value_2"))
+      case _                                             => throw new Exception("Option doesn't exist")
     }
     click(continueButton)
   }
@@ -163,7 +163,7 @@ object Registration extends BasePage {
         Assert.assertTrue(body.contains("Email address different-email@test.com"))
       case "yesToNo"             =>
         Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Have a different UK trading name No"))
+        Assert.assertTrue(body.contains("Is your only trading name Yes"))
         Assert.assertTrue(body.contains("Trading names removed tradingName1"))
         Assert.assertTrue(body.contains("tradingName2"))
         Assert.assertTrue(body.contains("Registered for tax in EU countries No"))
@@ -172,7 +172,7 @@ object Registration extends BasePage {
         Assert.assertTrue(body.contains("www.website2.com"))
       case "noToYes"             =>
         Assert.assertTrue(body.contains("You changed the following details:"))
-        Assert.assertTrue(body.contains("Have a different UK trading name Yes"))
+        Assert.assertTrue(body.contains("Is your only trading name No"))
         Assert.assertTrue(body.contains("Trading names added A new trading name in amend journey"))
         Assert.assertTrue(body.contains("Other One Stop Shop registrations Yes"))
         Assert.assertTrue(body.contains("Countries registered in Cyprus"))

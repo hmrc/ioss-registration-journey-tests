@@ -82,7 +82,7 @@ object PreviousRegistration extends BasePage {
       Assert.assertTrue(
         body.contains(
           "Import One Stop Shop details\n" +
-            "Have a different UK trading name Yes\n" +
+            "Is your only trading name No\n" +
             "Other trading names secondPreviousTradingName1\n" +
             "secondPreviousTradingName2\n" +
             "Other One Stop Shop registrations Yes\n" +
@@ -111,7 +111,7 @@ object PreviousRegistration extends BasePage {
       Assert.assertTrue(
         body.contains(
           "Import One Stop Shop details\n" +
-            "Have a different UK trading name Yes\n" +
+            "Is your only trading name No\n" +
             "Other trading names firstPreviousTradingName1\n" +
             "firstPreviousTradingName2\n" +
             "Other One Stop Shop registrations Yes\n" +

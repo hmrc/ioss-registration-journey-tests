@@ -76,7 +76,7 @@ class GetVATDetailsSpec extends BaseSpec {
 
       Then("the user selects Yes, details incorrect on the confirm-vat-details page")
       registration.checkJourneyUrl("confirm-vat-details")
-      registration.answerVatDetailsChoice("Yes, but some of my VAT details are incorrect")
+      registration.answerVatDetailsChoice("Yes, but some of my details are incorrect")
 
       And("the user is on the update-vat-details page")
       registration.checkJourneyUrl("update-vat-details")

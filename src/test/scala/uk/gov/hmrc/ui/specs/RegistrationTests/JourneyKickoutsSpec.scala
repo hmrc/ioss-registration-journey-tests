@@ -48,8 +48,8 @@ class JourneyKickoutsSpec extends BaseSpec {
       registration.continue()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("no")
 
@@ -92,8 +92,8 @@ class JourneyKickoutsSpec extends BaseSpec {
       registration.continue()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("no")
 

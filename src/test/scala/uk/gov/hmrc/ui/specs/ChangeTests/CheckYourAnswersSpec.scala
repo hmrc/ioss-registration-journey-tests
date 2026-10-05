@@ -37,8 +37,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.standardFilterQuestions()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("A trading name")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -284,7 +284,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("successful")
     }
 
-    Scenario("Change from yes to no via Check Your Answers for NI Trader registration") {
+    Scenario("Change answers via Check Your Answers for NI Trader registration - remove non-mandatory answers") {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -294,8 +294,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.standardFilterQuestions()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("A trading name")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -399,10 +399,10 @@ class CheckYourAnswersSpec extends BaseSpec {
       Then("the user changes trading name section to no")
       registration.checkJourneyUrl("check-your-answers")
       registration.selectChangeOrRemoveLink(
-        "have-uk-trading-name\\?waypoints\\=check-your-answers"
+        "have-no-other-uk-trading-names\\?waypoints\\=check-your-answers"
       )
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("remove-all-trading-names")
       registration.answerRadioButton("yes")
 
@@ -452,7 +452,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("successful")
     }
 
-    Scenario("Change from no to yes via Check Your Answers for NI Trader registration") {
+    Scenario("Change answers via Check Your Answers for NI Trader registration - add non-mandatory answers") {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -462,8 +462,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.standardFilterQuestions()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("tax-in-eu")
@@ -479,10 +479,10 @@ class CheckYourAnswersSpec extends BaseSpec {
       Then("the user changes trading name section to yes and adds answers")
       registration.checkJourneyUrl("check-your-answers")
       registration.selectChangeOrRemoveLink(
-        "have-uk-trading-name\\?waypoints\\=check-your-answers"
+        "have-no-other-uk-trading-names\\?waypoints\\=check-your-answers"
       )
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("A trading name")
       registration.checkJourneyUrl("add-uk-trading-name")
