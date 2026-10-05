@@ -63,6 +63,7 @@ object MongoConnection {
     dropRecord("ioss-registration", "saved-user-answers", "100000400")
     dropRecord("ioss-registration", "saved-user-answers", "100000500")
     dropRecord("ioss-registration", "saved-user-answers", "100000600")
+    dropRecord("ioss-registration", "saved-user-answers", "777777772")
   }
 
   def insert(source: List[String], database: String, collection: String): Unit =
