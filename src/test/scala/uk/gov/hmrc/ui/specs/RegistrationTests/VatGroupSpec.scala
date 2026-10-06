@@ -52,8 +52,8 @@ class VatGroupSpec extends BaseSpec {
 
       And("the user enters their registration information with no previous registrations")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("no")
 
@@ -101,8 +101,8 @@ class VatGroupSpec extends BaseSpec {
 
       And("the user enters their registration information with previous registrations")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("previous-oss")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("previous-country/1")

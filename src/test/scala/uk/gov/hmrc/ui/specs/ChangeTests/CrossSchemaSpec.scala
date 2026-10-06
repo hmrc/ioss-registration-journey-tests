@@ -605,9 +605,9 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
 
-      When("the user answers yes on the have-uk-trading-name page")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      When("the user answers no on the have-no-other-uk-trading-names page")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
 
       And("the user adds the first trading name")
       registration.checkJourneyUrl("uk-trading-name/1")
@@ -1285,8 +1285,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.answerVatDetailsChoice("Yes")
 
       When("the user is on the trading names section")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("a trading name")
 
@@ -1359,8 +1359,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.answerVatDetailsChoice("Yes")
 
       When("the user is on the trading names section")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("a trading name")
 

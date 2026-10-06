@@ -137,7 +137,7 @@ object SavedRegistrations {
          |    "$$oid": "6abbc361ee420fdab007334f"
          |  },
          |  "vrn": "777777772",
-         |  "data": "8a8QCw7Md/9Wq0EcgPELOqVgEYgq2efClYL3emfGrEO6yrzPpplP3mqZ6ycVjIUG7D8qoJYBhcg1s4ZfI0Y+4S4pKmRr/MW3An1xZeotOddHcT8kKDj1EVNeuSEpe8cS77B6gcqFDefeVW3q6Qu9Wg7vcPMKAvmR7xX64JwTZOUf0HmbTNf/UUOsqmB/SMF8pkKRls5fiCozU/jrqOnMfZTt99ftbPDiaXTVDz/4MFp0tQOT4exuOMtEOQFh8OmARPtEJAuGXMg0G2dJjm71nnuRuLcEegWEsWaN8LZRwSLmvpyA8JVzggNZP4TDUTLEyuYNxyIrxObL6Mis+LPMJYSTZpQpHs+IgcxxwAMssw0q9/toogQlUWfwUHoPorPDrmZlD0E9zmD2mtA9V04jB1XJMqAyrT/KiBiGtP+7wYOnjKZAqmovjIikfXvgUtgidULHbcYhF6orxbCkbqoMiEaThYwrihSoR8azpEqwMiXAXXC1FkwFvwAOjZOH20n1c/8o6hdh0w4XmgEJWLuENiSyYomQ0hiOAYtzVMGm6YSep9ZDwems8dv67WFtLUASe/CciK/ZbAeQo3/KbWjPZC7k6udn7uU+yu3O2zDilPw2OjAxunYXAWi4c/sTtUmBqkHKVZi5kgmT29xpk3n6RnRl5ApRa3LEs24U78vXyce0iqy1TsngAEUkpoHBBzsd5WjPSPgDSXQMxcm1VobaaSQ=",
+         |  "data": "LlYM7jN49noRuvXCsSNn6LgM4G8OC1bFHv+G5ol+4wOqvvaKHxCRFFEQ7Yt8lD6k7P/1YDm3wrjwZ+wFiJJ3xkZlcDd6FF3sFb5+4LkBrK//7tP07VnKgF6BnDDp2RWkw0NHcK/KS0S1RlRcVtLQ2Jn/BUEKdkDmepOrqrfvoXc+KEwC3GiyUOihtDNk9q6ZAKnKIe2NBSq3hgNP0xAS52i7L4wXSO+AJbZyDpnZO67YnSENGk8yTOYN4nuNF9i3eCDshQc5tyXCSD2wEAiJIMTcuYcJpPEALZ1HjsT2/OMuLWCt3x10Xlm3T2WZMZ9uKErlyJF+uiLlXZSyQ2PNaFT8SiTEtNb8l1DOAkO/U/SVvgkY/99XFr4qS5CjCOGpNzgPVEPNDoz/uRw8yRd0xf2jB7E11qaTGznyeERHAN9PIwy1EGqNjAqZHYIh0390YiddZqf8AgJR3lVOr/OAOPkGcZWtBpGPEwxNRd79giDKDr1VjJ8ST6nw1ASL+sMvqeik5E1rZC9W3Mh0bgcycpyfqWG5ErgS6scPSXCLuhWUNduzpZWgMfF0iyiaYRKAtzh11AJGFbxLFz1T4DbS4bzPVoRbWDgrxPyQT/uqOVam2Vcp3JVcn9MXGruozCpegSwRkg0+GFxwjL3rVAS6ar54/c+1Cx89OG5C+Q3C0qBPqDPIA2yFzkI9onH4AInCBkqnHj5mRlI+wMjzgHCczg==",
          |  "lastUpdated": {
          |    "$$date": "${yesterday}T13:55:45.246Z"
          |  }

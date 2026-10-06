@@ -121,14 +121,14 @@ class RejoinRegistrationSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "minimalRejoin", "rejoin")
       registration.checkJourneyUrl("rejoin-registration")
 
-      When("the user clicks change for have-uk-trading-name")
+      When("the user clicks change for have-no-other-uk-trading-names")
       registration.selectChangeOrRemoveLink(
-        "have-uk-trading-name\\?waypoints\\=rejoin-registration"
+        "have-no-other-uk-trading-names\\?waypoints\\=rejoin-registration"
       )
 
       And("the user enters a trading name")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("A new trading name in rejoin journey")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -209,12 +209,12 @@ class RejoinRegistrationSpec extends BaseSpec {
 
       When("the user clicks change for Have UK trading name")
       registration.selectChangeOrRemoveLink(
-        "have-uk-trading-name\\?waypoints\\=rejoin-registration"
+        "have-no-other-uk-trading-names\\?waypoints\\=rejoin-registration"
       )
 
       Then("the user amends the answer to no")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
 
       And("the user answers yes on the remove-all-trading-names page")
       registration.checkJourneyUrl("remove-all-trading-names")
@@ -251,14 +251,14 @@ class RejoinRegistrationSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "minimalRejoin", "rejoin")
       registration.checkJourneyUrl("rejoin-registration")
 
-      When("the user clicks change for have-uk-trading-name")
+      When("the user clicks change for have-no-other-uk-trading-names")
       registration.selectChangeOrRemoveLink(
-        "have-uk-trading-name\\?waypoints\\=rejoin-registration"
+        "have-no-other-uk-trading-names\\?waypoints\\=rejoin-registration"
       )
 
       And("the user enters a trading name")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("A new trading name in amend journey")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -269,8 +269,8 @@ class RejoinRegistrationSpec extends BaseSpec {
       )
       registration.checkJourneyUrl("remove-uk-trading-name/1")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
 
       Then("the user clicks change for previous-oss")
       registration.checkJourneyUrl("rejoin-registration")

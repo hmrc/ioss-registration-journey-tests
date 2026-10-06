@@ -27,7 +27,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
   Feature("Amend Registration journeys") {
 
-    Scenario("An IOSS registered user amends registration answers from yes to no for optional sections") {
+    Scenario("An IOSS registered user amends registration data to remove non-mandatory answers") {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
@@ -40,12 +40,12 @@ class AmendRegistrationSpec extends BaseSpec {
 
       When("the user clicks change for Have UK trading name")
       registration.selectChangeOrRemoveLink(
-        "have-uk-trading-name\\?waypoints\\=change-your-registration"
+        "have-no-other-uk-trading-names\\?waypoints\\=change-your-registration"
       )
 
-      Then("the user amends the answer to no")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      Then("the user amends the answer to yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
 
       And("the user answers yes on the remove-all-trading-names page")
       registration.checkJourneyUrl("remove-all-trading-names")
@@ -228,14 +228,14 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       registration.noAmendments()
 
-      When("the user clicks change for have-uk-trading-name")
+      When("the user clicks change for have-no-other-uk-trading-names")
       registration.selectChangeOrRemoveLink(
-        "have-uk-trading-name\\?waypoints\\=change-your-registration"
+        "have-no-other-uk-trading-names\\?waypoints\\=change-your-registration"
       )
 
       And("the user enters a trading name")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("A new trading name in amend journey")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -320,14 +320,14 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       registration.noAmendments()
 
-      When("the user clicks change for have-uk-trading-name")
+      When("the user clicks change for have-no-other-uk-trading-names")
       registration.selectChangeOrRemoveLink(
-        "have-uk-trading-name\\?waypoints\\=change-your-registration"
+        "have-no-other-uk-trading-names\\?waypoints\\=change-your-registration"
       )
 
       And("the user enters a trading name")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("A new trading name in amend journey")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -338,8 +338,8 @@ class AmendRegistrationSpec extends BaseSpec {
       )
       registration.checkJourneyUrl("remove-uk-trading-name/1")
       registration.answerRadioButton("yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
 
       Then("the user clicks change for previous-oss")
       registration.checkJourneyUrl("change-your-registration")
