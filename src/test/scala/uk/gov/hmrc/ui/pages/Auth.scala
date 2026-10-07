@@ -206,10 +206,10 @@ object Auth extends BasePage {
 
     click(By.cssSelector("Input[value='Submit']"))
 
-    if (journey == "retrievedWithCredId") {
+    if (journey != "dashboard") {
       fluentWait.until(
-        ExpectedConditions.urlToBe(
-          "http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop/continue-registration"
+        ExpectedConditions.urlContains(
+          "http://localhost:10190/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop"
         )
       )
     }
