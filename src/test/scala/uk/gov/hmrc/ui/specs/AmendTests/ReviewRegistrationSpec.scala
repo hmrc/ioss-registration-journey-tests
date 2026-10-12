@@ -24,13 +24,13 @@ class ReviewRegistrationSpec extends BaseSpec {
   private val registration = Registration
   private val auth         = Auth
 
-  Feature("Change date over two years journeys") {
+  Feature("Change date over 6 months ago journeys") {
 
-    Scenario("An IOSS registered user has not updated their registration for two years - no amendments") {
+    Scenario("An IOSS registered user has not updated their registration for six months - no amendments") {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100000001", "Organisation", "changeDateTwoYears", "dashboard")
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "changeDateSixMonths", "dashboard")
 
       When("the trader starts a return")
       registration.checkDashboardJourneyUrl("your-account")
@@ -54,11 +54,11 @@ class ReviewRegistrationSpec extends BaseSpec {
       registration.checkAmendedAnswers("noAmendedAnswers")
     }
 
-    Scenario("An IOSS registered user has not updated their registration for two years - with amendments") {
+    Scenario("An IOSS registered user has not updated their registration for six months - with amendments") {
 
       Given("the trader accesses the IOSS Registration Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100000001", "Organisation", "changeDateTwoYears", "dashboard")
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "changeDateSixMonths", "dashboard")
 
       When("the trader starts a return")
       registration.checkDashboardJourneyUrl("your-account")
