@@ -210,5 +210,19 @@ class VatGroupSpec extends BaseSpec {
       registration.submit()
       registration.checkJourneyUrl("successful")
     }
+
+    Scenario(
+      "IOSS Amend Registration journey for NI Trader who is now part of a VAT group and has no fixed establishments in their ETMP registration"
+    ) {
+
+      Given("the trader accesses the IOSS Registration Service to view their registration")
+      auth.goToAuthorityWizard()
+
+      When("the trader is now part of a VAT group and their registration does not contain any fixed establishments")
+      auth.loginUsingAuthorityWizard("777777779", "Organisation", "amendMinimalAccount", "amend")
+
+      Then("the trader is able to view their registration on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+    }
   }
 }
